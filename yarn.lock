@@ -2047,6 +2047,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@chakra-ui/next-js@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@chakra-ui/next-js@npm:2.0.1"
+  dependencies:
+    "@emotion/cache": ^11.10.5
+  peerDependencies:
+    "@chakra-ui/react": ">=2.4.0"
+    "@emotion/react": ">=11"
+    next: ">=13"
+    react: ">=18"
+  checksum: 2b6257e71b8ae48be4d245f121dc03b7937e33c4df3e66eed8f0e519193ea99a4cf211bc12b638ce2b6a130e44d28acff40c2460234f070cac8ed01e7847ea92
+  languageName: node
+  linkType: hard
+
 "@chakra-ui/number-input@npm:2.0.18":
   version: 2.0.18
   resolution: "@chakra-ui/number-input@npm:2.0.18"
@@ -7096,6 +7110,7 @@ __metadata:
   resolution: "banana-vote-fe@workspace:."
   dependencies:
     "@babel/core": ^7.21.0
+    "@chakra-ui/next-js": ^2.0.1
     "@chakra-ui/react": 2.5.1
     "@chakra-ui/storybook-addon": ^4.0.16
     "@emotion/react": 11.10.6

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Feed from "./../../components/Feed";
+import Feed from "../../components/feed/Feed";
 
 const page = () => {
 	return (

@@ -1,5 +1,15 @@
+"use client";
+import { Box } from "@chakra-ui/react";
+import CommentInput from "./CommentInput";
+import CommentList from "./CommentList";
+
 const CommentListArea = () => {
-  return <div>댓글이 들어갈 공간입니다.</div>;
+  return (
+    <Box width={"100%"} minH={"200px"}>
+      <CommentInput />
+      <CommentList />
+    </Box>
+  );
 };
 
 export default CommentListArea;

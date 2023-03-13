@@ -12,10 +12,15 @@ const PicketArea = () => {
         alignItems="center"
         marginBottom={"1%"}
       >
-        <Box textAlign={"center"} padding={"3%"}>
+        <Box
+          fontWeight={"extrabold"}
+          fontSize={"2xl"}
+          textAlign={"center"}
+          padding={"3%"}
+        >
           선거 운동
         </Box>
-        <Box padding={"10px"}>
+        <Box padding={"10px"} marginRight={"10px"}>
           <Button backgroundColor={"#AEE6E3"} borderRadius={"20px"}>
             참여하기
           </Button>

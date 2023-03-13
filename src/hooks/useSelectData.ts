@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useSelectButton = <T>(defaultState: T) => {
+const useSelectData = <T>(defaultState: T) => {
   const [state, setState] = useState<T>(defaultState);
 
   const onClickHandler = (newState: T) => {
@@ -8,4 +8,4 @@ const useSelectButton = <T>(defaultState: T) => {
   };
   return { state, setState, onClickHandler };
 };
-export default useSelectButton;
+export default useSelectData;

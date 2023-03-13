@@ -1,6 +1,6 @@
-import VoteDetailArea from "@/components/VoteDetail/DetailArea";
-import PicketArea from "@/components/VoteDetail/PicketArea";
-import CommentListArea from "@/components/VoteDetail/CommentList";
+import VoteDetailArea from "@/components/voteDetail/DetailArea";
+import PicketArea from "@/components/voteDetail/picketArea";
+import CommentListArea from "@/components/voteDetail/commentList";
 
 const VoteDetail = () => {
   return (

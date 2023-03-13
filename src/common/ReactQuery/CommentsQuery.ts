@@ -1,4 +1,4 @@
-import { DummyComments } from "@/components/VoteDetail/CommentList/DummyComment";
+import { DummyComments } from "@/components/voteDetail/commentList/DummyComment";
 import { useInfiniteQuery } from "react-query";
 import { opinionTypes } from "@/types";
 
@@ -15,7 +15,7 @@ export const useFetchComments = ({
     [queryKey, postId],
     async () => {
       const response = DummyComments;
-        
+
       return response;
     },
     {

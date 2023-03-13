@@ -4,7 +4,7 @@ import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "../theme/theme";
 import { CacheProvider } from "@chakra-ui/next-js";
 import { QueryClientProvider } from "react-query";
-import { queryClient } from "@common/ReactQuery/QueryClient";
+import { queryClient } from "@/common/reactQuery/QueryClient";
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   return (

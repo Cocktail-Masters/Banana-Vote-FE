@@ -1,5 +1,5 @@
 "use client";
-import { useFetchComments } from "@/common/ReactQuery/CommentsQuery";
+import { useFetchComments } from "@/common/reactQuery/CommentsQuery";
 import { useEffect, useState } from "react";
 import { Box, Button, Flex } from "@chakra-ui/react";
 

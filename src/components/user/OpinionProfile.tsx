@@ -16,11 +16,11 @@ const OpinionProfile = ({ image, name, date, isWriter }: OpinionProfileProps) =>
 			</Avatar>
 			<Box>
 				<Flex>
-					<Heading fontSize="1rem" size="sm" mb={1}>
+					<Heading fontSize="0.8rem" size="sm" mb={1}>
 						<Text>{name}</Text>
 					</Heading>
 				</Flex>
-				<Flex fontSize="0.8rem">
+				<Flex fontSize="0.75rem">
 					<Text color="gray">{date}</Text>
 				</Flex>
 			</Box>

@@ -7797,6 +7797,7 @@ __metadata:
     i18next: ^22.4.11
     jest: ^29.5.0
     lodash: ^4.17.21
+    nanoid: ^4.0.1
     next: 13.2.3
     next-i18next: ^13.2.1
     next-pwa: ^5.6.0
@@ -14738,6 +14739,15 @@ __metadata:
   bin:
     nanoid: bin/nanoid.cjs
   checksum: 2fddd6dee994b7676f008d3ffa4ab16035a754f4bb586c61df5a22cf8c8c94017aadd360368f47d653829e0569a92b129979152ff97af23a558331e47e37cd9c
+  languageName: node
+  linkType: hard
+
+"nanoid@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "nanoid@npm:4.0.1"
+  bin:
+    nanoid: bin/nanoid.js
+  checksum: 21022a7910aa690cb05872c07f0c4a317dfe2aa79cc2b5e4ab41d17476e23d973d24c683206d6fa7e1b56bf657cf5dfbc0f1cac7d596bcd2dea0f49635316628
   languageName: node
   linkType: hard
 

@@ -1,76 +1,48 @@
-import { ChangeEvent, useState } from "react";
+"use client";
 
-import { storage } from "@common/firebaseConfig";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { css } from "@emotion/react";
-import { Input } from "@chakra-ui/react";
+import { ChangeEvent, useRef, useState } from "react";
 
-const UploadImage = () => {
-  const [progresspercent, setProgresspercent] = useState(0);
+import uploadAsset from "@assets/images/uploadAsset.png";
+import Image from "next/image";
+import { Button } from "@chakra-ui/react";
 
+type UploadImagePropsType = {
+  onClickHandler: (file: File) => void;
+};
+
+const UploadImage = ({ onClickHandler }: UploadImagePropsType) => {
   const [file, setFile] = useState<File | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       console.log(e.target.files[0]);
       setFile(e.target.files[0]);
+      onClickHandler(e.target.files[0]);
     }
   };
 
-  // const handleSubmit = (e: any) => {
-  //   console.log("handleSubmit");
-  //   e.preventDefault();
-  //   const file = e.target[0]?.files[0];
-
-  //   if (!file) return;
-
-  //   const storageRef = ref(storage, `files/${file.name}`);
-  //   console.log(file);
-  //   const uploadTask = uploadBytesResumable(storageRef, file);
-
-  //   uploadTask.on(
-  //     "state_changed",
-  //     (snapshot) => {
-  //       const progress = Math.round(
-  //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-  //       );
-  //       setProgresspercent(progress);
-  //     },
-  //     (error) => {
-  //       alert(error);
-  //     },
-  //     () => {
-  //       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL: string) => {
-  //         setImgUrl(downloadURL);
-  //       });
-  //     }
-  //   );
-  // };
-
+  const handleUploadClick = () => {
+    inputRef.current?.click();
+  };
   return (
     <>
-      <div
-        css={css`
-          & > input[type="file"] {
-            display: none;
-          }
-          border: 1px solid #ccc;
-          display: inline-block;
-          padding: 6px 12px;
-          cursor: pointer;
-        `}
-      >
-        <input type="file" onChange={handleFileChange} />
-
-        {/* {!imgUrl && (
-          <div className="outerbar">
-            <div className="innerbar" style={{ width: `${progresspercent}%` }}>
-              {progresspercent}%
-            </div>
-          </div>
-        )}
-        {imgUrl && <img src={imgUrl} alt="uploaded file" height={200} />} */}
-      </div>
+      <Button m={0} p={0} onClick={handleUploadClick}>
+        <Image
+          src={uploadAsset}
+          alt="upload asset"
+          style={{
+            margin: "auto",
+            objectFit: "contain",
+          }}
+        />
+      </Button>
+      <input
+        type="file"
+        ref={inputRef}
+        onChange={handleFileChange}
+        style={{ display: "none" }}
+      />
     </>
   );
 };

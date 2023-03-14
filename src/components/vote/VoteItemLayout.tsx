@@ -1,3 +1,5 @@
+"use client";
+
 import { Box } from "@chakra-ui/react";
 
 const VoteItemLayout = ({ children }: { children: React.ReactNode }) => {

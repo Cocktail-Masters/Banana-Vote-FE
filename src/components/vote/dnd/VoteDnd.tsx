@@ -11,7 +11,7 @@ import {
   NotDraggingStyle,
 } from "react-beautiful-dnd";
 import VoteItemCard from "../VoteItemCard";
-import { voteItemTypes } from "../CreateVote";
+import { getDefaultVoteItem, voteItemTypes } from "../CreateVote";
 import { Button } from "@chakra-ui/react";
 import Image from "next/image";
 
@@ -23,9 +23,11 @@ const reorder = (
   startIndex: number,
   endIndex: number
 ): voteItemTypes => {
+  console.log("start", list);
   const result = [...list];
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
+  console.log("end", result);
   return result;
 };
 
@@ -47,11 +49,6 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
     });
   };
 
-  const onDragUpdate = (result: any) => {
-    // dropped outside the list(리스트 밖으로 드랍한 경우)
-    console.log("onDragUpdate", result);
-  };
-
   const onChangeHandler = (value: string, index: number) => {
     setVoteItems((prevItems) => {
       const newItems = [...prevItems];
@@ -67,15 +64,15 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
   return (
     <>
       {state && (
-        <DragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
+        <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
               <div ref={provided.innerRef} {...provided.droppableProps}>
                 <div className="droppable">
-                  {voteItems.map((item, index) => (
+                  {voteItems.map((voteItem, index) => (
                     <Draggable
-                      key={index}
-                      draggableId={`item-${index}`}
+                      key={voteItem.id}
+                      draggableId={voteItem.id}
                       index={index}
                     >
                       {(provided, snapshot) => {
@@ -91,8 +88,8 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
                               // )}
                             >
                               <VoteItemCard
-                                image={item.image}
-                                content={item.content}
+                                voteItem={voteItem}
+                                setVoteItems={setVoteItems}
                                 onChangeHandler={onChangeHandler}
                                 index={index}
                               />
@@ -116,7 +113,7 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
           background={"white"}
           _hover={{ bg: "#ffffff" }}
           onClick={() => {
-            setVoteItems((v) => [...v, { image: "", content: "" }]);
+            setVoteItems((v) => [...v, getDefaultVoteItem()]);
           }}
         >
           <Image src={plusImage} alt={"plus button"} />

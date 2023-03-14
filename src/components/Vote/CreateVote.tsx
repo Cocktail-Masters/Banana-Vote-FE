@@ -1,13 +1,26 @@
 "use client";
-import { Box, Button, Divider, Flex, Input } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Input, Textarea } from "@chakra-ui/react";
 import { useState } from "react";
 import useSelectData from "@hooks/useSelectData";
 import { SingleDatepicker } from "../datepicker/Datepicker";
 import VoteDnd from "./dnd/VoteDnd";
 import VoteOptionToggleButton from "./VoteOptionToggleButton";
 import UploadImage from "../UploadImage";
+import { nanoid } from "nanoid";
+import VoteCreatTag from "../tag/VoteCreateTag";
 
-export type voteItemType = { image: string; content: string };
+export type voteItemType = {
+  id: string;
+  imageFile: File | null;
+  content: string;
+};
+export const getDefaultVoteItem = () => {
+  return {
+    id: nanoid(),
+    imageFile: null,
+    content: "",
+  };
+};
 export type voteItemTypes = voteItemType[];
 
 const CreateVote = () => {
@@ -18,6 +31,10 @@ const CreateVote = () => {
   const { state: date, setState: setDate } = useSelectData<Date>(new Date());
 
   const [voteItems, setVoteItems] = useState<voteItemType[]>([]);
+
+  const [text, setText] = useState<string>("");
+
+  const [tagArray, setTagArray] = useState<string[]>([]);
 
   return (
     <Flex flexDirection={"column"}>
@@ -70,13 +87,18 @@ const CreateVote = () => {
           borderRadius={"20px"}
         />
         <VoteDnd voteItems={voteItems} setVoteItems={setVoteItems} />
+        <Textarea
+          borderRadius={"20px"}
+          boxShadow={"base"}
+          onChange={(e) => setText(e.target.value)}
+        ></Textarea>
+        <VoteCreatTag tagArray={tagArray} setTagArray={setTagArray} />
         <Flex>
           <Box>#탕수육</Box>
           <Box>#탕수육_논쟁</Box>
           <Box>#탕수육_싸움</Box>
         </Flex>
       </Flex>
-      <UploadImage />
     </Flex>
   );
 };

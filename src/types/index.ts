@@ -3,11 +3,11 @@
  */
 
 export type anotherUserType = {
-    nickname: string;
-    ranking: number;
-    percentage: number;
-  };
-  
+  nickname: string;
+  ranking: number;
+  percentage: number;
+};
+
 export type userType = anotherUserType & {
   age: number;
   gender: string;
@@ -55,7 +55,7 @@ export type goodsType = {
 };
 
 export type storeGoodsType = goodsType & {
-    type: string;
+  type: string;
   ea: number;
   limit_date: string;
 };
@@ -67,7 +67,7 @@ export type goods_typeTypes = string[];
 export type userGoodsType = goodsType & {
   desc: string;
   image_url: string;
-    type: string;
+  type: string;
   price: number;
   ea: number; // 해당 상품 보유 갯수
   limit_date: string; // 상품 사용 기한 (ex. 2023-12-18)
@@ -88,9 +88,10 @@ export type opinionType = {
 };
 
 export type opinionTypes = {
-    opinions:opinionType[];
-    isLast:boolean;
-    endPageIndex:number;
+  opinions: opinionType[];
+  best?: number[];
+  isLast: boolean;
+  endPageIndex: number;
 };
 
 /**

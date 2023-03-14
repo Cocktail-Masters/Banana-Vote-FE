@@ -3,16 +3,21 @@ const { i18n } = require("./next-i18next.config");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	sassOptions: {
-		includePaths: [path.join(__dirname, "styles")],
-		prependData: ``,
-	},
-	experimental: {
-		appDir: true,
-		fontLoaders: [{ loader: "@next/font/google", options: { subsets: ["korean"] } }],
-	},
-	i18n,
-	swcMinify: true,
+  sassOptions: {
+    includePaths: [path.join(__dirname, "styles")],
+    prependData: ``,
+  },
+  experimental: {
+    appDir: true,
+    fontLoaders: [
+      { loader: "@next/font/google", options: { subsets: ["korean"] } },
+    ],
+  },
+  i18n,
+  swcMinify: true,
+  images: {
+    domains: ["cdn.discordapp.com"],
+  },
 };
 
 module.exports = nextConfig;

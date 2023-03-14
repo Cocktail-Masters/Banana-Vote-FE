@@ -1,7 +1,39 @@
 "use client";
-import { Input, Box, Flex, Button, Textarea, Text } from "@chakra-ui/react";
+import { useCommentMutation } from "@/hooks/useMutations";
+import { opinionType } from "@/types";
+import { Flex, Button, Textarea, Text } from "@chakra-ui/react";
+import { useRef } from "react";
 
 const CommentInput = () => {
+  const { mutate } = useCommentMutation({ queryKey: "commentList" });
+  const commentInputRef = useRef<HTMLTextAreaElement>(null);
+
+  const sendOpinion = () => {
+    if (
+      commentInputRef.current !== null &&
+      commentInputRef.current.value !== undefined
+    ) {
+      const opinion: opinionType = {
+        id: Math.floor(Math.random() * 1000),
+        content: commentInputRef.current.value,
+        n_agree: Math.floor(Math.random() * 1000),
+        n_disagree: Math.floor(Math.random() * 100),
+        n_reported: 0,
+        nickname: "새로운 댓글이다",
+      };
+      mutate(
+        { uri: "test", sendData: opinion },
+        {
+          onSuccess: () => {
+            console.log("안녕하세요", commentInputRef.current);
+            if (commentInputRef.current !== null) {
+              commentInputRef.current.value = "";
+            }
+          },
+        }
+      );
+    }
+  };
   return (
     <Flex w={"100%"} alignItems={"center"} flexDirection={"column"}>
       <Flex w={"95%"}>
@@ -23,12 +55,14 @@ const CommentInput = () => {
           rounded={"3xl"}
           placeholder={"나의 의견을 전해주세요"}
           resize={"none"}
+          ref={commentInputRef}
         ></Textarea>
         <Button
           h={"100%"}
           padding={"2%"}
           backgroundColor={"#B6B6B6"}
           rounded={"3xl"}
+          onClick={sendOpinion}
         >
           <svg
             width="48"

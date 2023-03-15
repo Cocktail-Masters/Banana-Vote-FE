@@ -1,4 +1,5 @@
 /**
+import { voteDetailType } from '@/types';
  * users
  */
 
@@ -85,6 +86,7 @@ export type opinionType = {
 	n_agree: number;
 	n_disagree: number;
 	n_reported: number;
+	date: string; // 생성된 날짜
 };
 
 export type opinionTypes = {
@@ -137,12 +139,17 @@ export type voteDetailType = {
 	start_date?: string;
 	end_date: string;
 	n_view: number;
+	n_vote: number;
 	n_reported: number;
 	n_opinion: number;
 	is_deleted: boolean;
 	is_event: boolean;
 	is_closed: boolean;
 	vote_item: voteItemTypes;
+};
+
+export type voteFeedListType = voteDetailType & {
+	best_opinion: opinionType;
 };
 
 export type voteDeleteType = {

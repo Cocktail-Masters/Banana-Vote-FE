@@ -11,10 +11,10 @@ import FeedHeader from "./FeedHeader";
 import VS from "./VS";
 import VoteItemList from "./VoteItemList";
 import FeedTitle from "./FeedTitle";
-import { voteDetailType } from "@/types";
+import { voteFeedListType } from "@/types";
 
 interface feedProps {
-	data: voteDetailType;
+	data: voteFeedListType;
 }
 
 const Feed = ({ data }: feedProps) => {

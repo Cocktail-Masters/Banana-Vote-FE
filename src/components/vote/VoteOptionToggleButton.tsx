@@ -32,14 +32,15 @@ function VoteOptionToggleButton<T>({
             }
             return "none";
           };
-          const backgroundStyle = () => {
-            return isData === data ? "#FFA45B" : "#D9D9D9";
-          };
+
           return (
             <Button
               key={content}
               onClick={() => onClickHandler(data)}
-              style={{ background: backgroundStyle() }}
+              style={{
+                background: isData === data ? "#FFA45B" : "#D9D9D9",
+                fontWeight: isData === data ? 700 : 500,
+              }}
               borderRadius={indexCheck()}
             >
               {content}

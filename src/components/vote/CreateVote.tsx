@@ -29,16 +29,16 @@ const CreateVote = () => {
   const { state: isLogin, onClickHandler: setIsLogin } =
     useSelectData<boolean>(false);
   const { state: date, setState: setDate } = useSelectData<Date>(new Date());
-
+  const [voteTitle, setVoteTitle] = useState("");
   const [voteItems, setVoteItems] = useState<voteItemType[]>([]);
-
   const [text, setText] = useState<string>("");
-
   const [tagArray, setTagArray] = useState<string[]>([]);
 
   return (
-    <Flex flexDirection={"column"}>
-      <Box>투표생성</Box>
+    <Flex flexDirection={"column"} margin={"10px"}>
+      <Box fontSize={"28px"} fontWeight={700} margin={"10px"}>
+        투표생성
+      </Box>
       <Flex
         flexDirection={"column"}
         gap={8}
@@ -46,17 +46,19 @@ const CreateVote = () => {
         border={"1px solid #D9D9D9"}
         boxShadow={"base"}
         padding={"10px"}
-        margin={"10px"}
       >
-        <Flex gap={"10px"} flexDirection={"column"}>
-          <Flex width={"230px"}>
+        <Flex
+          gap={"10px"}
+          flexDirection={{ base: "column", lg: "row", xl: "row" }}
+        >
+          <Flex width={"260px"}>
             <VoteOptionToggleButton
               title={"공개 여부"}
               isData={isOpen}
               onClickHandler={setIsOpen}
               toggleContent={[
-                { data: true, content: "익명" },
-                { data: false, content: "실명" },
+                { data: true, content: "공개" },
+                { data: false, content: "비공개" },
               ]}
             />
           </Flex>
@@ -65,8 +67,8 @@ const CreateVote = () => {
             isData={isLogin}
             onClickHandler={setIsLogin}
             toggleContent={[
-              { data: true, content: "익명" },
-              { data: false, content: "실명" },
+              { data: true, content: "실명" },
+              { data: false, content: "익명" },
             ]}
           />
           <Flex alignItems="center">
@@ -80,7 +82,17 @@ const CreateVote = () => {
             />
           </Flex>
         </Flex>
-        <Input focusBorderColor="#FFA45B" placeholder="제목을 입력해주세요" />
+        <Input
+          borderRadius={16}
+          h="60px"
+          focusBorderColor="#FFA45B"
+          placeholder="제목"
+          onChange={(e) => setVoteTitle(e.target.value)}
+          fontSize={28}
+          _placeholder={{
+            fontWeight: 700,
+          }}
+        />
         <Divider
           borderColor={"#D9D9D9"}
           borderBottomWidth={"7px"}
@@ -93,11 +105,29 @@ const CreateVote = () => {
           onChange={(e) => setText(e.target.value)}
         ></Textarea>
         <VoteCreatTag tagArray={tagArray} setTagArray={setTagArray} />
-        <Flex>
-          <Box>#탕수육</Box>
-          <Box>#탕수육_논쟁</Box>
-          <Box>#탕수육_싸움</Box>
-        </Flex>
+      </Flex>
+      <Flex justifyContent="flex-end" margin={"10px"}>
+        <Button
+          onClick={() => {
+            console.log("isOpen", isOpen);
+            console.log("isLogin", isLogin);
+            console.log("date", date);
+            console.log("voteTitle", voteTitle);
+            console.log("voteItems", voteItems);
+            console.log("text", text);
+            console.log("tagArray", tagArray);
+          }}
+          borderRadius={"12px"}
+          w={"130px"}
+          h={"50px"}
+          boxShadow={"base"}
+          background={"#FFA45B"}
+          fontWeight={"700"}
+          fontSize={"25px"}
+          _hover={{ bg: "white" }}
+        >
+          등록
+        </Button>
       </Flex>
     </Flex>
   );

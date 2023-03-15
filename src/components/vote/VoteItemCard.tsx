@@ -1,6 +1,13 @@
 "use client";
 
-import { Card, Image as ChakraImage, Stack, Input } from "@chakra-ui/react";
+import {
+  Card,
+  Image as ChakraImage,
+  Stack,
+  Input,
+  Button,
+  Flex,
+} from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import UploadImage from "../UploadImage";
 import VoteItemLayout from "./VoteItemLayout";
@@ -8,6 +15,9 @@ import { voteItemTypes, voteItemType } from "./CreateVote";
 import Image from "next/image";
 
 import minus from "@assets/images/minus.svg";
+import close from "@assets/images/close.png";
+import React from "react";
+import { DragHandleIcon } from "@chakra-ui/icons";
 
 const VoteItemCard = ({
   voteItem,
@@ -23,12 +33,18 @@ const VoteItemCard = ({
   const { imageFile, content } = voteItem;
   const [imageSrc, setImageSrc] = useState<string | null>("");
 
-  const uploadImageHandler = (file: File) => {
+  const uploadImageHandler = (file: File | null) => {
     setVoteItems((prevItems) => {
       const newItems = [...prevItems];
       newItems[index].imageFile = file;
       return newItems;
     });
+  };
+
+  const deleteFileHandler = () => {
+    console.log("삭제");
+    setImageSrc(null);
+    uploadImageHandler(null);
   };
 
   const onClickMinusHandler = () => {
@@ -53,15 +69,44 @@ const VoteItemCard = ({
   return (
     <>
       <VoteItemLayout>
-        <Card
-          direction={{ base: "column", sm: "row" }}
-          width={"100%"}
-          height={"100%"}
-        >
+        <Card direction={"row"} width={"100%"} height={"100%"}>
           <Stack position={"relative"} w={"200px"} h={"120px"}>
-            <Stack position="absolute" top={0} right={0}>
-              <UploadImage onClickHandler={uploadImageHandler} />
-            </Stack>
+            {imageSrc && (
+              <Button
+                position={"absolute"}
+                top={"5px"}
+                right={"5px"}
+                borderRadius={"50%"}
+                w={"30px"}
+                h={"30px"}
+                maxW={"30px"}
+                maxH={"30px"}
+                minW={"30px"}
+                minH={"30px"}
+                p={2}
+                m={0}
+                background={"black"}
+                _hover={{ bg: "black" }}
+                onClick={deleteFileHandler}
+              >
+                <Image
+                  src={close}
+                  width={25}
+                  height={25}
+                  alt={"close button"}
+                ></Image>
+              </Button>
+            )}
+            {!imageSrc && (
+              <Stack
+                position="absolute"
+                top={"50%"}
+                left={"50%"}
+                transform={"translate(-50%, -50%)"}
+              >
+                <UploadImage onClickHandler={uploadImageHandler} />
+              </Stack>
+            )}
             {imageSrc && (
               <ChakraImage
                 objectFit="cover"
@@ -79,13 +124,18 @@ const VoteItemCard = ({
 
           <Stack w={"100%"} h={"100%"}>
             <Input
+              variant="unstyled"
               w={"100%"}
               h={"100%"}
+              padding={5}
+              fontSize={{ base: 20, xl: 28 }}
+              fontWeight={700}
+              placeholder={"내용 입력"}
               value={content}
               onChange={(e) => onChangeHandler(e.target.value, index)}
             ></Input>
           </Stack>
-          <Stack w={"100px"} onClick={onClickMinusHandler}>
+          <Stack w={"30px"} onClick={onClickMinusHandler}>
             <Image
               src={minus}
               alt="minus"
@@ -95,9 +145,12 @@ const VoteItemCard = ({
               }}
             />
           </Stack>
+          <Flex w={"100px"} justifyContent={"center"} alignItems={"center"}>
+            <DragHandleIcon />
+          </Flex>
         </Card>
       </VoteItemLayout>
     </>
   );
 };
-export default VoteItemCard;
+export default React.memo(VoteItemCard);

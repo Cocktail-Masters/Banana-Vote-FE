@@ -57,6 +57,12 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
     });
   };
 
+  const getItemStyle = (draggableStyle: any, isDragging: any) => ({
+    userSelect: "none",
+    margin: "5px",
+    ...draggableStyle,
+  });
+
   useEffect(() => {
     setState(true);
   }, []);
@@ -66,8 +72,11 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
       {state && (
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
-            {(provided, snapshot) => (
-              <div ref={provided.innerRef} {...provided.droppableProps}>
+            {(droppableProvided, snapshot) => (
+              <div
+                ref={droppableProvided.innerRef}
+                {...droppableProvided.droppableProps}
+              >
                 <div className="droppable">
                   {voteItems.map((voteItem, index) => (
                     <Draggable
@@ -75,17 +84,13 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
                       draggableId={voteItem.id}
                       index={index}
                     >
-                      {(provided, snapshot) => {
+                      {(draggableProvided, snapshot) => {
                         return (
                           <div>
                             <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              // style={getItemStyle(
-                              //   snapshot.isDragging,
-                              //   provided.draggableProps.style
-                              // )}
+                              ref={draggableProvided.innerRef}
+                              {...draggableProvided.draggableProps}
+                              {...draggableProvided.dragHandleProps}
                             >
                               <VoteItemCard
                                 voteItem={voteItem}
@@ -99,7 +104,7 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
                       }}
                     </Draggable>
                   ))}
-                  {provided.placeholder}
+                  {droppableProvided.placeholder}
                 </div>
               </div>
             )}

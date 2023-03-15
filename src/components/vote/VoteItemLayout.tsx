@@ -10,6 +10,7 @@ const VoteItemLayout = ({ children }: { children: React.ReactNode }) => {
       background={"white"}
       boxShadow={"base"}
       overflow={"hidden"}
+      m={2}
     >
       {children}
     </Box>

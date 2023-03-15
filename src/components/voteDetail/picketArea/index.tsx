@@ -6,7 +6,10 @@ import Carousel from "./Carousel";
 import PicketAreaModal from "./PicketModal";
 
 const PicketArea = () => {
-  const { data, isLoading } = usePicketQuery({ queryKey: "picket", voteId: 1 });
+  const { data, isLoading } = usePicketQuery({
+    queryKey: ["picket"],
+    voteId: 1,
+  });
   return (
     <Flex
       w={"100%"}
@@ -16,10 +19,10 @@ const PicketArea = () => {
     >
       <Flex
         w="100%"
-        h={"25%"}
+        h={"25px"}
         justifyContent={"space-between"}
         alignItems="center"
-        marginBottom={"1%"}
+        marginBottom={"15px"}
       >
         <Box
           fontWeight={"extrabold"}
@@ -29,19 +32,22 @@ const PicketArea = () => {
         >
           선거 운동
         </Box>
-        <Box padding={"10px"} marginRight={"10px"}>
-          <PicketAreaModal />
-        </Box>
+        {data !== undefined && (
+          <Box padding={"10px"} marginRight={"10px"}>
+            <PicketAreaModal pickets={data?.pickets} />
+          </Box>
+        )}
       </Flex>
-      <Flex maxW={"1200px"} h={"180px"} padding="1%">
+      <Flex maxW={"1200px"} h={"200px"} padding="1%">
         <Box
           width={"100%"}
-          maxH={"160px"}
-          height="100%"
+          maxH={"200px"}
+          height="200px"
           position={"relative"}
           borderRadius={"20px"}
           backgroundColor="#D9D9D9"
-          // overflow={"hidden"}
+          display={"block"}
+          overflow={"hidden"}
         >
           {data !== undefined && <Carousel pickets={data?.pickets} />}
         </Box>

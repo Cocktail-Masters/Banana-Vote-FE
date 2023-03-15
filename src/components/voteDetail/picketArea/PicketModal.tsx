@@ -1,4 +1,5 @@
 "use client";
+import { picketsType } from "@/types";
 import {
   Modal,
   ModalOverlay,
@@ -12,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import PicketAreaModalContent from "./ModalContent";
 
-const PicketAreaModal = () => {
+const PicketAreaModal = ({ pickets }: picketsType) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -25,12 +26,12 @@ const PicketAreaModal = () => {
         참여하기
       </Button>
 
-      <Modal isOpen={isOpen} size={"2xl"} onClose={onClose}>
+      <Modal isOpen={isOpen} size={"4xl"} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent w={"100vw"}>
+        <ModalContent w={"100%"}>
           <ModalHeader>피캣 올리기</ModalHeader>
           <ModalCloseButton />
-          <PicketAreaModalContent />
+          <PicketAreaModalContent pickets={pickets} />
         </ModalContent>
       </Modal>
     </>

@@ -5,7 +5,7 @@ export const usePicketQuery = ({
   queryKey,
   voteId,
 }: {
-  queryKey: string | (string | number)[];
+  queryKey: (string | number)[];
   voteId: number;
 }) => {
   return useQuery([queryKey, voteId], async () => {

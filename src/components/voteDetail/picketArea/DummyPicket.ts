@@ -4,7 +4,7 @@ export const DummyPicket: picketsType = {
   pickets: [
     {
       picket_image_url:
-        "https://cdn.discordapp.com/attachments/433506654009425921/1021418121933885460/unknown.png",
+        "https://cdn.discordapp.com/attachments/433506654009425921/987185259915399218/unknown.png",
       position: 1,
       price: 1600,
     },

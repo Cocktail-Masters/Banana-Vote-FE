@@ -6,7 +6,7 @@ import { DummyComments } from "@/components/voteDetail/commentList/DummyComment"
 export const useCommentMutation = ({
   queryKey,
 }: {
-  queryKey: string | (string | number[]);
+  queryKey: (string | number)[];
 }) => {
   return useMutation(
     async ({ uri, sendData }: { uri: string; sendData: opinionType }) => {

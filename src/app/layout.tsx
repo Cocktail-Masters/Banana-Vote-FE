@@ -1,4 +1,7 @@
+"use client";
+
 import Provider from "./Provider";
+import { Noto_Sans } from "next/font/google";
 
 // export const metadata = {
 // 	title: {
@@ -7,12 +10,21 @@ import Provider from "./Provider";
 // 	},
 // };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-	return (
-		<html lang="en">
-			<body>
-				<Provider>{children}</Provider>
-			</body>
-		</html>
-	);
+const notoSansKr = Noto_Sans({
+  subsets: ["latin"],
+  weight: "400",
+});
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className={notoSansKr.className}>
+      <body>
+        <Provider>{children}</Provider>
+      </body>
+    </html>
+  );
 }

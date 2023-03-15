@@ -45,4 +45,5 @@ export const DummyComments: opinionTypes = {
   ],
   isLast: true,
   endPageIndex: 1,
+  best: [1],
 };

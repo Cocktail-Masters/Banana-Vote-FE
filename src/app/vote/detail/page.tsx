@@ -1,3 +1,4 @@
+"use client";
 import VoteDetailArea from "@/components/voteDetail/DetailArea";
 import PicketArea from "@/components/voteDetail/picketArea";
 import CommentListArea from "@/components/voteDetail/commentList";

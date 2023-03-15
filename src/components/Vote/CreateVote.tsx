@@ -8,30 +8,33 @@ import VoteOptionToggleButton from "./VoteOptionToggleButton";
 import UploadImage from "../UploadImage";
 import { nanoid } from "nanoid";
 import VoteCreatTag from "../tag/VoteCreateTag";
+import { voteRegistrationType } from "@/hooks/reactQuery/mutation/useRegistrationMutation";
 
 export type voteItemType = {
   id: string;
   imageFile: File | null;
-  content: string;
+  title: string;
 };
-export const getDefaultVoteItem = () => {
+export const getDefaultVoteItem = (): voteItemType => {
   return {
     id: nanoid(),
     imageFile: null,
-    content: "",
+    title: "",
   };
 };
 export type voteItemTypes = voteItemType[];
 
 const CreateVote = () => {
-  const { state: isOpen, onClickHandler: setIsOpen } =
+  const { state: isAnonymouse, onClickHandler: setIsAnonymouse } =
     useSelectData<boolean>(true);
-  const { state: isLogin, onClickHandler: setIsLogin } =
+  const { state: isDisclosure, onClickHandler: setIsDisclosure } =
     useSelectData<boolean>(false);
-  const { state: date, setState: setDate } = useSelectData<Date>(new Date());
+  const { state: endDate, setState: setEndDate } = useSelectData<Date>(
+    new Date()
+  );
   const [voteTitle, setVoteTitle] = useState("");
   const [voteItems, setVoteItems] = useState<voteItemType[]>([]);
-  const [text, setText] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const [tagArray, setTagArray] = useState<string[]>([]);
 
   return (
@@ -54,8 +57,8 @@ const CreateVote = () => {
           <Flex width={"260px"}>
             <VoteOptionToggleButton
               title={"공개 여부"}
-              isData={isOpen}
-              onClickHandler={setIsOpen}
+              isData={isDisclosure}
+              onClickHandler={setIsDisclosure}
               toggleContent={[
                 { data: true, content: "공개" },
                 { data: false, content: "비공개" },
@@ -64,11 +67,11 @@ const CreateVote = () => {
           </Flex>
           <VoteOptionToggleButton
             title={"로그인 여부"}
-            isData={isLogin}
-            onClickHandler={setIsLogin}
+            isData={isAnonymouse}
+            onClickHandler={setIsAnonymouse}
             toggleContent={[
-              { data: true, content: "실명" },
-              { data: false, content: "익명" },
+              { data: false, content: "실명" },
+              { data: true, content: "익명" },
             ]}
           />
           <Flex alignItems="center">
@@ -77,8 +80,8 @@ const CreateVote = () => {
             </Box>
             <SingleDatepicker
               name="date-input"
-              date={date}
-              onDateChange={setDate}
+              date={endDate}
+              onDateChange={setEndDate}
             />
           </Flex>
         </Flex>
@@ -102,20 +105,30 @@ const CreateVote = () => {
         <Textarea
           borderRadius={"20px"}
           boxShadow={"base"}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => setContent(e.target.value)}
         ></Textarea>
         <VoteCreatTag tagArray={tagArray} setTagArray={setTagArray} />
       </Flex>
       <Flex justifyContent="flex-end" margin={"10px"}>
         <Button
           onClick={() => {
-            console.log("isOpen", isOpen);
-            console.log("isLogin", isLogin);
-            console.log("date", date);
+            console.log("isDisclosure", isDisclosure);
+            console.log("isAnonymouse", isAnonymouse);
+            console.log("end_date", endDate);
             console.log("voteTitle", voteTitle);
             console.log("voteItems", voteItems);
-            console.log("text", text);
+            console.log("content", content);
             console.log("tagArray", tagArray);
+
+            const temp: voteRegistrationType = {
+              title: voteTitle,
+              is_disclosure: isDisclosure,
+              is_anonymouse: isAnonymouse,
+              end_date: endDate.toString(),
+              vote_items: voteItems,
+              content: content,
+              tags: tagArray,
+            };
           }}
           borderRadius={"12px"}
           w={"130px"}

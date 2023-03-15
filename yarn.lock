@@ -6245,6 +6245,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-slick@npm:^0.23.10":
+  version: 0.23.10
+  resolution: "@types/react-slick@npm:0.23.10"
+  dependencies:
+    "@types/react": "*"
+  checksum: 1e53fe8385e853881741a450d15c52d6433334b671fee4044939037f8e5b83968cb91fd9dbe7e6686e906882ebcf370b81bd55b6688f8e810020e23a968c0385
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:*, @types/react@npm:18.0.28":
   version: 18.0.28
   resolution: "@types/react@npm:18.0.28"
@@ -7785,6 +7794,7 @@ __metadata:
     "@types/react": 18.0.28
     "@types/react-beautiful-dnd": ^13.1.3
     "@types/react-dom": 18.0.11
+    "@types/react-slick": ^0.23.10
     "@yarnpkg/sdks": ^3.0.0-rc.40
     babel-loader: ^8.3.0
     date-fns: ^2.29.3
@@ -7808,8 +7818,9 @@ __metadata:
     react-beautiful-dnd: ^13.1.1
     react-dom: 18.2.0
     react-query: 3.39.3
-    react-slick: 0.29.0
+    react-slick: ^0.29.0
     recoil: 0.7.7
+    slick-carousel: ^1.8.1
     storybook-addon-next-router: ^4.0.2
     storybook-react-i18next: ^1.1.2
     typescript: 4.9.5
@@ -16701,7 +16712,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-slick@npm:0.29.0":
+"react-slick@npm:^0.29.0":
   version: 0.29.0
   resolution: "react-slick@npm:0.29.0"
   dependencies:
@@ -17686,6 +17697,15 @@ __metadata:
   version: 4.0.0
   resolution: "slash@npm:4.0.0"
   checksum: da8e4af73712253acd21b7853b7e0dbba776b786e82b010a5bfc8b5051a1db38ed8aba8e1e8f400dd2c9f373be91eb1c42b66e91abb407ff42b10feece5e1d2d
+  languageName: node
+  linkType: hard
+
+"slick-carousel@npm:^1.8.1":
+  version: 1.8.1
+  resolution: "slick-carousel@npm:1.8.1"
+  peerDependencies:
+    jquery: ">=1.8.0"
+  checksum: acaad391e4d8bc1c7fdb8d361faa1f1d60829b31d618b54bc38c0550a59b26de36537e0ab4bc0364176ec11d1a61d0cf11e99d8d5b1285d656673c9a1a719257
   languageName: node
   linkType: hard
 

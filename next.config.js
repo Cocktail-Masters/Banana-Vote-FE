@@ -10,12 +10,15 @@ const nextConfig = {
   experimental: {
     appDir: true,
     fontLoaders: [
-      { loader: "@next/font/google", options: { subsets: ["latin"] } },
+      { loader: "@next/font/google", options: { subsets: ["korean"] } },
     ],
   },
   i18n,
   swcMinify: true,
   reactStrictMode: false,
+  images: {
+    domains: ["cdn.discordapp.com"],
+  },
 };
 
 module.exports = nextConfig;

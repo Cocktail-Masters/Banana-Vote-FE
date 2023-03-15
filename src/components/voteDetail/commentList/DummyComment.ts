@@ -1,4 +1,4 @@
-import { opinionTypes } from "../../../types";
+import { opinionTypes } from '@/types';
 
 export const DummyComments: opinionTypes = {
   opinions: [
@@ -9,6 +9,7 @@ export const DummyComments: opinionTypes = {
       n_agree: 144,
       n_disagree: 1,
       n_reported: 0,
+      date: "2023-03-23",
     },
     {
       nickname: "두번째",
@@ -17,6 +18,7 @@ export const DummyComments: opinionTypes = {
       n_agree: 12,
       n_disagree: 1,
       n_reported: 0,
+      date: "2023-03-23",
     },
     {
       nickname: "세번째",
@@ -25,6 +27,7 @@ export const DummyComments: opinionTypes = {
       n_agree: 14,
       n_disagree: 3,
       n_reported: 0,
+      date: "2023-03-23",
     },
     {
       nickname: "네번째",
@@ -33,6 +36,7 @@ export const DummyComments: opinionTypes = {
       n_agree: 44,
       n_disagree: 5,
       n_reported: 0,
+      date: "2023-03-23",
     },
     {
       nickname: "다섯번째",
@@ -41,6 +45,7 @@ export const DummyComments: opinionTypes = {
       n_agree: 52,
       n_disagree: 4,
       n_reported: 0,
+      date: "2023-03-23",
     },
   ],
   isLast: true,

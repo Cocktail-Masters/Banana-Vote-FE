@@ -12,36 +12,38 @@ import VoteItemList from "./VoteItemList";
 import FeedTitle from "./FeedTitle";
 import { voteFeedListType } from "@/types";
 import BestOpinion from "./BestOpinion";
+import Link from "next/link";
 
 const Feed = ({ data }: { data: voteFeedListType }) => {
 	const colorMode = useColorModeValue("light", "black"); // 현재 컬러 모드
 
-	const onBodyClickHandler = (id: number) => {
-		alert(id);
-	};
-
-	const onMoreCommentClickHandler = (id: number) => {
-		alert(id);
-	};
-
 	return (
 		<>
-			<Card margin={"auto"} width={{ base: "90%", lg: "800px" }} height={"auto"} mt={4} mb={4}>
+			<Card
+				margin={"auto"}
+				width={{ base: "90%", lg: "800px" }}
+				height={"auto"}
+				mt={4}
+				mb={4}
+				_hover={{ bg: "rgba(234, 238, 243, 0.5)", transition: "0.25s ease-in-out" }}
+			>
 				{/* 피드 헤더 */}
 				<CardHeader>
 					<FeedHeader badge_url={data.badge_url} nickname={data.nickname} end_date={data.end_date} is_closed={data.is_closed} n_vote={data.n_vote} />
 				</CardHeader>
 				<Stack divider={<StackDivider />} spacing="2">
 					{/* 피드 바디 */}
-					<Box onClick={() => alert("Hello")}>
-						<CardBody>
-							{/* 피드 제목 */}
-							<FeedTitle content={data.vote_title} />
-							{/* 피드 투표 항목들 */}
-							<VoteItemList vote_item={data.vote_item} />
-							{/* 요소의 갯수가 2일때 등장하는 VS */}
-							{data.vote_item.length === 2 && <VS />}
-						</CardBody>
+					<Box>
+						<Link href={`/vote/detail/${data.vote_id}`}>
+							<CardBody>
+								{/* 피드 제목 */}
+								<FeedTitle content={data.vote_title} />
+								{/* 피드 투표 항목들 */}
+								<VoteItemList vote_item={data.vote_item} />
+								{/* 요소의 갯수가 2일때 등장하는 VS */}
+								{data.vote_item.length === 2 && <VS />}
+							</CardBody>
+						</Link>
 					</Box>
 					<Box>
 						{/* 피드 푸터 */}

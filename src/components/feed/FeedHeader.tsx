@@ -9,6 +9,7 @@ import React from "react";
 import FeedMenuList from "./FeedMenuList";
 import VoteIcon from "@assets/icons/Vote.svg";
 import MB from "@assets/icons/MenuButtonIcon.svg";
+import BadgeImage from "./../common/BadgeImage";
 
 type HeaderContentProps = {
 	badge_url?: string;
@@ -45,7 +46,7 @@ const FeedHeader = ({ badge_url, nickname, end_date, is_closed, n_vote }: Header
 	return (
 		<Flex>
 			<Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-				<Avatar name={!badge_url || badge_url.length < 1 ? undefined : nickname} src={badge_url} />
+				<BadgeImage badge_url={badge_url} nickname={nickname} />
 				<Box>
 					<Heading fontSize="1rem" size="sm" mb={1}>
 						{nickname}

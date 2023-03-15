@@ -1,14 +1,21 @@
 "use client";
+import VoteCreateBar from "@/components/home/VoteCreateBar";
+import { Box } from "@chakra-ui/react";
 import React from "react";
 import Feed from "../../components/feed/Feed";
 
 const page = () => {
 	return (
-		<div style={{ alignItems: "center", justifyContent: "center" }}>
-			{list.map((data: any, index: number) => {
-				return <Feed key={index} data={data} />;
-			})}
-		</div>
+		<Box alignItems={"center"} justifyContent={"center"}>
+			<Box>
+				<VoteCreateBar nickname="연복이" badge_url="" />
+			</Box>
+			<Box>
+				{list.map((data: any, index: number) => {
+					return <Feed key={index} data={data} />;
+				})}
+			</Box>
+		</Box>
 	);
 };
 

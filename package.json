@@ -22,7 +22,7 @@
 		"@types/react-dom": "18.0.11",
 		"eslint": "8.35.0",
 		"eslint-config-next": "13.2.3",
-		"framer-motion": "10.2.3",
+		"framer-motion": "^10.3.1",
 		"husky": "8.0.3",
 		"i18next": "^22.4.11",
 		"next": "13.2.3",

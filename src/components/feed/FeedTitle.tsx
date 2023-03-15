@@ -6,11 +6,7 @@
 import { Heading } from "@chakra-ui/react";
 import React from "react";
 
-interface feedTitleProps {
-	content: string;
-}
-
-const FeedTitle = ({ content }: feedTitleProps) => {
+const FeedTitle = ({ content }: { content: string }) => {
 	return (
 		<Heading size="md" mb={5}>
 			{content}

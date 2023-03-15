@@ -295,3 +295,11 @@ export type pointLogType = {
 	description: string;
 };
 export type pointLogTypes = pointLogType[];
+
+/**
+ * menu
+ */
+type MenuProps = {
+	id: number;
+	title: string;
+};

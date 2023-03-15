@@ -9,12 +9,12 @@ import { CardBody } from "@chakra-ui/react";
 import Image, { StaticImageData } from "next/image";
 import defaultImg from "@assets/images/defalut_vote_element_img.png";
 
-export type voteItemProps = {
+type voteFeedItemProps = {
 	imageLink?: string | StaticImageData;
 	content: string;
 };
 
-const VoteItem = ({ imageLink = defaultImg, content }: voteItemProps) => {
+const VoteItem = ({ imageLink = defaultImg, content }: voteFeedItemProps) => {
 	return (
 		<Card width={"100%"}>
 			<CardBody>

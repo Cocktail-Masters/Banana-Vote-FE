@@ -10,13 +10,13 @@ import FeedMenuList from "./FeedMenuList";
 import VoteIcon from "@assets/icons/Vote.svg";
 import MB from "@assets/icons/MenuButtonIcon.svg";
 
-interface HeaderContentProps {
+type HeaderContentProps = {
 	badge_url?: string;
 	nickname: string;
 	end_date: string;
 	is_closed: boolean;
 	n_vote: number;
-}
+};
 
 const FeedHeader = ({ badge_url, nickname, end_date, is_closed, n_vote }: HeaderContentProps) => {
 	const menuList = [

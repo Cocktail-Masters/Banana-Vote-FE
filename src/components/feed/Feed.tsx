@@ -4,21 +4,16 @@
  */
 "use client";
 import React from "react";
-import { Card, CardHeader, CardBody, Button, Flex, Text, Box, Stack, Spacer, StackDivider, useMediaQuery, useColorModeValue } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, Button, Flex, Text, Box, Stack, Spacer, StackDivider, useColorModeValue } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import OpinionProfile from "./../user/OpinionProfile";
 import FeedHeader from "./FeedHeader";
 import VS from "./VS";
 import VoteItemList from "./VoteItemList";
 import FeedTitle from "./FeedTitle";
 import { voteFeedListType } from "@/types";
+import BestOpinion from "./BestOpinion";
 
-interface feedProps {
-	data: voteFeedListType;
-}
-
-const Feed = ({ data }: feedProps) => {
-	const [isLargerThan880] = useMediaQuery("(min-width: 880px)");
+const Feed = ({ data }: { data: voteFeedListType }) => {
 	const colorMode = useColorModeValue("light", "black"); // 현재 컬러 모드
 
 	const onBodyClickHandler = (id: number) => {
@@ -31,7 +26,7 @@ const Feed = ({ data }: feedProps) => {
 
 	return (
 		<>
-			<Card margin={"auto"} width={isLargerThan880 ? "800px" : "90%"} height={"auto"} mt={4} mb={4}>
+			<Card margin={"auto"} width={{ base: "90%", lg: "800px" }} height={"auto"} mt={4} mb={4}>
 				{/* 피드 헤더 */}
 				<CardHeader>
 					<FeedHeader badge_url={data.badge_url} nickname={data.nickname} end_date={data.end_date} is_closed={data.is_closed} n_vote={data.n_vote} />
@@ -60,18 +55,7 @@ const Feed = ({ data }: feedProps) => {
 									댓글 {data.n_opinion.toLocaleString()}개 <ChevronRightIcon />
 								</Button>
 							</Flex>
-							<Flex alignItems={"center"}>
-								<Flex mr={3}>
-									<OpinionProfile
-										nickname={data.best_opinion.nickname}
-										isWriter={data.nickname === data.best_opinion.nickname ? true : false}
-										date={data.best_opinion.date}
-									/>
-								</Flex>
-								<Flex>
-									<Text noOfLines={1}>{data.best_opinion.content}</Text>
-								</Flex>
-							</Flex>
+							<BestOpinion nickname={data.nickname} best_opinion={data.best_opinion} />
 						</CardBody>
 					</Box>
 				</Stack>

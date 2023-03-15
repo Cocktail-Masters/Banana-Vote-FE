@@ -8,13 +8,9 @@ import React from "react";
 import VoteItem from "./VoteItem";
 import { voteItemType } from "@/types";
 
-interface voteItemListProps {
-	vote_item: voteItemType[];
-}
-
 const ELEMENTS_PER_LINE = 4; // 한 줄에 표시될 요소 수
 
-const VoteItemList = ({ vote_item }: voteItemListProps) => {
+const VoteItemList = ({ vote_item }: { vote_item: voteItemType[] }) => {
 	return (
 		<Flex justifyContent={"space-between"}>
 			<Grid templateColumns={`repeat(${vote_item.length < ELEMENTS_PER_LINE ? vote_item.length : ELEMENTS_PER_LINE}, 1fr)`} gap={2}>

@@ -30,8 +30,8 @@ const CommentList = () => {
                 w={"100%"}
                 minH={"125px"}
                 h={"fit-content"}
-                marginTop={"2%"}
-                marginBottom={"2%"}
+                marginTop={"3%"}
+                marginBottom={"3%"}
                 rounded={"lg"}
                 backgroundColor={"#F9F6ED"}
                 borderColor={"#F9F6ED"}

@@ -1,6 +1,5 @@
 import { DummyComments } from "@/components/voteDetail/commentList/DummyComment";
 import { useInfiniteQuery } from "react-query";
-import { opinionTypes } from "@/types";
 
 export const useFetchComments = ({
   queryKey,

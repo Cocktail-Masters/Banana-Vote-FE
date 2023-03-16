@@ -15,6 +15,7 @@ const nextConfig = {
   },
   i18n,
   swcMinify: true,
+  reactStrictMode: false,
   images: {
     domains: ["cdn.discordapp.com"],
   },

@@ -1,26 +1,25 @@
 import { Avatar, AvatarBadge, Box, Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react";
+import BadgeImage from "../common/BadgeImage";
 
 interface OpinionProfileProps {
 	image?: string;
-	name: string;
+	nickname: string;
 	date: string;
 	isWriter: boolean;
 }
 
-const OpinionProfile = ({ image, name, date, isWriter }: OpinionProfileProps) => {
+const OpinionProfile = ({ image, nickname, date, isWriter }: OpinionProfileProps) => {
 	return (
 		<Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-			<Avatar name={name} src={image ? image : ""}>
-				{isWriter && <AvatarBadge boxSize="1.25em" bg="green.500" />}
-			</Avatar>
+			<BadgeImage badge_url={image} nickname={nickname} isWriter={isWriter} />
 			<Box>
 				<Flex>
-					<Heading fontSize="1rem" size="sm" mb={1}>
-						<Text>{name}</Text>
+					<Heading fontSize="0.8rem" size="sm" mb={1}>
+						<Text>{nickname}</Text>
 					</Heading>
 				</Flex>
-				<Flex fontSize="0.8rem">
+				<Flex fontSize="0.75rem">
 					<Text color="gray">{date}</Text>
 				</Flex>
 			</Box>

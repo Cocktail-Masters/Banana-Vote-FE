@@ -1,15 +1,24 @@
+/**
+ * @author mingyu
+ * @description 피드 오른쪽 상단 메뉴
+ */
+import { MenuProps } from "@/types";
 import { MenuItem, MenuList } from "@chakra-ui/react";
 import React from "react";
 
-interface MenuListProps {
-	list: string[];
-}
+const FeedMenuList = ({ list }: { list: MenuProps[] }) => {
+	const onMenuClickHandler = (menuId: number) => {
+		alert("개발중입니다." + menuId);
+	};
 
-const FeedMenuList = ({ list }: MenuListProps) => {
 	return (
 		<MenuList>
-			{list.map((item, index: number) => {
-				return <MenuItem key={index}>{item}</MenuItem>;
+			{list.map((item: MenuProps, index: number) => {
+				return (
+					<MenuItem key={item.id} onClick={() => onMenuClickHandler(item.id)}>
+						{item.title}
+					</MenuItem>
+				);
 			})}
 		</MenuList>
 	);

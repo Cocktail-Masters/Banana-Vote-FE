@@ -1,4 +1,4 @@
-import { DummyComments } from "@/components/voteDetail/commentList/DummyComment";
+import { DummyComments } from "@/components/commentList/DummyComment";
 import { useInfiniteQuery } from "react-query";
 
 export const useFetchComments = ({

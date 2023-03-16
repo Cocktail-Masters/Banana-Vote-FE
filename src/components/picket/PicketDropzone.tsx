@@ -1,12 +1,21 @@
 "use client";
 
-import { Box, Flex, Input, Text } from "@chakra-ui/react";
-import React, { useCallback, useState } from "react";
+import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
+import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { CloseIcon } from "@chakra-ui/icons";
 import Image from "next/image";
+import { picketType } from "@/types";
 
-const PicketDropzone = () => {
+const PicketDropzone = ({
+  change,
+  price,
+  position,
+}: {
+  change: boolean;
+  price?: number;
+  position?: number;
+}) => {
   const [file, setFile] = useState<File>();
   const [fileType, setFileType] = useState<string>();
 
@@ -18,10 +27,10 @@ const PicketDropzone = () => {
   const removePicture = () => {
     setFile(undefined);
   };
-
+  console.log("price?:", price, "position", position);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   return (
-    <Box w={"100%"} h={"250px"} marginBottom={"20px"}>
+    <Box w={"100%"} marginBottom={"20px"}>
       {file ? (
         <Flex
           w={"100%"}
@@ -93,6 +102,23 @@ const PicketDropzone = () => {
           )}
         </Box>
       )}
+      <Box
+        w={"100%"}
+        h={"20%"}
+        marginTop={"5%"}
+        display={"flex"}
+        flexDir={"column"}
+        alignItems={"center"}
+      >
+        <Text>최소 바나나 : {change ? price : "1000"}</Text>
+        <Flex>
+          <Input></Input>
+          <Button>제출</Button>
+        </Flex>
+        <Box>
+          <Text>가지고 있는 바나나</Text>
+        </Box>
+      </Box>
     </Box>
   );
 };

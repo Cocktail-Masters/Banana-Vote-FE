@@ -1,11 +1,11 @@
 "use client";
-import { useCommentMutation } from "@/hooks/useMutations";
+import { useCommentMutation } from "@/hooks/reactQuery/useCommentMutation";
 import { opinionType } from "@/types";
 import { Flex, Button, Textarea, Text } from "@chakra-ui/react";
 import { useRef } from "react";
 
 const CommentInput = () => {
-  const { mutate } = useCommentMutation({ queryKey: "commentList" });
+  const { mutate } = useCommentMutation({ queryKey: ["commentList"] });
   const commentInputRef = useRef<HTMLTextAreaElement>(null);
 
   const sendOpinion = () => {
@@ -20,6 +20,7 @@ const CommentInput = () => {
         n_disagree: Math.floor(Math.random() * 100),
         n_reported: 0,
         nickname: "새로운 댓글이다",
+        date: "2023-03-18",
       };
       mutate(
         { uri: "test", sendData: opinion },

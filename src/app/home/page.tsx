@@ -1,3 +1,6 @@
+/**
+ * @author mingyu
+ */
 "use client";
 import VoteCreateBar from "@/components/home/VoteCreateBar";
 import { Box } from "@chakra-ui/react";

@@ -1,3 +1,7 @@
+/**
+ * @author mingyu
+ * @description 댓글의 프로필 부분 컴포넌트
+ */
 import { Avatar, AvatarBadge, Box, Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 import BadgeImage from "../common/BadgeImage";

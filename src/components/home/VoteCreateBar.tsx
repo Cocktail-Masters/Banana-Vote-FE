@@ -23,7 +23,7 @@ const VoteCreateBar = ({ nickname, badge_url }: voteCreateBarProps) => {
 					{/* 가짜 입력창 */}
 					<Box width={"calc(100% - 40px)"}>
 						<Link href="/vote/create" passHref>
-							<Button borderRadius={"32px"} width={"100%"} color={"gray.500"} fontSize={{ base: "xs", sm: "sm", md: "md" }}>
+							<Button borderRadius={"32px"} width={"100%"} color={"gray.500"} fontSize={{ base: "xs", sm: "sm", md: "md" }}> 
 								원하는 투표를 만들어보세요
 							</Button>
 						</Link>

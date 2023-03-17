@@ -3,6 +3,7 @@ import {
   Box,
   CardBody,
   CardHeader,
+  Center,
   Divider,
   Flex,
   Heading,
@@ -72,7 +73,11 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
         marginX="auto"
       />
       <CardBody width={"100%"} height={"200px"}>
-        {contents &&
+        {!contents || contents.length === 0 ? (
+          <Center fontWeight="bold" height={"120px"} lineHeight={"120px"}>
+            시즌 랭킹 정보가 없습니다.
+          </Center>
+        ) : (
           contents.map((content: rankingContents, index: number) => {
             if (index === 0) {
               return (
@@ -132,14 +137,15 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
               return (
                 <Box key={content.id} mb={2}>
                   <Flex>
-                    <Image
-                      src={normalMedal}
-                      style={{
-                        width: "20px",
-                        height: "auto",
-                      }}
-                      alt={"normal medal"}
-                    />
+                    <Text
+                      width="20px"
+                      height="auto"
+                      fontWeight="bold"
+                      fontSize={"16px"}
+                      textAlign={"center"}
+                    >
+                      {index + 1}
+                    </Text>
                     <Text ml={1} noOfLines={1} fontWeight={"bold"}>
                       {content.nickname}
                     </Text>
@@ -147,7 +153,8 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
                 </Box>
               );
             }
-          })}
+          })
+        )}
       </CardBody>
     </Box>
   );

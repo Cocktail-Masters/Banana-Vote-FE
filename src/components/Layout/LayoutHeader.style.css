@@ -1,0 +1,25 @@
+.underline {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #ffa45b;
+}
+
+.underline:hover {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: #ffa45b;
+}
+
+.selected {
+  /* background: #eee; */
+}
+.selected:hover {
+  /* font-size: 50px; */
+  font-weight: 800;
+}

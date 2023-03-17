@@ -57,3 +57,13 @@ next-env.d.ts
 
 
 .env
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# testfiles
+tests-examples
+playwright-report

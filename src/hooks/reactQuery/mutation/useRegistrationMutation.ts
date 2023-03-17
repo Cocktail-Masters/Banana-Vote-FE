@@ -5,7 +5,7 @@ import { voteItemType } from "@/components/Vote/CreateVote";
 
 export type voteRegistrationItemType = {
   title: string;
-  image: string;
+  imageUrl: string;
 };
 
 export type voteRegistrationType = {
@@ -14,19 +14,23 @@ export type voteRegistrationType = {
   is_disclosure: boolean;
   is_anonymouse: boolean;
   end_date: string;
-  vote_items: voteRegistrationItemType[] | voteItemType[];
+  vote_items: voteRegistrationItemType[];
   tags: string[];
 };
 
 export const useRegistrationMutation = ({
   queryKey,
-  data,
 }: {
-  queryKey: string | (string | number)[];
-  data: any;
+  queryKey: (string | number)[];
 }) => {
   return useMutation(
-    async ({ uri, sendData }: { uri: string; sendData: opinionType }) => {
+    async ({
+      uri,
+      sendData,
+    }: {
+      uri: string;
+      sendData: voteRegistrationType;
+    }) => {
       // return DummyComments.opinions.push(sendData);
       return;
     },

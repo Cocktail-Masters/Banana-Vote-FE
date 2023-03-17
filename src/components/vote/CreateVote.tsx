@@ -8,7 +8,12 @@ import VoteOptionToggleButton from "./VoteOptionToggleButton";
 import UploadImage from "../UploadImage";
 import { nanoid } from "nanoid";
 import VoteCreatTag from "../tag/VoteCreateTag";
-import { voteRegistrationType } from "@/hooks/reactQuery/mutation/useRegistrationMutation";
+import {
+  useRegistrationMutation,
+  voteRegistrationItemType,
+  voteRegistrationType,
+} from "@/hooks/reactQuery/mutation/useRegistrationMutation";
+import uploadFirebase from "@/common/uploadFirebase";
 
 export type voteItemType = {
   id: string;
@@ -36,6 +41,8 @@ const CreateVote = () => {
   const [voteItems, setVoteItems] = useState<voteItemType[]>([]);
   const [content, setContent] = useState<string>("");
   const [tagArray, setTagArray] = useState<string[]>([]);
+
+  const { mutate } = useRegistrationMutation({ queryKey: ["createVote"] });
 
   return (
     <Flex flexDirection={"column"} margin={"10px"}>
@@ -111,24 +118,37 @@ const CreateVote = () => {
       </Flex>
       <Flex justifyContent="flex-end" margin={"10px"}>
         <Button
-          onClick={() => {
-            console.log("isDisclosure", isDisclosure);
-            console.log("isAnonymouse", isAnonymouse);
-            console.log("end_date", endDate);
-            console.log("voteTitle", voteTitle);
-            console.log("voteItems", voteItems);
-            console.log("content", content);
-            console.log("tagArray", tagArray);
-
-            const temp: voteRegistrationType = {
+          onClick={async () => {
+            const uploadUrls = await Promise.all(
+              voteItems.map((v) =>
+                v.imageFile ? uploadFirebase(v.imageFile) : ""
+              )
+            );
+            const newVoteItems: voteRegistrationItemType[] = [];
+            for (let i = 0; i < voteItems.length; i++) {
+              newVoteItems.push({
+                title: voteItems[i]["title"],
+                imageUrl: uploadUrls[i],
+              });
+            }
+            const sendData: voteRegistrationType = {
               title: voteTitle,
               is_disclosure: isDisclosure,
               is_anonymouse: isAnonymouse,
               end_date: endDate.toString(),
-              vote_items: voteItems,
+              vote_items: newVoteItems,
               content: content,
               tags: tagArray,
             };
+            console.log(sendData);
+            mutate(
+              { uri: "test", sendData },
+              {
+                onSuccess: () => {
+                  console.log("성공함");
+                },
+              }
+            );
           }}
           borderRadius={"12px"}
           w={"130px"}

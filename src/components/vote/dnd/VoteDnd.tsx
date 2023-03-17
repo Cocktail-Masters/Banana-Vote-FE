@@ -86,7 +86,7 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
                     >
                       {(draggableProvided, snapshot) => {
                         return (
-                          <div>
+                          <div className={`vote-dnd-${index}`}>
                             <div
                               ref={draggableProvided.innerRef}
                               {...draggableProvided.draggableProps}

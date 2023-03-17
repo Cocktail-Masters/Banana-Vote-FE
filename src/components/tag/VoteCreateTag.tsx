@@ -136,6 +136,7 @@ const VoteCreatTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
               </Box>
               {state && (
                 <Input
+                  className="tag-input"
                   h="100%"
                   w={textWidthCalculator(5)}
                   fontSize={"20px"}

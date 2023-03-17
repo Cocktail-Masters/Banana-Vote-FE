@@ -3,6 +3,7 @@ import {
   Box,
   CardBody,
   CardHeader,
+  Center,
   Divider,
   Flex,
   Heading,
@@ -72,7 +73,9 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
         marginX="auto"
       />
       <CardBody width={"100%"} height={"200px"}>
-        {contents &&
+        {!contents || contents.length === 0 ? (
+          <Center fontWeight="bold">시즌 랭킹 정보가 없습니다.</Center>
+        ) : (
           contents.map((content: rankingContents, index: number) => {
             if (index === 0) {
               return (
@@ -148,7 +151,8 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
                 </Box>
               );
             }
-          })}
+          })
+        )}
       </CardBody>
     </Box>
   );

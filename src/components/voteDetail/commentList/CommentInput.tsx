@@ -20,6 +20,7 @@ const CommentInput = () => {
         n_disagree: Math.floor(Math.random() * 100),
         n_reported: 0,
         nickname: "새로운 댓글이다",
+        date: "",
       };
       mutate(
         { uri: "test", sendData: opinion },

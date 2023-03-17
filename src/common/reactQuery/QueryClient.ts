@@ -1,4 +1,3 @@
-"use client";
 import { QueryCache, QueryClient } from "react-query";
 import { createStandaloneToast } from "@chakra-ui/react";
 

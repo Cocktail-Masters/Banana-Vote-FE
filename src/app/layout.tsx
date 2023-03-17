@@ -4,10 +4,10 @@ import Provider from "./Provider";
 import { Noto_Sans } from "next/font/google";
 
 // export const metadata = {
-// 	title: {
-// 		default: "Acme",
-// 		template: "%s | Acme",
-// 	},
+//   title: {
+//     default: "Acme",
+//     template: "%s | Acme",
+//   },
 // };
 
 const notoSansKr = Noto_Sans({

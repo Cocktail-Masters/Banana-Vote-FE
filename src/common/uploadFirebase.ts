@@ -1,27 +1,26 @@
 import { storage } from "@common/firebaseConfig";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
-const uploadFirebase = async (file: File): Promise<string | null> => {
+const uploadFirebase = async (file: File): Promise<string> => {
   const storageRef = ref(storage, `files/${file.name}`);
   const uploadTask = uploadBytesResumable(storageRef, file);
-  let url = null;
-  uploadTask.on(
-    "state_changed",
-    (snapshot) => {
-      //   const progress = Math.round(
-      //     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-      //   );
-      //   setProgresspercent(progress);
-    },
-    (error) => {
-      alert(error);
-    },
-    () => {
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL: string) => {
-        url = downloadURL;
-      });
-    }
-  );
-  return url;
+  return new Promise((resolve, reject) => {
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+      },
+      (error) => {
+        reject(""); // added this line
+        alert(error);
+      },
+      () => {
+        const result = getDownloadURL(uploadTask.snapshot.ref);
+        resolve(result);
+      }
+    );
+  });
 };
 export default uploadFirebase;

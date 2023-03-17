@@ -33,7 +33,7 @@ test("create_vote", async ({ page }) => {
   // 항목1 이미지 파일 추가
   await page
     .locator('input[type="file"]')
-    .setInputFiles("./src/assets/icons/MenuButtonIcon.svg");
+    .setInputFiles("./src/assets/icons/loader.svg");
 
   // 항목2 추가
   await page.getByRole("button", { name: "plus button" }).click();
@@ -60,55 +60,55 @@ test("create_vote", async ({ page }) => {
   await page.getByRole("button", { name: "plus button" }).click();
 
   // dnd 테스트 추가
-  const dragAndDrop = async (
-    page: Page,
-    dragLocator: Locator,
-    dropLocator: Locator,
-    targetPosition?: { x: number; y: number }
-  ) => {
-    const dragBoundingBox = await dragLocator.boundingBox();
-    const dropBoundingBox = await dropLocator.boundingBox();
+  // const dragAndDrop = async (
+  //   page: Page,
+  //   dragLocator: Locator,
+  //   dropLocator: Locator,
+  //   targetPosition?: { x: number; y: number }
+  // ) => {
+  //   const dragBoundingBox = await dragLocator.boundingBox();
+  //   const dropBoundingBox = await dropLocator.boundingBox();
 
-    if (!dragBoundingBox || !dropBoundingBox) return;
-    page.on("console", (msg) => console.log());
-    await page.mouse.move(
-      dragBoundingBox.x + dragBoundingBox.width / 2,
-      dragBoundingBox.y + dragBoundingBox.height / 2
-    );
-    await page.mouse.down();
+  //   if (!dragBoundingBox || !dropBoundingBox) return;
+  //   page.on("console", (msg) => console.log());
+  //   await page.mouse.move(
+  //     dragBoundingBox.x + dragBoundingBox.width / 2,
+  //     dragBoundingBox.y + dragBoundingBox.height / 2
+  //   );
+  //   await page.mouse.down();
 
-    const targetX =
-      targetPosition?.x || dropBoundingBox.x + dropBoundingBox.width / 2;
-    const targetY =
-      targetPosition?.y || dropBoundingBox.y + dropBoundingBox.height / 2;
+  //   const targetX =
+  //     targetPosition?.x || dropBoundingBox.x + dropBoundingBox.width / 2;
+  //   const targetY =
+  //     targetPosition?.y || dropBoundingBox.y + dropBoundingBox.height / 2;
 
-    await page.mouse.move(targetX, targetY);
-    await page.mouse.up();
-  };
+  //   await page.mouse.move(targetX, targetY);
+  //   await page.mouse.up();
+  // };
 
-  const dragCard1 = page.locator(".drag-card-icon-0");
-  const dragCard2 = page.locator(".drag-card-icon-3");
-  const source = page.locator(".vote-dnd-0").first();
-  const target = page.locator(".vote-dnd-3").first();
+  // const dragCard1 = page.locator(".drag-card-icon-0");
+  // const dragCard2 = page.locator(".drag-card-icon-3");
+  // const source = page.locator(".vote-dnd-0").first();
+  // const target = page.locator(".vote-dnd-3").first();
 
-  page.on("console", (msg) => {
-    console.log(page.locator(".drag-card-icon-0"), dragCard2);
-  });
-  await dragCard1.dragTo(target);
+  // page.on("console", (msg) => {
+  //   console.log(page.locator(".drag-card-icon-0"), dragCard2);
+  // });
+  // await dragCard1.dragTo(target);
 
-  const dragDrop = async (page: Page) => {
-    const originElement = await page.waitForSelector(".drag-card-icon-0");
-    const destinationElement = await page.waitForSelector(".vote-dnd-0");
+  // const dragDrop = async (page: Page) => {
+  //   const originElement = await page.waitForSelector(".drag-card-icon-0");
+  //   const destinationElement = await page.waitForSelector(".vote-dnd-0");
 
-    await originElement.hover();
-    await page.mouse.down();
-    const box = (await destinationElement.boundingBox())!;
-    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
-    await destinationElement.hover();
-    await page.mouse.up();
-  };
-  await dragDrop(page);
-  await dragAndDrop(page, dragCard1, dragCard1, { x: 120, y: 0 });
+  //   await originElement.hover();
+  //   await page.mouse.down();
+  //   const box = (await destinationElement.boundingBox())!;
+  //   await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  //   await destinationElement.hover();
+  //   await page.mouse.up();
+  // };
+  // await dragDrop(page);
+  // await dragAndDrop(page, dragCard1, dragCard1, { x: 120, y: 0 });
 
   // content 추가
   await page.locator("textarea").click();

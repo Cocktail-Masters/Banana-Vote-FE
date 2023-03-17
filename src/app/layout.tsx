@@ -3,6 +3,8 @@
 import Provider from "./Provider";
 import { Noto_Sans } from "next/font/google";
 
+import "./globals.css";
+
 // export const metadata = {
 // 	title: {
 // 		default: "Acme",

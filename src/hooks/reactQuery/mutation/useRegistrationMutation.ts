@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import { queryClient } from "@/common/reactQuery/QueryClient";
 import { opinionType } from "@/types";
-import { voteItemType } from "@/components/Vote/CreateVote";
+import { voteItemType } from "@components/vote/CreateVote";
 
 export type voteRegistrationItemType = {
   title: string;

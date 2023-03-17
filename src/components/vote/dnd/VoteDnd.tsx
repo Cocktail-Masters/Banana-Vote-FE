@@ -52,7 +52,7 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
   const onChangeHandler = (value: string, index: number) => {
     setVoteItems((prevItems) => {
       const newItems = [...prevItems];
-      newItems[index].content = value;
+      newItems[index].title = value;
       return newItems;
     });
   };
@@ -86,7 +86,7 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
                     >
                       {(draggableProvided, snapshot) => {
                         return (
-                          <div>
+                          <div className={`vote-dnd-${index}`}>
                             <div
                               ref={draggableProvided.innerRef}
                               {...draggableProvided.draggableProps}

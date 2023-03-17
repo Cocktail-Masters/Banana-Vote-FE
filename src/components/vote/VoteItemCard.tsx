@@ -30,7 +30,7 @@ const VoteItemCard = ({
   setVoteItems: React.Dispatch<React.SetStateAction<voteItemTypes>>;
   onChangeHandler: (value: string, index: number) => void;
 }) => {
-  const { imageFile, content } = voteItem;
+  const { imageFile, title } = voteItem;
   const [imageSrc, setImageSrc] = useState<string | null>("");
 
   const uploadImageHandler = (file: File | null) => {
@@ -69,7 +69,12 @@ const VoteItemCard = ({
   return (
     <>
       <VoteItemLayout>
-        <Card direction={"row"} width={"100%"} height={"100%"}>
+        <Card
+          direction={"row"}
+          width={"100%"}
+          height={"100%"}
+          className={`Card-${index}`}
+        >
           <Stack position={"relative"} w={"200px"} h={"120px"}>
             {imageSrc && (
               <Button
@@ -124,6 +129,7 @@ const VoteItemCard = ({
 
           <Stack w={"100%"} h={"100%"}>
             <Input
+              className={`vote-input-${index}`}
               variant="unstyled"
               w={"100%"}
               h={"100%"}
@@ -131,7 +137,7 @@ const VoteItemCard = ({
               fontSize={{ base: 20, xl: 28 }}
               fontWeight={700}
               placeholder={"내용 입력"}
-              value={content}
+              value={title}
               onChange={(e) => onChangeHandler(e.target.value, index)}
             ></Input>
           </Stack>
@@ -145,7 +151,12 @@ const VoteItemCard = ({
               }}
             />
           </Stack>
-          <Flex w={"100px"} justifyContent={"center"} alignItems={"center"}>
+          <Flex
+            w={"100px"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            className={`drag-card-icon-${index}`}
+          >
             <DragHandleIcon />
           </Flex>
         </Card>

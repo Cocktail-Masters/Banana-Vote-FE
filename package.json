@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"name": "banana-vote-fe",
 	"version": "0.1.0",
 	"private": true,
@@ -67,4 +68,77 @@
 		"storybook-addon-next-router": "^4.0.2",
 		"storybook-react-i18next": "^1.1.2"
 	}
+=======
+  "name": "banana-vote-fe",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "lint": "next lint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "test:e2e": "playwright test",
+    "test-ct": "playwright test -c playwright-ct.config.ts"
+  },
+  "packageManager": "yarn@3.4.1",
+  "dependencies": {
+    "@chakra-ui/icons": "^2.0.17",
+    "@chakra-ui/next-js": "^2.0.1",
+    "@chakra-ui/react": "2.5.1",
+    "@emotion/react": "11.10.6",
+    "@emotion/styled": "11.10.6",
+    "@types/node": "18.14.6",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "@types/react-slick": "^0.23.10",
+    "axios": "^1.3.4",
+    "date-fns": "^2.29.3",
+    "dayzed": "^3.2.3",
+    "eslint": "8.35.0",
+    "eslint-config-next": "13.2.3",
+    "firebase": "^9.17.2",
+    "framer-motion": "10.3.1",
+    "husky": "8.0.3",
+    "i18next": "^22.4.11",
+    "lodash": "^4.17.21",
+    "nanoid": "^4.0.1",
+    "next": "13.2.3",
+    "next-i18next": "^13.2.1",
+    "next-pwa": "^5.6.0",
+    "next-seo": "^5.15.0",
+    "next-sitemap": "^4.0.5",
+    "prettier": "2.8.4",
+    "react": "18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-dom": "18.2.0",
+    "react-query": "3.39.3",
+    "react-slick": "^0.29.0",
+    "recoil": "0.7.7",
+    "slick-carousel": "^1.8.1",
+    "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@chakra-ui/storybook-addon": "^4.0.16",
+    "@mdx-js/react": "^1.6.22",
+    "@playwright/experimental-ct-react": "^1.31.2",
+    "@playwright/test": "^1.31.2",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-docs": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/react-beautiful-dnd": "^13.1.3",
+    "@yarnpkg/sdks": "^3.0.0-rc.40",
+    "babel-loader": "^8.3.0",
+    "storybook-addon-next-router": "^4.0.2",
+    "storybook-react-i18next": "^1.1.2"
+  }
+>>>>>>> 1f258a5875d9ed112e4f9e84f46a7d7c2cc34cf2
 }

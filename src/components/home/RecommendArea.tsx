@@ -60,7 +60,7 @@ const RecommendArea = () => {
         marginTop={"60px"}
       />
 
-      <CardBody width="100%" height="185px">
+      <CardBody width="100%" height="200px">
         <Slider
           dots={true}
           infinite={false}
@@ -80,7 +80,6 @@ const RecommendArea = () => {
           }
           initialSlide={currentIndex}
           afterChange={(index: number) => {
-            console.log(index);
             setCurrentIndex(index);
           }}
         >

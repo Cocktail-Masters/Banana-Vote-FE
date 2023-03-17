@@ -132,14 +132,15 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
               return (
                 <Box key={content.id} mb={2}>
                   <Flex>
-                    <Image
-                      src={normalMedal}
-                      style={{
-                        width: "20px",
-                        height: "auto",
-                      }}
-                      alt={"normal medal"}
-                    />
+                    <Text
+                      width="20px"
+                      height="auto"
+                      fontWeight="bold"
+                      fontSize={"16px"}
+                      textAlign={"center"}
+                    >
+                      {index + 1}
+                    </Text>
                     <Text ml={1} noOfLines={1} fontWeight={"bold"}>
                       {content.nickname}
                     </Text>

@@ -74,7 +74,9 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
       />
       <CardBody width={"100%"} height={"200px"}>
         {!contents || contents.length === 0 ? (
-          <Center fontWeight="bold">시즌 랭킹 정보가 없습니다.</Center>
+          <Center fontWeight="bold" height={"120px"} lineHeight={"120px"}>
+            시즌 랭킹 정보가 없습니다.
+          </Center>
         ) : (
           contents.map((content: rankingContents, index: number) => {
             if (index === 0) {

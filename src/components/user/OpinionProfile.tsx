@@ -1,5 +1,10 @@
+/**
+ * @author mingyu
+ * @description 댓글의 프로필 부분 컴포넌트
+ */
 import { Avatar, AvatarBadge, Box, Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react";
+import BadgeImage from "../common/BadgeImage";
 
 interface OpinionProfileProps {
 	image?: string;
@@ -11,9 +16,7 @@ interface OpinionProfileProps {
 const OpinionProfile = ({ image, nickname, date, isWriter }: OpinionProfileProps) => {
 	return (
 		<Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-			<Avatar name={!image || image.length < 1 ? null : nickname} src={image}>
-				{isWriter && <AvatarBadge boxSize="1.25em" bg="green.500" />}
-			</Avatar>
+			<BadgeImage badge_url={image} nickname={nickname} isWriter={isWriter} />
 			<Box>
 				<Flex>
 					<Heading fontSize="0.8rem" size="sm" mb={1}>

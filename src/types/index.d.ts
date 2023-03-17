@@ -1,5 +1,4 @@
 /**
-import { voteDetailType } from '@/types';
  * users
  */
 
@@ -93,6 +92,7 @@ export type opinionTypes = {
 	opinions: opinionType[];
 	isLast: boolean;
 	endPageIndex: number;
+	best?: number[];
 };
 
 /**

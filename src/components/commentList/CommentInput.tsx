@@ -1,5 +1,5 @@
 "use client";
-import { useCommentMutation } from "@/hooks/reactQuery/useCommentMutation";
+import { useCommentMutation } from "@/hooks/reactQuery/mutation/useCommentMutation";
 import { opinionType } from "@/types";
 import { Flex, Button, Textarea, Text } from "@chakra-ui/react";
 import { useRef } from "react";

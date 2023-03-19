@@ -146,6 +146,7 @@ export type voteDetailType = {
   is_event: boolean;
   is_closed: boolean;
   vote_item: voteItemTypes;
+  tag: string[];
 };
 
 export type voteFeedListType = voteDetailType & {

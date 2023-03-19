@@ -28,4 +28,5 @@ export const voteDetailDummy: voteDetailType = {
       n_voted: 20,
     },
   ],
+  tag: ["#탕수육", "#태그2"],
 };

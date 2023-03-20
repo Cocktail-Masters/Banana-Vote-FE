@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useFeedListDummy } from "./useFeedListDummy";
 
 const getFeedList = async (pageParam: number) => {
@@ -19,27 +19,14 @@ export const useFeedListQuery = ({
   queryKey: string;
   pageParam: number;
 }) => {
-  return useInfiniteQuery(
-    queryKey,
-    async () => {
-      return await getFeedList(pageParam);
+  return useInfiniteQuery({
+    queryKey: [queryKey],
+    queryFn: ({ pageParam = 0 }) => getFeedList(pageParam),
+    getNextPageParam: (lastPage, allPages) => {
+      console.log("=== lastPage ===");
+      console.log(lastPage);
+      console.log("=== allPages ===");
+      console.log(allPages);
     },
-    {
-      /**
-       * @function getNextPageParam
-       * @param lastPage 최근에 리턴된 페이지의 데이터 리스트
-       * @param allPages
-       */
-      getNextPageParam: (lastPage, allPages) => {
-        console.log("=== lastPage ===");
-        console.log(lastPage);
-        console.log("=== allPages ===");
-        console.log(allPages);
-        if (lastPage.length === 0) {
-          return false;
-        }
-        return allPages.length;
-      },
-    }
-  );
+  });
 };

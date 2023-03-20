@@ -1,4 +1,4 @@
-export const list = [
+export const useFeedListDummy: any = [
   {
     vote_id: 12,
     nickname: "봉천동 이연복",
@@ -47,7 +47,7 @@ export const list = [
     vote_id: 214125,
     nickname: "봉천동 이연복",
     badge_url: "",
-    vote_title: "탕수육은 어떻게 먹어야 하는가",
+    vote_title: "탕수육 먹는법",
     vote_content: "대충 내용",
     is_anonymouse: false,
     is_disclosure: false,

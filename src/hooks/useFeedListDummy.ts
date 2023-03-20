@@ -1,4 +1,4 @@
-export const useFeedListDummy: any = [
+export const useFeedListDummy = [
   {
     vote_id: 12,
     nickname: "봉천동 이연복",
@@ -16,7 +16,7 @@ export const useFeedListDummy: any = [
     is_deleted: false,
     is_event: false,
     is_closed: false,
-    vote_item: [
+    vote_items: [
       {
         vote_item_id: 12341,
         title: "당근 부먹 아님?? 부먹은 오래 전부터 유행했던 방식이다.",
@@ -60,7 +60,7 @@ export const useFeedListDummy: any = [
     is_deleted: false,
     is_event: false,
     is_closed: false,
-    vote_item: [
+    vote_items: [
       {
         vote_item_id: 121234341,
         title: "당근 부먹 아님?? 부먹은 오래 전부터 유행했던 방식이다.",
@@ -111,7 +111,7 @@ export const useFeedListDummy: any = [
     is_deleted: false,
     is_event: false,
     is_closed: false,
-    vote_item: [
+    vote_items: [
       {
         vote_item_id: 22,
         title: "미스터피자",

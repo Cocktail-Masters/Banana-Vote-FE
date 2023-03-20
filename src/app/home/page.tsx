@@ -11,7 +11,7 @@ const Page = () => {
   const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)");
 
   return (
-    <Flex width={"100%"} justifyContent={"center"}>
+    <Flex width={"100%"} justifyContent={"center"} backgroundColor={"#f9f9f9"}>
       <Flex
         width={"1200px"}
         height={"auto"}

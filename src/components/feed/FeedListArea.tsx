@@ -1,23 +1,29 @@
 /**
  * @author mingyu
  */
-import { Box, Center } from "@chakra-ui/react";
+import { Box, Button, Center, Skeleton } from "@chakra-ui/react";
 import VoteCreateBar from "../home/VoteCreateBar";
 import Feed from "./Feed";
 import { useFeedListQuery } from "@/hooks/useFeedListQuery";
 import { Suspense, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 const FeedListArea = () => {
-  // TODO : 데이터 불러오기
-  const res = useFeedListQuery({
-    queryKey: "feedList",
-    pageParam: 0,
-  });
+  /**
+   * @description useInfiniteQuery를 사용한 무한 스크롤
+   */
+  const { data, status, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useFeedListQuery({
+      queryKey: "feedList",
+    });
 
-  // TODO : 무한스크롤 구현
+  /**
+   * @description 뷰포트 최하단 도달 시 새로운 피드를 불러옴
+   */
+  const { ref, inView } = useInView({ threshold: 0.5 });
   useEffect(() => {
-    console.log(res);
-  }, [res]);
+    if (inView) fetchNextPage();
+  }, [inView]);
 
   return (
     <Box alignItems={"center"} justifyContent={"center"} margin={"auto"}>
@@ -27,10 +33,24 @@ const FeedListArea = () => {
       </Box>
       {/* 투표 피드 리스트 */}
       <Box>
-        {/* {data &&
-          data[0].map((feedData: any, index: number) => {
-            return <Feed key={index} data={feedData} />;
-          })} */}
+        {status === "loading" ? (
+          <Center>Loading...</Center>
+        ) : status === "error" ? (
+          <Center>Loading Error</Center>
+        ) : (
+          <>
+            {data &&
+              data.pages.map((page: any, index: number) => {
+                return page.items.map((feedData: any, index: number) => {
+                  return <Feed key={index} data={feedData} />;
+                });
+              })}
+
+            <Center mt={5} mb={5}>
+              <Skeleton ref={ref} height="120px" />
+            </Center>
+          </>
+        )}
       </Box>
     </Box>
   );

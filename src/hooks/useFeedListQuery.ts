@@ -1,32 +1,32 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useFeedListDummy } from "./useFeedListDummy";
 
+const DATA_PER_PAGE = 5; // tmp
+
 const getFeedList = async (pageParam: number) => {
-  const DATA_PER_PAGE = 5; // tmp
   const START = DATA_PER_PAGE * pageParam;
   const END = DATA_PER_PAGE * (pageParam + 1);
 
-  const tmpArr = Array.from({ length: 100 }, () => useFeedListDummy).flat();
-  const response = tmpArr.slice(START, END);
+  const tmpArr = Array.from({ length: 6 }, () => useFeedListDummy).flat();
+  const items = tmpArr.slice(START, END);
+
+  const response = {
+    totalCount: tmpArr.length,
+    items: items,
+  };
 
   return response;
 };
 
-export const useFeedListQuery = ({
-  queryKey,
-  pageParam,
-}: {
-  queryKey: string;
-  pageParam: number;
-}) => {
+export const useFeedListQuery = ({ queryKey }: { queryKey: string }) => {
   return useInfiniteQuery({
     queryKey: [queryKey],
     queryFn: ({ pageParam = 0 }) => getFeedList(pageParam),
     getNextPageParam: (lastPage, allPages) => {
-      console.log("=== lastPage ===");
-      console.log(lastPage);
-      console.log("=== allPages ===");
-      console.log(allPages);
+      // find isLast?
+      const maxPage = lastPage.totalCount / DATA_PER_PAGE;
+      const nextPage = allPages.length + 1;
+      return nextPage <= maxPage ? nextPage : undefined;
     },
   });
 };

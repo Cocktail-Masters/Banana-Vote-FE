@@ -1,3 +1,6 @@
+/**
+ * @author mingyu
+ */
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useFeedListDummy } from "./useFeedListDummy";
 

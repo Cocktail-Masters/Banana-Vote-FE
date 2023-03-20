@@ -7,6 +7,7 @@ import Feed from "./Feed";
 import { useFeedListQuery } from "@/hooks/useFeedListQuery";
 import { Suspense, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import { voteFeedListType } from "@/types";
 
 const FeedListArea = () => {
   /**
@@ -44,9 +45,11 @@ const FeedListArea = () => {
             {/* 투표 피드 리스트 */}
             {data &&
               data.pages.map((page: any, index: number) => {
-                return page.items.map((feedData: any, index: number) => {
-                  return <Feed key={index} data={feedData} />;
-                });
+                return page.items.map(
+                  (feedData: voteFeedListType, index: number) => {
+                    return <Feed key={index} data={feedData} />;
+                  }
+                );
               })}
 
             <Center mt={5} mb={5}>

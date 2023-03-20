@@ -37,11 +37,6 @@ const CommentInput = () => {
   };
   return (
     <Flex w={"100%"} alignItems={"center"} flexDirection={"column"}>
-      <Flex w={"95%"}>
-        <Text fontSize={"xl"} fontWeight={"bold"} marginBottom={"2%"}>
-          36개의 댓글
-        </Text>
-      </Flex>
       <Flex
         w={"98%"}
         padding={"2%"}

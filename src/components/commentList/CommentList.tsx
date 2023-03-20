@@ -4,7 +4,7 @@ import { Suspense, useEffect, useState } from "react";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import Loading from "@/components/Loading";
 
-const CommentList = () => {
+const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
   const [nowPageIndex, setNowPageIndex] = useState(1);
   const { data } = useFetchComments({
     queryKey: "commentList",
@@ -15,7 +15,7 @@ const CommentList = () => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <Box>
+      <Box w={"100%"}>
         {data !== undefined &&
           data.pages.map((e, i) => (
             <Box

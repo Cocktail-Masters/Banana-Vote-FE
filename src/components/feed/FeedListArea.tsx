@@ -20,7 +20,7 @@ const FeedListArea = () => {
   /**
    * @description 뷰포트 최하단 도달 시 새로운 피드를 불러옴
    */
-  const { ref, inView } = useInView({ threshold: 0.5 });
+  const { ref, inView } = useInView({ threshold: 0.05 });
   useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();
   }, [inView]);
@@ -34,7 +34,7 @@ const FeedListArea = () => {
            */
           <Center>Loading...</Center>
         ) : status === "error" ? (
-          <Center>Loading Error</Center>
+          <Center>Error</Center>
         ) : (
           <>
             {/* 투표 생성 버튼 */}
@@ -50,7 +50,9 @@ const FeedListArea = () => {
               })}
 
             <Center mt={5} mb={5}>
-              <Skeleton ref={ref} height="120px" />
+              {hasNextPage && (
+                <Skeleton ref={ref} height="240px" width="100%" />
+              )}
             </Center>
           </>
         )}

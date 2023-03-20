@@ -22,23 +22,26 @@ const FeedListArea = () => {
    */
   const { ref, inView } = useInView({ threshold: 0.5 });
   useEffect(() => {
-    if (inView) fetchNextPage();
+    if (inView && hasNextPage) fetchNextPage();
   }, [inView]);
 
   return (
     <Box alignItems={"center"} justifyContent={"center"} margin={"auto"}>
-      {/* 투표 생성 버튼 */}
-      <Box>
-        <VoteCreateBar nickname="연복이" badge_url="" />
-      </Box>
-      {/* 투표 피드 리스트 */}
       <Box>
         {status === "loading" ? (
+          /**
+           * @TODO Loading 컴포넌트로 교체
+           */
           <Center>Loading...</Center>
         ) : status === "error" ? (
           <Center>Loading Error</Center>
         ) : (
           <>
+            {/* 투표 생성 버튼 */}
+            <Box>
+              <VoteCreateBar nickname="연복이" badge_url="" />
+            </Box>
+            {/* 투표 피드 리스트 */}
             {data &&
               data.pages.map((page: any, index: number) => {
                 return page.items.map((feedData: any, index: number) => {

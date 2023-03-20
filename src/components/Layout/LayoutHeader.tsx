@@ -3,14 +3,15 @@
 import React, { useEffect, useState } from "react";
 import Logo from "@assets/icons/logo.svg";
 import Image from "next/image";
-import { Flex, useMediaQuery } from "@chakra-ui/react";
+import { Box, Button, Flex, useMediaQuery } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import "./LayoutHeader.style.css";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LayoutSidebar from "@components/Layout/LayoutSideBar";
+import HamburgerMenu from "../animation/HamburgerMenu";
 
-type tabType = {
+export type tabType = {
   label: string;
   path: string;
 };
@@ -26,11 +27,11 @@ export const HeaderTabs = ({ tabs }: { tabs: tabType[] }) => {
   return (
     <>
       <Flex
-        flexGrow={{ base: "none", xl: 1 }}
+        flexGrow={1}
         justifyContent={"center"}
         gap={"30px"}
         h={"100%"}
-        flexDirection={{ base: "column", lg: "row" }}
+        flexDirection={"row"}
       >
         {tabs.map((item) => (
           <Flex
@@ -65,18 +66,17 @@ const LayoutHeader = () => {
     { label: "랭킹", path: "/ranking" },
   ];
 
-  const [isLargerThan960] = useMediaQuery("(min-width: 960px)");
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      {isLargerThan960 && <LayoutSidebar></LayoutSidebar>}
       <Flex
         justifyContent={"space-between"}
         alignItems={"center"}
         h={"90px"}
         w={"100%"}
         borderBottom={"1px solid #CACACA"}
-        position={"relative"}
+        userSelect={"none"}
       >
         <Flex p={3}>
           <Link href={"/home"}>
@@ -89,25 +89,32 @@ const LayoutHeader = () => {
           h={"100%"}
           w={"100%"}
           alignItems={"center"}
-          position={{ base: "absolute", lg: "relative" }}
-          flexDirection={{ base: "column", lg: "row" }}
+          position={"relative"}
+          flexDirection={"row"}
           display={{ base: "none", lg: "flex" }}
         >
           <HeaderTabs tabs={tabs} />
         </Flex>
         <Flex
-          position={"absolute"}
-          display={{ base: "flex", lg: "none" }}
-          top={0}
-          right={0}
-          w={"80%"}
-          h={"100%"}
+          p={3}
+          zIndex={110}
+          visibility={{ base: "visible", lg: "hidden" }}
+          position={{ base: "relative", lg: "absolute" }}
         >
-          <HeaderTabs tabs={tabs} />
+          <HamburgerMenu
+            isOpen={isOpen}
+            strokeWidth={5}
+            width={24}
+            height={24}
+            onClick={() => {
+              setIsOpen((v) => !v);
+            }}
+          />
         </Flex>
       </Flex>
+      <LayoutSidebar tabs={tabs} isOpen={isOpen}></LayoutSidebar>
     </>
   );
 };
 
-export default LayoutHeader;
+export default React.memo(LayoutHeader);

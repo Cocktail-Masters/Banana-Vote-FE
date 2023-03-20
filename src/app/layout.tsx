@@ -5,6 +5,7 @@ import { Noto_Sans } from "next/font/google";
 
 import "./globals.css";
 import LayoutHeader from "@/components/Layout/LayoutHeader";
+import { Flex } from "@chakra-ui/react";
 
 // export const metadata = {
 //   title: {
@@ -28,7 +29,8 @@ export default function RootLayout({
       <body>
         <Provider>
           <LayoutHeader></LayoutHeader>
-          {children}
+          <div className={"tiles"}>{children}</div>
+          <div className={"footer"}></div>
         </Provider>
       </body>
     </html>

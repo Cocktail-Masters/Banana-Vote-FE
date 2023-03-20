@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Logo from "@assets/icons/logo.svg";
 import Image from "next/image";
-import { Button, Flex, useMediaQuery } from "@chakra-ui/react";
+import { Box, Button, Flex, useMediaQuery } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import "./LayoutHeader.style.css";
 import { usePathname } from "next/navigation";
@@ -76,8 +76,7 @@ const LayoutHeader = () => {
         h={"90px"}
         w={"100%"}
         borderBottom={"1px solid #CACACA"}
-        position={"relative"}
-        zIndex={100}
+        userSelect={"none"}
       >
         <Flex p={3}>
           <Link href={"/home"}>
@@ -96,12 +95,18 @@ const LayoutHeader = () => {
         >
           <HeaderTabs tabs={tabs} />
         </Flex>
-        <Flex p={3} zIndex={101} display={{ base: "flex", lg: "none" }}>
+        <Flex
+          p={3}
+          zIndex={110}
+          visibility={{ base: "visible", lg: "hidden" }}
+          position={{ base: "relative", lg: "absolute" }}
+        >
           <HamburgerMenu
             isOpen={isOpen}
-            strokeWidth={3}
+            strokeWidth={5}
+            width={24}
+            height={24}
             onClick={() => {
-              console.log(isOpen);
               setIsOpen((v) => !v);
             }}
           />

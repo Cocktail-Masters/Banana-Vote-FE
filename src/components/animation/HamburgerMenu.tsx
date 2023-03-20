@@ -11,8 +11,8 @@ interface Props extends SVGMotionProps<any> {
 
 const HamburgerMenu = ({
   isOpen = false,
-  width = 24,
-  height = 24,
+  width = 36,
+  height = 36,
   strokeWidth = 1,
   color = "#000",
   transition = {},
@@ -48,6 +48,7 @@ const HamburgerMenu = ({
       translateY: -2,
     },
   };
+
   lineProps = {
     stroke: color,
     strokeWidth: strokeWidth as number,
@@ -56,9 +57,9 @@ const HamburgerMenu = ({
     animate: variant,
     transition,
     strokeLinecap: "round",
-
     ...lineProps,
   };
+
   const unitHeight = 4;
   const unitWidth = (unitHeight * (width as number)) / (height as number);
 
@@ -69,6 +70,7 @@ const HamburgerMenu = ({
       preserveAspectRatio="none"
       width={width}
       height={height}
+      display={isOpen ? "block" : "none"}
       {...props}
     >
       <motion.line
@@ -77,6 +79,7 @@ const HamburgerMenu = ({
         y1="0"
         y2="0"
         variants={top}
+        // style={{ originX: 0, originY: 0 }}
         {...lineProps}
       />
       <motion.line
@@ -93,6 +96,7 @@ const HamburgerMenu = ({
         y1="4"
         y2="4"
         variants={bottom}
+        // style={{ originX: 100, originY: 0 }}
         {...lineProps}
       />
     </motion.svg>

@@ -33,7 +33,7 @@ const LayoutSideBar = ({
         w={"80%"}
         flexDirection={"column"}
         background={"#d9d9d9"}
-        zIndex={99}
+        zIndex={100}
         transform={isOpen ? "translate(0%)" : "translate(100%)"}
         transitionDuration={"200ms"}
       >

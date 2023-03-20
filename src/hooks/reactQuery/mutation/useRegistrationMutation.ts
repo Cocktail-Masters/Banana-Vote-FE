@@ -1,7 +1,5 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/common/reactQuery/QueryClient";
-import { opinionType } from "@/types";
-import { voteItemType } from "@components/vote/CreateVote";
 
 export type voteRegistrationItemType = {
   title: string;

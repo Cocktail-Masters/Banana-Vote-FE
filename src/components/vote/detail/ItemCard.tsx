@@ -7,10 +7,12 @@ const VoteDetailItemCard = ({
   item,
   setSelectItem,
   selectItem,
+  isParti,
 }: {
   item: voteItemType;
   setSelectItem: (itemId: number) => void;
   selectItem: number | undefined;
+  isParti: boolean | undefined;
 }) => {
   return (
     <Card
@@ -18,14 +20,14 @@ const VoteDetailItemCard = ({
       overflow={"hidden"}
       variant="outline"
       border={
-        selectItem === item.vote_item_id
+        !isParti && selectItem === item.vote_item_id
           ? "solid #F5B800"
           : "solid rgba(255,255,255,0)"
       }
-      bg={selectItem === item.vote_item_id ? "#FCDA76" : "white"}
+      bg={!isParti && selectItem === item.vote_item_id ? "#FCDA76" : "white"}
       _hover={{
-        bg: "#FCDA76",
-        border: "solid #F5B800",
+        bg: !isParti && "#FCDA76",
+        border: !isParti && "solid #F5B800",
       }}
       onClick={() => {
         setSelectItem(item.vote_item_id);

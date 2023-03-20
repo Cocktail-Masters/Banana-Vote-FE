@@ -1,6 +1,8 @@
 "use client";
 
 import Loading from "@/components/Loading";
+import { useVoteCheckMutation } from "@/hooks/reactQuery/mutation/useVoteCheckMutation";
+import { useVoteCheckQuery } from "@/hooks/reactQuery/useVoteCheckQuery";
 import { useVoteDetailQuery } from "@/hooks/reactQuery/useVoteDetailQuery";
 import {
   Box,
@@ -21,6 +23,13 @@ import VoteDetailItemCard from "./ItemCard";
 
 const VoteDetailItem = () => {
   const { data } = useVoteDetailQuery({ queryKey: "voteDetail", postId: 1 });
+  const { data: voteCheck } = useVoteCheckQuery({
+    queryKey: "voteCheck",
+    postId: 1,
+  });
+
+  const { mutate } = useVoteCheckMutation({ queryKey: ["voteCheck"] });
+
   const [selectItem, setSelectItem] = useState<number | undefined>();
 
   const select = (itemId: number) => {
@@ -34,7 +43,7 @@ const VoteDetailItem = () => {
       });
     }
   };
-  console.log(selectItem);
+  console.log(voteCheck);
   return (
     <Suspense fallback={<Loading />}>
       {data && (
@@ -67,12 +76,39 @@ const VoteDetailItem = () => {
             </Flex>
             <Flex flexDir={"column"}>
               {data.vote_item.map((e, i) => (
-                <VoteDetailItemCard key={i} item={e} setSelectItem={select} selectItem = {selectItem} />
+                <VoteDetailItemCard
+                  key={i}
+                  item={e}
+                  setSelectItem={select}
+                  selectItem={selectItem}
+                  isParti = {voteCheck?.is_participation}
+                />
               ))}
             </Flex>
-            <Flex w={"100%"} justifyContent={"center"} marginTop={"25px"}>
-              <Button>투표하기</Button>
-            </Flex>
+            {voteCheck !== undefined && (
+              <Flex w={"100%"} justifyContent={"center"} marginTop={"25px"}>
+                {voteCheck.is_participation ? (
+                  <Button onClick={() => {}}>결과 예측하기</Button>
+                ) : (
+                  <Button
+                    isDisabled={selectItem === undefined ? true : false}
+                    onClick={() => {
+                      mutate({
+                        uri: "",
+                        sendData: {
+                          is_participation: true,
+                          vote_item_id:
+                            selectItem !== undefined ? selectItem : 0,
+                          point: 0,
+                        },
+                      });
+                    }}
+                  >
+                    투표하기
+                  </Button>
+                )}
+              </Flex>
+            )}
           </CardBody>
           <CardFooter>
             <Flex w={"100%"} justifyContent={"space-between"}>

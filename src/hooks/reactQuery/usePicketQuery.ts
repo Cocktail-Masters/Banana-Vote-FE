@@ -1,5 +1,5 @@
 import { DummyPicket } from "@/components/picket/DummyPicket";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export const usePicketQuery = ({
   queryKey,
@@ -8,13 +8,13 @@ export const usePicketQuery = ({
   queryKey: (string | number)[];
   voteId: number;
 }) => {
-  return useQuery(
-    [queryKey, voteId],
-    async () => {
+  return useQuery({
+    queryKey: [queryKey, voteId],
+    queryFn: async () => {
       const response = DummyPicket;
 
       return response;
     },
-    { suspense: true }
-  );
+    suspense: true,
+  });
 };

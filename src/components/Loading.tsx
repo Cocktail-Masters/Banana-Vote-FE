@@ -1,6 +1,6 @@
 "use client";
 import { Spinner, Text } from "@chakra-ui/react";
-import { useIsFetching } from "react-query";
+import { useIsFetching } from "@tanstack/react-query";
 
 const Loading = () => {
   const isFetching = useIsFetching();

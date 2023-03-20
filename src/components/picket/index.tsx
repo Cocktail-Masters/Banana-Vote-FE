@@ -8,7 +8,7 @@ import Carousel from "./Carousel";
 import PicketAreaModal from "./PicketModal";
 
 const PicketArea = () => {
-  const { data} = usePicketQuery({
+  const { data } = usePicketQuery({
     queryKey: ["picket"],
     voteId: 1,
   });

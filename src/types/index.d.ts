@@ -151,6 +151,16 @@ export type voteDetailType = {
 
 export type voteFeedListType = voteDetailType & {
   best_opinion: opinionType;
+  vote_items: voteItemTypes;
+};
+
+export type voteFeedType = voteDetailType & {
+  best_opinion: opinionType;
+};
+
+export type voteFeedListType = {
+  totalCount: number;
+  items: voteFeedType[];
 };
 
 export type voteDeleteType = {

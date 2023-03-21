@@ -22,11 +22,11 @@ import FeedHeader from "./FeedHeader";
 import VS from "./VS";
 import VoteItemList from "./VoteItemList";
 import FeedTitle from "./FeedTitle";
-import { voteFeedListType } from "@/types";
+import { voteFeedType } from "@/types";
 import BestOpinion from "./BestOpinion";
 import Link from "next/link";
 
-const Feed = ({ data }: { data: voteFeedListType }) => {
+const Feed = ({ data }: { data: voteFeedType }) => {
   const colorMode = useColorModeValue("light", "black"); // 현재 컬러 모드
 
   return (
@@ -60,9 +60,9 @@ const Feed = ({ data }: { data: voteFeedListType }) => {
                 {/* 피드 제목 */}
                 <FeedTitle content={data.vote_title} />
                 {/* 피드 투표 항목들 */}
-                <VoteItemList vote_item={data.vote_item} />
+                <VoteItemList vote_items={data.vote_items} />
                 {/* 요소의 갯수가 2일때 등장하는 VS */}
-                {data.vote_item.length === 2 && <VS />}
+                {data.vote_items && data.vote_items.length === 2 && <VS />}
               </CardBody>
             </Link>
           </Box>

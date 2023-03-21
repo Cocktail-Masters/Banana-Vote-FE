@@ -5,7 +5,13 @@ import { Noto_Sans } from "next/font/google";
 
 import "./globals.css";
 import LayoutHeader from "@/components/Layout/LayoutHeader";
-import { Flex } from "@chakra-ui/react";
+import { dir } from "i18next";
+
+const languages = ["en", "de"];
+
+export async function generateStaticParams() {
+  return languages.map((lng) => ({ lng }));
+}
 
 // export const metadata = {
 //   title: {
@@ -21,11 +27,13 @@ const notoSansKr = Noto_Sans({
 
 export default function RootLayout({
   children,
+  params: { lang },
 }: {
   children: React.ReactNode;
+  params: { lang: string };
 }) {
   return (
-    <html lang="en" className={notoSansKr.className}>
+    <html lang={lang} className={notoSansKr.className}>
       <body>
         <Provider>
           <LayoutHeader></LayoutHeader>

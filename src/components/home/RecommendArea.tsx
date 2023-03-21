@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * @author mingyu
  * @description 메인페이지에서 인기 투표, 관심 투표 표시하는 영역

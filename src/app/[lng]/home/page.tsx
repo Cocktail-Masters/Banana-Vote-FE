@@ -6,7 +6,7 @@ import RankingListArea from "@/components/home/RankingListArea";
 import RecommendArea from "@/components/home/RecommendArea";
 import VoteCreateBar from "@/components/home/VoteCreateBar";
 import { Box, Flex, useMediaQuery } from "@chakra-ui/react";
-import Feed from "../../components/feed/Feed";
+import Feed from "@/components/feed/Feed";
 import { list } from "./DummyList";
 
 const Page = () => {

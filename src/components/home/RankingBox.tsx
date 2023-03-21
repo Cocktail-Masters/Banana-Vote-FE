@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import {
   Box,

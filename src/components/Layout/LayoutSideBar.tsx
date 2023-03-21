@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Flex, Link, useMediaQuery } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";

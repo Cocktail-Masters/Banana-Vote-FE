@@ -122,7 +122,7 @@ export type voteItemType = {
   title: string;
   iframe_link?: string;
   image?: string;
-  candidate_num?: string;
+  candidate_num?: number;
   total_points?: number;
   n_voted?: number;
 };
@@ -148,8 +148,13 @@ export type voteDetailType = {
   vote_items: voteItemTypes;
 };
 
-export type voteFeedListType = voteDetailType & {
+export type voteFeedType = voteDetailType & {
   best_opinion: opinionType;
+};
+
+export type voteFeedListType = {
+  totalCount: number;
+  items: voteFeedType[];
 };
 
 export type voteDeleteType = {

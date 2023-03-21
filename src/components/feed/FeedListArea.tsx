@@ -5,8 +5,9 @@ import { Box, Button, Center, Skeleton } from "@chakra-ui/react";
 import VoteCreateBar from "../home/VoteCreateBar";
 import Feed from "./Feed";
 import { useFeedListQuery } from "@/hooks/useFeedListQuery";
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import { voteFeedType } from "@/types";
 import { voteFeedListType } from "@/types";
 
 const FeedListArea = () => {
@@ -44,9 +45,9 @@ const FeedListArea = () => {
             </Box>
             {/* 투표 피드 리스트 */}
             {data &&
-              data.pages.map((page: any, index: number) => {
+              data.pages.map((page: voteFeedListType, index: number) => {
                 return page.items.map(
-                  (feedData: voteFeedListType, index: number) => {
+                  (feedData: voteFeedType, index: number) => {
                     return <Feed key={index} data={feedData} />;
                   }
                 );

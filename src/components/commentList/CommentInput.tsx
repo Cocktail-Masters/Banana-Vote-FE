@@ -1,11 +1,11 @@
 "use client";
-import { useCommentMutation } from "@/hooks/useMutations";
+import { useCommentMutation } from "@/hooks/reactQuery/mutation/useCommentMutation";
 import { opinionType } from "@/types";
 import { Flex, Button, Textarea, Text } from "@chakra-ui/react";
 import { useRef } from "react";
 
 const CommentInput = () => {
-  const { mutate } = useCommentMutation({ queryKey: "commentList" });
+  const { mutate } = useCommentMutation({ queryKey: ["commentList"] });
   const commentInputRef = useRef<HTMLTextAreaElement>(null);
 
   const sendOpinion = () => {
@@ -20,13 +20,12 @@ const CommentInput = () => {
         n_disagree: Math.floor(Math.random() * 100),
         n_reported: 0,
         nickname: "새로운 댓글이다",
-        date: "",
+        date: "2023-03-18",
       };
       mutate(
         { uri: "test", sendData: opinion },
         {
           onSuccess: () => {
-            console.log("안녕하세요", commentInputRef.current);
             if (commentInputRef.current !== null) {
               commentInputRef.current.value = "";
             }
@@ -37,11 +36,6 @@ const CommentInput = () => {
   };
   return (
     <Flex w={"100%"} alignItems={"center"} flexDirection={"column"}>
-      <Flex w={"95%"}>
-        <Text fontSize={"xl"} fontWeight={"bold"} marginBottom={"2%"}>
-          36개의 댓글
-        </Text>
-      </Flex>
       <Flex
         w={"98%"}
         padding={"2%"}

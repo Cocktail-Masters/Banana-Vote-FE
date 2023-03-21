@@ -1,3 +1,5 @@
+"use client";
+
 import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 
 const breakpoints = {

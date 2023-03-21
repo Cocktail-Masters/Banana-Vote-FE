@@ -1,12 +1,12 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/common/reactQuery/QueryClient";
 import { opinionType } from "@/types";
-import { DummyComments } from "@/components/voteDetail/commentList/DummyComment";
+import { DummyComments } from "@/components/commentList/DummyComment";
 
 export const useCommentMutation = ({
   queryKey,
 }: {
-  queryKey: string | (string | number[]);
+  queryKey: (string | number)[];
 }) => {
   return useMutation(
     async ({ uri, sendData }: { uri: string; sendData: opinionType }) => {

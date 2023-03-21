@@ -145,6 +145,12 @@ export type voteDetailType = {
   is_deleted: boolean;
   is_event: boolean;
   is_closed: boolean;
+  vote_item: voteItemTypes;
+  tag: string[];
+};
+
+export type voteFeedListType = voteDetailType & {
+  best_opinion: opinionType;
   vote_items: voteItemTypes;
 };
 
@@ -162,9 +168,10 @@ export type voteDeleteType = {
 };
 
 export type predictionType = {
-  vote_item_id: 0;
-  point: number;
-  candidate_num: 0 | 1 | 2 | 3; // 투표 내 항목 순서
+  is_participation: boolean;
+  vote_item_id?: number;
+  point?: number;
+  candidate_num?: 0 | 1 | 2 | 3 | 4 | 5; // 투표 내 항목 순서
 };
 
 export type popularType = {

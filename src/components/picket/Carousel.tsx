@@ -1,8 +1,8 @@
 import { picketsType } from "@/types";
 import Image from "next/image";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import "./slick.css";
+import "./slick-theme.css";
 import { Box } from "@chakra-ui/react";
 
 const Carousel = ({ pickets }: picketsType) => {
@@ -17,22 +17,27 @@ const Carousel = ({ pickets }: picketsType) => {
     draggable: false,
   };
   return (
-    <div className={"carousel"}>
+    <Box className={"carousel"}>
       <Slider {...settings}>
         {pickets.map((e, i) => (
-          <Box key={i}>
+          <Box key={i} height="200px" width={{ base: "350px", lg: "1200px" }}>
             <Image
               src={e.picket_image_url}
               alt={"피켓 이미지"}
+              height={"200"}
               width={"1200"}
-              height={"160"}
-              //   fill={true}
-              style={{ objectFit: "cover" }}
+              style={{
+                margin: "auto",
+                width: "auto",
+                maxWidth: "1200px",
+                height: "200px",
+                objectFit: "contain",
+              }}
             />
           </Box>
         ))}
       </Slider>
-    </div>
+    </Box>
   );
 };
 

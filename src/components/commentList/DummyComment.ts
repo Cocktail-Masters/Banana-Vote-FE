@@ -1,4 +1,4 @@
-import { opinionTypes } from '@/types';
+import { opinionTypes } from "@/types";
 
 export const DummyComments: opinionTypes = {
   opinions: [
@@ -50,5 +50,5 @@ export const DummyComments: opinionTypes = {
   ],
   isLast: true,
   endPageIndex: 1,
-  best: [1],
+  best: [1, 2, 3],
 };

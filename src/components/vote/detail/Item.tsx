@@ -17,8 +17,10 @@ import {
   Heading,
   Button,
   Tag,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { Suspense, useState } from "react";
+import VoteDetailPredictionModal from "../PredictionModal";
 import VoteDetailItemCard from "./ItemCard";
 
 const VoteDetailItem = () => {
@@ -27,6 +29,7 @@ const VoteDetailItem = () => {
     queryKey: "voteCheck",
     postId: 1,
   });
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { mutate } = useVoteCheckMutation({ queryKey: ["voteCheck"] });
 
@@ -43,7 +46,6 @@ const VoteDetailItem = () => {
       });
     }
   };
-  console.log(voteCheck);
   return (
     <Suspense fallback={<Loading />}>
       {data && (
@@ -81,14 +83,14 @@ const VoteDetailItem = () => {
                   item={e}
                   setSelectItem={select}
                   selectItem={selectItem}
-                  isParti = {voteCheck?.is_participation}
+                  isParti={voteCheck?.is_participation}
                 />
               ))}
             </Flex>
             {voteCheck !== undefined && (
               <Flex w={"100%"} justifyContent={"center"} marginTop={"25px"}>
                 {voteCheck.is_participation ? (
-                  <Button onClick={() => {}}>결과 예측하기</Button>
+                  <Button onClick={onOpen}>결과 예측하기</Button>
                 ) : (
                   <Button
                     isDisabled={selectItem === undefined ? true : false}
@@ -106,6 +108,12 @@ const VoteDetailItem = () => {
                   >
                     투표하기
                   </Button>
+                )}
+                {isOpen && (
+                  <VoteDetailPredictionModal
+                    isOpen={isOpen}
+                    onClose={onClose}
+                  />
                 )}
               </Flex>
             )}

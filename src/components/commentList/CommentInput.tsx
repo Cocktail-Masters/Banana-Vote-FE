@@ -26,7 +26,6 @@ const CommentInput = () => {
         { uri: "test", sendData: opinion },
         {
           onSuccess: () => {
-            console.log("안녕하세요", commentInputRef.current);
             if (commentInputRef.current !== null) {
               commentInputRef.current.value = "";
             }

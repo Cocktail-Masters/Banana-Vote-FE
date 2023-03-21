@@ -17,7 +17,7 @@ export const voteDetailDummy: voteDetailType = {
   is_deleted: false,
   is_event: false,
   is_closed: false,
-  vote_item: [
+  vote_items: [
     {
       vote_item_id: 1,
       title: "대충 항목1 제목",

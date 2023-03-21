@@ -77,7 +77,7 @@ const VoteDetailItem = () => {
               </Flex>
             </Flex>
             <Flex flexDir={"column"}>
-              {data.vote_item.map((e, i) => (
+              {data.vote_items.map((e, i) => (
                 <VoteDetailItemCard
                   key={i}
                   item={e}

@@ -19,6 +19,7 @@ export const useFeedListDummy = [
     is_deleted: false,
     is_event: false,
     is_closed: false,
+    tag: [],
     vote_items: [
       {
         vote_item_id: 12341,
@@ -63,6 +64,7 @@ export const useFeedListDummy = [
     is_deleted: false,
     is_event: false,
     is_closed: false,
+    tag: [],
     vote_items: [
       {
         vote_item_id: 121234341,
@@ -114,6 +116,7 @@ export const useFeedListDummy = [
     is_deleted: false,
     is_event: false,
     is_closed: false,
+    tag: [],
     vote_items: [
       {
         vote_item_id: 22,

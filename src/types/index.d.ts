@@ -145,14 +145,14 @@ export type voteDetailType = {
   is_deleted: boolean;
   is_event: boolean;
   is_closed: boolean;
-  vote_item: voteItemTypes;
+  vote_items: voteItemTypes;
   tag: string[];
 };
 
-export type voteFeedListType = voteDetailType & {
-  best_opinion: opinionType;
-  vote_items: voteItemTypes;
-};
+// export type voteFeedListType = voteDetailType & {
+//   best_opinion: opinionType;
+//   vote_items: voteItemTypes;
+// };
 
 export type voteFeedType = voteDetailType & {
   best_opinion: opinionType;

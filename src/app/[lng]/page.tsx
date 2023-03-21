@@ -1,5 +1,3 @@
-"use client";
-
 import LocaleSwitcher from "@/components/common/locale-switcher";
 import { getDictionary } from "get-dictionary";
 import { Locale } from "i18n-config";

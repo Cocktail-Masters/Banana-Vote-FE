@@ -5,13 +5,18 @@
 import FeedListArea from "@/components/feed/FeedListArea";
 import RankingListArea from "@/components/home/RankingListArea";
 import RecommendArea from "@/components/home/RecommendArea";
-import { Box, Flex, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Skeleton, useMediaQuery } from "@chakra-ui/react";
 
 const Page = () => {
   const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)");
 
   return (
-    <Flex width={"100%"} justifyContent={"center"} backgroundColor={"#f9f9f9"}>
+    <Flex
+      minHeight={"100vh"}
+      width={"100%"}
+      justifyContent={"center"}
+      backgroundColor={"#f9f9f9"}
+    >
       <Flex
         width={"1200px"}
         height={"auto"}

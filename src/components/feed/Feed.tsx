@@ -22,11 +22,11 @@ import FeedHeader from "./FeedHeader";
 import VS from "./VS";
 import VoteItemList from "./VoteItemList";
 import FeedTitle from "./FeedTitle";
-import { voteFeedListType } from "@/types";
+import { voteFeedType } from "@/types";
 import BestOpinion from "./BestOpinion";
 import Link from "next/link";
 
-const Feed = ({ data }: { data: voteFeedListType }) => {
+const Feed = ({ data }: { data: voteFeedType }) => {
   const colorMode = useColorModeValue("light", "black"); // 현재 컬러 모드
 
   return (

@@ -1,3 +1,6 @@
+/**
+ * @author mingyu
+ */
 export const useFeedListDummy = [
   {
     vote_id: 12,

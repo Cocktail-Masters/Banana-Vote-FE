@@ -16,7 +16,14 @@ module.exports = {
       xl: "1200px",
       "2xl": "1536px",
     },
-    extend: {},
+    extend: {
+      colors: {
+        "terriary-mint": "#AEE6E3",
+        "primary-yellow": "#FCDA76",
+        "secondary-orange": "#FFA45B",
+        tertiary: "#F9F6ED",
+      },
+    },
     fontFamily: {
       sans: ["noto-sans"],
     },

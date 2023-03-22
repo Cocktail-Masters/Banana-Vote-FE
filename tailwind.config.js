@@ -10,6 +10,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ["noto-sans"],
+    },
   },
   plugins: [],
 };

@@ -1,15 +1,8 @@
 "use client";
 
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  resetServerContext,
-  DraggingStyle,
-  NotDraggingStyle,
-} from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import VoteItemCard from "../VoteItemCard";
 import { getDefaultVoteItem, voteItemTypes } from "../CreateVote";
 import { Button } from "@chakra-ui/react";

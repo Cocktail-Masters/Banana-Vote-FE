@@ -17,10 +17,10 @@ const Carousel = ({ pickets }: picketsType) => {
     draggable: false,
   };
   return (
-    <Box className={"carousel"}>
+    <div className={"carousel"}>
       <Slider {...settings}>
         {pickets.map((e, i) => (
-          <Box key={i} height="200px" width={{ base: "350px", lg: "1200px" }}>
+          <div className={`h-[200px] w-[350px] lg:w-[1200px]`} key={i}>
             <Image
               src={e.picket_image_url}
               alt={"피켓 이미지"}
@@ -34,10 +34,10 @@ const Carousel = ({ pickets }: picketsType) => {
                 objectFit: "contain",
               }}
             />
-          </Box>
+          </div>
         ))}
       </Slider>
-    </Box>
+    </div>
   );
 };
 

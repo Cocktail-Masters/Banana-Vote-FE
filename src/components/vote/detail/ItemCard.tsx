@@ -1,4 +1,3 @@
-import { Card, CardBody, Heading, Stack } from "@chakra-ui/react";
 import Image from "next/image";
 import defaultImg from "@assets/images/defalut_vote_element_img.png";
 import { voteItemType } from "@/types";
@@ -15,49 +14,31 @@ const VoteDetailItemCard = ({
   isParti: boolean | undefined;
 }) => {
   return (
-    <Card
-      direction={"row"}
-      overflow={"hidden"}
-      variant="outline"
-      border={
+    <div
+      className={`flex rounded-2xl w-full h-full shadow-md border-2 ${
         !isParti && selectItem === item.vote_item_id
-          ? "solid #F5B800"
-          : "solid rgba(255,255,255,0)"
-      }
-      bg={!isParti && selectItem === item.vote_item_id ? "#FCDA76" : "white"}
-      _hover={{
-        bg: !isParti && "#FCDA76",
-        border: !isParti && "solid #F5B800",
-      }}
+          ? " border-secondary-orange bg-primary-yellow"
+          : ""
+      }  ${
+        !isParti &&
+        `hover: hover:border-secondary-orange hover:bg-primary-yellow`
+      }`}
+      style={{ overflow: "hidden" }}
       onClick={() => {
         setSelectItem(item.vote_item_id);
       }}
     >
       <Image
         src={defaultImg}
-        alt={"기본 이미지"}
-        width={"100"}
-        height={"100"}
-        style={{
-          objectFit: "contain",
-          width: "100",
-          height: "auto",
-        }}
+        alt="기본 이미지"
+        width="100"
+        height="100"
+        className="object-contain w-100 h-auto rounded-2xl"
       />
-      <Stack>
-        <CardBody w={"100%"} h={"100%"}>
-          <Heading
-            size="md"
-            w={"100%"}
-            h={"100%"}
-            display={"flex"}
-            alignItems={"center"}
-          >
-            {item.title}
-          </Heading>
-        </CardBody>
-      </Stack>
-    </Card>
+      <div className="ml-2 flex items-center w-full">
+        <h2 className="text-lg font-semibold">{item.title}</h2>
+      </div>
+    </div>
   );
 };
 

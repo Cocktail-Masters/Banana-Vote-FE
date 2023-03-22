@@ -1,7 +1,4 @@
-"use client";
-
 import { picketType } from "@/types";
-import { Box, Flex, ModalBody } from "@chakra-ui/react";
 import Image from "next/image";
 import PicketDropzone from "./PicketDropzone";
 
@@ -11,8 +8,8 @@ const SelectPicketImage = ({
   price,
 }: picketType) => {
   return (
-    <ModalBody w={"100%"} h={"fit-content"} marginBottom={"10px"}>
-      <Box w={"100%"} minH={"200px"} marginBottom={"10px"}>
+    <div className={`mb-[10px] h-fit w-full`}>
+      <div className={`mb-[10px] min-h-[200px] w-full`}>
         <Image
           src={picket_image_url}
           alt={"picket Image"}
@@ -25,9 +22,9 @@ const SelectPicketImage = ({
             margin: "auto",
           }}
         />
-      </Box>
+      </div>
       <PicketDropzone change={true} price={price} position={position} />
-    </ModalBody>
+    </div>
   );
 };
 

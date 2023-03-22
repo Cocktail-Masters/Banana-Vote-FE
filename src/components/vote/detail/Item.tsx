@@ -4,21 +4,6 @@ import Loading from "@/components/Loading";
 import { useVoteCheckMutation } from "@/hooks/reactQuery/mutation/useVoteCheckMutation";
 import { useVoteCheckQuery } from "@/hooks/reactQuery/useVoteCheckQuery";
 import { useVoteDetailQuery } from "@/hooks/reactQuery/useVoteDetailQuery";
-import {
-  Box,
-  Flex,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Text,
-  Stack,
-  StackDivider,
-  Heading,
-  Button,
-  Tag,
-  useDisclosure,
-} from "@chakra-ui/react";
 import { Suspense, useState } from "react";
 import VoteDetailPredictionModal from "../PredictionModal";
 import VoteDetailItemCard from "./ItemCard";
@@ -29,8 +14,19 @@ const VoteDetailItem = () => {
     queryKey: "voteCheck",
     postId: 1,
   });
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const onOpen = () => {
+    setIsOpen((prev) => {
+      return !prev;
+    });
+  };
+  const onClose = () => {
+    setIsOpen((prev) => {
+      return !prev;
+    });
+  };
   const { mutate } = useVoteCheckMutation({ queryKey: ["voteCheck"] });
 
   const [selectItem, setSelectItem] = useState<number | undefined>();
@@ -49,7 +45,7 @@ const VoteDetailItem = () => {
   return (
     <Suspense fallback={<Loading />}>
       {data && (
-        <div className="px-[5%] shadow-md border mt-10 rounded-3xl ">
+        <div className="px-[5%] shadow-md border mt-10 rounded-2xl ">
           <div className="border-b-[5px] border-gray-200 mb-5">
             <div className="flex items-center py-4">
               <div className="mr-4">

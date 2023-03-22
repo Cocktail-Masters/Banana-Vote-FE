@@ -1,21 +1,8 @@
 "use client";
 import { picketsType, picketType } from "@/types";
-import { ArrowBackIcon } from "@chakra-ui/icons";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  Button,
-  Flex,
-  Box,
-  Text,
-} from "@chakra-ui/react";
 import { useState } from "react";
+import Modal from "../modal/Modal";
+import Portal from "../modal/Portal";
 import PicketAreaModalContent from "./ModalContent";
 import SelectPicketImage from "./selectPicketImage";
 
@@ -25,7 +12,14 @@ type picketChangeType = {
 };
 
 const PicketAreaModal = ({ pickets }: picketsType) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const onOpen = () => {
+    setIsOpen(true);
+  };
+  const onClose = () => {
+    setIsOpen(false);
+  };
+
   const [changeState, setChangeState] = useState<picketChangeType>({
     change: false,
     picket: {
@@ -44,65 +38,101 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
 
   return (
     <>
-      <Button
+      <button
+        className={
+          "h-[45px] w-[100px] rounded-2xl bg-terriary-mint hover:bg-primary-yellow active:bg-secondary-orange"
+        }
         onClick={onOpen}
-        backgroundColor={"#AEE6E3"}
-        borderRadius={"20px"}
       >
         참여하기
-      </Button>
+      </button>
+      {isOpen && (
+        <Portal>
+          <Modal
+            width={"100%"}
+            maxWidth={"1400px"}
+            maxHeight={"80vh"}
+            minHeight={"300px"}
+            height={"80%"}
+            onClose={() => {
+              setChangeState({
+                change: false,
+                picket: {
+                  picket_image_url: "",
+                  price: 0,
+                  position: 0,
+                },
+              });
+              // onClose();
+            }}
+          >
+            <div className="relative h-16 w-[100%]">
+              <div className={`ModalHeader relative text-center`}>
+                {changeState.change && (
+                  <div
+                    className={`t-5 absolute left-5`}
+                    onClick={() => {
+                      setChangeState({
+                        change: false,
+                        picket: {
+                          picket_image_url: "",
+                          price: 0,
+                          position: 0,
+                        },
+                      });
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="h-6 w-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                      />
+                    </svg>
+                  </div>
+                )}
+                <div className={`h-16`}>피캣 올리기</div>
+              </div>
+              <button className={`absolute top-1 right-3`} onClick={onClose}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="h-6 w-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
 
-      <Modal
-        isOpen={isOpen}
-        size={"4xl"}
-        onClose={() => {
-          setChangeState({
-            change: false,
-            picket: {
-              picket_image_url: "",
-              price: 0,
-              position: 0,
-            },
-          });
-          onClose();
-        }}
-      >
-        <ModalOverlay onClick={() => {}} />
-        <ModalContent w={"100%"} h={"fit-content"}>
-          <ModalHeader textAlign={"center"} position="relative">
-            {changeState.change && (
-              <Box
-                position={"absolute"}
-                top={"5px"}
-                onClick={() => {
-                  setChangeState({
-                    change: false,
-                    picket: {
-                      picket_image_url: "",
-                      price: 0,
-                      position: 0,
-                    },
-                  });
-                }}
-              >
-                <ArrowBackIcon />
-              </Box>
-            )}
-            <Text>피캣 올리기</Text>
-          </ModalHeader>
-
-          <ModalCloseButton />
-          {changeState.change ? (
-            <SelectPicketImage
-              picket_image_url={changeState.picket.picket_image_url}
-              position={changeState.picket.position}
-              price={changeState.picket.price}
-            />
-          ) : (
-            <PicketAreaModalContent pickets={pickets} onChangeState={onClick} />
-          )}
-        </ModalContent>
-      </Modal>
+              {changeState.change ? (
+                <SelectPicketImage
+                  picket_image_url={changeState.picket.picket_image_url}
+                  position={changeState.picket.position}
+                  price={changeState.picket.price}
+                />
+              ) : (
+                <PicketAreaModalContent
+                  pickets={pickets}
+                  onChangeState={onClick}
+                />
+              )}
+            </div>
+          </Modal>
+        </Portal>
+      )}
     </>
   );
 };

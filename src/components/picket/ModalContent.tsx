@@ -1,6 +1,4 @@
-"use client";
 import { picketType } from "@/types";
-import { ModalBody, Button, Box, Text, Flex } from "@chakra-ui/react";
 import Image from "next/image";
 import banana from "@assets/icons/banana_svgrepo.com.svg";
 import React from "react";
@@ -21,9 +19,9 @@ const PicketAreaModalContent = ({
     onChangeState({ change: true, picket });
   };
   return (
-    <ModalBody w={"100%"} h={"fit-content"} paddingBottom={"20px"}>
+    <div className={`flex h-fit w-full flex-col items-center pb-[20px]`}>
       {pickets.map((e, i) => (
-        <Box key={i}>
+        <div key={i}>
           <Image
             src={e.picket_image_url}
             width={1200}
@@ -36,8 +34,11 @@ const PicketAreaModalContent = ({
             }}
             alt={"피켓 이밎"}
           ></Image>
-          <Flex alignItems={"center"} justifyContent={"space-between"}>
-            <Button
+          <div
+            className={`flex w-full max-w-5xl items-center justify-between p-3`}
+          >
+            <button
+              className={`flex `}
               onClick={() => {
                 onClick({
                   picket: {
@@ -49,23 +50,18 @@ const PicketAreaModalContent = ({
               }}
             >
               <Image src={banana} alt={"바나나"} style={{ width: "30px" }} />
-              <Text fontSize={"md"} fontWeight={"bold"}>
+              <div className={`text-xl font-bold`}>
                 {e.price} 으로 현재 피캣 바꾸기
-              </Text>
-            </Button>
-            <Button>🚨</Button>
-          </Flex>
-        </Box>
+              </div>
+            </button>
+            <button>🚨</button>
+          </div>
+        </div>
       ))}
-      <Box
-        w={"100%"}
-        h={"fit-content"}
-        marginBottom={"150px"}
-        marginTop={"20px"}
-      >
+      <div className={`my-[20px] mb-[150px] h-fit w-full`}>
         <PicketDropzone change={false} />
-      </Box>
-    </ModalBody>
+      </div>
+    </div>
   );
 };
 

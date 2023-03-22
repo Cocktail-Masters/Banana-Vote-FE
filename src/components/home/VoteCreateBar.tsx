@@ -17,13 +17,7 @@ type voteCreateBarProps = {
 
 const VoteCreateBar = ({ nickname, badge_url }: voteCreateBarProps) => {
   return (
-    <Card
-      margin={"auto"}
-      width={{ base: "90%", lg: "800px" }}
-      height={"auto"}
-      mt={4}
-      mb={4}
-    >
+    <Card width={{ base: "90%", lg: "800px" }} height={"auto"} mt={4} mb={4}>
       <CardBody
         width={"100%"}
         height={"100%"}

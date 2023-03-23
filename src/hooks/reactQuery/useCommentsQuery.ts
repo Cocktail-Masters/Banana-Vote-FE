@@ -14,7 +14,6 @@ export const useFetchComments = ({
 }) => {
   const fetchComments = async () => {
     const response = DummyComments;
-
     return response;
   };
 

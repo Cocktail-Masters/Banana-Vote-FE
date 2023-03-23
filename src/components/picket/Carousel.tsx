@@ -3,7 +3,6 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "./slick.css";
 import "./slick-theme.css";
-import { Box } from "@chakra-ui/react";
 
 const Carousel = ({ pickets }: picketsType) => {
   const settings = {

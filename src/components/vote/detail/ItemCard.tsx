@@ -1,6 +1,10 @@
+"use client";
 import Image from "next/image";
 import defaultImg from "@assets/images/defalut_vote_element_img.png";
 import { voteItemType } from "@/types";
+import Modal from "@/components/modal/Modal";
+import Portal from "@/components/modal/Portal";
+import { useState } from "react";
 
 const VoteDetailItemCard = ({
   item,
@@ -13,9 +17,16 @@ const VoteDetailItemCard = ({
   selectItem: number | undefined;
   isParti: boolean | undefined;
 }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const onOpen = () => {
+    setIsOpen(true);
+  };
+  const onClose = () => {
+    setIsOpen(false);
+  };
   return (
     <div
-      className={`flex rounded-2xl w-full h-full shadow-md border-2 ${
+      className={`flex h-full w-full rounded-2xl border-2 shadow-md ${
         !isParti && selectItem === item.vote_item_id
           ? " border-secondary-orange bg-primary-yellow"
           : ""
@@ -33,11 +44,40 @@ const VoteDetailItemCard = ({
         alt="기본 이미지"
         width="100"
         height="100"
-        className="object-contain w-100 h-auto rounded-2xl"
+        className="w-100 h-auto rounded-2xl object-contain"
+        onClick={onOpen}
       />
-      <div className="ml-2 flex items-center w-full">
+      <div className="ml-2 flex w-full items-center">
         <h2 className="text-lg font-semibold">{item.title}</h2>
       </div>
+      {isOpen && (
+        <Portal>
+          <Modal onClose={onClose} width={"95%"} height={"85%"}>
+            <button className={"absolute right-5 top-3 z-50"}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="h-6 w-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <Image
+              src={defaultImg}
+              alt="기본 이미지"
+              fill
+              className="z-10 h-auto w-auto rounded-2xl object-contain"
+            ></Image>
+          </Modal>
+        </Portal>
+      )}
     </div>
   );
 };

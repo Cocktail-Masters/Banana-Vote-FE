@@ -1,8 +1,9 @@
-import { Dispatch, SetStateAction } from "react";
-import DatePicker from "react-date-picker";
+"use client";
 
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
 import "./DatePicker.style.css";
-import "./Calendar.style.css";
+import React from "react";
 
 const DatePickerComp = ({
   title,
@@ -16,18 +17,16 @@ const DatePickerComp = ({
   return (
     <>
       <div className="flex items-center">
-        <div className="flex border-[#FFA45B] p-2.5 text-center">{title}</div>
-        <div className="relative">
+        <div className="flex border-secondary-orange p-2.5 text-center">
+          {title}
+        </div>
+        <div className="relative flex rounded-2xl border-2 border-secondary-orange p-1">
           <DatePicker
-            calendarAriaLabel="Toggle calendar"
-            clearAriaLabel="Clear value"
-            dayAriaLabel="Day"
-            monthAriaLabel="Month"
-            nativeInputAriaLabel="Date"
-            onChange={onDateChange}
-            value={endDate}
+            dateFormat="yyyy/MM/dd"
+            startDate={new Date()}
             minDate={new Date()}
-            yearAriaLabel="Year"
+            onChange={(date: Date) => onDateChange(date)}
+            selected={endDate}
           />
         </div>
       </div>

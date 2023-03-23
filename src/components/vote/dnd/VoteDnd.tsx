@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-// import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+// import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import VoteItemCard from "@components/vote/create/VoteItemCard";
 import { getDefaultVoteItem, voteItemTypes } from "../create/CreateVote";
@@ -30,7 +30,6 @@ type VoteDndPropsType = {
 };
 
 const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
-  // const [enabled, setEnabled] = useState(false);
   const [state, setState] = useState(false);
   const onDragEnd = (result: any) => {
     // dropped outside the list(리스트 밖으로 드랍한 경우)
@@ -50,31 +49,13 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
     });
   };
 
-  const getItemStyle = (draggableStyle: any, isDragging: any) => ({
-    userSelect: "none",
-    margin: "5px",
-    ...draggableStyle,
-  });
-
   useEffect(() => {
     setState(true);
   }, []);
-  // useEffect(() => {
-  //   const animation = requestAnimationFrame(() => setEnabled(true));
-
-  //   return () => {
-  //     cancelAnimationFrame(animation);
-  //     setEnabled(false);
-  //   };
-  // }, []);
-
-  // if (!enabled) {
-  //   return null;
-  // }
 
   return (
-    <>
-      {state && (
+    <div>
+      {/* {state && (
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
             {(droppableProvided, snapshot) => (
@@ -115,7 +96,7 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
             )}
           </Droppable>
         </DragDropContext>
-      )}
+      )} */}
 
       <VoteItemLayout>
         <Button
@@ -130,7 +111,7 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
           <Image src={plusImage} alt={"plus button"} />
         </Button>
       </VoteItemLayout>
-    </>
+    </div>
   );
 };
 

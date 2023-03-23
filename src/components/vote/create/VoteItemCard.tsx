@@ -63,33 +63,37 @@ const VoteItemCard = ({
       <VoteItemLayout>
         <div className={"Card-${index} flex h-full w-full flex-row"}>
           <div className={"relative h-[120px] w-[200px]"}>
-            {imageSrc && (
-              <button
-                className="w-30 h-30 max-w-30 max-h-30 min-w-30 min-h-30 absolute top-5 right-5 m-0 rounded-full bg-black p-2 hover:bg-black"
-                onClick={deleteFileHandler}
-              >
-                <Image width={25} height={25} src={close} alt="close button" />
-              </button>
-            )}
             {!imageSrc && (
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                 <UploadImage onClickHandler={uploadImageHandler} />
               </div>
             )}
             {imageSrc && (
-              <Image
-                // w={200}
-                // h={120}
-                src={imageSrc}
-                style={{ objectFit: "cover" }}
-                alt="upload image"
-              />
+              <>
+                <Image
+                  src={imageSrc}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  alt="upload image"
+                />
+                <button
+                  className="w-30 h-30 max-w-30 max-h-30 min-w-30 min-h-30 absolute top-1 right-1 m-0 rounded-full bg-black p-2"
+                  onClick={deleteFileHandler}
+                >
+                  <Image
+                    width={25}
+                    height={25}
+                    src={close}
+                    alt="close button"
+                  />
+                </button>
+              </>
             )}
           </div>
 
           <div className={"h-full w-full"}>
             <input
-              className={`vote-input-${index} base:text-xl h-full w-full p-5 font-bold xl:text-3xl`}
+              className={`vote-input-${index} base:text-xl focus:border-yellow h-full w-full p-5 font-bold outline-none xl:text-3xl`}
               placeholder={"내용 입력"}
               value={title}
               onChange={(e) => onChangeHandler(e.target.value, index)}

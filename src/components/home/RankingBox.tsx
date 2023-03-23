@@ -1,21 +1,9 @@
 "use client";
 
-import { ChevronRightIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  CardBody,
-  CardHeader,
-  Center,
-  Divider,
-  Flex,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
 import Link from "next/link";
 import goldMedal from "@assets/icons/medals/gold.svg";
 import silverMedal from "@assets/icons/medals/silver.svg";
 import bronzeMedal from "@assets/icons/medals/bronze.svg";
-import normalMedal from "@assets/icons/medals/normal.svg";
 import Image from "next/image";
 
 type rankingContents = {
@@ -31,60 +19,50 @@ type rankingBoxProps = {
 
 const RankingBox = ({ title, contents }: rankingBoxProps) => {
   return (
-    <Box>
-      <CardHeader width={"100%"} height={"60px"}>
-        <Flex
-          position="relative"
-          justifyContent={"space-between"}
-          alignItems={"center"}
-          width="100%"
-        >
-          <Box height={"28px"} width={"auto"} />
-          <Heading
-            position="absolute"
-            top="50%"
-            left="50%"
-            transform="translate(-50%, -50%)"
-            as="h5"
-            size="md"
-            width="240px"
-            height="28px"
-            textAlign="center"
-            color={"blue.500"}
-          >
+    <div>
+      <div className="w-full h-16">
+        <div className="flex relative justify-between items-center w-full">
+          <div className="h-7 w-auto" />
+          {/* 박스 제목 */}
+          <h5 className="absolute top-[66%] left-[50%] translate-x-[-50%] text-xl font-bold w-60 h-7 text-center text-blue-500">
             {title}
-          </Heading>
-          <Box height={"28px"} width={"auto"}>
+          </h5>
+          {/* 더보기 */}
+          <div className="h-7 w-auto relative">
             <Link href={`/rank`}>
-              <Text
-                fontSize={"sm"}
-                color="gray.400"
-                _hover={{ color: "gray.500", textDecoration: "underline" }}
-              >
+              <p className="absolute top-[66%] right-3 w-20 h-7 flex justify-center items-center text-sm text-gray-400 hover:text-gray-500 hover:decoration-solid">
                 더보기
-                <ChevronRightIcon />
-              </Text>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-3 h-3 font-bold"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </p>
             </Link>
-          </Box>
-        </Flex>
-      </CardHeader>
-      <Divider
-        width={"90%"}
-        borderColor="yellow.500"
-        borderWidth="1.5px"
-        marginX="auto"
-      />
-      <CardBody width={"100%"} height={"200px"}>
+          </div>
+        </div>
+      </div>
+      <hr className="w-11/12 bg-yellow-500 h-[1.5px] mx-auto border-0" />
+      <div className="w-full h-52 p-4">
         {!contents || contents.length === 0 ? (
-          <Center fontWeight="bold" height={"120px"} lineHeight={"120px"}>
+          <p className="flex justify-center font-bold h-32 leading-8">
             시즌 랭킹 정보가 없습니다.
-          </Center>
+          </p>
         ) : (
           contents.map((content: rankingContents, index: number) => {
             if (index === 0) {
               return (
-                <Box key={content.id} mb={2}>
-                  <Flex>
+                <div className="mb-2" key={content.id}>
+                  <div className="flex">
                     <Image
                       src={goldMedal}
                       style={{
@@ -93,16 +71,16 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
                       }}
                       alt={"gold medal"}
                     />
-                    <Text ml={1} noOfLines={1} fontWeight={"bold"}>
+                    <p className="ml-1 truncate text-base font-semibold">
                       {content.nickname}
-                    </Text>
-                  </Flex>
-                </Box>
+                    </p>
+                  </div>
+                </div>
               );
             } else if (index === 1) {
               return (
-                <Box key={content.id} mb={2}>
-                  <Flex>
+                <div className="mb-2" key={content.id}>
+                  <div className="flex">
                     <Image
                       src={silverMedal}
                       style={{
@@ -111,16 +89,16 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
                       }}
                       alt={"silver medal"}
                     />
-                    <Text ml={1} noOfLines={1} fontWeight={"bold"}>
+                    <p className="ml-1 truncate text-base font-semibold">
                       {content.nickname}
-                    </Text>
-                  </Flex>
-                </Box>
+                    </p>
+                  </div>
+                </div>
               );
             } else if (index === 2) {
               return (
-                <Box key={content.id} mb={2}>
-                  <Flex>
+                <div className="mb-2" key={content.id}>
+                  <div className="flex">
                     <Image
                       src={bronzeMedal}
                       style={{
@@ -129,36 +107,30 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
                       }}
                       alt={"bronze medal"}
                     />
-                    <Text ml={1} noOfLines={1} fontWeight={"bold"}>
+                    <p className="ml-1 truncate text-base font-semibold">
                       {content.nickname}
-                    </Text>
-                  </Flex>
-                </Box>
+                    </p>
+                  </div>
+                </div>
               );
             } else {
               return (
-                <Box key={content.id} mb={2}>
-                  <Flex>
-                    <Text
-                      width="20px"
-                      height="auto"
-                      fontWeight="bold"
-                      fontSize={"16px"}
-                      textAlign={"center"}
-                    >
+                <div className="mb-2" key={content.id}>
+                  <div className="flex">
+                    <p className="w-5 h-auto font-bold text-base text-center">
                       {index + 1}
-                    </Text>
-                    <Text ml={1} noOfLines={1} fontWeight={"bold"}>
+                    </p>
+                    <p className="ml-1 truncate font-semibold">
                       {content.nickname}
-                    </Text>
-                  </Flex>
-                </Box>
+                    </p>
+                  </div>
+                </div>
               );
             }
           })
         )}
-      </CardBody>
-    </Box>
+      </div>
+    </div>
   );
 };
 

@@ -4,38 +4,39 @@
  */
 "use client";
 import React from "react";
-import { Card, Stack, Text } from "@chakra-ui/react";
-import { CardBody } from "@chakra-ui/react";
 import Image, { StaticImageData } from "next/image";
 import defaultImg from "@assets/images/defalut_vote_element_img.png";
 
 type voteFeedItemProps = {
-	imageLink?: string | StaticImageData;
-	content: string;
+  imageLink?: string | StaticImageData;
+  content: string;
 };
 
 const VoteItem = ({ imageLink = defaultImg, content }: voteFeedItemProps) => {
-	return (
-		<Card width={"100%"}>
-			<CardBody>
-				<div style={{ height: "160px" }}>
-					<Image
-						src={!imageLink ? defaultImg : imageLink}
-						alt="vote element img"
-						style={{
-							margin: "auto",
-							objectFit: "contain",
-						}}
-					/>
-				</div>
-				<Stack mt="6" spacing="3">
-					<Text textAlign={"center"} noOfLines={1}>
-						{content}
-					</Text>
-				</Stack>
-			</CardBody>
-		</Card>
-	);
+  const handleImageClick = (
+    e: React.MouseEvent<HTMLImageElement, MouseEvent>
+  ) => {
+    console.log(e);
+  };
+
+  return (
+    <div className="w-full h-full bg-white rounded-2xl">
+      <div className="m-auto w-full h-[200px] grid place-content-center overflow-hidden border border-inherit rounded-t-2xl">
+        <Image
+          className="w-fit h-fit m-auto rounded-2xl object-cover"
+          src={!imageLink ? defaultImg : imageLink}
+          alt="vote element img"
+          width={1000}
+          height={1000}
+          onClick={(e) => handleImageClick(e)}
+        />
+      </div>
+
+      <p className="w-full h-[48px] p-4 mb-2 text-center truncate font-semibold">
+        {content}
+      </p>
+    </div>
+  );
 };
 
 export default VoteItem;

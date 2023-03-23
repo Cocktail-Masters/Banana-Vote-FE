@@ -4,20 +4,6 @@
  */
 "use client";
 import React from "react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Button,
-  Flex,
-  Text,
-  Box,
-  Stack,
-  Spacer,
-  StackDivider,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import { ChevronRightIcon } from "@chakra-ui/icons";
 import FeedHeader from "./FeedHeader";
 import VS from "./VS";
 import VoteItemList from "./VoteItemList";
@@ -27,22 +13,11 @@ import BestOpinion from "./BestOpinion";
 import Link from "next/link";
 
 const Feed = ({ data }: { data: voteFeedType }) => {
-  const colorMode = useColorModeValue("light", "black"); // 현재 컬러 모드
-
   return (
     <>
-      {/* <div
-        className="w-[90%] lg:w-[800px] h-auto m-auto mt-4 mb-4 bg-white rounded-xl drop-shadow-md hover:bg-[rgba(234, 238, 243, 0.3)] transition duration-100 ease-in-out"
-      > */}
-      <Card
-        margin={"auto"}
-        width={{ base: "90%", lg: "800px" }}
-        height={"auto"}
-        mt={4}
-        mb={4}
-      >
+      <div className="w-full md:w-[90%] md:rounded-xl lg:w-[800px] h-auto m-auto mt-4 mb-4 bg-white drop-shadow-md hover:bg-[rgba(234, 238, 243, 0.3)] transition duration-100 ease-in-out">
         {/* 피드 헤더 */}
-        <CardHeader>
+        <div className="p-5">
           <FeedHeader
             badge_url={data.badge_url}
             nickname={data.nickname}
@@ -50,52 +25,53 @@ const Feed = ({ data }: { data: voteFeedType }) => {
             is_closed={data.is_closed}
             n_vote={data.n_vote}
           />
-        </CardHeader>
-        <Stack divider={<StackDivider />} spacing="1">
+        </div>
+        <div className="grid grid-cols-1 divide-y">
           {/* 피드 바디 */}
-          <Box>
+
+          <div className="pb-5 pl-5 pr-5">
+            {/* 피드 제목 */}
             <Link href={`/vote/detail/${data.vote_id}`}>
-              <CardBody>
-                {/* 피드 제목 */}
-                <FeedTitle content={data.vote_title} />
-                {/* 피드 투표 항목들 */}
-                <VoteItemList vote_items={data.vote_items} />
-                {/* 요소의 갯수가 2일때 등장하는 VS */}
-                {data.vote_items && data.vote_items.length === 2 && <VS />}
-              </CardBody>
+              <FeedTitle content={data.vote_title} />
             </Link>
-          </Box>
-          <Box>
-            {/* 피드 푸터 */}
-            <CardBody>
-              <Flex mb={3} pos="relative">
-                <Text fontWeight={"bold"} fontSize="16px">
-                  공감을 많이 받은 댓글
-                </Text>
-                <Spacer />
-                <Link href={`/vote/detail/${data.vote_id}`}>
-                  <Button
-                    position="absolute"
-                    right="0%"
-                    fontSize="16px"
-                    border="none"
-                    colorScheme="none"
-                    color={colorMode ? "black" : "white"}
+            {/* 피드 투표 항목들 */}
+            <VoteItemList vote_items={data.vote_items} />
+            {/* 요소의 갯수가 2일때 등장하는 VS */}
+            {data.vote_items && data.vote_items.length === 2 && <VS />}
+          </div>
+        </div>
+        <hr />
+        <div className="p-5">
+          {/* 피드 푸터 */}
+          <div>
+            <div className="flex relative">
+              <Link href={`/vote/detail/${data.vote_id}`}>
+                <div className="flex absolute h-5 right-0 text-sm font-bold hover:border-b">
+                  댓글 {data.n_opinion.toLocaleString()}개
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 font-bold"
                   >
-                    댓글 {data.n_opinion.toLocaleString()}개
-                    <ChevronRightIcon />
-                  </Button>
-                </Link>
-              </Flex>
-              <BestOpinion
-                nickname={data.nickname}
-                best_opinion={data.best_opinion}
-              />
-            </CardBody>
-          </Box>
-        </Stack>
-      </Card>
-      {/* </div> */}
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    />
+                  </svg>
+                </div>
+              </Link>
+            </div>
+            <BestOpinion
+              nickname={data.nickname}
+              best_opinion={data.best_opinion}
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 };

@@ -17,16 +17,20 @@ const LayoutSideBar = ({
 
   const [selectedTabPath, setSelectedTabPath] = useState<string | null>(null);
   useEffect(() => {
-    setSelectedTabPath(pathname);
+    const removeLanguagePath = "/" + pathname.split("/").slice(2).join("/");
+    setSelectedTabPath(removeLanguagePath);
   }, [pathname]);
 
   return (
     <>
-      <div className="z-100 absolute top-0 right-0 flex h-full w-[80%] transform flex-col justify-center gap-[30px] bg-gray-300 transition duration-200 lg:hidden">
+      <div
+        className="absolute top-0 right-0 z-[100] flex h-full w-[80%] transform flex-col justify-center gap-[30px] bg-gray-300 transition duration-200 lg:hidden"
+        style={{ transform: isOpen ? "translate(0%)" : "translate(100%)" }}
+      >
         {tabs.map((item) => (
           <div
             key={item.label}
-            className={`relative h-full ${
+            className={`h-full ${
               item.path === selectedTabPath ? "selected" : ""
             }`}
             onClick={() => setSelectedTabPath(item.path)}

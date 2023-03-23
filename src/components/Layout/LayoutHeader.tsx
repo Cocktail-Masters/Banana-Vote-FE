@@ -8,7 +8,7 @@ import "./LayoutHeader.style.css";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LayoutSidebar from "@components/Layout/LayoutSideBar";
-import HamburgerMenu from "../animation/HamburgerMenu";
+import HamburgerMenuButton from "../animation/HamburgerMenuButton";
 
 export type tabType = {
   label: string;
@@ -71,8 +71,8 @@ const LayoutHeader = () => {
         <div className="relative hidden h-full w-full flex-row items-center p-0 text-2xl lg:flex">
           <HeaderTabs tabs={tabs} />
         </div>
-        <div className="visible relative z-[110px] p-1 lg:invisible lg:absolute">
-          <HamburgerMenu
+        <div className="visible relative z-[110] m-3 p-1 lg:invisible lg:absolute">
+          <HamburgerMenuButton
             isOpen={isOpen}
             strokeWidth={5}
             width={24}

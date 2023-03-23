@@ -1,7 +1,6 @@
 "use client";
-
-import { Button, Flex, Link, useMediaQuery } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -23,42 +22,27 @@ const LayoutSideBar = ({
 
   return (
     <>
-      <Flex
-        position={"absolute"}
-        flexGrow={{ base: "none", lg: 1 }}
-        display={{ base: "flex", lg: "none" }}
-        justifyContent={"center"}
-        top={0}
-        right={0}
-        gap={"30px"}
-        h={"100%"}
-        w={"80%"}
-        flexDirection={"column"}
-        background={"#d9d9d9"}
-        zIndex={100}
-        transform={isOpen ? "translate(0%)" : "translate(100%)"}
-        transitionDuration={"200ms"}
-      >
+      <div className="z-100 absolute top-0 right-0 flex h-full w-[80%] transform flex-col justify-center gap-[30px] bg-gray-300 transition duration-200 lg:hidden">
         {tabs.map((item) => (
-          <Flex
+          <div
             key={item.label}
-            h={"100%"}
-            className={item.path === selectedTabPath ? "selected" : ""}
+            className={`relative h-full ${
+              item.path === selectedTabPath ? "selected" : ""
+            }`}
             onClick={() => setSelectedTabPath(item.path)}
-            position={"relative"}
           >
-            <Flex justifyContent={"center"} h={"100%"} alignItems={"center"}>
+            <div className="flex h-full items-center justify-center">
               <Link href={item.path}>{`${item.label}`}</Link>
-            </Flex>
-            <Flex justifyContent={"flex-end"}>
+            </div>
+            <div className="flex justify-end">
               {item.path === selectedTabPath ? (
                 <motion.div className="underline" layoutId="underline" />
               ) : null}
-            </Flex>
-          </Flex>
+            </div>
+          </div>
         ))}
-        <Flex p={3}>마이페이지</Flex>
-      </Flex>
+        <div className="p-3">마이페이지</div>
+      </div>
     </>
   );
 };

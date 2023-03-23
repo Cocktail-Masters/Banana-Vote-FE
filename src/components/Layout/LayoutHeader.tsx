@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Logo from "@assets/icons/logo.svg";
 import Image from "next/image";
-import { Box, Button, Flex, useMediaQuery } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import "./LayoutHeader.style.css";
 import { usePathname } from "next/navigation";
@@ -21,38 +20,31 @@ export const HeaderTabs = ({ tabs }: { tabs: tabType[] }) => {
 
   const [selectedTabPath, setSelectedTabPath] = useState<string | null>(null);
   useEffect(() => {
-    setSelectedTabPath(pathname);
+    const removeLanguagePath = "/" + pathname.split("/").slice(2).join("/");
+    setSelectedTabPath(removeLanguagePath);
   }, [pathname]);
 
   return (
     <>
-      <Flex
-        flexGrow={1}
-        justifyContent={"center"}
-        gap={"30px"}
-        h={"100%"}
-        flexDirection={"row"}
-      >
+      <div className="flex h-full flex-grow flex-row justify-center gap-[30px]">
         {tabs.map((item) => (
-          <Flex
+          <div
             key={item.label}
-            h={"100%"}
-            className={item.path === selectedTabPath ? "selected" : ""}
+            className={`relative flex h-full`}
             onClick={() => setSelectedTabPath(item.path)}
-            position={"relative"}
           >
-            <Flex justifyContent={"center"} h={"100%"} alignItems={"center"}>
+            <div className="relative flex h-full items-center justify-center">
               <Link href={item.path}>{`${item.label}`}</Link>
-            </Flex>
-            <Flex justifyContent={"flex-end"}>
+            </div>
+            <div className="flex justify-end">
               {item.path === selectedTabPath ? (
                 <motion.div className="underline" layoutId="underline" />
               ) : null}
-            </Flex>
-          </Flex>
+            </div>
+          </div>
         ))}
-      </Flex>
-      <Flex p={3}>마이페이지</Flex>
+      </div>
+      <div className="p-3">마이페이지</div>
     </>
   );
 };
@@ -70,37 +62,16 @@ const LayoutHeader = () => {
 
   return (
     <>
-      <Flex
-        justifyContent={"space-between"}
-        alignItems={"center"}
-        h={"90px"}
-        w={"100%"}
-        borderBottom={"1px solid #CACACA"}
-        userSelect={"none"}
-      >
-        <Flex p={3}>
+      <div className="flex h-[90px] w-full select-none items-center justify-between border-b border-[#CACACA]">
+        <div className="p-1">
           <Link href={"/home"}>
             <Image src={Logo} alt={"banana vote logo"} />
           </Link>
-        </Flex>
-        <Flex
-          p={0}
-          fontSize={"28px"}
-          h={"100%"}
-          w={"100%"}
-          alignItems={"center"}
-          position={"relative"}
-          flexDirection={"row"}
-          display={{ base: "none", lg: "flex" }}
-        >
+        </div>
+        <div className="relative hidden h-full w-full flex-row items-center p-0 text-2xl lg:flex">
           <HeaderTabs tabs={tabs} />
-        </Flex>
-        <Flex
-          p={3}
-          zIndex={110}
-          visibility={{ base: "visible", lg: "hidden" }}
-          position={{ base: "relative", lg: "absolute" }}
-        >
+        </div>
+        <div className="visible relative z-[110px] p-1 lg:invisible lg:absolute">
           <HamburgerMenu
             isOpen={isOpen}
             strokeWidth={5}
@@ -110,8 +81,8 @@ const LayoutHeader = () => {
               setIsOpen((v) => !v);
             }}
           />
-        </Flex>
-      </Flex>
+        </div>
+      </div>
       <LayoutSidebar tabs={tabs} isOpen={isOpen}></LayoutSidebar>
     </>
   );

@@ -3,10 +3,11 @@ import React from "react";
 type TCardProps = {
   width: string;
   height: string;
-  margin: string;
+  margin?: string;
   children: React.ReactNode;
   onClick?: () => void;
   hoverEffect?: boolean;
+  mobileWidth?: string;
 };
 
 const TCard = ({
@@ -16,13 +17,14 @@ const TCard = ({
   children,
   onClick,
   hoverEffect,
+  mobileWidth,
 }: TCardProps) => {
-  const hov = hoverEffect
+  const hover = hoverEffect
     ? "hover:bg-gray-700 bg-opacity-50 transition duration-500 ease-in-out"
     : "";
   return (
     <div
-      className={`${width} ${height} ${margin} rounded-2xl border-black ${hov}`}
+      className={`${width} ${mobileWidth} ${height} ${margin} rounded-2xl border-black ${hover} `}
       onClick={onClick}
     >
       {children}

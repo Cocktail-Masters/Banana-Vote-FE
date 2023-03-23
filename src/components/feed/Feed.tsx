@@ -31,16 +31,15 @@ const Feed = ({ data }: { data: voteFeedType }) => {
 
   return (
     <>
+      {/* <div
+        className="w-[90%] lg:w-[800px] h-auto m-auto mt-4 mb-4 bg-white rounded-xl drop-shadow-md hover:bg-[rgba(234, 238, 243, 0.3)] transition duration-100 ease-in-out"
+      > */}
       <Card
         margin={"auto"}
         width={{ base: "90%", lg: "800px" }}
         height={"auto"}
         mt={4}
         mb={4}
-        _hover={{
-          bg: "rgba(234, 238, 243, 0.5)",
-          transition: "0.25s ease-in-out",
-        }}
       >
         {/* 피드 헤더 */}
         <CardHeader>
@@ -96,6 +95,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
           </Box>
         </Stack>
       </Card>
+      {/* </div> */}
     </>
   );
 };

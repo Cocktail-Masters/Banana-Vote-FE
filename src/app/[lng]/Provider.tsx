@@ -9,12 +9,12 @@ import { queryClient } from "@/common/reactQuery/QueryClient";
 const Provider = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <CacheProvider>
-        <ChakraProvider>
-          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <ChakraProvider>
+        <CacheProvider>
+          {<ColorModeScript initialColorMode={theme.config.initialColorMode} />}
           {children}
-        </ChakraProvider>
-      </CacheProvider>
+        </CacheProvider>
+      </ChakraProvider>
     </QueryClientProvider>
   );
 };

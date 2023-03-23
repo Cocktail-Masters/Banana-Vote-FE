@@ -2,14 +2,14 @@ const TagCloseButton = ({ onClick }: { onClick: () => void }) => {
   return (
     <button
       type="button"
-      className="ml-2 inline-flex items-center rounded-2xl bg-transparent p-0.5 text-sm text-black hover:bg-orange-200 hover:text-blue-900 "
+      className="ml-2 inline-flex h-6 w-6 items-center rounded-2xl bg-transparent p-0.5 text-sm text-black hover:bg-[#FCDA76] hover:text-black "
       data-dismiss-target="#badge-dismiss-default"
       aria-label="Remove"
       onClick={onClick}
     >
       <svg
         aria-hidden="true"
-        className="h-3.5 w-3.5"
+        className="h-6 w-6"
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"

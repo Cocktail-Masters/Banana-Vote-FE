@@ -4,7 +4,6 @@ import { ChangeEvent, useRef, useState } from "react";
 
 import uploadAsset from "@assets/images/uploadAsset.png";
 import Image from "next/image";
-import { Button } from "@chakra-ui/react";
 
 type UploadImagePropsType = {
   onClickHandler: (file: File | null) => void;
@@ -16,7 +15,6 @@ const UploadImage = ({ onClickHandler }: UploadImagePropsType) => {
 
   const fileChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      console.log(e.target.files[0]);
       setFile(e.target.files[0]);
       onClickHandler(e.target.files[0]);
     }
@@ -32,7 +30,7 @@ const UploadImage = ({ onClickHandler }: UploadImagePropsType) => {
 
   return (
     <>
-      <Button variant={"unstyled"} onClick={uploadClickHandler}>
+      <button onClick={uploadClickHandler}>
         <Image
           src={uploadAsset}
           alt="upload asset"
@@ -41,7 +39,7 @@ const UploadImage = ({ onClickHandler }: UploadImagePropsType) => {
             objectFit: "contain",
           }}
         />
-      </Button>
+      </button>
       <input
         type="file"
         ref={inputRef}

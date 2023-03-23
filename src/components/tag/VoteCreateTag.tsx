@@ -8,7 +8,7 @@ type VoteCreatTagPropsType = {
   setTagArray: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-const VoteCreatTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
+const VoteCreateTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
   const [tagString, setTagString] = useState<string>("");
   const [state, setState] = useState(false);
   const tagSize = "lg";
@@ -137,4 +137,4 @@ const VoteCreatTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
     </>
   );
 };
-export default VoteCreatTag;
+export default VoteCreateTag;

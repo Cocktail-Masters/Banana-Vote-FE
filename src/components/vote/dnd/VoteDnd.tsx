@@ -2,25 +2,25 @@
 
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+// import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import VoteItemCard from "../VoteItemCard";
-import { getDefaultVoteItem, voteItemTypes } from "../CreateVote";
+
+import VoteItemCard from "@components/vote/create/VoteItemCard";
+import { getDefaultVoteItem, voteItemTypes } from "../create/CreateVote";
 import { Button } from "@chakra-ui/react";
 import Image from "next/image";
 
 import plusImage from "@assets/images/plus.svg";
-import VoteItemLayout from "../VoteItemLayout";
+import VoteItemLayout from "@components/vote/create/VoteItemLayout";
 
 const reorder = (
   list: voteItemTypes,
   startIndex: number,
   endIndex: number
 ): voteItemTypes => {
-  console.log("start", list);
   const result = [...list];
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
-  console.log("end", result);
   return result;
 };
 
@@ -30,8 +30,8 @@ type VoteDndPropsType = {
 };
 
 const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
+  // const [enabled, setEnabled] = useState(false);
   const [state, setState] = useState(false);
-
   const onDragEnd = (result: any) => {
     // dropped outside the list(리스트 밖으로 드랍한 경우)
     if (!result.destination) {
@@ -59,6 +59,18 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
   useEffect(() => {
     setState(true);
   }, []);
+  // useEffect(() => {
+  //   const animation = requestAnimationFrame(() => setEnabled(true));
+
+  //   return () => {
+  //     cancelAnimationFrame(animation);
+  //     setEnabled(false);
+  //   };
+  // }, []);
+
+  // if (!enabled) {
+  //   return null;
+  // }
 
   return (
     <>
@@ -104,6 +116,7 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
           </Droppable>
         </DragDropContext>
       )}
+
       <VoteItemLayout>
         <Button
           w={"100%"}

@@ -1,33 +1,24 @@
 "use client";
 
-import React, { Component, useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  resetServerContext,
-  DraggingStyle,
-  NotDraggingStyle,
-} from "react-beautiful-dnd";
-import VoteItemCard from "../VoteItemCard";
-import { getDefaultVoteItem, voteItemTypes } from "../CreateVote";
+import React, { useEffect, useState } from "react";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+
+import VoteItemCard from "@components/vote/create/VoteItemCard";
+import { getDefaultVoteItem, voteItemTypes } from "../create/CreateVote";
 import { Button } from "@chakra-ui/react";
 import Image from "next/image";
 
 import plusImage from "@assets/images/plus.svg";
-import VoteItemLayout from "../VoteItemLayout";
+import VoteItemLayout from "@components/vote/create/VoteItemLayout";
 
 const reorder = (
   list: voteItemTypes,
   startIndex: number,
   endIndex: number
 ): voteItemTypes => {
-  console.log("start", list);
   const result = [...list];
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
-  console.log("end", result);
   return result;
 };
 
@@ -38,7 +29,6 @@ type VoteDndPropsType = {
 
 const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
   const [state, setState] = useState(false);
-
   const onDragEnd = (result: any) => {
     // dropped outside the list(리스트 밖으로 드랍한 경우)
     if (!result.destination) {
@@ -57,18 +47,12 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
     });
   };
 
-  const getItemStyle = (draggableStyle: any, isDragging: any) => ({
-    userSelect: "none",
-    margin: "5px",
-    ...draggableStyle,
-  });
-
   useEffect(() => {
     setState(true);
   }, []);
 
   return (
-    <>
+    <div>
       {state && (
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
@@ -111,20 +95,20 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
           </Droppable>
         </DragDropContext>
       )}
+
       <VoteItemLayout>
-        <Button
-          w={"100%"}
-          h={"100%"}
-          background={"white"}
-          _hover={{ bg: "#ffffff" }}
+        <button
+          className={
+            "flex  h-full w-full items-center justify-center bg-white hover:bg-[#ffffff]"
+          }
           onClick={() => {
             setVoteItems((v) => [...v, getDefaultVoteItem()]);
           }}
         >
           <Image src={plusImage} alt={"plus button"} />
-        </Button>
+        </button>
       </VoteItemLayout>
-    </>
+    </div>
   );
 };
 

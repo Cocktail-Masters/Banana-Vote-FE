@@ -1,27 +1,21 @@
 "use client";
-import {
-  Box,
-  Flex,
-  Input,
-  Tag,
-  TagCloseButton,
-  TagLabel,
-} from "@chakra-ui/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import Tag from "./Tag";
+import TagCloseButton from "./TagCloseButton";
 
 type VoteCreatTagPropsType = {
   tagArray: string[];
   setTagArray: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-const VoteCreatTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
+const VoteCreateTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
   const [tagString, setTagString] = useState<string>("");
   const [state, setState] = useState(false);
   const tagSize = "lg";
   const [isFocus, setIsFocus] = useState(false);
 
   const textWidthCalculator = useCallback(
-    (defaultWidth: number): string => {
+    (defaultWidth: number): number => {
       const canvas: HTMLCanvasElement | null = document.getElementById(
         "canvas"
       ) as HTMLCanvasElement;
@@ -33,11 +27,11 @@ const VoteCreatTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
           for (let letter of tagString.split("")) {
             textWidth += ctx.measureText(letter).width;
           }
-          const width = `${textWidth + defaultWidth}px`;
+          const width = textWidth + defaultWidth;
           return width;
         }
       }
-      return `${0}px`;
+      return 0;
     },
     [tagString]
   );
@@ -97,69 +91,50 @@ const VoteCreatTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
 
   return (
     <>
-      <Flex flexWrap={"wrap"}>
+      <div className="flex flex-wrap gap-2">
         {tagArray &&
           tagArray.map((v, index) => {
             return (
-              <Tag
-                size={tagSize}
-                key={v + index.toString()}
-                borderRadius="full"
-                variant="solid"
-                background={"#F9F6ED"}
-                color={"black"}
-                h="36px"
-                m={2}
-              >
-                <TagLabel>{`#${v}`}</TagLabel>
-                <TagCloseButton onClick={() => onClickTagCloseHandler(index)} />
+              <Tag key={v + index.toString()}>
+                <>
+                  <div className={"font-sans text-xl"}>{`#${v}`}</div>
+                  <TagCloseButton
+                    onClick={() => onClickTagCloseHandler(index)}
+                  ></TagCloseButton>
+                </>
               </Tag>
             );
           })}
-        <Tag
-          size={tagSize}
-          borderRadius="full"
-          variant="solid"
-          background={"#F9F6ED"}
-          color={"black"}
-          h="36px"
-          m={2}
-        >
-          <TagLabel>
-            <>
-              <Box
-                className={"hash-tag"}
-                display={"inline"}
-                color={isFocus ? "black" : "#d9d9d9"}
-              >
-                #
-              </Box>
-              {state && (
-                <Input
-                  className="tag-input"
-                  h="100%"
-                  w={textWidthCalculator(5)}
-                  fontSize={"20px"}
-                  variant="unstyled"
-                  value={tagString}
-                  onChange={(e) => {
-                    setTagString(e.target.value.trim());
-                  }}
-                  onKeyDown={onKeyDownHandler}
-                  onFocus={() => {
-                    setIsFocus(true);
-                  }}
-                  onBlur={() => {
-                    setIsFocus(false);
-                    addTag();
-                  }}
-                />
-              )}
-            </>
-          </TagLabel>
+        <Tag>
+          <div className="tag-label text-xl font-bold">
+            <span
+              className={`hash-tag color-[${isFocus ? "black" : "#d9d9d9"}]`}
+            >
+              #
+            </span>
+            {state && (
+              <input
+                className={`tag-input h-full bg-[#F9F6ED] font-sans text-xl outline-none`}
+                style={{ width: `${textWidthCalculator(5)}px` }}
+                type="text"
+                value={tagString}
+                onChange={(e) => {
+                  setTagString(e.target.value.trim());
+                }}
+                onKeyDown={onKeyDownHandler}
+                onFocus={() => {
+                  setIsFocus(true);
+                }}
+                onBlur={() => {
+                  setIsFocus(false);
+                  addTag();
+                }}
+              />
+            )}
+          </div>
         </Tag>
-      </Flex>
+      </div>
     </>
   );
 };
-export default VoteCreatTag;
+export default VoteCreateTag;

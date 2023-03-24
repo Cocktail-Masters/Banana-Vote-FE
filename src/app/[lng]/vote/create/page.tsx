@@ -1,6 +1,4 @@
-"use client";
-
-import CreateVote from "@/components/Vote/CreateVote";
+import CreateVote from "@/components/vote/create/CreateVote";
 const CreateVotePage = () => {
   return (
     <>

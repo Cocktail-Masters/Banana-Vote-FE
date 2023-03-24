@@ -1,8 +1,3 @@
-"use client";
-import { Box, Button, Divider, Flex, Input } from "@chakra-ui/react";
-import { useState } from "react";
-import useSelectButton from "@/hooks/useSelectData";
-
 type VoteOptionToggleButtonPropsType<T> = {
   title?: string;
   isData: T;
@@ -16,38 +11,39 @@ function VoteOptionToggleButton<T>({
   toggleContent,
   onClickHandler,
 }: VoteOptionToggleButtonPropsType<T>) {
+  const getRoundedOption = (index: number) => {
+    switch (index) {
+      case 0:
+        return "rounded-l-xl";
+      case toggleContent.length - 1:
+        return "rounded-r-xl";
+    }
+    return "none";
+  };
   return (
     <>
-      <Flex alignItems={"center"}>
-        <Flex p={"10px"} textAlign={"center"}>
+      <div className={"flex content-center"}>
+        <div className={"flex border-secondary-orange p-2.5 text-center "}>
           {title}
-        </Flex>
+        </div>
         {toggleContent.map(({ data, content }, index) => {
-          const indexCheck = () => {
-            switch (index) {
-              case 0:
-                return "16px 0px 0px 16px";
-              case toggleContent.length - 1:
-                return "0px 16px 16px 0px";
-            }
-            return "none";
-          };
-
           return (
-            <Button
+            <button
+              className={`${getRoundedOption(
+                index
+              )} h-[40px] w-[84px] border-2 border-secondary-orange p-1 drop-shadow-md transition duration-500`}
               key={content}
               onClick={() => onClickHandler(data)}
               style={{
                 background: isData === data ? "#FFA45B" : "#D9D9D9",
                 fontWeight: isData === data ? 700 : 500,
               }}
-              borderRadius={indexCheck()}
             >
               {content}
-            </Button>
+            </button>
           );
         })}
-      </Flex>
+      </div>
     </>
   );
 }

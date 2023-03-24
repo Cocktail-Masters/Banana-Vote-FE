@@ -13,7 +13,7 @@ const nextConfig = {
     ],
   },
   swcMinify: true,
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     domains: ["cdn.discordapp.com", "search.pstatic.net"],
   },

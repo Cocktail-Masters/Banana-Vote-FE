@@ -21,8 +21,12 @@ module.exports = {
         "terriary-mint": "#AEE6E3",
         "primary-yellow": "#FCDA76",
         "secondary-orange": "#FFA45B",
+        "secondary-dark-orange": "#ff821f",
         tertiary: "#F9F6ED",
       },
+    },
+    fontFamily: {
+      sans: ["noto-sans"],
     },
   },
   plugins: [],

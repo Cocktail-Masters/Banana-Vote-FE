@@ -1,60 +1,17 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Logo from "@assets/icons/logo.svg";
 import Image from "next/image";
-import { Box, Button, Flex, useMediaQuery } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import "./LayoutHeader.style.css";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LayoutSidebar from "@components/Layout/LayoutSideBar";
-import HamburgerMenu from "../animation/HamburgerMenu";
+import HamburgerMenuButton from "../animation/HamburgerMenuButton";
+import LayoutTopBar from "./LayoutTopBar";
 
 export type tabType = {
   label: string;
   path: string;
-};
-
-export const HeaderTabs = ({ tabs }: { tabs: tabType[] }) => {
-  const pathname = usePathname();
-
-  const [selectedTabPath, setSelectedTabPath] = useState<string | null>(null);
-  useEffect(() => {
-    setSelectedTabPath(pathname);
-  }, [pathname]);
-
-  return (
-    <>
-      <Flex
-        flexGrow={1}
-        justifyContent={"center"}
-        gap={"30px"}
-        h={"100%"}
-        flexDirection={"row"}
-      >
-        {tabs.map((item) => (
-          <Flex
-            key={item.label}
-            h={"100%"}
-            className={item.path === selectedTabPath ? "selected" : ""}
-            onClick={() => setSelectedTabPath(item.path)}
-            position={"relative"}
-          >
-            <Flex justifyContent={"center"} h={"100%"} alignItems={"center"}>
-              <Link href={item.path}>{`${item.label}`}</Link>
-            </Flex>
-            <Flex justifyContent={"flex-end"}>
-              {item.path === selectedTabPath ? (
-                <motion.div className="underline" layoutId="underline" />
-              ) : null}
-            </Flex>
-          </Flex>
-        ))}
-      </Flex>
-      <Flex p={3}>마이페이지</Flex>
-    </>
-  );
 };
 
 const LayoutHeader = () => {
@@ -68,40 +25,42 @@ const LayoutHeader = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const menuClose = useCallback(
+    (event: MediaQueryListEvent) => {
+      if (event.matches && isOpen === true) {
+        setIsOpen(false);
+      }
+    },
+    [isOpen]
+  );
+
+  useEffect(() => {
+    let matchMedia650px = window.matchMedia("(min-width:960px)");
+    matchMedia650px.addEventListener("change", menuClose);
+    return () => matchMedia650px.removeEventListener("change", menuClose);
+  }, [menuClose]);
+
   return (
     <>
-      <Flex
-        justifyContent={"space-between"}
-        alignItems={"center"}
-        h={"90px"}
-        w={"100%"}
-        borderBottom={"1px solid #CACACA"}
-        userSelect={"none"}
-      >
-        <Flex p={3}>
+      <div
+        className="absolute top-0 left-0 z-10 h-full w-full bg-black/[0.5] transition-opacity"
+        style={{
+          visibility: isOpen ? "visible" : "hidden",
+          opacity: isOpen ? 1 : 0,
+        }}
+        onClick={() => setIsOpen(false)}
+      />
+      <div className="flex h-[90px] w-full select-none items-center justify-between border-b border-[#CACACA]">
+        <div className="p-1">
           <Link href={"/home"}>
             <Image src={Logo} alt={"banana vote logo"} />
           </Link>
-        </Flex>
-        <Flex
-          p={0}
-          fontSize={"28px"}
-          h={"100%"}
-          w={"100%"}
-          alignItems={"center"}
-          position={"relative"}
-          flexDirection={"row"}
-          display={{ base: "none", lg: "flex" }}
-        >
-          <HeaderTabs tabs={tabs} />
-        </Flex>
-        <Flex
-          p={3}
-          zIndex={110}
-          visibility={{ base: "visible", lg: "hidden" }}
-          position={{ base: "relative", lg: "absolute" }}
-        >
-          <HamburgerMenu
+        </div>
+        <div className="relative hidden h-full w-full flex-row items-center p-0 text-2xl lg:flex">
+          <LayoutTopBar tabs={tabs} />
+        </div>
+        <div className="visible relative z-[110] m-3 p-1 lg:invisible lg:absolute">
+          <HamburgerMenuButton
             isOpen={isOpen}
             strokeWidth={5}
             width={24}
@@ -110,11 +69,11 @@ const LayoutHeader = () => {
               setIsOpen((v) => !v);
             }}
           />
-        </Flex>
-      </Flex>
+        </div>
+      </div>
       <LayoutSidebar tabs={tabs} isOpen={isOpen}></LayoutSidebar>
     </>
   );
 };
 
-export default React.memo(LayoutHeader);
+export default LayoutHeader;

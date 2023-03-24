@@ -5,11 +5,9 @@
  * @description 투표 생성으로 이동하는 바
  */
 
-import { Box, Button, Card, CardBody, HStack } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 import BadgeImage from "../common/BadgeImage";
-import TCard from "./../common/TCard";
 
 type voteCreateBarProps = {
   nickname: string;
@@ -18,7 +16,7 @@ type voteCreateBarProps = {
 
 const VoteCreateBar = ({ nickname, badge_url }: voteCreateBarProps) => {
   return (
-    <div className="w-[90%] lg:w-[800px] m-auto h-[80px] mt-4 mb-4 bg-white rounded-xl drop-shadow-md">
+    <div className="w-full m-auto h-[80px] mt-4 mb-4 bg-white rounded-xl drop-shadow-md">
       {/* 바디 */}
       <div className="flex justify-between items-center h-full p-5">
         {/* 뱃지 */}

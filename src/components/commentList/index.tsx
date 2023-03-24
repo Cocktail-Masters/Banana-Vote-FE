@@ -1,49 +1,47 @@
 "use client";
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import CommentInput from "./CommentInput";
 import CommentList from "./CommentList";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import dynamic from "next/dynamic";
+import Loading from "../Loading";
+
+const LazyCommentList = dynamic(() => import("./CommentList"));
 
 const CommentListArea = () => {
   const [opinionType, setOpinionType] = useState<"recent" | "agree">("recent");
 
   return (
-    <Box
-      width={"100%"}
-      minH={"200px"}
-      display={"flex"}
-      flexDir={"column"}
-      alignItems={"center"}
-    >
-      <Flex w={"95%"} h={"50px"} justifyContent={"space-between"}>
-        <Text fontSize={"xl"} fontWeight={"bold"} marginBottom={"2%"}>
-          36개의 댓글
-        </Text>
-        <Flex minW={"150px"} w={"20%"} h={"100%"} justifyContent={"end"}>
-          <Button
-            background={opinionType === "agree" ? "#FCDA76" : "none"}
+    <div className={`flex min-h-[200px] w-full flex-col items-center`}>
+      <div className={`mb-4 flex h-[50px] w-[95%] justify-between`}>
+        <div className={`text-xl font-bold`}>36개의 댓글</div>
+        <div className={`flex h-full w-1/5 min-w-[150px] justify-end`}>
+          <button
+            className={`mr-2 w-16 rounded-2xl font-semibold shadow-md hover:bg-primary-yellow active:bg-secondary-orange ${
+              opinionType === "agree" ? `bg-primary-yellow` : `none`
+            }`}
             onClick={() => {
               setOpinionType("agree");
             }}
           >
             공감순
-          </Button>
-          <Flex alignItems={"start"} h={"100%"}>
-            <Text fontSize={"2xl"}>|</Text>
-          </Flex>
-          <Button
-            background={opinionType === "recent" ? "#FCDA76" : "none"}
+          </button>
+          <button
+            className={`mr-4 w-16 rounded-2xl font-semibold shadow-md hover:bg-primary-yellow active:bg-secondary-orange ${
+              opinionType === "recent" ? `bg-primary-yellow` : `none`
+            }`}
             onClick={() => {
               setOpinionType("recent");
             }}
           >
             최신순
-          </Button>
-        </Flex>
-      </Flex>
+          </button>
+        </div>
+      </div>
       <CommentInput />
-      <CommentList opinionType={opinionType} />
-    </Box>
+      <Suspense fallback={<Loading />}>
+        <LazyCommentList opinionType={opinionType} />
+      </Suspense>
+    </div>
   );
 };
 

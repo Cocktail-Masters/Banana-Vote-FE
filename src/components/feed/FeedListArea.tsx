@@ -27,7 +27,7 @@ const FeedListArea = () => {
   }, [inView]);
 
   return (
-    <div className="flex flex-col items-start mr-5">
+    <div className="flex flex-col items-start w-full lg:w-[90%] xl:w-[800px] xl:mr-5">
       {status === "loading" ? (
         /**
          * @TODO Loading 컴포넌트로 교체
@@ -47,12 +47,13 @@ const FeedListArea = () => {
               });
             })}
 
-          <div className="flex justify-center mt-5 mb-5">
-            {hasNextPage && (
-              // TODO : 스켈레톤 만들기
-              <div className="flex h-100 w-full bg-gray-400" ref={ref} />
-            )}
-          </div>
+          {hasNextPage && (
+            // TODO : 스켈레톤 만들기
+            <div
+              className="flex h-100 w-full bg-gray-400 mt-5 mb-5"
+              ref={ref}
+            />
+          )}
         </>
       )}
     </div>

@@ -15,7 +15,7 @@ import Link from "next/link";
 const Feed = ({ data }: { data: voteFeedType }) => {
   return (
     <>
-      <div className="w-full md:w-[90%] md:rounded-xl lg:w-[800px] h-auto m-auto mt-4 mb-4 bg-white drop-shadow-md hover:bg-[rgba(234, 238, 243, 0.3)] transition duration-100 ease-in-out">
+      <div className="w-full h-auto m-auto mt-4 mb-4 md:rounded-xl bg-white drop-shadow-md hover:bg-[rgba(234, 238, 243, 0.3)] transition duration-100 ease-in-out">
         {/* 피드 헤더 */}
         <div className="p-5">
           <FeedHeader

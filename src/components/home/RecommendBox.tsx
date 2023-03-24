@@ -3,18 +3,6 @@
 /**
  * @author mingyu
  */
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  CardBody,
-  CardHeader,
-  Center,
-  Divider,
-  Flex,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
-import { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
 
 type recommendContents = {
@@ -28,36 +16,25 @@ type recommendBoxProps = {
 
 const RecommendBox = ({ contents }: recommendBoxProps) => {
   return (
-    <Box width={"100%"} height={"100%"}>
+    <div className="w-full h-full">
       {!contents || contents.length === 0 ? (
-        <Box>
-          <Center
-            fontWeight="bold"
-            mb={10}
-            height={"120px"}
-            lineHeight={"120px"}
-          >
-            글이 없습니다.
-          </Center>
-        </Box>
+        <p className="flex justify-center items-center font-semibold mb-10 h-32">
+          글이 없습니다.
+        </p>
       ) : (
         contents.map((content: recommendContents) => {
           return (
-            <Box key={content.id} mb={2}>
+            <div className="mb-2" key={content.id}>
               <Link href={`/vote/detail/${content.id}`}>
-                <Text
-                  noOfLines={1}
-                  fontWeight={"bold"}
-                  _hover={{ color: "blue.500", textDecoration: "underline" }}
-                >
+                <p className="truncate font-bold hover:text-blue-500 hover:decoration-solid">
                   {content.title}
-                </Text>
+                </p>
               </Link>
-            </Box>
+            </div>
           );
         })
       )}
-    </Box>
+    </div>
   );
 };
 

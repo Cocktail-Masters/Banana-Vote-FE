@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
-// import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import VoteItemCard from "@components/vote/create/VoteItemCard";
 import { getDefaultVoteItem, voteItemTypes } from "../create/CreateVote";
@@ -55,7 +53,7 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
 
   return (
     <div>
-      {/* {state && (
+      {state && (
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
             {(droppableProvided, snapshot) => (
@@ -96,20 +94,19 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
             )}
           </Droppable>
         </DragDropContext>
-      )} */}
+      )}
 
       <VoteItemLayout>
-        <Button
-          w={"100%"}
-          h={"100%"}
-          background={"white"}
-          _hover={{ bg: "#ffffff" }}
+        <button
+          className={
+            "flex  h-full w-full items-center justify-center bg-white hover:bg-[#ffffff]"
+          }
           onClick={() => {
             setVoteItems((v) => [...v, getDefaultVoteItem()]);
           }}
         >
           <Image src={plusImage} alt={"plus button"} />
-        </Button>
+        </button>
       </VoteItemLayout>
     </div>
   );

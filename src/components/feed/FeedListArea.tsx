@@ -1,7 +1,6 @@
 /**
  * @author mingyu
  */
-import { Box, Button, Center, Skeleton } from "@chakra-ui/react";
 import VoteCreateBar from "../home/VoteCreateBar";
 import Feed from "./Feed";
 import { useFeedListQuery } from "@/hooks/useFeedListQuery";
@@ -28,40 +27,35 @@ const FeedListArea = () => {
   }, [inView]);
 
   return (
-    <Box alignItems={"center"} justifyContent={"center"} margin={"auto"}>
-      <Box>
-        {status === "loading" ? (
-          /**
-           * @TODO Loading 컴포넌트로 교체
-           */
-          <Center>Loading...</Center>
-        ) : status === "error" ? (
-          <Center>Error</Center>
-        ) : (
-          <>
-            {/* 투표 생성 버튼 */}
-            <Box>
-              <VoteCreateBar nickname="연복이" badge_url="" />
-            </Box>
-            {/* 투표 피드 리스트 */}
-            {data &&
-              data.pages.map((page: voteFeedListType, index: number) => {
-                return page.items.map(
-                  (feedData: voteFeedType, index: number) => {
-                    return <Feed key={index} data={feedData} />;
-                  }
-                );
-              })}
+    <div className="flex flex-col items-start mr-5">
+      {status === "loading" ? (
+        /**
+         * @TODO Loading 컴포넌트로 교체
+         */
+        <div className="flex justify-center">Loading...</div>
+      ) : status === "error" ? (
+        <div className="flex justify-center">ERROR</div>
+      ) : (
+        <>
+          {/* 투표 생성 버튼 */}
+          <VoteCreateBar nickname="연복이" badge_url="" />
+          {/* 투표 피드 리스트 */}
+          {data &&
+            data.pages.map((page: voteFeedListType, index: number) => {
+              return page.items.map((feedData: voteFeedType, index: number) => {
+                return <Feed key={index} data={feedData} />;
+              });
+            })}
 
-            <Center mt={5} mb={5}>
-              {hasNextPage && (
-                <Skeleton ref={ref} height="240px" width="100%" />
-              )}
-            </Center>
-          </>
-        )}
-      </Box>
-    </Box>
+          <div className="flex justify-center mt-5 mb-5">
+            {hasNextPage && (
+              // TODO : 스켈레톤 만들기
+              <div className="flex h-100 w-full bg-gray-400" ref={ref} />
+            )}
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 

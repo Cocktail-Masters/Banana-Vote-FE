@@ -7,38 +7,26 @@ import RankingListArea from "@/components/home/RankingListArea";
 import RecommendArea from "@/components/home/RecommendArea";
 import { Box, Flex, Skeleton, useMediaQuery } from "@chakra-ui/react";
 
-const Page = () => {
+const Home = () => {
   const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)");
 
   return (
-    <Flex
-      minHeight={"100vh"}
-      width={"100%"}
-      justifyContent={"center"}
-      backgroundColor={"#f9f9f9"}
-    >
-      <Flex
-        width={"1200px"}
-        height={"auto"}
-        alignItems={"stretch"}
-        justifyContent={"center"}
-      >
-        {/* Feed List */}
-        <FeedListArea />
-        {/* Recommend, Ranking */}
-        {isLargerThan1200 && (
-          <Box>
-            <Box mb={5}>
-              <RecommendArea />
-            </Box>
-            <Box mt={5}>
-              <RankingListArea />
-            </Box>
-          </Box>
-        )}
-      </Flex>
-    </Flex>
+    <div className="flex items-start justify-between">
+      {/* Feed List */}
+      <FeedListArea />
+      {/* Recommend, Ranking */}
+      {isLargerThan1200 && (
+        <div>
+          <div className="mb-5">
+            <RecommendArea />
+          </div>
+          <div className="mt-5">
+            <RankingListArea />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
-export default Page;
+export default Home;

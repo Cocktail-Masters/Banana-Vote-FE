@@ -1,52 +1,17 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Logo from "@assets/icons/logo.svg";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import "./LayoutHeader.style.css";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LayoutSidebar from "@components/Layout/LayoutSideBar";
 import HamburgerMenuButton from "../animation/HamburgerMenuButton";
+import LayoutTopBar from "./LayoutTopBar";
 
 export type tabType = {
   label: string;
   path: string;
-};
-
-export const HeaderTabs = ({ tabs }: { tabs: tabType[] }) => {
-  const pathname = usePathname();
-
-  const [selectedTabPath, setSelectedTabPath] = useState<string | null>(null);
-  useEffect(() => {
-    const removeLanguagePath = "/" + pathname.split("/").slice(2).join("/");
-    setSelectedTabPath(removeLanguagePath);
-  }, [pathname]);
-
-  return (
-    <>
-      <div className="flex h-full flex-grow flex-row justify-center gap-[30px]">
-        {tabs.map((item) => (
-          <div
-            key={item.label}
-            className={`relative flex h-full`}
-            onClick={() => setSelectedTabPath(item.path)}
-          >
-            <div className="relative flex h-full items-center justify-center">
-              <Link href={item.path}>{`${item.label}`}</Link>
-            </div>
-            <div className="flex justify-end">
-              {item.path === selectedTabPath ? (
-                <motion.div className="underline" layoutId="underline" />
-              ) : null}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="p-3">마이페이지</div>
-    </>
-  );
 };
 
 const LayoutHeader = () => {
@@ -60,8 +25,31 @@ const LayoutHeader = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const menuClose = useCallback(
+    (event: MediaQueryListEvent) => {
+      if (event.matches && isOpen === true) {
+        setIsOpen(false);
+      }
+    },
+    [isOpen]
+  );
+
+  useEffect(() => {
+    let matchMedia650px = window.matchMedia("(min-width:960px)");
+    matchMedia650px.addEventListener("change", menuClose);
+    return () => matchMedia650px.removeEventListener("change", menuClose);
+  }, [menuClose]);
+
   return (
     <>
+      <div
+        className="absolute top-0 left-0 z-10 h-full w-full bg-black/[0.5] transition-opacity"
+        style={{
+          visibility: isOpen ? "visible" : "hidden",
+          opacity: isOpen ? 1 : 0,
+        }}
+        onClick={() => setIsOpen(false)}
+      />
       <div className="flex h-[90px] w-full select-none items-center justify-between border-b border-[#CACACA]">
         <div className="p-1">
           <Link href={"/home"}>
@@ -69,7 +57,7 @@ const LayoutHeader = () => {
           </Link>
         </div>
         <div className="relative hidden h-full w-full flex-row items-center p-0 text-2xl lg:flex">
-          <HeaderTabs tabs={tabs} />
+          <LayoutTopBar tabs={tabs} />
         </div>
         <div className="visible relative z-[110] m-3 p-1 lg:invisible lg:absolute">
           <HamburgerMenuButton
@@ -88,4 +76,4 @@ const LayoutHeader = () => {
   );
 };
 
-export default React.memo(LayoutHeader);
+export default LayoutHeader;

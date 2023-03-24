@@ -5,6 +5,7 @@
  */
 import VoteItem from "./VoteItem";
 import { voteItemType } from "@/types";
+import { motion } from "framer-motion";
 
 const VoteItemList = ({ vote_items }: { vote_items: voteItemType[] }) => {
   return (
@@ -13,12 +14,13 @@ const VoteItemList = ({ vote_items }: { vote_items: voteItemType[] }) => {
         {vote_items &&
           vote_items.map((item: voteItemType, index: number) => {
             return (
-              <div
-                className={`w-full md:w-auto md:w-full truncate drop-shadow-md`}
+              <motion.div
+                className={`relative w-full truncate drop-shadow-md hover:-translate-y-1 transition duration-150 ease-in-out`}
+                whileHover={{ scale: 1.03 }}
                 key={index}
               >
                 <VoteItem imageLink={item.image} content={item.title} />
-              </div>
+              </motion.div>
             );
           })}
       </div>

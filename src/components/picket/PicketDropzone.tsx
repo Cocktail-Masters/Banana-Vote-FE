@@ -1,9 +1,7 @@
 "use client";
 
-import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { CloseIcon } from "@chakra-ui/icons";
 import Image from "next/image";
 import { picketType } from "@/types";
 
@@ -30,25 +28,32 @@ const PicketDropzone = ({
   console.log("price?:", price, "position", position);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   return (
-    <Box w={"100%"} marginBottom={"20px"}>
+    <div
+      className={`ltems-center mb-[20px] flex w-full flex-col items-center  justify-center`}
+    >
       {file ? (
-        <Flex
-          w={"100%"}
-          h={"250px"}
-          borderWidth="1px"
-          borderRadius="lg"
-          justifyContent={"center"}
-          position={"relative"}
+        <div
+          className={`relative flex h-[250px] justify-center rounded-2xl border p-4 `}
         >
-          <Flex
-            w={"fit-content"}
+          <div
+            className={`absolute right-[10px] top-[5px] w-fit`}
             onClick={removePicture}
-            position="absolute"
-            right={"10px"}
-            top={"5px"}
           >
-            <CloseIcon />
-          </Flex>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="h-6 w-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
           <Image
             src={URL.createObjectURL(file)}
             width={1280}
@@ -61,65 +66,47 @@ const PicketDropzone = ({
             }}
             alt={"미리보기"}
           />
-        </Flex>
+        </div>
       ) : (
-        <Box
-          w="100%"
-          h="250px"
+        <div
+          className={`h-[250px] w-full max-w-lg rounded-2xl border`}
           {...getRootProps()}
-          borderWidth="1px"
-          borderRadius="lg"
         >
           <input {...getInputProps()} />
           {isDragActive ? (
-            <Flex
-              w={"100%"}
-              h={"100%"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
+            <div
+              className={`flex h-full w-full flex-col items-center justify-center`}
             >
-              <Text fontSize={"2xl"}>이곳에 파일을 드래그 하거나</Text>
-              <Text fontSize={"2xl"}>파일을 직접 선택해주세요!</Text>
-              <Text fontSize={"md"}>
+              <div className={`text-2xl`}>이곳에 파일을 드래그 하거나</div>
+              <div className={`text-2xl`}>파일을 직접 선택해주세요!</div>
+              <div className={`text-lg`}>
                 사용 가능한 확장자는 JPG,PNG,WEBP입니다.
-              </Text>
-            </Flex>
+              </div>
+            </div>
           ) : (
-            <Flex
-              w={"100%"}
-              h={"100%"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
+            <div
+              className={`flex h-full w-full flex-col items-center justify-center`}
             >
-              <Text fontSize={"2xl"}>이곳에 파일을 드래그 하거나</Text>
-              <Text fontSize={"2xl"}>파일을 직접 선택해주세요!</Text>
-              <Text fontSize={"md"}>
+              <div className={`text-2xl`}>이곳에 파일을 드래그 하거나</div>
+              <div className={`text-2xl`}>파일을 직접 선택해주세요!</div>
+              <div className={`text-lg`}>
                 사용 가능한 확장자는 JPG,PNG,WEBP입니다.
-              </Text>
-            </Flex>
+              </div>
+            </div>
           )}
-        </Box>
+        </div>
       )}
-      <Box
-        w={"100%"}
-        h={"20%"}
-        marginTop={"5%"}
-        display={"flex"}
-        flexDir={"column"}
-        alignItems={"center"}
-      >
-        <Text>최소 바나나 : {change ? price : "1000"}</Text>
-        <Flex>
-          <Input></Input>
-          <Button>제출</Button>
-        </Flex>
-        <Box>
-          <Text>가지고 있는 바나나</Text>
-        </Box>
-      </Box>
-    </Box>
+      <div className={`mt-[5%] flex h-[20%] w-full flex-col items-center`}>
+        <div>최소 바나나 : {change ? price : "1000"}</div>
+        <div className={`flex`}>
+          <input></input>
+          <button>제출</button>
+        </div>
+        <div>
+          <div>가지고 있는 바나나</div>
+        </div>
+      </div>
+    </div>
   );
 };
 

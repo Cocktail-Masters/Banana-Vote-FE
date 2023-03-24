@@ -6,7 +6,6 @@ export let voteCheckDummy: predictionType = {
   is_participation: false,
   vote_item_id: 0,
   point: 0,
-  candidate_num: 0,
 };
 
 export const useVoteCheckMutation = ({

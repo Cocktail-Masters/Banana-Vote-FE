@@ -1,7 +1,10 @@
-import { Card, CardBody, Heading, Stack } from "@chakra-ui/react";
+"use client";
 import Image from "next/image";
 import defaultImg from "@assets/images/defalut_vote_element_img.png";
 import { voteItemType } from "@/types";
+import Modal from "@/components/modal/Modal";
+import Portal from "@/components/modal/Portal";
+import { useState } from "react";
 
 const VoteDetailItemCard = ({
   item,
@@ -14,50 +17,68 @@ const VoteDetailItemCard = ({
   selectItem: number | undefined;
   isParti: boolean | undefined;
 }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const onOpen = () => {
+    setIsOpen(true);
+  };
+  const onClose = () => {
+    setIsOpen(false);
+  };
   return (
-    <Card
-      direction={"row"}
-      overflow={"hidden"}
-      variant="outline"
-      border={
+    <div
+      className={`flex h-full w-full rounded-2xl border-2 shadow-md ${
         !isParti && selectItem === item.vote_item_id
-          ? "solid #F5B800"
-          : "solid rgba(255,255,255,0)"
-      }
-      bg={!isParti && selectItem === item.vote_item_id ? "#FCDA76" : "white"}
-      _hover={{
-        bg: !isParti && "#FCDA76",
-        border: !isParti && "solid #F5B800",
-      }}
+          ? " border-secondary-orange bg-primary-yellow"
+          : ""
+      }  ${
+        !isParti &&
+        `hover: hover:border-secondary-orange hover:bg-primary-yellow`
+      }`}
+      style={{ overflow: "hidden" }}
       onClick={() => {
         setSelectItem(item.vote_item_id);
       }}
     >
       <Image
         src={defaultImg}
-        alt={"기본 이미지"}
-        width={"100"}
-        height={"100"}
-        style={{
-          objectFit: "contain",
-          width: "100",
-          height: "auto",
-        }}
+        alt="기본 이미지"
+        width="100"
+        height="100"
+        className="w-100 h-auto rounded-2xl object-contain"
+        onClick={onOpen}
       />
-      <Stack>
-        <CardBody w={"100%"} h={"100%"}>
-          <Heading
-            size="md"
-            w={"100%"}
-            h={"100%"}
-            display={"flex"}
-            alignItems={"center"}
-          >
-            {item.title}
-          </Heading>
-        </CardBody>
-      </Stack>
-    </Card>
+      <div className="ml-2 flex w-full items-center">
+        <h2 className="text-lg font-semibold">{item.title}</h2>
+      </div>
+      {isOpen && (
+        <Portal>
+          <Modal onClose={onClose} width={"95%"} height={"85%"}>
+            <button className={"absolute right-5 top-3 z-50"}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="h-6 w-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <Image
+              src={defaultImg}
+              alt="기본 이미지"
+              fill
+              className="z-10 h-auto w-auto rounded-2xl object-contain"
+            ></Image>
+          </Modal>
+        </Portal>
+      )}
+    </div>
   );
 };
 

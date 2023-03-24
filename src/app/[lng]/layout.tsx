@@ -36,6 +36,7 @@ export default function RootLayout({
           <LayoutHeader></LayoutHeader>
           <div className={"tiles"}>{children}</div>
           <div className={"footer"}></div>
+          <div id="modal-root" />
         </Provider>
       </body>
     </html>

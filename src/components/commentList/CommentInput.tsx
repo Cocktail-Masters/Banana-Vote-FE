@@ -1,11 +1,9 @@
-"use client";
 import { useCommentMutation } from "@/hooks/reactQuery/mutation/useCommentMutation";
 import { opinionType } from "@/types";
-import { Flex, Button, Textarea, Text } from "@chakra-ui/react";
 import { useRef } from "react";
 
 const CommentInput = () => {
-  const { mutate } = useCommentMutation({ queryKey: ["commentList"] });
+  const { mutate } = useCommentMutation({ queryKey: ["commentList", 1] });
   const commentInputRef = useRef<HTMLTextAreaElement>(null);
 
   const sendOpinion = () => {
@@ -35,28 +33,19 @@ const CommentInput = () => {
     }
   };
   return (
-    <Flex w={"100%"} alignItems={"center"} flexDirection={"column"}>
-      <Flex
-        w={"98%"}
-        padding={"2%"}
-        height={{ base: "100px", lg: "150px" }}
-        backgroundColor={"#D9D9D9"}
-        rounded={"3xl"}
+    <div
+      className={`w-full flex-col items-center justify-center px-[2%] drop-shadow-md`}
+    >
+      <div
+        className={`flex h-[100px] w-full rounded-2xl bg-[#D9D9D9] p-[1%] lg:h-[150px]`}
       >
-        <Textarea
-          h={"100%"}
-          marginRight={"2%"}
-          backgroundColor={"#F6F6F6"}
-          rounded={"3xl"}
+        <textarea
+          className={`mr-[2%] h-full w-full resize-none rounded-2xl bg-[#F6F6F6] p-2`}
           placeholder={"나의 의견을 전해주세요"}
-          resize={"none"}
           ref={commentInputRef}
-        ></Textarea>
-        <Button
-          h={"100%"}
-          padding={"2%"}
-          backgroundColor={"#B6B6B6"}
-          rounded={"3xl"}
+        ></textarea>
+        <button
+          className={`h-full rounded-2xl bg-[#B6B6B6] p-[2%]`}
           onClick={sendOpinion}
         >
           <svg
@@ -73,9 +62,9 @@ const CommentInput = () => {
               fill="black"
             />
           </svg>
-        </Button>
-      </Flex>
-    </Flex>
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -11,6 +11,7 @@ const Modal = ({
   margin = "0px",
   onClose,
   isOpen,
+  backgroundColor = "white",
   children,
 }: ModalProp) => {
   return (
@@ -24,7 +25,7 @@ const Modal = ({
         onClick={onClose}
       ></div>
       <div
-        className={`fixed left-[50%] top-[50%] z-10 max-h-screen translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-2xl bg-white`}
+        className={`fixed left-[50%] top-[50%] z-10 max-h-screen translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-2xl bg-white dark:bg-black`}
         style={{
           width: width,
           height: height,
@@ -34,6 +35,7 @@ const Modal = ({
           margin,
           maxHeight,
           maxWidth,
+          backgroundColor: backgroundColor,
         }}
       >
         {children}
@@ -53,6 +55,7 @@ type ModalProp = {
   margin?: string;
   onClose: () => void;
   isOpen?: boolean;
+  backgroundColor?: string;
   children: ReactNode;
 };
 

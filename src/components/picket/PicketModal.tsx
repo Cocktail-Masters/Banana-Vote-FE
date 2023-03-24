@@ -63,7 +63,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                   position: 0,
                 },
               });
-              // onClose();
+              onClose();
             }}
           >
             <div className="relative h-16 w-[100%]">

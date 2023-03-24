@@ -110,12 +110,16 @@ const VoteDetailItem = () => {
                     투표하기
                   </button>
                 )}
-                {isOpen && (
-                  <VoteDetailPredictionModal
-                    isOpen={isOpen}
-                    onClose={onClose}
-                  />
-                )}
+                {isOpen &&
+                  voteCheck.point !== undefined &&
+                  voteCheck.vote_item_id !== undefined && (
+                    <VoteDetailPredictionModal
+                      isOpen={isOpen}
+                      onClose={onClose}
+                      voteItemId={voteCheck.vote_item_id}
+                      point={voteCheck.point}
+                    />
+                  )}
               </div>
             )}
           </div>

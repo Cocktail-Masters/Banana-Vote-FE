@@ -37,7 +37,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
 
                   <div className={``}>
                     <div className={`absolute right-[120px]`}>
-                      <button className={`flex`}>
+                      <button className={`flex items-center`}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -57,7 +57,9 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                       </button>
                     </div>
                     <div className={``}>
-                      <button className={`absolute right-[75px] flex`}>
+                      <button
+                        className={`absolute right-[75px] flex  items-center`}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -77,7 +79,9 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                       </button>
                     </div>
                     <div className={``}>
-                      <button className={`text-md absolute right-[30px]`}>
+                      <button
+                        className={`text-md absolute right-[35px]  items-center`}
+                      >
                         🚨
                       </button>
                     </div>

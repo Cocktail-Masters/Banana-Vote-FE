@@ -14,6 +14,7 @@ const VoteDetailItem = () => {
     queryKey: "voteCheck",
     postId: 1,
   });
+  
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onOpen = () => {
     setIsOpen((prev) => {

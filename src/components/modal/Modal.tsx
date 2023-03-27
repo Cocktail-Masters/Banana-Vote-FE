@@ -17,7 +17,7 @@ const Modal = ({
   return (
     <div
       data-te-modal-init
-      className="none h-100vh fixed top-0 left-0 w-full overflow-x-hidden outline-none "
+      className="none h-100vh fixed top-0 left-0 z-[10049] w-full overflow-x-hidden outline-none "
       id="exampleModal"
     >
       <div
@@ -25,7 +25,7 @@ const Modal = ({
         onClick={onClose}
       ></div>
       <div
-        className={`fixed left-[50%] top-[50%] z-10 max-h-screen translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-2xl bg-white dark:bg-black`}
+        className={`fixed left-[50%] top-[50%] z-[10050] max-h-screen translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-2xl bg-white dark:bg-black`}
         style={{
           width: width,
           height: height,

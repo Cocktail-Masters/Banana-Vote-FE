@@ -4,7 +4,7 @@
  */
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import MB from "@assets/icons/MenuButtonIcon.svg";
 import BadgeImage from "./../common/BadgeImage";
 import { useState } from "react";
@@ -38,14 +38,16 @@ const FeedHeader = ({
   /**
    * @descirption 메뉴 요소 클릭 시 이벤트
    */
-  const handleMenuElementClick = (e: any) => {
-    const menuName = e.target.innerText;
+  const handleMenuElementClick = (e: React.MouseEvent<HTMLElement>) => {
+    const menuName = (e.target as HTMLElement).innerText;
 
     // TODO : 각 메뉴 이름에 해당하는 메소드 작성
     if (menuName === "신고") {
       console.log(menuName);
     } else if (menuName === "공유") {
       console.log(menuName);
+    } else {
+      alert("잘못된 요청입니다.");
     }
   };
 
@@ -114,13 +116,13 @@ const FeedHeader = ({
             <ul className="absolute z-50 top-10 right-1 w-36 h-auto p-2 border bg-white rounded-lg drop-shadow-sm hover:cursor-pointer">
               <li
                 className="pt-2 pb-2 pl-3 text-left rounded-lg hover:bg-gray-100 transition duration-100"
-                onClick={(e) => handleMenuElementClick(e)}
+                onClick={handleMenuElementClick}
               >
                 신고
               </li>
               <li
                 className="pt-2 pb-2 pl-3 text-left rounded-lg hover:bg-gray-100 transition duration-100"
-                onClick={(e) => handleMenuElementClick(e)}
+                onClick={handleMenuElementClick}
               >
                 공유
               </li>

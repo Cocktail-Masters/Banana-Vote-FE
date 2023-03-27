@@ -6,11 +6,10 @@ import React from "react";
 
 type modalBackgroudProps = {
   bgColor?: string;
-  state?: string | number | boolean;
-  setState: React.Dispatch<React.SetStateAction<any>>;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ModalBackground = ({ bgColor, state, setState }: modalBackgroudProps) => {
+const ModalBackground = ({ bgColor, setState }: modalBackgroudProps) => {
   return (
     <div
       className={`fixed top-0 left-0 z-40 w-screen h-screen ${bgColor}`}

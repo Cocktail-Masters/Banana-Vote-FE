@@ -11,7 +11,7 @@ import BadgeImage from "../common/BadgeImage";
 
 type voteCreateBarProps = {
   nickname: string;
-  badge_url: string | undefined;
+  badge_url?: string;
 };
 
 const VoteCreateBar = ({ nickname, badge_url }: voteCreateBarProps) => {

@@ -1,27 +1,22 @@
 "use client";
-import { Spinner, Text } from "@chakra-ui/react";
 import { useIsFetching } from "@tanstack/react-query";
 
 const Loading = () => {
   const isFetching = useIsFetching();
-
-  const display = isFetching ? "inherit" : "none";
   return (
-    <Spinner
-      thickness="4px"
-      speed="0.65s"
-      emptyColor="olive.200"
-      color="olive.800"
-      role="status"
-      position="fixed"
-      zIndex="9999"
-      top="50%"
-      left="50%"
-      transform="translate(-50%,-50%)"
-      display={display}
+    <div
+      className="flex items-center justify-center"
+      style={{ display: isFetching ? "inherit" : "none" }}
     >
-      <Text>now Loading...</Text>
-    </Spinner>
+      <div
+        className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+        role="status"
+      >
+        <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+          Loading...
+        </span>
+      </div>
+    </div>
   );
 };
 

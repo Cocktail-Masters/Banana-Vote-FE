@@ -5,14 +5,14 @@ import SelectSeason from "@/components/ranking/SelectSeason";
 
 const Ranking = () => {
   return (
-    <>
+    <div className="">
       <div className="flex w-full flex-row justify-between">
         <SelectSeason></SelectSeason>
         <SearchInput></SearchInput>
       </div>
       <RankingList></RankingList>
       <Pagination></Pagination>
-    </>
+    </div>
   );
 };
 export default Ranking;

@@ -1,17 +1,35 @@
-import { rankingListTypes } from "@/types";
+import { rankingListTypes, seasonType } from "@/types";
 import DummyData from "./__test__/DummyData.json";
 
 const RankingList = () => {
   const data: rankingListTypes = DummyData.ranking;
   return (
-    <div>
-      <div>rankingList</div>
-      <div>{data.total_page}</div>
-      <div>
-        {data.ranking_list.map((v) => {
-          return <div key={v.user_id}>{v.nickname}</div>;
-        })}
-      </div>
+    <div className="">
+      <table className="h-full w-full border-collapse text-[20px]">
+        <thead className="relative m-2 h-16">
+          {["등수", "닉네임", "포인트"].map((key) => {
+            return (
+              <td key={key} className="border-1 p-2 text-left">
+                {key}
+              </td>
+            );
+          })}
+          <hr className="absolute bottom-0 left-0 h-2 w-full rounded-full bg-[#E8C254]" />
+        </thead>
+        <tbody className="m-2">
+          {data.ranking_list.map((value) => {
+            return (
+              <>
+                <tr key={value.user_id} className="text-left">
+                  <th className="border-1 p-2">{value.ranking}.</th>
+                  <td className="border-1 p-2">{value.nickname}</td>
+                  <td className="border-1 p-2">{value.score}</td>
+                </tr>
+              </>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 };

@@ -1,10 +1,10 @@
 {
   "server-component": {
-    "welcome": "Welcome"
+    "welcome": "어서와"
   },
   "counter": {
-    "increment": "Increment",
-    "decrement": "Decrement"
+    "increment": "플러스",
+    "decrement": "마이너스"
   },
   "test": {
     "test2": {

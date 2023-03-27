@@ -1,0 +1,14 @@
+{
+  "server-component": {
+    "welcome": "ようこそようこそ"
+  },
+  "counter": {
+    "increment": "インクリメント",
+    "decrement": "デクリメント"
+  },
+  "test": {
+    "test2": {
+      "test3": "asdf"
+    }
+  }
+}

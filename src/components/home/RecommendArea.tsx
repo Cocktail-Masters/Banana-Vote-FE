@@ -10,6 +10,19 @@ import Slider from "react-slick";
 import { useState } from "react";
 import "./styles/slick.css";
 import "./styles/slick-theme.css";
+import ArrowLeft from "@/assets/icons/arrow_left.png";
+import Image from "next/image";
+
+const SlickButtonFix = ({
+  currentSlide,
+  slideCount,
+  children,
+  ...props
+}: any) => (
+  <div className="relative h-10 w-10" {...props}>
+    {children}
+  </div>
+);
 
 const RecommendArea = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -17,18 +30,18 @@ const RecommendArea = () => {
   const TITLES = ["지금 인기있는 투표", "관심있을만한 최신 투표"];
 
   return (
-    <div className="relative w-[360px] h-[260px] mt-4 mb-4 mx-auto select-none bg-white drop-shadow-md rounded-xl">
-      <div className="w-full h-16">
-        <div className="flex relative justify-center items-center text-center w-full">
+    <div className="relative mx-auto mt-4 mb-4 h-[260px] w-[360px] select-none rounded-xl bg-white drop-shadow-md">
+      <div className="h-16 w-full">
+        <div className="relative flex w-full items-center justify-center text-center">
           <div className="h-7 w-auto" />
           {/* 박스 제목 */}
-          <h5 className="absolute top-[66%] left-[50%] translate-x-[-50%] text-xl font-bold w-60 h-7 text-center text-blue-500 justify-center">
+          <h5 className="absolute top-[66%] left-[50%] h-7 w-60 translate-x-[-50%] justify-center text-center text-xl font-bold text-blue-500">
             {TITLES[currentIndex]}
           </h5>
         </div>
       </div>
-      <hr className="w-11/12 bg-yellow-500 h-[1.5px] mx-auto border-0" />
-      <div className="w-full h-52 p-4">
+      <hr className="mx-auto h-[1.5px] w-11/12 border-0 bg-yellow-500" />
+      <div className="h-52 w-full p-4">
         <Slider
           dots={true}
           infinite={false}
@@ -36,36 +49,24 @@ const RecommendArea = () => {
           slidesToShow={1}
           slidesToScroll={1}
           prevArrow={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6 p-4 rounded-full hover:bg-slate-100"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
+            // TODO : 콘솔 에러 해결하기
+            // https://github.com/akiran/react-slick/issues/1195
+            <SlickButtonFix>
+              <Image
+                className="absolute left-1 h-full w-full rounded-full pl-3 pr-3 hover:bg-slate-100"
+                src={ArrowLeft}
+                alt="ArrowLeft"
+                width={25}
+                height={25}
               />
-            </svg>
+            </SlickButtonFix>
           }
           nextArrow={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6 p-4 rounded-full hover:bg-slate-100"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              />
-            </svg>
+            <SlickButtonFix>
+              <div className="absolute right-1 rounded-full pl-3 pr-3 text-xl font-bold hover:bg-slate-100">
+                &gt;
+              </div>
+            </SlickButtonFix>
           }
           initialSlide={currentIndex}
           afterChange={(index: number) => {

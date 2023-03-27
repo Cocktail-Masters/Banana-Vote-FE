@@ -1,0 +1,69 @@
+{
+  "ranking": {
+    "total_page": 1,
+    "ranking_list": [
+      {
+        "user_id": 1,
+        "ranking": 1,
+        "nickname": "asdf",
+        "score": 10000000
+      },
+      {
+        "user_id": 2,
+        "ranking": 2,
+        "nickname": "아무개 2 사용자",
+        "score": 1000000
+      },
+      {
+        "user_id": 3,
+        "ranking": 3,
+        "nickname": "아무개 3 사용자",
+        "score": 100000
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "id": 1,
+      "start_date": "2021-01-01",
+      "end_date": "2021-06-01",
+      "description": "아무개 1 시즌"
+    },
+    {
+      "id": 2,
+      "start_date": "2021-01-01",
+      "end_date": "2021-06-01",
+      "description": "아무개 2 시즌"
+    },
+    {
+      "id": 2,
+      "start_date": "2021-01-01",
+      "end_date": "2021-06-01",
+      "description": "아무개 2 시즌"
+    },
+    {
+      "id": 2,
+      "start_date": "2021-01-01",
+      "end_date": "2021-06-01",
+      "description": "아무개 2 시즌"
+    },
+    {
+      "id": 2,
+      "start_date": "2021-01-01",
+      "end_date": "2021-06-01",
+      "description": "아무개 2 시즌"
+    },
+    {
+      "id": 2,
+      "start_date": "2021-01-01",
+      "end_date": "2021-06-01",
+      "description": "아무개 2 시즌"
+    },
+    {
+      "id": 2,
+      "start_date": "2021-01-01",
+      "end_date": "2021-06-01",
+      "description": "아무개 2 시즌"
+    }
+  ]
+}

@@ -246,16 +246,15 @@ export type eventTypes = {
  */
 
 export type seasonUserType = {
-  season_ranking_id: number;
   user_id: number;
-  ranking: number; // 등수
-  nickname: string; // 사용자 닉네임
-  score: number; // 사용자 점수
+  ranking: number;
+  nickname: string;
+  score: number;
 };
 
 export type rankingListTypes = {
-  page: number;
-  users: seasonUserType[];
+  total_page: number;
+  ranking_list: seasonUserType[];
 };
 
 /**
@@ -263,10 +262,10 @@ export type rankingListTypes = {
  */
 
 export type seasonType = {
+  id: number;
   start_date: string;
   end_date: string;
-  score: number;
-  ranking: number;
+  description: string;
 };
 
 export type seasonTypes = seasonType[];

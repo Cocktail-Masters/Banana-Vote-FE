@@ -6,8 +6,10 @@ import SelectSeason from "@/components/ranking/SelectSeason";
 const Ranking = () => {
   return (
     <>
-      <SearchInput></SearchInput>
-      <SelectSeason></SelectSeason>
+      <div className="flex w-full flex-row justify-between">
+        <SelectSeason></SelectSeason>
+        <SearchInput></SearchInput>
+      </div>
       <RankingList></RankingList>
       <Pagination></Pagination>
     </>

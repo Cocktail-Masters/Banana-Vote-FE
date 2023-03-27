@@ -15,7 +15,7 @@ import Link from "next/link";
 const Feed = ({ data }: { data: voteFeedType }) => {
   return (
     <>
-      <div className="w-full h-auto m-auto mt-4 mb-4 md:rounded-xl bg-white drop-shadow-md hover:bg-[rgba(234, 238, 243, 0.3)] transition duration-100 ease-in-out">
+      <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white drop-shadow-md transition duration-100 ease-in-out md:rounded-xl">
         {/* 피드 헤더 */}
         <div className="p-5">
           <FeedHeader
@@ -43,10 +43,15 @@ const Feed = ({ data }: { data: voteFeedType }) => {
         <hr />
         <div className="p-5">
           {/* 피드 푸터 */}
-          <div>
-            <div className="flex relative">
+
+          <div className="relative flex h-auto w-full">
+            {/* 댓글 더보기 */}
+            <div className="flex h-6 w-full">
+              <div className="absolute left-0 flex h-5 text-sm font-bold">
+                베스트 댓글
+              </div>
               <Link href={`/vote/detail/${data.vote_id}`}>
-                <div className="flex absolute h-5 right-0 text-sm font-bold hover:border-b">
+                <div className="absolute right-0 flex h-5 text-sm font-bold hover:border-b">
                   댓글 {data.n_opinion.toLocaleString()}개
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +59,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-5 h-5 font-bold"
+                    className="h-5 w-5 font-bold"
                   >
                     <path
                       strokeLinecap="round"
@@ -65,6 +70,9 @@ const Feed = ({ data }: { data: voteFeedType }) => {
                 </div>
               </Link>
             </div>
+          </div>
+          {/* 베스트 댓글 1개 */}
+          <div className="relative h-auto w-full">
             <BestOpinion
               nickname={data.nickname}
               best_opinion={data.best_opinion}

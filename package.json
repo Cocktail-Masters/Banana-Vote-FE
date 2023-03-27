@@ -53,6 +53,7 @@
     "recoil": "0.7.7",
     "server-only": "^0.0.1",
     "slick-carousel": "^1.8.1",
+    "timeago.js": "^4.0.2",
     "typescript": "4.9.5",
     "yarn": "^1.22.19"
   },

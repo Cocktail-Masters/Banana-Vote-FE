@@ -5,7 +5,6 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 import VoteItemCard from "@components/vote/create/VoteItemCard";
 import { getDefaultVoteItem, voteItemTypes } from "../create/CreateVote";
-import { Button } from "@chakra-ui/react";
 import Image from "next/image";
 
 import plusImage from "@assets/images/plus.svg";

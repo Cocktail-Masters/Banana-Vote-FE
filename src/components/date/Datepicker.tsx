@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import DatePicker from "react-datepicker";
 import "./DatePicker.style.css";
 import React from "react";

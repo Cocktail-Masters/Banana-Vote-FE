@@ -12,7 +12,7 @@ import {
 } from "@/hooks/reactQuery/mutation/useRegistrationMutation";
 import uploadFirebase from "@/common/uploadFirebase";
 
-import DatePicker from "@/components/datepicker/DatePicker";
+import DatePicker from "@/components/date/DatePicker";
 import CreateVoteContent from "./CreateVoteContent";
 
 export type voteItemType = {

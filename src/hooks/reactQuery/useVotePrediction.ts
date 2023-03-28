@@ -14,7 +14,7 @@ export const useVotePredictionQuery = ({
   return useQuery({
     queryKey: [queryKey, postId],
     queryFn: () => {
-      const response = dummyPredictionData;
+      const response = dummyMultiplePredictionData;
 
       return response;
     },

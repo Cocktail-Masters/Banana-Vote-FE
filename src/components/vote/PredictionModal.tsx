@@ -8,6 +8,7 @@ import { useVotePredictionQuery } from "@/hooks/reactQuery/useVotePrediction";
 import TwoElementPrediction from "./TwoElementPrediction";
 import MultipleElementPrediction from "./MultipleElementPrediction";
 
+
 const VoteDetailPredictionModal = ({
   isOpen,
   onClose,

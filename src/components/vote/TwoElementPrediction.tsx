@@ -4,6 +4,7 @@ import trophy from "@assets/icons/trophy.svg";
 import ranking from "@assets/icons/ranking.svg";
 import trophy_pink from "@assets/icons/trophy_pink.svg";
 import ranking_pink from "@assets/icons/ranking_pink.svg";
+import { calculatePercentage } from "@/common/calculatePercentage";
 
 const TwoElementPrediction = ({
   items,
@@ -19,7 +20,7 @@ const TwoElementPrediction = ({
       <div className={`h-5 w-full rounded-t-2xl bg-[#ffd60c]`}></div>
       <div className={`flex h-full w-full p-6`}>
         <div className={`relative flex h-full w-1/2`}>
-          <div className={`flex h-full flex-col items-center `}>
+          <div className={`items-left flex h-full flex-col`}>
             <div className={`flex`}>
               <Image
                 src={banana_svg}
@@ -36,7 +37,13 @@ const TwoElementPrediction = ({
                 height={20}
                 alt={"트로피 아이콘"}
               ></Image>
-              <div className={`ml-1`}>0</div>
+              <div className={`ml-1`}>
+                1 :{" "}
+                {calculatePercentage({
+                  x: items[0].total_points,
+                  y: items[0].total_points + items[1].total_points,
+                })}
+              </div>
             </div>
             <div className={`flex`}>
               <Image
@@ -72,7 +79,13 @@ const TwoElementPrediction = ({
               ></Image>
             </div>
             <div className={`flex items-center`}>
-              <div className={`mr-1`}>0</div>
+              <div className={`mr-1`}>
+                1 :
+                {calculatePercentage({
+                  x: items[1].total_points,
+                  y: items[0].total_points + items[1].total_points,
+                })}
+              </div>
               <Image
                 src={trophy_pink}
                 width={20}

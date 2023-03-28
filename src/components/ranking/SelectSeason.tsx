@@ -10,17 +10,14 @@ const SelectSeason = () => {
   const [selectedSeason, setSelectedSeason] = useState(dummyDate[0]);
 
   return (
-    <div className="top-16 w-56 text-right">
-      <Menu as="div" className="relative inline-block text-left">
-        <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+    <>
+      <Menu as="div" className="relative inline-block  text-left">
+        <Menu.Button className="inline-flex w-full justify-center rounded-[20px] border-[1px] border-[#D9D9D9] bg-white px-4 py-2 text-lg font-medium text-[#828282] shadow-md hover:bg-[#e6e6e6] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          <ChevronDownIcon className="m-auto mr-2 h-5 w-5" aria-hidden="true" />
+          <div className="rounded-[20px] bg-[#F9F6ED] p-2 text-[25px] font-bold">
             {selectedSeason.description}
-            <ChevronDownIcon
-              className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
-              aria-hidden="true"
-            />
-          </Menu.Button>
-        </div>
+          </div>
+        </Menu.Button>
         <Transition
           as={Fragment}
           enter="transition ease-out duration-100"
@@ -54,7 +51,7 @@ const SelectSeason = () => {
           </Menu.Items>
         </Transition>
       </Menu>
-    </div>
+    </>
   );
 };
 export default SelectSeason;

@@ -40,11 +40,11 @@ export const useFeedListDummy = [
       id: 143,
       nickname: "봉천동 이연복",
       badge_url: "",
-      content: "탕수육은 당연히 부먹이지 test 12345 check",
+      content: "느그 아부지 뭐하시노",
       n_agree: 12512,
       n_disagree: 133,
       n_reported: 1,
-      date: "2023-03-13 15:38:27",
+      date: "2021-03-27 18:37:27",
     },
   },
   {

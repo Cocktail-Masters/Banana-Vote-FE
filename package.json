@@ -15,6 +15,7 @@
   "packageManager": "yarn@3.4.1",
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.2.32",
+    "@headlessui/react": "^1.7.13",
     "@hello-pangea/dnd": "^16.2.0",
     "@tanstack/react-query": "^4.27.0",
     "@types/node": "18.14.6",
@@ -52,6 +53,7 @@
     "recoil": "0.7.7",
     "server-only": "^0.0.1",
     "slick-carousel": "^1.8.1",
+    "timeago.js": "^4.0.2",
     "typescript": "4.9.5",
     "yarn": "^1.22.19"
   },

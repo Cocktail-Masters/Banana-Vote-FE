@@ -7,16 +7,18 @@ export default async function Home({
 }: {
   params: { lng: Locale };
 }) {
-  // const dictionary = await getDictionary(lang);
+  const { messages } = getDictionary(lng);
 
   return (
     <div>
-      {/* <LocaleSwitcher />
-      <p>Current locale: {lang}</p>
+      <LocaleSwitcher />
+      <p>Current locale: {lng}</p>
       <p>
         This text is rendered on the server:{" "}
-        {dictionary["server-component"].welcome}
-      </p> */}
+        {messages["server-component"].welcome}
+        This text is rendered on the server:{" "}
+        {messages["test"]["test2"]["test3"]}
+      </p>
     </div>
   );
 }

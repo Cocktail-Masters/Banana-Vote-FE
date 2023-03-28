@@ -27,7 +27,7 @@ const VoteDetailItemCard = ({
   return (
     <div
       className={`flex h-full w-full rounded-2xl border-2 shadow-md ${
-        !isParti && selectItem === item.vote_item_id
+        !isParti && selectItem === item.item_number
           ? " border-secondary-orange bg-primary-yellow"
           : ""
       }  ${
@@ -36,7 +36,7 @@ const VoteDetailItemCard = ({
       }`}
       style={{ overflow: "hidden" }}
       onClick={() => {
-        setSelectItem(item.vote_item_id);
+        setSelectItem(item.item_number);
       }}
     >
       <Image

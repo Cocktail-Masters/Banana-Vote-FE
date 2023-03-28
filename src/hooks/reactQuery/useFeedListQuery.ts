@@ -2,15 +2,15 @@
  * @author mingyu
  */
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useFeedListDummy } from "./useFeedListDummy";
+import { useFeedListDummy } from "../dummy/useFeedListDummy";
 
-const DATA_PER_PAGE = 5; // tmp
+const DATA_PER_PAGE = 10; // tmp
 
 const getFeedList = async (pageParam: number) => {
   const START = DATA_PER_PAGE * pageParam;
   const END = DATA_PER_PAGE * (pageParam + 1);
 
-  const tmpArr = Array.from({ length: 6 }, () => useFeedListDummy).flat();
+  const tmpArr = Array.from({ length: 736 }, () => useFeedListDummy).flat();
   const items = tmpArr.slice(START, END);
 
   const response = {

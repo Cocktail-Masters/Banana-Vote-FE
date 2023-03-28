@@ -3,7 +3,7 @@
  */
 import VoteCreateBar from "../home/VoteCreateBar";
 import Feed from "./Feed";
-import { useFeedListQuery } from "@/hooks/useFeedListQuery";
+import { useFeedListQuery } from "@/hooks/reactQuery/useFeedListQuery";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { voteFeedType } from "@/types";
@@ -27,7 +27,7 @@ const FeedListArea = () => {
   }, [inView]);
 
   return (
-    <div className="flex flex-col items-start w-full lg:w-[90%] xl:w-[800px] xl:mr-5">
+    <div className="flex w-full flex-col items-start lg:w-[90%] xl:mr-5 xl:w-[800px]">
       {status === "loading" ? (
         /**
          * @TODO Loading 컴포넌트로 교체
@@ -50,7 +50,7 @@ const FeedListArea = () => {
           {hasNextPage && (
             // TODO : 스켈레톤 만들기
             <div
-              className="flex h-100 w-full bg-gray-400 mt-5 mb-5"
+              className="h-100 mt-5 mb-5 flex w-full bg-gray-400"
               ref={ref}
             />
           )}

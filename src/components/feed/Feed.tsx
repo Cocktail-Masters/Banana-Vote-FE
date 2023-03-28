@@ -43,7 +43,6 @@ const Feed = ({ data }: { data: voteFeedType }) => {
         <hr />
         <div className="p-5">
           {/* 피드 푸터 */}
-
           <div className="relative flex h-auto w-full">
             {/* 댓글 더보기 */}
             <div className="flex h-6 w-full">

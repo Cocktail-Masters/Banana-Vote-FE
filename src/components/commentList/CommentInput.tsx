@@ -14,11 +14,14 @@ const CommentInput = () => {
       const opinion: opinionType = {
         id: Math.floor(Math.random() * 1000),
         content: commentInputRef.current.value,
-        n_agree: Math.floor(Math.random() * 1000),
-        n_disagree: Math.floor(Math.random() * 100),
-        n_reported: 0,
-        nickname: "새로운 댓글이다",
-        date: "2023-03-18",
+        agreed_number: Math.floor(Math.random() * 1000),
+        disagreed_number: Math.floor(Math.random() * 100),
+        writer: {
+          badge_image_url: "",
+          id: 1,
+          nickname: "새로운 댓글이다",
+        },
+        created_date: "2023-03-18",
       };
       mutate(
         { uri: "test", sendData: opinion },

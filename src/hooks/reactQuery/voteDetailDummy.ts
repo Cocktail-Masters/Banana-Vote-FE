@@ -31,16 +31,22 @@ export const voteDetailDummy: voteDetailType = {
   },
   vote_items: [
     {
+      id: 1,
       item_number: 1,
       title: "부워먹으셈",
       total_points: 500,
       voted_number: 1,
+      iframe_link: "",
+      image_url: "",
     },
     {
+      id: 2,
       item_number: 2,
       title: "찍어먹으셈",
       total_points: 1500,
       voted_number: 2,
+      iframe_link: "",
+      image_url: "",
     },
   ],
 };

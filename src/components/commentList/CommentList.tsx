@@ -32,7 +32,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                 <div className={`flex h-[30%] w-full justify-between `}>
                   <div className={`w-10/12`}>
                     <div className={`flex font-bold`}>
-                      {element.nickname}
+                      {element.writer.nickname}
                       {data.pages[0].best !== undefined &&
                         data.pages[0].best.some((e) => {
                           return e === element.id;
@@ -59,7 +59,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                         )}
                     </div>
 
-                    <div className={`text-[10px]`}>{element.date}</div>
+                    <div className={`text-[10px]`}>{element.created_date}</div>
                   </div>
 
                   <div className={``}>
@@ -80,7 +80,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                           />
                         </svg>
 
-                        <div className={`text-xs`}>{element.n_agree}</div>
+                        <div className={`text-xs`}>{element.agreed_number}</div>
                       </button>
                     </div>
                     <div className={``}>
@@ -102,7 +102,9 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                           />
                         </svg>
 
-                        <div className={`text-xs`}>{element.n_disagree}</div>
+                        <div className={`text-xs`}>
+                          {element.disagreed_number}
+                        </div>
                       </button>
                     </div>
                     <div className={``}>
@@ -114,7 +116,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                     </div>
                   </div>
                 </div>
-                <div className={`text-sm`}>{element.content}</div>
+                <div className={`flex-wrap text-sm`}>{element.content}</div>
               </div>
             ))}
           </div>

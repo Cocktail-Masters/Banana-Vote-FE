@@ -8,6 +8,7 @@ import { useVoteDetailQuery } from "@/hooks/reactQuery/useVoteDetailQuery";
 import { useState } from "react";
 import VoteDetailPredictionModal from "../PredictionModal";
 import VoteDetailItemCard from "./ItemCard";
+import { Locale } from "i18n-config";
 
 const VoteDetailItem = () => {
   const { data } = useVoteDetailQuery({ queryKey: "voteDetail", postId: 1 });
@@ -61,10 +62,7 @@ const VoteDetailItem = () => {
               </h2>
             </div>
             <div className="mb-3 flex items-center">
-              <BadgeImage
-                badge_url={data.writer.badge_image_url}
-                nickname={data.writer.nickname}
-              />
+              <BadgeImage badge_image_url={data.writer.badge_image_url} />
               <div className="ml-1 text-xs">{data.writer.nickname}</div>
             </div>
           </div>

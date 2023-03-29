@@ -20,10 +20,10 @@ const VoteItem = ({ imageLink = defaultImg, content }: voteFeedItemProps) => {
   };
 
   return (
-    <div className="w-full h-full bg-white rounded-2xl">
-      <div className="m-auto w-full h-[200px] grid place-content-center overflow-hidden border border-inherit rounded-t-2xl">
+    <div className="h-full w-full rounded-2xl bg-white">
+      <div className="m-auto grid h-[200px] w-full place-content-center overflow-hidden rounded-t-2xl border border-inherit">
         <Image
-          className="w-fit h-fit m-auto rounded-2xl object-cover"
+          className="m-auto h-fit w-fit rounded-2xl object-cover"
           src={!imageLink ? defaultImg : imageLink}
           alt="vote element img"
           width={1000}
@@ -32,7 +32,7 @@ const VoteItem = ({ imageLink = defaultImg, content }: voteFeedItemProps) => {
         />
       </div>
 
-      <p className="w-full h-[48px] p-4 mb-2 text-center truncate font-semibold">
+      <p className="mb-2 h-[48px] w-full truncate p-4 text-center font-semibold">
         {content}
       </p>
     </div>

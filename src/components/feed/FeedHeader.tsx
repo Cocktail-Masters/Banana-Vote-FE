@@ -10,6 +10,7 @@ import BadgeImage from "./../common/BadgeImage";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import ModalBackground from "../common/modal/ModalBackground";
+import { getRemainDates } from "@/common/getRemainDates";
 
 type HeaderContentProps = {
   badge_url?: string;
@@ -51,28 +52,18 @@ const FeedHeader = ({
     }
   };
 
-  /**
-   * @description 투표 종료까지 며칠 남았는지 계산하는 함수
-   * @returns 오늘과 해당 날짜의 일 수 차이
-   */
-  const getRemainDates = () => {
-    let startDate = new Date().getTime();
-    let endDate = new Date(end_date).getTime();
-    let diff = endDate - startDate;
-    let result = Math.floor(diff / (1000 * 60 * 60 * 24));
-    return result;
-  };
-
   return (
-    <div className="flex relative">
+    <div className="relative flex">
       {/* 프로필 */}
-      <div className="flex gap-4 items-center flex-wrap">
+      <div className="flex flex-wrap items-center gap-4">
         <BadgeImage badge_url={badge_url} nickname={nickname} />
         <div>
-          <h3 className="text-base font-bold mb-1">{nickname}</h3>
+          <h3 className="mb-1 text-base font-bold">{nickname}</h3>
           <div className="flex text-sm">
             <div className="mr-3 h-4">
-              {is_closed ? "종료됨" : getRemainDates() + "일 남음"}
+              {is_closed || getRemainDates({ endDate: end_date }) <= 0
+                ? "종료됨"
+                : getRemainDates({ endDate: end_date }) + "일 남음"}
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +71,7 @@ const FeedHeader = ({
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-4 h-4"
+              className="h-4 w-4"
             >
               <path
                 strokeLinecap="round"
@@ -95,34 +86,44 @@ const FeedHeader = ({
       </div>
       {/* 메뉴 버튼, 메뉴 리스트 */}
       <div
-        className="flex absolute w-10 h-10 right-1 items-center justify-center"
+        className="absolute right-1 flex h-10 w-10 items-center justify-center"
         onClick={handleMenuClick}
       >
         {/* 메뉴 버튼 */}
         <motion.button
           whileTap={{ scale: 0.9 }}
-          className="w-10 h-10 rounded-full hover:bg-gray-200 active:bg-gray-300"
+          className="h-10 w-10 rounded-full hover:bg-gray-200 active:bg-gray-300"
         >
           <Image
             src={MB}
             alt="menu_toggle_button"
-            className="w-full h-full p-2"
+            className="h-full w-full p-2"
           />
         </motion.button>
         {/* 메뉴 리스트 */}
         {menuToggle && (
           <>
             <ModalBackground setState={setMenuToggle} />
-            <ul className="absolute z-50 top-10 right-1 w-36 h-auto p-2 border bg-white rounded-lg drop-shadow-sm hover:cursor-pointer">
+            <ul className="absolute top-10 right-1 z-50 h-auto w-36 rounded-lg border bg-white p-2 drop-shadow-sm hover:cursor-pointer">
               <li
+<<<<<<< HEAD
                 className="pt-2 pb-2 pl-3 text-left rounded-lg hover:bg-gray-100 transition duration-100"
                 onClick={handleMenuElementClick}
+=======
+                className="rounded-lg pt-2 pb-2 pl-3 text-left transition duration-100 hover:bg-gray-100"
+                onClick={(e) => handleMenuElementClick(e)}
+>>>>>>> feature/59
               >
                 신고
               </li>
               <li
+<<<<<<< HEAD
                 className="pt-2 pb-2 pl-3 text-left rounded-lg hover:bg-gray-100 transition duration-100"
                 onClick={handleMenuElementClick}
+=======
+                className="rounded-lg pt-2 pb-2 pl-3 text-left transition duration-100 hover:bg-gray-100"
+                onClick={(e) => handleMenuElementClick(e)}
+>>>>>>> feature/59
               >
                 공유
               </li>

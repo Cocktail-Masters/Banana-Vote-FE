@@ -118,35 +118,38 @@ export type tagTypes = string[];
  */
 
 export type voteItemType = {
-  vote_item_id: number;
+  item_number: number;
   title: string;
   iframe_link?: string;
-  image?: string;
-  candidate_num?: number;
-  total_points?: number;
-  n_voted?: number;
+  image_url?: string;
+  total_points: number;
+  voted_number: number;
 };
 export type voteItemTypes = voteItemType[];
 
 export type voteDetailType = {
-  vote_id: number;
-  nickname: string; // user 테이블 조인
-  badge_url: string;
-  vote_title: string;
-  vote_content: string;
-  is_anonymouse: boolean;
-  is_disclosure: boolean;
-  start_date?: string;
-  end_date: string;
-  n_view: number;
-  n_vote: number;
-  n_reported: number;
-  n_opinion: number;
-  is_deleted: boolean;
-  is_event: boolean;
-  is_closed: boolean;
+  vote: {
+    id: number;
+    title: string;
+    image_url: string;
+    content: string;
+    is_event: boolean;
+    is_anonymous: boolean;
+    is_public: boolean;
+    is_closed: boolean;
+    start_date?: string;
+    end_date: string;
+    hits: number;
+    voted_number: number;
+    opinion_number: number;
+    tags: string[];
+  };
+  writer: {
+    id: number;
+    nickname: string;
+    badge_image_url: string;
+  };
   vote_items: voteItemTypes;
-  tag: string[];
 };
 
 // export type voteFeedListType = voteDetailType & {

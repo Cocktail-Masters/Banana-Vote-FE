@@ -14,6 +14,7 @@ const VoteDetailItem = () => {
     queryKey: "voteCheck",
     postId: 1,
   });
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onOpen = () => {
     setIsOpen((prev) => {
@@ -47,13 +48,13 @@ const VoteDetailItem = () => {
           <div className="mb-5 border-b-[5px] border-gray-200">
             <div className="flex items-center py-4">
               <div className="mr-4">
-                {data.is_closed ? (
+                {data.vote.is_closed ? (
                   <span className="text-red-500">종료</span>
                 ) : (
                   <span className="text-secondary-orange">진행중</span>
                 )}
               </div>
-              <h2 className="text-2xl font-bold">{data.vote_title}</h2>
+              <h2 className="text-2xl font-bold">{data.vote.title}</h2>
             </div>
           </div>
           <div>
@@ -64,7 +65,7 @@ const VoteDetailItem = () => {
               </div>
               <div className="w-30 flex justify-end">
                 <p className="mr-1">조회수</p>
-                <p className="mr-1">{data.n_view}</p>
+                <p className="mr-1">{data.vote.hits}</p>
               </div>
             </div>
             <div className="mt-[25px] flex flex-col">
@@ -126,7 +127,7 @@ const VoteDetailItem = () => {
           <div className="border-t border-gray-200 px-4 py-4 sm:px-6">
             <div className="flex items-center justify-between">
               <div className="flex">
-                {data.tag.map((e, i) => (
+                {data.vote.tags.map((e, i) => (
                   <span key={i} className="mr-2">
                     <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-sm font-medium text-gray-800">
                       {e}

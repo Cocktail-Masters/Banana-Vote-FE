@@ -18,8 +18,6 @@ const FeedListArea = () => {
       queryKey: "feedList",
     });
 
-  console.log(data);
-
   /**
    * @description 뷰포트 최하단 도달 시 새로운 피드를 불러옴
    */

@@ -15,7 +15,14 @@ export const voteDetailDummy: voteDetailType = {
     hits: 123,
     voted_number: 1230123,
     opinion_number: 35,
-    tags: ["아무튼 태그임, 두번째 태그임"],
+    tags: [
+      "아무튼 태그임",
+      "두번째 태그임",
+      "세번째 태그임",
+      "네번째 태그임",
+      "다섯번째 태그임",
+      "여섯번째 태그임",
+    ],
   },
   writer: {
     badge_image_url: "",

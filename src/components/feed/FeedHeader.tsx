@@ -106,24 +106,14 @@ const FeedHeader = ({
             <ModalBackground setState={setMenuToggle} />
             <ul className="absolute top-10 right-1 z-50 h-auto w-36 rounded-lg border bg-white p-2 drop-shadow-sm hover:cursor-pointer">
               <li
-<<<<<<< HEAD
-                className="pt-2 pb-2 pl-3 text-left rounded-lg hover:bg-gray-100 transition duration-100"
-                onClick={handleMenuElementClick}
-=======
                 className="rounded-lg pt-2 pb-2 pl-3 text-left transition duration-100 hover:bg-gray-100"
                 onClick={(e) => handleMenuElementClick(e)}
->>>>>>> feature/59
               >
                 신고
               </li>
               <li
-<<<<<<< HEAD
-                className="pt-2 pb-2 pl-3 text-left rounded-lg hover:bg-gray-100 transition duration-100"
-                onClick={handleMenuElementClick}
-=======
                 className="rounded-lg pt-2 pb-2 pl-3 text-left transition duration-100 hover:bg-gray-100"
                 onClick={(e) => handleMenuElementClick(e)}
->>>>>>> feature/59
               >
                 공유
               </li>

@@ -14,8 +14,8 @@ const getFeedList = async (pageParam: number) => {
   const items = tmpArr.slice(START, END);
 
   const response = {
-    totalCount: tmpArr.length,
-    items: items,
+    total_count: tmpArr.length,
+    votes: items,
   };
 
   return response;
@@ -27,7 +27,7 @@ export const useFeedListQuery = ({ queryKey }: { queryKey: string }) => {
     queryFn: ({ pageParam = 0 }) => getFeedList(pageParam),
     getNextPageParam: (lastPage, allPages) => {
       // find isLast?
-      const maxPage = lastPage.totalCount / DATA_PER_PAGE;
+      const maxPage = lastPage.total_count / DATA_PER_PAGE;
       const nextPage = allPages.length + 1;
       return nextPage <= maxPage ? nextPage : undefined;
     },

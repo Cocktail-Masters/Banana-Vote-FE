@@ -78,14 +78,17 @@ export type userGoodsType = goodsType & {
  * opinion
  */
 
-export type opinionType = {
-  nickname: string;
+type opinionType = {
   id: number;
+  writer: {
+    id: number;
+    nickname: string;
+    badge_image_url: string;
+  };
   content: string;
-  n_agree: number;
-  n_disagree: number;
-  n_reported: number;
-  date: string; // 생성된 날짜
+  agreed_number: number;
+  disagreed_number: number;
+  created_date: string;
 };
 
 export type opinionTypes = {
@@ -118,10 +121,11 @@ export type tagTypes = string[];
  */
 
 export type voteItemType = {
-  item_number: number;
+  id: number;
+  item_number: number; // 투표 항목 번호
   title: string;
-  iframe_link?: string;
-  image_url?: string;
+  iframe_link: string;
+  image_url: string;
   total_points: number;
   voted_number: number;
 };
@@ -152,18 +156,13 @@ export type voteDetailType = {
   vote_items: voteItemTypes;
 };
 
-// export type voteFeedListType = voteDetailType & {
-//   best_opinion: opinionType;
-//   vote_items: voteItemTypes;
-// };
-
 export type voteFeedType = voteDetailType & {
   best_opinion: opinionType;
 };
 
 export type voteFeedListType = {
-  totalCount: number;
-  items: voteFeedType[];
+  total_count: number;
+  votes: voteFeedType[];
 };
 
 export type voteDeleteType = {

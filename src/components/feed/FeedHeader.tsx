@@ -4,7 +4,7 @@
  */
 "use client";
 import Image from "next/image";
-import React, { ChangeEvent } from "react";
+import React from "react";
 import MB from "@assets/icons/MenuButtonIcon.svg";
 import BadgeImage from "./../common/BadgeImage";
 import { useState } from "react";
@@ -13,19 +13,19 @@ import ModalBackground from "../common/modal/ModalBackground";
 import { getRemainDates } from "@/common/getRemainDates";
 
 type HeaderContentProps = {
-  badge_url?: string;
+  badge_image_url?: string;
   nickname: string;
   end_date: string;
   is_closed: boolean;
-  n_vote: number;
+  voted_number: number;
 };
 
 const FeedHeader = ({
-  badge_url,
+  badge_image_url,
   nickname,
   end_date,
   is_closed,
-  n_vote,
+  voted_number,
 }: HeaderContentProps) => {
   const [menuToggle, setMenuToggle] = useState<boolean>(false);
 
@@ -56,7 +56,7 @@ const FeedHeader = ({
     <div className="relative flex">
       {/* 프로필 */}
       <div className="flex flex-wrap items-center gap-4">
-        <BadgeImage badge_url={badge_url} nickname={nickname} />
+        <BadgeImage badge_image_url={badge_image_url} />
         <div>
           <h3 className="mb-1 text-base font-bold">{nickname}</h3>
           <div className="flex text-sm">
@@ -80,7 +80,7 @@ const FeedHeader = ({
               />
             </svg>
 
-            <div className="text-sm">{n_vote.toLocaleString()}</div>
+            <div className="text-sm">{voted_number.toLocaleString()}</div>
           </div>
         </div>
       </div>

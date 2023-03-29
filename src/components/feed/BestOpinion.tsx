@@ -6,10 +6,8 @@
 import React from "react";
 import { opinionType } from "@/types";
 import BadgeImage from "../common/BadgeImage";
-import { format, register } from "timeago.js";
-import koLocale from "timeago.js/lib/lang/ko";
-import enLocale from "timeago.js/lib/lang/en_US";
 import { usePathname } from "next/navigation";
+import { getRelativeDays } from "@/common/getRemainDates";
 
 // nickname: 글 작성자 닉네임
 const BestOpinion = ({
@@ -20,15 +18,6 @@ const BestOpinion = ({
   best_opinion: opinionType;
 }) => {
   const pathname = usePathname();
-  /**
-   * @description 포맷에 맞춰 상대 시간 구하기
-   */
-  const getRelativeDays = (date: string) => {
-    // next/navigation's usePathname Hook is required.
-    const currentLng = pathname.substring(1, 3);
-    register(currentLng, currentLng === "ko" ? koLocale : enLocale);
-    return format(new Date(date), currentLng);
-  };
 
   return (
     <div className="relative mt-1 flex h-14 flex-col justify-center gap-2">
@@ -49,7 +38,7 @@ const BestOpinion = ({
               className="jusitfy-center mt-1 flex h-full items-center text-xs text-gray-400"
               color="gray"
             >
-              {getRelativeDays(best_opinion.date)}
+              {getRelativeDays(pathname, best_opinion.date)}
             </p>
           </div>
           {/* 댓글 내용 */}

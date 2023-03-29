@@ -4,7 +4,7 @@
  */
 "use client";
 import Image from "next/image";
-import React, { ChangeEvent } from "react";
+import React from "react";
 import MB from "@assets/icons/MenuButtonIcon.svg";
 import BadgeImage from "./../common/BadgeImage";
 import { useState } from "react";
@@ -13,19 +13,19 @@ import ModalBackground from "../common/modal/ModalBackground";
 import { getRemainDates } from "@/common/getRemainDates";
 
 type HeaderContentProps = {
-  badge_url?: string;
+  badge_image_url?: string;
   nickname: string;
   end_date: string;
   is_closed: boolean;
-  n_vote: number;
+  voted_number: number;
 };
 
 const FeedHeader = ({
-  badge_url,
+  badge_image_url,
   nickname,
   end_date,
   is_closed,
-  n_vote,
+  voted_number,
 }: HeaderContentProps) => {
   const [menuToggle, setMenuToggle] = useState<boolean>(false);
 
@@ -56,7 +56,7 @@ const FeedHeader = ({
     <div className="relative flex">
       {/* 프로필 */}
       <div className="flex flex-wrap items-center gap-4">
-        <BadgeImage badge_url={badge_url} nickname={nickname} />
+        <BadgeImage badge_image_url={badge_image_url} />
         <div>
           <h3 className="mb-1 text-base font-bold">{nickname}</h3>
           <div className="flex text-sm">
@@ -80,7 +80,7 @@ const FeedHeader = ({
               />
             </svg>
 
-            <div className="text-sm">{n_vote.toLocaleString()}</div>
+            <div className="text-sm">{voted_number.toLocaleString()}</div>
           </div>
         </div>
       </div>
@@ -106,24 +106,14 @@ const FeedHeader = ({
             <ModalBackground setState={setMenuToggle} />
             <ul className="absolute top-10 right-1 z-50 h-auto w-36 rounded-lg border bg-white p-2 drop-shadow-sm hover:cursor-pointer">
               <li
-<<<<<<< HEAD
-                className="pt-2 pb-2 pl-3 text-left rounded-lg hover:bg-gray-100 transition duration-100"
-                onClick={handleMenuElementClick}
-=======
                 className="rounded-lg pt-2 pb-2 pl-3 text-left transition duration-100 hover:bg-gray-100"
                 onClick={(e) => handleMenuElementClick(e)}
->>>>>>> feature/59
               >
                 신고
               </li>
               <li
-<<<<<<< HEAD
-                className="pt-2 pb-2 pl-3 text-left rounded-lg hover:bg-gray-100 transition duration-100"
-                onClick={handleMenuElementClick}
-=======
                 className="rounded-lg pt-2 pb-2 pl-3 text-left transition duration-100 hover:bg-gray-100"
                 onClick={(e) => handleMenuElementClick(e)}
->>>>>>> feature/59
               >
                 공유
               </li>

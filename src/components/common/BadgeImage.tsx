@@ -6,13 +6,15 @@ import React from "react";
 import Image from "next/image";
 import defaultProfile from "@/assets/images/default_profile.png";
 
-const BadgeImage = ({ badge_image_url }: { badge_image_url: string }) => {
+const BadgeImage = ({ badge_image_url }: { badge_image_url?: string }) => {
   return (
     <>
       <Image
         className="h-10 w-10 rounded-full"
         src={badge_image_url ? badge_image_url : defaultProfile}
         alt="badge_image"
+        width={1000}
+        height={1000}
       />
     </>
   );

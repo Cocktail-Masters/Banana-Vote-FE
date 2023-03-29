@@ -18,6 +18,8 @@ const FeedListArea = () => {
       queryKey: "feedList",
     });
 
+  console.log(data);
+
   /**
    * @description 뷰포트 최하단 도달 시 새로운 피드를 불러옴
    */
@@ -41,8 +43,8 @@ const FeedListArea = () => {
           <VoteCreateBar nickname="연복이" badge_url="" />
           {/* 투표 피드 리스트 */}
           {data &&
-            data.pages.map((page: voteFeedListType, index: number) => {
-              return page.items.map((feedData: voteFeedType, index: number) => {
+            data.pages.map((page: voteFeedListType) => {
+              return page.votes.map((feedData: voteFeedType, index: number) => {
                 return <Feed key={index} data={feedData} />;
               });
             })}

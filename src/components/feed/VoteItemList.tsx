@@ -9,17 +9,17 @@ import { motion } from "framer-motion";
 
 const VoteItemList = ({ vote_items }: { vote_items: voteItemType[] }) => {
   return (
-    <div className="flex justify-center select-none">
-      <div className={`grid gap-4 grid-cols-1 md:grid-cols-2`}>
+    <div className="flex select-none justify-center">
+      <div className={`grid grid-cols-1 gap-4 md:grid-cols-2`}>
         {vote_items &&
           vote_items.map((item: voteItemType, index: number) => {
             return (
               <motion.div
-                className={`relative w-full truncate drop-shadow-md hover:-translate-y-1 transition duration-150 ease-in-out`}
+                className={`relative w-full truncate drop-shadow-md transition duration-150 ease-in-out hover:-translate-y-1`}
                 whileHover={{ scale: 1.03 }}
                 key={index}
               >
-                <VoteItem imageLink={item.image} content={item.title} />
+                <VoteItem imageLink={item.image_url} content={item.title} />
               </motion.div>
             );
           })}

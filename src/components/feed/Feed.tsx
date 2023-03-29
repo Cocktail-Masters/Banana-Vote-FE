@@ -19,11 +19,11 @@ const Feed = ({ data }: { data: voteFeedType }) => {
         {/* 피드 헤더 */}
         <div className="p-5">
           <FeedHeader
-            badge_url={data.badge_url}
-            nickname={data.nickname}
-            end_date={data.end_date}
-            is_closed={data.is_closed}
-            n_vote={data.n_vote}
+            badge_image_url={data.writer.badge_image_url}
+            nickname={data.writer.nickname}
+            end_date={data.vote.end_date}
+            is_closed={data.vote.is_closed}
+            voted_number={data.vote.voted_number}
           />
         </div>
         <div className="grid grid-cols-1 divide-y">
@@ -31,8 +31,8 @@ const Feed = ({ data }: { data: voteFeedType }) => {
 
           <div className="pb-5 pl-5 pr-5">
             {/* 피드 제목 */}
-            <Link href={`/vote/detail/${data.vote_id}`}>
-              <FeedTitle content={data.vote_title} />
+            <Link href={`/vote/detail/${data.vote.id}`}>
+              <FeedTitle content={data.vote.title} />
             </Link>
             {/* 피드 투표 항목들 */}
             <VoteItemList vote_items={data.vote_items} />
@@ -49,9 +49,9 @@ const Feed = ({ data }: { data: voteFeedType }) => {
               <div className="absolute left-0 flex h-5 text-sm font-bold">
                 베스트 댓글
               </div>
-              <Link href={`/vote/detail/${data.vote_id}`}>
+              <Link href={`/vote/detail/${data.vote.id}`}>
                 <div className="absolute right-0 flex h-5 text-sm font-bold hover:border-b">
-                  댓글 {data.n_opinion.toLocaleString()}개
+                  댓글 {data.vote.opinion_number.toLocaleString()}개
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -73,7 +73,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
           {/* 베스트 댓글 1개 */}
           <div className="relative h-auto w-full">
             <BestOpinion
-              nickname={data.nickname}
+              nickname={data.writer.nickname}
               best_opinion={data.best_opinion}
             />
           </div>

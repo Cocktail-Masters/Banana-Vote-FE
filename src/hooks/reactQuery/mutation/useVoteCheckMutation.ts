@@ -1,4 +1,4 @@
-import { queryClient } from "@/common/reactQuery/QueryClient";
+import { getQueryClient } from "@/common/reactQuery/QueryClient";
 import { predictionType } from "@/types";
 import { useMutation } from "@tanstack/react-query";
 
@@ -13,6 +13,7 @@ export const useVoteCheckMutation = ({
 }: {
   queryKey: (string | number)[];
 }) => {
+  const queryClient = getQueryClient();
   return useMutation({
     mutationFn: async ({
       uri,

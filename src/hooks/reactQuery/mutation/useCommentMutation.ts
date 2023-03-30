@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "@/common/reactQuery/QueryClient";
+import { getQueryClient } from "@/common/reactQuery/QueryClient";
 import { opinionType } from "@/types";
 import { DummyComments } from "@/components/commentList/DummyComment";
 
@@ -8,6 +8,7 @@ export const useCommentMutation = ({
 }: {
   queryKey: (string | number)[];
 }) => {
+  const queryClient = getQueryClient();
   return useMutation(
     async ({ uri, sendData }: { uri: string; sendData: opinionType }) => {
       return DummyComments.opinions.push(sendData);

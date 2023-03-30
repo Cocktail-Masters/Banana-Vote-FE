@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { voteDetailDummy } from "./voteDetailDummy";
 
 export const useVoteDetailQuery = ({
   queryKey,
@@ -9,7 +8,10 @@ export const useVoteDetailQuery = ({
   postId: number;
 }) => {
   return useQuery([queryKey, postId], async () => {
-    const response = voteDetailDummy;
+    const response = await fetch(
+      `http://localhost:3001/api/vote/detail?id=${postId}`
+    ).then((response) => response.json());
+    console.log(response);
 
     return response;
   });

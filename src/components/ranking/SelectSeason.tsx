@@ -11,10 +11,10 @@ const SelectSeason = () => {
 
   return (
     <>
-      <Menu as="div" className="relative inline-block  text-left">
-        <Menu.Button className="inline-flex w-full justify-center rounded-[20px] border-[1px] border-[#D9D9D9] bg-white px-4 py-2 text-lg font-medium text-[#828282] shadow-md hover:bg-[#e6e6e6] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+      <Menu as="div" className="relative inline-block  h-[75px] text-left">
+        <Menu.Button className="inline-flex h-[75px] w-full items-center justify-center rounded-[20px] border-[1px] border-[#D9D9D9] bg-white px-4 py-2 text-lg font-medium text-[#828282] shadow-md hover:bg-[#e6e6e6] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
           <ChevronDownIcon className="m-auto mr-2 h-5 w-5" aria-hidden="true" />
-          <div className="rounded-[20px] bg-[#F9F6ED] p-2 text-[25px] font-bold">
+          <div className="w-[160px] rounded-[20px] bg-[#F9F6ED] p-2 text-[25px] font-bold">
             {selectedSeason.description}
           </div>
         </Menu.Button>

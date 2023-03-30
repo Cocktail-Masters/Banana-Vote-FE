@@ -52,15 +52,24 @@ export type achivementsType = achivementType[];
 export type goodsType = {
   id: number;
   name: string;
+  desc: string;
+  image_url: string;
+  goods_type: string;
+  price: number;
+  ea?: number; // 해당 상품 보유 갯수
+  use_period: string; // 상품 사용 기한
+  is_used?: boolean; // 사용 완료 여부
 };
 
 export type storeGoodsType = goodsType & {
-  type: string;
-  ea: number;
-  limit_date: string;
+  start_date: string; // 판매 시작일
+  end_date: string; // 판매 종료일
+  sell_count: number;
 };
 
-export type storeGoodsTypes = storeGoodsType[];
+export type storeGoodsTypes = {
+  goods: storeGoodsType[];
+};
 
 export type goods_typeTypes = string[];
 

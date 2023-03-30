@@ -5,10 +5,11 @@ import BadgeImage from "@/components/common/BadgeImage";
 import { useVoteCheckMutation } from "@/hooks/reactQuery/mutation/useVoteCheckMutation";
 import { useVoteCheckQuery } from "@/hooks/reactQuery/useVoteCheckQuery";
 import { useVoteDetailQuery } from "@/hooks/reactQuery/useVoteDetailQuery";
-import { useState } from "react";
+import { Key, useState } from "react";
 import VoteDetailPredictionModal from "../PredictionModal";
 import VoteDetailItemCard from "./ItemCard";
 import { Locale } from "i18n-config";
+import { voteItemType } from "@/types";
 
 const VoteDetailItem = () => {
   const { data } = useVoteDetailQuery({ queryKey: "voteDetail", postId: 1 });
@@ -17,7 +18,7 @@ const VoteDetailItem = () => {
     queryKey: "voteCheck",
     postId: 1,
   });
-
+  console.log("voteCheck", voteCheck);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onOpen = () => {
     setIsOpen((prev) => {
@@ -84,7 +85,7 @@ const VoteDetailItem = () => {
               </div>
             </div>
             <div className="mt-[25px] flex flex-col">
-              {data.vote_items.map((e, i) => (
+              {data.vote_items.map((e: voteItemType, i: Key) => (
                 <VoteDetailItemCard
                   key={i}
                   item={e}
@@ -145,7 +146,7 @@ const VoteDetailItem = () => {
           <div className="relative border-t border-gray-200 px-4 py-4 sm:px-6">
             <div className="flex h-full w-full items-center">
               <div className="w-full flex-wrap">
-                {data.vote.tags.map((e, i) => (
+                {data.vote.tags.map((e: string, i: Key) => (
                   <span
                     key={i}
                     className="mr-2 inline-flex w-fit min-w-[100px] flex-shrink-0"

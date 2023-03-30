@@ -1,4 +1,4 @@
-import { getQueryClient } from "@/common/reactQuery/QueryClient";
+import getQueryClient from "@app/[lng]/getQueryClient";
 import { predictionType } from "@/types";
 import { useMutation } from "@tanstack/react-query";
 

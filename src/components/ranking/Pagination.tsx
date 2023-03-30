@@ -26,7 +26,6 @@ const Pagination = ({
   const pageList = new Array(viewPageList)
     .fill(null)
     .map((_, index) => startPage + index);
-  console.log(total_page, splitSize);
 
   const nextButtonHandler = (addNumber: number) => {
     const checkValid = (v: number) => {

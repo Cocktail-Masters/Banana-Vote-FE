@@ -7,7 +7,6 @@ export default async function getRanking(page_num = 0, page_size = 10) {
       })
   );
   const res = await fetch(url);
-  console.log(res);
   // Recommendation: handle errors
   if (!res.ok) {
     throw new Error("Failed to fetch data");

@@ -1,7 +1,6 @@
-import Pagination from "@/components/ranking/Pagination";
-import RankingList from "@/components/ranking/RankingList";
 import SearchInput from "@/components/ranking/SearchInput";
 import SelectSeason from "@/components/ranking/SelectSeason";
+import HydratedRanking from "./hydrateRanking";
 
 const Ranking = () => {
   return (
@@ -10,8 +9,8 @@ const Ranking = () => {
         <SelectSeason></SelectSeason>
         <SearchInput></SearchInput>
       </div>
-      <RankingList></RankingList>
-      <Pagination></Pagination>
+      {/* @ts-expect-error Server Component */}
+      <HydratedRanking />
     </div>
   );
 };

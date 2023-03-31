@@ -55,7 +55,6 @@ const voteDetailDummy: voteDetailType = {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const detail = searchParams.get("vote_id");
-  console.log("detail", detail);
   const res = voteDetailDummy;
 
   return NextResponse.json({ res });

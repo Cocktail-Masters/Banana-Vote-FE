@@ -1,17 +1,25 @@
 "use client";
 import { useFetchComments } from "@/hooks/reactQuery/useCommentsQuery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { opinionType } from "@/types";
+import { useQueryClient } from "@tanstack/react-query";
 
 const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
   const [nowPageIndex, setNowPageIndex] = useState(1);
-  const { data, isFetching } = useFetchComments({
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    queryClient.invalidateQueries(["commentList", opinionType, 1]);
+  }, [opinionType, queryClient]);
+  const { data, isFetching, isLoading } = useFetchComments({
     queryKey: "commentList",
     postId: 1,
     nowPageIndex,
     sortOption: opinionType,
   });
-  console.log(data);
+  if (isLoading) {
+    return <>now loading</>;
+  }
   return (
     <div className={`relative w-full`}>
       {data !== undefined &&
@@ -21,7 +29,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
               <div
                 className={`mt-[3%] mb-[3%] h-fit min-h-[125px] w-full rounded-2xl p-2 ${
                   data.pages[0].best !== undefined &&
-                  data.pages[0].best.some((e) => {
+                  data.pages[0].best.some((e: number) => {
                     return e === element.id;
                   })
                     ? "bg-[#AEE6E3]"
@@ -34,7 +42,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                     <div className={`flex font-bold`}>
                       {element.writer.nickname}
                       {data.pages[0].best !== undefined &&
-                        data.pages[0].best.some((e) => {
+                        data.pages[0].best.some((e: number) => {
                           return e === element.id;
                         }) && (
                           <svg

@@ -1,9 +1,10 @@
+"use client";
 import { useCommentMutation } from "@/hooks/reactQuery/mutation/useCommentMutation";
 import { opinionType } from "@/types";
 import { useRef } from "react";
 
 const CommentInput = () => {
-  const { mutate } = useCommentMutation({ queryKey: ["commentList", 1] });
+  const { mutate } = useCommentMutation();
   const commentInputRef = useRef<HTMLTextAreaElement>(null);
 
   const sendOpinion = () => {
@@ -24,7 +25,7 @@ const CommentInput = () => {
         created_date: "2023-03-18",
       };
       mutate(
-        { uri: "test", sendData: opinion },
+        { sendData: opinion },
         {
           onSuccess: () => {
             if (commentInputRef.current !== null) {

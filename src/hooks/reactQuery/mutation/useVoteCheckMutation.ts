@@ -13,8 +13,6 @@ export const postVoteCheck = async ({
     },
     body: JSON.stringify({ is_participation, vote_item_id, point }),
   });
-
-  console.log("vote check test: ", res);
   return res;
 };
 
@@ -26,22 +24,9 @@ export const useVoteCheckMutation = ({
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({
-      uri,
-      sendData,
-    }: {
-      uri: string;
-      sendData: predictionType;
-    }) => {
-      postVoteCheck(sendData);
-      // return (voteCheckDummy = {
-      //   is_participation: sendData.is_participation,
-      //   vote_item_id: sendData.vote_item_id,
-      //   point: sendData.point,
-      // });
-    },
+    mutationFn: postVoteCheck,
     onSuccess: (data) => {
-      queryClient.invalidateQueries(queryKey);
+      queryClient.invalidateQueries({ queryKey });
     },
   });
 };

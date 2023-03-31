@@ -1,4 +1,5 @@
 import { picketsType } from "@/types";
+import { NextResponse } from "next/server";
 
 export const DummyPicket: picketsType = {
   pickets: [
@@ -34,3 +35,11 @@ export const DummyPicket: picketsType = {
     },
   ],
 };
+
+export async function GET(request: Request) {
+  const { searchParams, pathname } = new URL(request.url);
+  const vote_id = pathname.split("/");
+  const res = DummyPicket;
+
+  return NextResponse.json({ res });
+}

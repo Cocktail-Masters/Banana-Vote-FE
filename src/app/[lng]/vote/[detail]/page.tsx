@@ -18,9 +18,8 @@ const VoteDetail = ({
     <div className={"VoteDetail"} style={{ width: "100%", height: "100%" }}>
       {/* @ts-expect-error Server Component */}
       <HydrateDetail postId={1} />
-      {/* <VoteDetailItem /> */}
-      {/* <PicketArea />
-      <CommentListArea /> */}
+      <PicketArea />
+      <CommentListArea />
     </div>
   );
 };

@@ -18,7 +18,6 @@ const VoteDetailItem = () => {
     queryKey: "voteCheck",
     postId: 1,
   });
-  console.log("voteCheck", voteCheck);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onOpen = () => {
     setIsOpen((prev) => {
@@ -30,7 +29,7 @@ const VoteDetailItem = () => {
       return !prev;
     });
   };
-  const { mutate } = useVoteCheckMutation({ queryKey: ["voteCheck"] });
+  const { mutate } = useVoteCheckMutation({ queryKey: ["voteCheck", 1] });
 
   const [selectItem, setSelectItem] = useState<number | undefined>();
 
@@ -112,13 +111,9 @@ const VoteDetailItem = () => {
                     disabled={selectItem === undefined}
                     onClick={() => {
                       mutate({
-                        uri: "",
-                        sendData: {
-                          is_participation: true,
-                          vote_item_id:
-                            selectItem !== undefined ? selectItem : 0,
-                          point: 0,
-                        },
+                        is_participation: true,
+                        vote_item_id: selectItem !== undefined ? selectItem : 0,
+                        point: 0,
                       });
                     }}
                     className="mt-[25px] rounded px-4 py-2 text-black"

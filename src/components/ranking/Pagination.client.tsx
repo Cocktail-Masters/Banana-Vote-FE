@@ -1,6 +1,5 @@
 "use client";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { Dispatch, SetStateAction, useState } from "react";
 import nextArrow from "@assets/icons/nextArrow.svg";
 import nextDoubleArrow from "@assets/icons/nextDoubleArrow.svg";

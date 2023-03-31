@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
 import { nanoid } from "nanoid";
 
 const total_page = 12;
+
 const data = {
   total_page,
   ranking_list: new Array(115)
@@ -34,8 +35,11 @@ export async function GET(request: Request) {
   const end = start + Number(page_size);
   const newData = {
     ...data,
-    ranking_list: data.ranking_list.slice(start, end),
+    ranking_list: data.ranking_list
+      .map((v) => ({ ...v, nickname: `${season_id}_` + v.nickname }))
+      .slice(start, end),
   };
+  console.log(newData, start, end, page_num, page_size);
 
   return NextResponse.json(newData);
 }

@@ -18,7 +18,7 @@ const FilterArea = ({
   filterElementList,
 }: filterAreaProps) => {
   return (
-    <div className="flex h-12 w-full justify-end p-3">
+    <div className="z-30 flex h-12 w-full justify-end p-3">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md border border-inherit bg-white px-4 py-2 text-sm font-medium text-inherit hover:bg-opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">

@@ -40,7 +40,7 @@ const CategoryArea = ({
         {currentCategory !== null && (
           <motion.div
             key="background"
-            className="absolute left-0 z-10 h-12 w-24 rounded-t-2xl bg-secondary-orange/75 "
+            className="absolute left-0 z-10 h-12 w-24 rounded-t-2xl bg-secondary-orange/75"
             initial={{ x: 0 }}
             animate={{
               x: currentCategory * 96 + currentCategory * 8, // width(24) + marginRight(2)

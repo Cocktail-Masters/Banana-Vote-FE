@@ -32,14 +32,14 @@ const GoodsListArea = ({
         return {
           goods: [...filteredList].sort(
             (a, b) =>
-              new Date(a.start_date).getTime() -
-              new Date(b.start_date).getTime()
+              new Date(b.start_date).getTime() -
+              new Date(a.start_date).getTime()
           ),
         };
       } else if (orderBy === 1) {
         // 인기 높은 순
         return {
-          goods: [...filteredList].sort((a, b) => a.sell_count - b.sell_count),
+          goods: [...filteredList].sort((a, b) => b.sell_count - a.sell_count),
         };
       } else if (orderBy === 2) {
         // 가격 높은 순

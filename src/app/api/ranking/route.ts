@@ -39,7 +39,5 @@ export async function GET(request: Request) {
       .map((v) => ({ ...v, nickname: `${season_id}_` + v.nickname }))
       .slice(start, end),
   };
-  console.log(newData, start, end, page_num, page_size);
-
   return NextResponse.json(newData);
 }

@@ -13,7 +13,10 @@ const LayoutTopBar = ({ tabs }: { tabs: tabType[] }) => {
     const removeLanguagePath = "/" + pathname.split("/").slice(2).join("/");
     setSelectedTabPath(removeLanguagePath);
   }, [pathname]);
-
+  const isMatchPath = (path: string) => {
+    if (selectedTabPath === null) return false;
+    return selectedTabPath.substring(0, path.length) === path;
+  };
   return (
     <>
       <div className="flex h-full flex-grow flex-row justify-center gap-[30px]">
@@ -27,7 +30,7 @@ const LayoutTopBar = ({ tabs }: { tabs: tabType[] }) => {
               <Link href={item.path}>{`${item.label}`}</Link>
             </div>
             <div className="flex justify-end">
-              {item.path === selectedTabPath ? (
+              {isMatchPath(item.path) ? (
                 <motion.div className="underline" layoutId="underline" />
               ) : null}
             </div>

@@ -34,13 +34,11 @@ const VoteItemCard = ({
   };
 
   const deleteFileHandler = () => {
-    console.log("삭제");
     setImageSrc(null);
     uploadImageHandler(null);
   };
 
   const onClickMinusHandler = () => {
-    console.log("index");
     setVoteItems((prevItems) => {
       prevItems.splice(index, 1);
       return [...prevItems];
@@ -52,7 +50,6 @@ const VoteItemCard = ({
       const reader = new FileReader();
       reader.readAsDataURL(imageFile);
       reader.onload = () => {
-        console.log(index);
         setImageSrc(reader.result ? reader.result.toString() : null);
       };
     }

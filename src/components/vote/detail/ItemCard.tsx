@@ -26,7 +26,7 @@ const VoteDetailItemCard = ({
   };
   return (
     <div
-      className={`flex h-full w-full rounded-2xl border-2 shadow-md ${
+      className={`flex h-full w-full rounded-2xl border-2 shadow-md mb-2 ${
         !isParti && selectItem === item.item_number
           ? " border-secondary-orange bg-primary-yellow"
           : ""

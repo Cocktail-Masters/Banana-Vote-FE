@@ -6,7 +6,7 @@ import PicketAreaModal from "./PicketModal";
 
 const PicketArea = () => {
   const { data } = usePicketQuery({
-    queryKey: ["picket"],
+    queryKey: "picket",
     voteId: 1,
   });
   return (

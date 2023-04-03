@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, SVGProps, useEffect, useRef, useState } from "react";
+import { Fragment } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Menu, Transition } from "@headlessui/react";
 import { seasonTypes } from "@/types";

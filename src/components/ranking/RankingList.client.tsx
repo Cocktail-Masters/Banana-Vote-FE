@@ -2,7 +2,6 @@
 import getRanking from "@/common/fetch/getRanking";
 import { rankingListTypes } from "@/types";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import Loading from "../Loading";
 import Pagination from "./Pagination.client";
 import { useSearchParams } from "next/navigation";

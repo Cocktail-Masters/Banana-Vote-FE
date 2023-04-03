@@ -1,6 +1,5 @@
 "use client";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import nextArrow from "@assets/icons/nextArrow.svg";
 import nextDoubleArrow from "@assets/icons/nextDoubleArrow.svg";
 import Image from "next/image";

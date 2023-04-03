@@ -83,99 +83,90 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Panel className="w-full max-w-7xl transform overflow-y-auto rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                     <Dialog.Title
                       as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
+                      className="relative mb-4 flex justify-center text-xl font-extrabold leading-6 text-gray-900"
                     >
-                      Payment successful
-                    </Dialog.Title>
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-500">
-                        Your payment has been successfully submitted. We’ve sent
-                        you an email with all of the details of your order.
-                      </p>
-                    </div>
-
-                    <div className="mt-4">
+                      {changeState.change && (
+                        <div
+                          className={`absolute left-1 w-2`}
+                          onClick={() => {
+                            setChangeState({
+                              change: false,
+                              picket: {
+                                picket_image_url: "",
+                                price: 0,
+                                position: 0,
+                              },
+                            });
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 12 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            className="h-6 w-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                            />
+                          </svg>
+                        </div>
+                      )}
+                      <h1>피캣 올리기</h1>
                       <button
-                        type="button"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                        onClick={onClose}
+                        className={`absolute top-1 right-3`}
+                        onClick={() => {
+                          setChangeState({
+                            change: false,
+                            picket: {
+                              picket_image_url: "",
+                              price: 0,
+                              position: 0,
+                            },
+                          });
+                          onClose();
+                        }}
                       >
-                        Got it, thanks!
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          className="h-6 w-6"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
                       </button>
-                    </div>
+                    </Dialog.Title>
+                    <Dialog.Description>
+                      {changeState.change ? (
+                        <SelectPicketImage
+                          picket_image_url={changeState.picket.picket_image_url}
+                          position={changeState.picket.position}
+                          price={changeState.picket.price}
+                        />
+                      ) : (
+                        <PicketAreaModalContent
+                          pickets={pickets}
+                          onChangeState={onClick}
+                        />
+                      )}
+                    </Dialog.Description>
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
             </div>
-            {/* <Dialog.Panel>
-              <Dialog.Title className={`ModalHeader`}>
-                {changeState.change && (
-                  <div
-                    // className={`t-5 absolute left-5`}
-                    onClick={() => {
-                      setChangeState({
-                        change: false,
-                        picket: {
-                          picket_image_url: "",
-                          price: 0,
-                          position: 0,
-                        },
-                      });
-                    }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      className="h-6 w-6"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                      />
-                    </svg>
-                  </div>
-                )}
-                <div className={`h-16`}>피캣 올리기</div>
-              </Dialog.Title>
-              <Dialog.Description>
-                <button className={`absolute top-1 right-3`} onClick={onClose}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-
-                {changeState.change ? (
-                  <SelectPicketImage
-                    picket_image_url={changeState.picket.picket_image_url}
-                    position={changeState.picket.position}
-                    price={changeState.picket.price}
-                  />
-                ) : (
-                  <PicketAreaModalContent
-                    pickets={pickets}
-                    onChangeState={onClick}
-                  />
-                )}
-              </Dialog.Description>
-            </Dialog.Panel> */}
           </Dialog>
         </Transition>
       )}

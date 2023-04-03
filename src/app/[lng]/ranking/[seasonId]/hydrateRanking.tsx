@@ -10,8 +10,9 @@ export default async function HydratedRanking({
   seasonId: string;
 }) {
   const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(["ranking", seasonId, 0], () =>
-    getRanking(seasonId)
+  const defaultPage = 0;
+  await queryClient.prefetchQuery(["ranking", seasonId, defaultPage], () =>
+    getRanking({ seasonId })
   );
   const dehydratedState = dehydrate(queryClient);
 

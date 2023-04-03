@@ -1,5 +1,11 @@
 "use client";
-import { Fragment, useEffect, useState, KeyboardEvent } from "react";
+import {
+  Fragment,
+  useEffect,
+  useState,
+  KeyboardEvent,
+  useCallback,
+} from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import {
   CheckIcon,
@@ -8,7 +14,9 @@ import {
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 import { nanoid } from "nanoid";
-
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import getRanking from "@/common/fetch/getRanking";
+import { rankingListTypes } from "@/types";
 // localStorage.setItem("searchList", {});
 
 type searchListType = {
@@ -16,7 +24,11 @@ type searchListType = {
   nickname: string;
 };
 
-const SearchInput = () => {
+const SearchInput = ({ seasonId }: { seasonId: string }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams()!;
+  const pathname = usePathname();
+
   const [selected, setSelected] = useState<searchListType | null>({
     id: nanoid(),
     nickname: "",
@@ -33,6 +45,27 @@ const SearchInput = () => {
             .replace(/\s+/g, "")
             .includes(query.toLowerCase().replace(/\s+/g, ""));
         });
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
+  const searchHandler = async (nickname: string) => {
+    const newRanking: { page: number; now_page: number } = await getRanking({
+      seasonId,
+      nickname,
+    });
+    console.log(newRanking);
+    const newPath =
+      pathname + "?" + createQueryString("page", String(newRanking.now_page));
+    router.push(newPath);
+  };
 
   useEffect(() => {
     const searchListString = localStorage.getItem("searchList");
@@ -70,15 +103,10 @@ const SearchInput = () => {
                     localStorage.setItem("searchList", JSON.stringify(result));
                     return result;
                   });
+                  searchHandler(query);
                 }
               }}
             />
-            {/* <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-              <ChevronUpDownIcon
-                className="h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-            </Combobox.Button> */}
           </div>
           <Transition
             as={Fragment}
@@ -89,7 +117,7 @@ const SearchInput = () => {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Combobox.Options className="absolute mt-3 max-h-60 w-full overflow-auto rounded-[20px] bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Combobox.Options className="absolute mt-3 max-h-60 w-full overflow-auto rounded-[8px] bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               {filteredSearchList.length === 0 && query !== "" ? (
                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
                   Nothing found.

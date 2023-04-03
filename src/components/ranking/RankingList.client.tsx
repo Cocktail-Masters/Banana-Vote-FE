@@ -5,12 +5,16 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import Loading from "../Loading";
 import Pagination from "./Pagination.client";
+import { useSearchParams } from "next/navigation";
 
 export default function RankingList({ seasonId }: { seasonId: string }) {
-  const [nowPageIndex, setNowPageIndex] = useState(0);
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
+  console.log(page);
+  // const [nowPageIndex, setNowPageIndex] = useState(0);
   const { data, isLoading } = useQuery<rankingListTypes>({
-    queryKey: ["ranking", seasonId, nowPageIndex],
-    queryFn: () => getRanking(seasonId, nowPageIndex),
+    queryKey: ["ranking", seasonId, page],
+    queryFn: () => getRanking({ seasonId, pageNum: Number(page) }),
   });
 
   if (isLoading) {
@@ -56,8 +60,7 @@ export default function RankingList({ seasonId }: { seasonId: string }) {
       )}
       <Pagination
         total_page={data?.total_page}
-        nowPageIndex={nowPageIndex}
-        setNowPageIndex={setNowPageIndex}
+        nowPageIndex={Number(page)}
       ></Pagination>
     </>
   );

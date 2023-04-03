@@ -1,9 +1,10 @@
 "use client";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import nextArrow from "@assets/icons/nextArrow.svg";
 import nextDoubleArrow from "@assets/icons/nextDoubleArrow.svg";
 import Image from "next/image";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Pagination = ({
   total_page = 0,
@@ -14,7 +15,7 @@ const Pagination = ({
   total_page?: number;
   splitSize?: number;
   nowPageIndex: number;
-  setNowPageIndex: Dispatch<SetStateAction<number>>;
+  setNowPageIndex?: Dispatch<SetStateAction<number>>;
 }) => {
   // const [nowPage, setNowPage] = useState(0);
   const isMinWidth768 = useMediaQuery("(max-width: 768px)");
@@ -26,13 +27,35 @@ const Pagination = ({
     .fill(null)
     .map((_, index) => startPage + index);
 
+  const router = useRouter();
+  const searchParams = useSearchParams()!;
+  const pathname = usePathname();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   const nextButtonHandler = (addNumber: number) => {
+    console.log("동작함??");
     const checkValid = (v: number) => {
       if (v < 0) return 0;
       if (v >= total_page) return total_page - 1;
       return v;
     };
-    setNowPageIndex((v) => checkValid(v + addNumber));
+    const newPath =
+      pathname +
+      "?" +
+      createQueryString("page", String(checkValid(nowPageIndex + addNumber)));
+    console.log("asdf", newPath, nowPageIndex);
+    router.push(newPath);
+
+    // setNowPageIndex((v) => checkValid(v + addNumber));
   };
 
   return (
@@ -76,7 +99,7 @@ const Pagination = ({
                 : "relative inline-flex h-10 w-10 items-center justify-center rounded-full  text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             }
             onClick={() => {
-              setNowPageIndex(index);
+              nextButtonHandler(index - nowPageIndex);
             }}
           >
             {index + 1}

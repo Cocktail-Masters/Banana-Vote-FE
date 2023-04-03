@@ -22,7 +22,7 @@ const Page = ({ params }: { params: { seasonId: string } }) => {
         <HydratedSeason>
           <SelectSeason selectedSeasonId={params.seasonId}></SelectSeason>
         </HydratedSeason>
-        <SearchInput></SearchInput>
+        <SearchInput seasonId={params.seasonId}></SearchInput>
       </div>
       {/* @ts-expect-error Server Component */}
       <HydratedRanking seasonId={params.seasonId}>

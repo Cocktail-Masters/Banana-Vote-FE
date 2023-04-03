@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "@/common/reactQuery/QueryClient";
+import getQueryClient from "@app/[lng]/getQueryClient";
 
 export type voteRegistrationItemType = {
   title: string;
@@ -21,6 +21,7 @@ export const useRegistrationMutation = ({
 }: {
   queryKey: (string | number)[];
 }) => {
+  const queryClient = getQueryClient();
   return useMutation(
     async ({
       uri,

@@ -1,7 +1,7 @@
 "use client";
 import CommentInput from "./CommentInput";
 import CommentList from "./CommentList";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Loading from "../Loading";
 
@@ -38,6 +38,7 @@ const CommentListArea = () => {
         </div>
       </div>
       <CommentInput />
+
       <Suspense fallback={<Loading />}>
         <LazyCommentList opinionType={opinionType} />
       </Suspense>

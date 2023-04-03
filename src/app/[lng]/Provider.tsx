@@ -1,11 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import {
-  dehydrate,
-  Hydrate,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 type providerType = {
   children: React.ReactNode;

@@ -1,22 +1,29 @@
-import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "@/common/reactQuery/QueryClient";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { opinionType } from "@/types";
-import { DummyComments } from "@/components/commentList/DummyComment";
 
-export const useCommentMutation = ({
-  queryKey,
+export const commentInputPost = async ({
+  sendData,
 }: {
-  queryKey: (string | number)[];
+  sendData: opinionType;
 }) => {
-  return useMutation(
-    async ({ uri, sendData }: { uri: string; sendData: opinionType }) => {
-      return DummyComments.opinions.push(sendData);
+  const response = await fetch(`http://localhost:3001/api/vote/opinion`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-    {
-      onSuccess: (data) => {
-        queryClient.invalidateQueries(queryKey);
-      },
-      onError: (error) => {},
-    }
-  );
+    body: JSON.stringify(sendData),
+  });
+  return response;
+};
+
+export const useCommentMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: commentInputPost,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries(["commentList", "recent", 1]);
+      queryClient.invalidateQueries(["commentList", "agree", 1]);
+    },
+    onError: (error) => {},
+  });
 };

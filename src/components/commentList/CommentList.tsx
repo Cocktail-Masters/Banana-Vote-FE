@@ -1,17 +1,25 @@
 "use client";
 import { useFetchComments } from "@/hooks/reactQuery/useCommentsQuery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { opinionType } from "@/types";
+import { useQueryClient } from "@tanstack/react-query";
 
 const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
   const [nowPageIndex, setNowPageIndex] = useState(1);
-  const { data, isFetching } = useFetchComments({
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    queryClient.invalidateQueries(["commentList", opinionType, 1]);
+  }, [opinionType, queryClient]);
+  const { data, isFetching, isLoading } = useFetchComments({
     queryKey: "commentList",
     postId: 1,
     nowPageIndex,
     sortOption: opinionType,
   });
-  console.log(data);
+  if (isLoading) {
+    return <>now loading</>;
+  }
   return (
     <div className={`relative w-full`}>
       {data !== undefined &&
@@ -21,7 +29,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
               <div
                 className={`mt-[3%] mb-[3%] h-fit min-h-[125px] w-full rounded-2xl p-2 ${
                   data.pages[0].best !== undefined &&
-                  data.pages[0].best.some((e) => {
+                  data.pages[0].best.some((e: number) => {
                     return e === element.id;
                   })
                     ? "bg-[#AEE6E3]"
@@ -31,8 +39,35 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
               >
                 <div className={`flex h-[30%] w-full justify-between `}>
                   <div className={`w-10/12`}>
-                    <div className={`font-bold`}>{element.nickname}</div>{" "}
-                    <div className={`text-[10px]`}>{element.date}</div>
+                    <div className={`flex font-bold`}>
+                      {element.writer.nickname}
+                      {data.pages[0].best !== undefined &&
+                        data.pages[0].best.some((e: number) => {
+                          return e === element.id;
+                        }) && (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="h-6 w-6"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"
+                            />
+                          </svg>
+                        )}
+                    </div>
+
+                    <div className={`text-[10px]`}>{element.created_date}</div>
                   </div>
 
                   <div className={``}>
@@ -53,7 +88,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                           />
                         </svg>
 
-                        <div className={`text-xs`}>{element.n_agree}</div>
+                        <div className={`text-xs`}>{element.agreed_number}</div>
                       </button>
                     </div>
                     <div className={``}>
@@ -75,7 +110,9 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                           />
                         </svg>
 
-                        <div className={`text-xs`}>{element.n_disagree}</div>
+                        <div className={`text-xs`}>
+                          {element.disagreed_number}
+                        </div>
                       </button>
                     </div>
                     <div className={``}>
@@ -87,7 +124,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                     </div>
                   </div>
                 </div>
-                <div className={`text-sm`}>{element.content}</div>
+                <div className={`flex-wrap text-sm`}>{element.content}</div>
               </div>
             ))}
           </div>

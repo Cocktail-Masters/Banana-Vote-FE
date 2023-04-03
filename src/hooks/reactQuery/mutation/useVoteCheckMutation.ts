@@ -1,11 +1,19 @@
-import { queryClient } from "@/common/reactQuery/QueryClient";
 import { predictionType } from "@/types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export let voteCheckDummy: predictionType = {
-  is_participation: false,
-  vote_item_id: 0,
-  point: 0,
+export const postVoteCheck = async ({
+  is_participation,
+  vote_item_id,
+  point,
+}: predictionType) => {
+  const res = await fetch("http://localhost:3001/api/vote/detail/check", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ is_participation, vote_item_id, point }),
+  });
+  return res;
 };
 
 export const useVoteCheckMutation = ({
@@ -13,22 +21,12 @@ export const useVoteCheckMutation = ({
 }: {
   queryKey: (string | number)[];
 }) => {
+  const queryClient = useQueryClient();
+
   return useMutation({
-    mutationFn: async ({
-      uri,
-      sendData,
-    }: {
-      uri: string;
-      sendData: predictionType;
-    }) => {
-      return (voteCheckDummy = {
-        is_participation: sendData.is_participation,
-        vote_item_id: sendData.vote_item_id,
-        point: sendData.point,
-      });
-    },
+    mutationFn: postVoteCheck,
     onSuccess: (data) => {
-      queryClient.invalidateQueries(queryKey);
+      queryClient.invalidateQueries({ queryKey });
     },
   });
 };

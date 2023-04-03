@@ -39,7 +39,7 @@ const FeedListArea = () => {
       ) : (
         <>
           {/* 투표 생성 버튼 */}
-          <VoteCreateBar nickname="연복이" badge_url="" />
+          <VoteCreateBar badge_image_url="" />
           {/* 투표 피드 리스트 */}
           {data &&
             data.pages.map((page: voteFeedListType) => {

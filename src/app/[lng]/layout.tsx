@@ -4,7 +4,7 @@ import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import LayoutHeader from "@/components/Layout/LayoutHeader";
 
-const languages = ["en", "de"];
+const languages = ["en"];
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));

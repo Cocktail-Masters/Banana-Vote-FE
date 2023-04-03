@@ -5,7 +5,7 @@ const Page = async () => {
   const seasons = await getSeason();
   return (
     <Redirect
-      url={`http://localhost:3001/ranking/${seasons[0]?.id}`}
+      url={`${process.env.NEXT_PUBLIC_HOSTNAME}/ranking/${seasons[0]?.id}`}
     ></Redirect>
   );
 };

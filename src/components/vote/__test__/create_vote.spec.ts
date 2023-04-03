@@ -7,7 +7,7 @@ import { test, expect, Page, Locator } from "@playwright/test";
  */
 test("create_vote", async ({ page }) => {
   // 페이지 이동
-  await page.goto("http://localhost:3001/vote/create");
+  await page.goto(process.env.NEXT_PUBLIC_HOSTNAME + "/vote/create");
 
   // 공개 비공개 설정
   await page.getByRole("button", { name: "공개", exact: true }).click();
@@ -128,13 +128,16 @@ test("create_vote", async ({ page }) => {
  * vote create mock api test
  */
 test("create vote request", async ({ page }) => {
-  await page.route("http://localhost:3001/api/vote", async (route) => {
-    const json = {
-      message: { test_breed: [] },
-    };
-    console.log(json);
-    await route.fulfill({ json });
-  });
+  await page.route(
+    process.env.NEXT_PUBLIC_HOSTNAME + "/api/vote",
+    async (route) => {
+      const json = {
+        message: { test_breed: [] },
+      };
+      console.log(json);
+      await route.fulfill({ json });
+    }
+  );
   const sendData = {
     content: "qwefqwef",
     end_date: "Thu Mar 16 2023 15:40:03 GMT+0900 (한국 표준시)",
@@ -157,8 +160,8 @@ test("create vote request", async ({ page }) => {
   };
 
   // // Send a POST request
-  // const result = await axios.post("http://localhost:3001/api/vote", sendData);
+  // const result = await axios.post(process.env.NEXT_PUBLIC_HOSTNAME+"/api/vote", sendData);
   // console.log(result);
-  await page.goto("http://localhost:3001/api/vote");
+  await page.goto(process.env.NEXT_PUBLIC_HOSTNAME + "/api/vote");
   expect(123).toBe(123);
 });

@@ -25,7 +25,8 @@ export default async function getRanking({
         })
       : "";
   const url = new URL(
-    "http://localhost:3001/api/ranking?" +
+    process.env.NEXT_PUBLIC_HOSTNAME +
+      "/api/ranking?" +
       new URLSearchParams({
         page_num: String(pageNum),
         page_size: String(pageSize),

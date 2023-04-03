@@ -6,13 +6,16 @@ export const commentInputPost = async ({
 }: {
   sendData: opinionType;
 }) => {
-  const response = await fetch(`http://localhost:3001/api/vote/opinion`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(sendData),
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/vote/opinion`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sendData),
+    }
+  );
   return response;
 };
 

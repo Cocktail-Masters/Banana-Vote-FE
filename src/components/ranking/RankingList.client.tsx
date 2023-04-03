@@ -10,8 +10,6 @@ import { useSearchParams } from "next/navigation";
 export default function RankingList({ seasonId }: { seasonId: string }) {
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
-  console.log(page);
-  // const [nowPageIndex, setNowPageIndex] = useState(0);
   const { data, isLoading } = useQuery<rankingListTypes>({
     queryKey: ["ranking", seasonId, page],
     queryFn: () => getRanking({ seasonId, pageNum: Number(page) }),

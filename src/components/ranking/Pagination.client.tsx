@@ -5,17 +5,16 @@ import nextArrow from "@assets/icons/nextArrow.svg";
 import nextDoubleArrow from "@assets/icons/nextDoubleArrow.svg";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import useCreateQueryString from "@/hooks/useCreateQueryString";
 
 const Pagination = ({
   total_page = 0,
   splitSize = 10,
   nowPageIndex,
-  setNowPageIndex,
 }: {
   total_page?: number;
   splitSize?: number;
   nowPageIndex: number;
-  setNowPageIndex?: Dispatch<SetStateAction<number>>;
 }) => {
   // const [nowPage, setNowPage] = useState(0);
   const isMinWidth768 = useMediaQuery("(max-width: 768px)");
@@ -28,21 +27,11 @@ const Pagination = ({
     .map((_, index) => startPage + index);
 
   const router = useRouter();
-  const searchParams = useSearchParams()!;
   const pathname = usePathname();
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams);
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
+  const createQueryString = useCreateQueryString();
 
   const nextButtonHandler = (addNumber: number) => {
-    console.log("동작함??");
     const checkValid = (v: number) => {
       if (v < 0) return 0;
       if (v >= total_page) return total_page - 1;
@@ -52,10 +41,7 @@ const Pagination = ({
       pathname +
       "?" +
       createQueryString("page", String(checkValid(nowPageIndex + addNumber)));
-    console.log("asdf", newPath, nowPageIndex);
     router.push(newPath);
-
-    // setNowPageIndex((v) => checkValid(v + addNumber));
   };
 
   return (

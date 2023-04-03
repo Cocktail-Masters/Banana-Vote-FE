@@ -1,23 +1,15 @@
 "use client";
-import {
-  Fragment,
-  useEffect,
-  useState,
-  KeyboardEvent,
-  useCallback,
-} from "react";
+import { Fragment, useEffect, useState, useCallback } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import {
   CheckIcon,
-  ChevronUpDownIcon,
   MagnifyingGlassIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 import { nanoid } from "nanoid";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import getRanking from "@/common/fetch/getRanking";
-import { rankingListTypes } from "@/types";
-// localStorage.setItem("searchList", {});
+import useCreateQueryString from "@/hooks/useCreateQueryString";
 
 type searchListType = {
   id: string;
@@ -26,7 +18,6 @@ type searchListType = {
 
 const SearchInput = ({ seasonId }: { seasonId: string }) => {
   const router = useRouter();
-  const searchParams = useSearchParams()!;
   const pathname = usePathname();
 
   const [selected, setSelected] = useState<searchListType | null>({
@@ -46,33 +37,36 @@ const SearchInput = ({ seasonId }: { seasonId: string }) => {
             .includes(query.toLowerCase().replace(/\s+/g, ""));
         });
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams);
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
+  const createQueryString = useCreateQueryString();
 
   const searchHandler = async (nickname: string) => {
     const newRanking: { page: number; now_page: number } = await getRanking({
       seasonId,
       nickname,
     });
-    console.log(newRanking);
     const newPath =
       pathname + "?" + createQueryString("page", String(newRanking.now_page));
     router.push(newPath);
   };
 
+  const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setSearchList((users) => {
+        if (users.some((v) => v.nickname === query)) return users;
+        if (query === "") return users;
+        const newItem = { id: nanoid(), nickname: query };
+        const result = [newItem, ...users].slice(0, 5);
+        setSelected(newItem);
+        localStorage.setItem("searchList", JSON.stringify(result));
+        return result;
+      });
+      searchHandler(query);
+    }
+  };
+
   useEffect(() => {
     const searchListString = localStorage.getItem("searchList");
-    const defaultSearchList: searchListType[] = [
-      { id: nanoid(), nickname: "너의 아이디" },
-      { id: nanoid(), nickname: "나의 아이디" },
-    ];
+    const defaultSearchList: searchListType[] = [];
     const prevSearchList =
       searchListString === null
         ? defaultSearchList
@@ -91,21 +85,7 @@ const SearchInput = ({ seasonId }: { seasonId: string }) => {
               displayValue={(user: searchListType) => user.nickname}
               placeholder="Search"
               onChange={(event) => setQuery(event.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  console.log("엔터눌림");
-                  setSearchList((users) => {
-                    if (users.some((v) => v.nickname === query)) return users;
-                    if (query === "") return users;
-                    const newItem = { id: nanoid(), nickname: query };
-                    const result = [newItem, ...users].slice(0, 5);
-                    setSelected(newItem);
-                    localStorage.setItem("searchList", JSON.stringify(result));
-                    return result;
-                  });
-                  searchHandler(query);
-                }
-              }}
+              onKeyDown={onKeyDownHandler}
             />
           </div>
           <Transition
@@ -145,7 +125,6 @@ const SearchInput = ({ seasonId }: { seasonId: string }) => {
                             className="h-5 w-5 overflow-hidden rounded-full hover:bg-teal-900"
                             onClick={(e) => {
                               e.preventDefault();
-                              console.log(search.id);
                               setSearchList((v) =>
                                 v.filter(
                                   ({ id: prevId }) => prevId !== search.id
@@ -180,7 +159,7 @@ const SearchInput = ({ seasonId }: { seasonId: string }) => {
       <MagnifyingGlassIcon
         className="h-5 w-5 text-gray-400"
         aria-hidden="true"
-        // onChange={() => setQuery("")}
+        onChange={() => searchHandler(query)}
       ></MagnifyingGlassIcon>
     </div>
   );

@@ -3,7 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 export const voteCheckFetch = async (postId: number) => {
   const res = await fetch(
     new URL(
-      "http://localhost:3001/api/vote/detail/check?" +
+      process.env.NEXT_PUBLIC_HOSTNAME +
+        "/api/vote/detail/check?" +
         new URLSearchParams({
           vote_id: String(postId),
         })

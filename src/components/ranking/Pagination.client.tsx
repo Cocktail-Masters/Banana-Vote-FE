@@ -1,21 +1,19 @@
 "use client";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import { Dispatch, SetStateAction, useState } from "react";
 import nextArrow from "@assets/icons/nextArrow.svg";
 import nextDoubleArrow from "@assets/icons/nextDoubleArrow.svg";
 import Image from "next/image";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import useCreateQueryString from "@/hooks/useCreateQueryString";
 
 const Pagination = ({
   total_page = 0,
   splitSize = 10,
   nowPageIndex,
-  setNowPageIndex,
 }: {
   total_page?: number;
   splitSize?: number;
   nowPageIndex: number;
-  setNowPageIndex: Dispatch<SetStateAction<number>>;
 }) => {
   // const [nowPage, setNowPage] = useState(0);
   const isMinWidth768 = useMediaQuery("(max-width: 768px)");
@@ -27,13 +25,22 @@ const Pagination = ({
     .fill(null)
     .map((_, index) => startPage + index);
 
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const createQueryString = useCreateQueryString();
+
   const nextButtonHandler = (addNumber: number) => {
     const checkValid = (v: number) => {
       if (v < 0) return 0;
       if (v >= total_page) return total_page - 1;
       return v;
     };
-    setNowPageIndex((v) => checkValid(v + addNumber));
+    const newPath =
+      pathname +
+      "?" +
+      createQueryString("page", String(checkValid(nowPageIndex + addNumber)));
+    router.push(newPath);
   };
 
   return (
@@ -77,7 +84,7 @@ const Pagination = ({
                 : "relative inline-flex h-10 w-10 items-center justify-center rounded-full  text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             }
             onClick={() => {
-              setNowPageIndex(index);
+              nextButtonHandler(index - nowPageIndex);
             }}
           >
             {index + 1}

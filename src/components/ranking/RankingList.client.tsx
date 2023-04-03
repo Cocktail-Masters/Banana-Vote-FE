@@ -1,22 +1,25 @@
 "use client";
 import getRanking from "@/common/fetch/getRanking";
-import { rankingListTypes, seasonType } from "@/types";
+import { rankingListTypes } from "@/types";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import Loading from "../Loading";
-import Pagination from "./Pagination";
+import Pagination from "./Pagination.client";
+import { useSearchParams } from "next/navigation";
 
-export default function RankingList() {
-  // const data: rankingListTypes = await getData();
-  const [nowPageIndex, setNowPageIndex] = useState(0);
-
-  const { data, isLoading, isFetching } = useQuery<rankingListTypes>({
-    queryKey: ["ranking", nowPageIndex],
-    queryFn: () => getRanking(nowPageIndex),
+export default function RankingList({ seasonId }: { seasonId: string }) {
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
+  const { data, isLoading } = useQuery<rankingListTypes>({
+    queryKey: ["ranking", seasonId, page],
+    queryFn: () => getRanking({ seasonId, pageNum: Number(page) }),
   });
 
   if (isLoading) {
-    return <Loading></Loading>;
+    return (
+      <div className="flex h-[500px] w-full items-center justify-center">
+        <Loading></Loading>;
+      </div>
+    );
   }
 
   return (
@@ -54,8 +57,7 @@ export default function RankingList() {
       )}
       <Pagination
         total_page={data?.total_page}
-        nowPageIndex={nowPageIndex}
-        setNowPageIndex={setNowPageIndex}
+        nowPageIndex={Number(page)}
       ></Pagination>
     </>
   );

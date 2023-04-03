@@ -6,13 +6,16 @@ export const postVoteCheck = async ({
   vote_item_id,
   point,
 }: predictionType) => {
-  const res = await fetch("http://localhost:3001/api/vote/detail/check", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ is_participation, vote_item_id, point }),
-  });
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_HOSTNAME + "/api/vote/detail/check",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ is_participation, vote_item_id, point }),
+    }
+  );
   return res;
 };
 

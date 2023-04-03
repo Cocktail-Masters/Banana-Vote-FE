@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { voteFeedType } from "@/types";
 import { voteFeedListType } from "@/types";
+import Loading from "./../Loading";
 
 const FeedListArea = () => {
   /**
@@ -24,7 +25,7 @@ const FeedListArea = () => {
   const { ref, inView } = useInView({ threshold: 0.05 });
   useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();
-  }, [inView]);
+  }, [fetchNextPage, hasNextPage, inView]);
 
   return (
     <div className="flex w-full flex-col items-start lg:w-[90%] xl:mr-5 xl:w-[800px]">
@@ -38,7 +39,7 @@ const FeedListArea = () => {
       ) : (
         <>
           {/* 투표 생성 버튼 */}
-          <VoteCreateBar nickname="연복이" badge_url="" />
+          <VoteCreateBar badge_image_url="" />
           {/* 투표 피드 리스트 */}
           {data &&
             data.pages.map((page: voteFeedListType) => {
@@ -49,10 +50,9 @@ const FeedListArea = () => {
 
           {hasNextPage && (
             // TODO : 스켈레톤 만들기
-            <div
-              className="h-100 mt-5 mb-5 flex w-full bg-gray-400"
-              ref={ref}
-            />
+            <div className="h-100 mt-5 mb-5 flex w-full" ref={ref}>
+              <Loading />
+            </div>
           )}
         </>
       )}

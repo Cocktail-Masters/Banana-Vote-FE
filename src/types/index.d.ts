@@ -52,15 +52,25 @@ export type achivementsType = achivementType[];
 export type goodsType = {
   id: number;
   name: string;
+  description: string; // 상품에 대한 설명
+  image_url: string;
+  type: number;
+  price: number;
+  ea?: number; // 해당 상품 보유 갯수
+  expiration_date?: string; // 상품을 사용했을 때 적용이 종료되는 날짜
+  is_used?: boolean; // 사용 완료 여부
 };
 
 export type storeGoodsType = goodsType & {
-  type: string;
-  ea: number;
-  limit_date: string;
+  start_date: string; // 판매 시작일
+  end_date: string; // 판매 종료일
+  sell_count: number; // 판매된 갯수
+  use_period: number; // 꾸미기 등 장착을 시작하면 적용되는 기간 (ex. 30일)
 };
 
-export type storeGoodsTypes = storeGoodsType[];
+export type storeGoodsTypes = {
+  goods: storeGoodsType[];
+};
 
 export type goods_typeTypes = string[];
 

@@ -8,8 +8,6 @@ import { getSeasonFromApi } from "@/app/api/season/route";
 
 export async function generateStaticParams() {
   const seasons = getSeasonFromApi();
-  console.log(seasons);
-
   return seasons.map((season: seasonType) => ({
     seasonId: season.id.toString(),
   }));

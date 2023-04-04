@@ -77,7 +77,13 @@ const SearchInput = ({ seasonId }: { seasonId: string }) => {
 
   return (
     <div className="z-40 flex w-[330px] items-center justify-center gap-2 rounded-[20px] border-[1px] border-[#D9D9D9] bg-white p-2 drop-shadow-md">
-      <Combobox value={selected} onChange={setSelected}>
+      <Combobox
+        value={selected}
+        onChange={(prevSearch: searchListType) => {
+          setSelected(prevSearch);
+          setQuery(prevSearch.nickname);
+        }}
+      >
         <div className="relative mt-1 w-full">
           <div className="relative w-full cursor-default text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input

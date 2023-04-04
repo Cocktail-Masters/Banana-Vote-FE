@@ -32,7 +32,7 @@ export default defineConfig({
   reporter: "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    baseURL: "http://localhost:3001",
+    baseURL: process.env.NEXT_PUBLIC_HOSTNAME,
     browserName: "firefox",
     headless: true,
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */

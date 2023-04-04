@@ -1,10 +1,38 @@
-export default async function getRanking(page_num = 0, page_size = 10) {
+export default async function getRanking({
+  seasonId = "default",
+  pageNum = 0,
+  pageSize = 10,
+  nickname,
+}: {
+  seasonId?: string;
+  pageNum?: number;
+  pageSize?: number;
+  nickname?: string;
+}) {
+  const addSeasonQuery =
+    seasonId !== "default"
+      ? "&" +
+        new URLSearchParams({
+          season_id: seasonId,
+        })
+      : "";
+
+  const addNicknameQuery =
+    nickname !== undefined
+      ? "&" +
+        new URLSearchParams({
+          nickname: nickname,
+        })
+      : "";
   const url = new URL(
-    "http://localhost:3001/api/ranking?" +
+    process.env.NEXT_PUBLIC_HOSTNAME +
+      "/api/ranking?" +
       new URLSearchParams({
-        page_num: String(page_num),
-        page_size: String(page_size),
-      })
+        page_num: String(pageNum),
+        page_size: String(pageSize),
+      }) +
+      addSeasonQuery +
+      addNicknameQuery
   );
   const res = await fetch(url);
   // Recommendation: handle errors

@@ -1,17 +1,12 @@
-import SearchInput from "@/components/ranking/SearchInput";
-import SelectSeason from "@/components/ranking/SelectSeason";
-import HydratedRanking from "./hydrateRanking";
+import getSeason from "@/common/fetch/getSeason";
+import Redirect from "./redirect.client";
 
-const Ranking = () => {
+const Page = async () => {
+  const seasons = await getSeason();
   return (
-    <div className="">
-      <div className="flex w-full flex-row justify-between">
-        <SelectSeason></SelectSeason>
-        <SearchInput></SearchInput>
-      </div>
-      {/* @ts-expect-error Server Component */}
-      <HydratedRanking />
-    </div>
+    <Redirect
+      url={`${process.env.NEXT_PUBLIC_HOSTNAME}/ranking/${seasons[0]?.id}`}
+    ></Redirect>
   );
 };
-export default Ranking;
+export default Page;

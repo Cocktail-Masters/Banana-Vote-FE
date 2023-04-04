@@ -1,4 +1,4 @@
-import getRanking from "@/common/fetch/getRanking";
+import { getRankingFromApi } from "@/app/api/ranking/route";
 import { dehydrate, Hydrate } from "@tanstack/react-query";
 import getQueryClient from "../../getQueryClient";
 
@@ -12,7 +12,7 @@ export default async function HydratedRanking({
   const queryClient = getQueryClient();
   const defaultPage = 0;
   await queryClient.prefetchQuery(["ranking", seasonId, defaultPage], () =>
-    getRanking({ seasonId })
+    getRankingFromApi({ season_id: seasonId })
   );
   const dehydratedState = dehydrate(queryClient);
 

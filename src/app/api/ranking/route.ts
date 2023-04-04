@@ -26,14 +26,20 @@ const data = {
   ranking_list,
 };
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const season_id = searchParams.get("season_id");
-  const page_num = searchParams.get("page_num");
-  const page_size = searchParams.get("page_size");
-  const nickname = searchParams.get("nickname");
+type getRankingFromApiType = {
+  season_id?: string | null;
+  page_num?: string | null;
+  page_size?: string | null;
+  nickname?: string | null;
+};
 
-  if (nickname !== null && page_size !== null) {
+export const getRankingFromApi = ({
+  season_id,
+  page_num,
+  page_size,
+  nickname,
+}: getRankingFromApiType) => {
+  if (!!nickname && !!page_size) {
     const index = data.ranking_list.map((v) => v.nickname).indexOf(nickname);
     const nowPage = Math.floor(index / Number(page_size));
     const start = index - (index % Number(page_size));
@@ -50,7 +56,7 @@ export async function GET(request: Request) {
         }))
         .slice(start, end),
     };
-    return NextResponse.json(newData);
+    return newData;
   } else {
     const start = Number(page_num) * Number(page_size);
     const end = start + Number(page_size);
@@ -60,6 +66,21 @@ export async function GET(request: Request) {
         .map((v) => ({ ...v, nickname: `${season_id}_` + v.nickname }))
         .slice(start, end),
     };
-    return NextResponse.json(newData);
+    return newData;
   }
+};
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const season_id = searchParams.get("season_id");
+  const page_num = searchParams.get("page_num");
+  const page_size = searchParams.get("page_size");
+  const nickname = searchParams.get("nickname");
+  const a = getRankingFromApi({
+    season_id,
+    page_num,
+    page_size,
+    nickname,
+  });
+  return NextResponse.json(a);
 }

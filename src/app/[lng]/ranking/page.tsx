@@ -1,8 +1,8 @@
-import getSeason from "@/common/fetch/getSeason";
+import { getSeasonFromApi } from "@/app/api/season/route";
 import Redirect from "./redirect.client";
 
 const Page = async () => {
-  const seasons = await getSeason();
+  const seasons = getSeasonFromApi();
   return <Redirect url={`/ranking/${seasons[0]?.id}`}></Redirect>;
 };
 export default Page;

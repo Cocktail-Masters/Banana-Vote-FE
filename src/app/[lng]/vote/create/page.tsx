@@ -13,7 +13,7 @@ const CreateVotePage = () => {
         width="958"
         height="100"
       ></canvas>
-      {/* <CreateVote />; */}
+      <CreateVote />
     </>
   );
 };

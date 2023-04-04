@@ -11,6 +11,7 @@ import "./styles/slick.css";
 import "./styles/slick-theme.css";
 import { usePopularListQuery } from "@/hooks/reactQuery/usePopularListQuery";
 import { useInterestListQuery } from "@/hooks/reactQuery/useInterestListQuery";
+import Loading from "@/components/Loading";
 
 const RecommendArea = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -81,14 +82,18 @@ const RecommendArea = () => {
           }}
         >
           {popResponse.isLoading ? (
-            <div className="flex justify-center">Loading...</div>
+            <div className="mx-auto flex h-[154px] items-center justify-center">
+              <Loading />
+            </div>
           ) : (
             popResponse.data && (
               <RecommendBox contents={popResponse.data.items} />
             )
           )}
           {intResponse.isLoading ? (
-            <div className="flex justify-center">Loading...</div>
+            <div className="mx-auto flex h-[154px] items-center justify-center">
+              <Loading />
+            </div>
           ) : (
             intResponse.data && (
               <RecommendBox contents={intResponse.data.items} />

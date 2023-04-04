@@ -33,9 +33,11 @@ const FeedListArea = () => {
         /**
          * @TODO Loading 컴포넌트로 교체
          */
-        <div className="flex justify-center">Loading...</div>
+        <div className="mx-auto mt-10 flex items-center justify-center">
+          <Loading />
+        </div>
       ) : status === "error" ? (
-        <div className="flex justify-center">ERROR</div>
+        <div className="mx-auto flex justify-center">ERROR</div>
       ) : (
         <>
           {/* 투표 생성 버튼 */}

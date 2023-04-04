@@ -1,5 +1,4 @@
 "use client";
-import { motion, useCycle } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -17,7 +16,6 @@ const LayoutSideBar = ({
   tabs: tabType[];
 }) => {
   const pathname = usePathname();
-
   const [selectedTabPath, setSelectedTabPath] = useState<string | null>(null);
   useEffect(() => {
     const removeLanguagePath = "/" + pathname.split("/").slice(2).join("/");
@@ -27,8 +25,10 @@ const LayoutSideBar = ({
   return (
     <>
       <div
-        className="absolute top-0 right-0 z-[100] flex h-full w-[300px] transform flex-col gap-[30px] bg-gray-300 pt-[80px]  transition duration-200 lg:hidden"
-        style={{ transform: isOpen ? "translate(0%)" : "translate(100%)" }}
+        className="absolute top-0 right-0 z-[100] flex h-full w-[300px] transform flex-col gap-[30px] bg-gray-300 pt-[80px]  transition duration-200"
+        style={{
+          transform: isOpen ? "translate(0%)" : "translate(100%)",
+        }}
       >
         <LayoutNavigation isOpen={isOpen}>
           {tabs.map((item) => (

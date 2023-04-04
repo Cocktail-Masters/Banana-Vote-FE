@@ -1,14 +1,27 @@
 "use client";
-import { useState } from "react";
+import CardList from "@/components/common/cardList/CardList";
+import ContentList from "@/components/event/ContentList";
+import { useEventQuery } from "@/hooks/reactQuery/useEventQuery";
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 const EventDataSection = () => {
-  const [isEnd, setIsEnd] = useState<boolean>();
+  const [isEnd, setIsEnd] = useState<boolean>(true);
   const isIng = () => {
     setIsEnd(true);
   };
   const isNotIng = () => {
     setIsEnd(false);
   };
+  const { data, isFetching, hasNextPage, fetchNextPage } = useEventQuery({
+    pageIndex: 1,
+    close: isEnd,
+  });
+  const { ref, inView } = useInView({ threshold: 0.05 });
+  useEffect(() => {
+    if (inView && hasNextPage) fetchNextPage();
+  }, [fetchNextPage, hasNextPage, inView]);
+  console.log("data", data);
   return (
     <div className="h-full w-full">
       <div className="mt-3 flex w-full justify-end">
@@ -29,7 +42,17 @@ const EventDataSection = () => {
           종료
         </button>
       </div>
-      <div>{isEnd ? <div></div> : <div></div>}</div>
+      <div className="flex h-full w-full" ref={ref}>
+        {data !== undefined && data.pages && (
+          <div>
+            {data.pages.map((e, i) => (
+              <div key={i}>
+                <ContentList contentList={e.response} />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

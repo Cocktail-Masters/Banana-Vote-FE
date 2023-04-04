@@ -1,6 +1,5 @@
 import Provider from "./Provider";
 import { Noto_Sans } from "next/font/google";
-
 import "./globals.css";
 import LayoutHeader from "@/components/Layout/LayoutHeader";
 
@@ -17,11 +16,6 @@ export async function generateStaticParams() {
 //   },
 // };
 
-const notoSansKr = Noto_Sans({
-  subsets: ["latin"],
-  weight: "400",
-});
-
 export default function RootLayout({
   children,
   params: { lang },
@@ -30,7 +24,7 @@ export default function RootLayout({
   params: { lang: string };
 }) {
   return (
-    <html lang={lang} className={notoSansKr.className}>
+    <html lang={lang}>
       <body>
         <Provider>
           <LayoutHeader></LayoutHeader>

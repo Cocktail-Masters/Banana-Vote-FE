@@ -26,7 +26,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ["noto-sans"],
+      sans: ["Pretendard", "noto-sans"],
     },
   },
   plugins: [],

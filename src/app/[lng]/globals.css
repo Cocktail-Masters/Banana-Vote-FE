@@ -2,6 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 100;
+  font-style: normal;
+  src: url("/fonts/Pretendard-Thin.woff2") format("ttf");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 200;
+  font-style: normal;
+  src: url("/fonts/Pretendard-ExtraLight.woff2") format("ttf");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 300;
+  font-style: normal;
+  src: url("/fonts/Pretendard-Light.woff2") format("ttf");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/Pretendard-Regular.woff2") format("ttf");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-style: normal;
+  src: url("/fonts/Pretendard-Medium.woff2") format("ttf");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 600;
+  font-style: normal;
+  src: url("/fonts/Pretendard-SemiBold.woff2") format("ttf");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 700;
+  font-style: normal;
+  src: url("/fonts/Pretendard-Bold.woff2") format("ttf");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 800;
+  font-style: normal;
+  src: url("/fonts/Pretendard-ExtraBold.woff2") format("ttf");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 900;
+  font-style: normal;
+  src: url("/fonts/Pretendard-Black.woff2") format("ttf");
+}
+
 :root {
   margin-top: 0px;
   margin-left: 0px;
@@ -18,4 +81,5 @@ body {
   position: relative;
   overflow-x: hidden;
   max-width: 100vw;
+  font-family: "Pretendard";
 }

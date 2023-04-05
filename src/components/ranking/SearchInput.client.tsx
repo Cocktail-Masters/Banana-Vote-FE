@@ -52,10 +52,10 @@ const SearchInput = ({ seasonId }: { seasonId: string }) => {
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setSearchList((users) => {
-        if (users.some((v) => v.nickname === query)) return users;
         if (query === "") return users;
+        const newUsers = users.filter((v) => v.nickname !== query);
         const newItem = { id: nanoid(), nickname: query };
-        const result = [newItem, ...users].slice(0, 5);
+        const result = [newItem, ...newUsers].slice(0, 5);
         setSelected(newItem);
         localStorage.setItem("searchList", JSON.stringify(result));
         return result;

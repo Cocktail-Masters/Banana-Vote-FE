@@ -2,10 +2,10 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 export const eventFetch = async ({
   pageIndex,
-  close = false,
+  close,
 }: {
   pageIndex: number;
-  close?: boolean;
+  close: boolean;
 }) => {
   const response = await fetch(
     `
@@ -14,30 +14,24 @@ export const eventFetch = async ({
         close: String(close),
       })
   ).then((response) => response.json());
-  console.log("response", response);
-  return response;
+  return {
+    response: response.events,
+    end_page_index: response.end_page_index,
+    next_page: pageIndex + 1,
+  };
 };
 
-export const useEventQuery = ({
-  pageIndex,
-  close = false,
-}: {
-  pageIndex: number;
-  close?: boolean;
-}) => {
+export const useEventQuery = ({ close = false }: { close?: boolean }) => {
   return useInfiniteQuery({
-    queryKey: ["eventList", pageIndex],
-    queryFn: async () => {
-      const response = await eventFetch({ pageIndex });
-      console.log(response);
-      return {
-        response: response.events,
-        is_last: response.is_last,
-        current_page: pageIndex,
-      };
+    queryKey: ["eventList", close],
+    queryFn: async ({ pageParam = 0 }) => {
+      const response = await eventFetch({ pageIndex: pageParam, close });
+      return response;
     },
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.is_last ? lastPage.current_page + 1 : undefined;
+      return lastPage.end_page_index <= lastPage.next_page
+        ? undefined
+        : lastPage.next_page;
     },
   });
 };

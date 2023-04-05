@@ -251,6 +251,7 @@ export type eventTypes = {
   end_date: string;
   is_closed?: boolean;
   n_view?: number;
+  vote_id: number;
 };
 
 /**

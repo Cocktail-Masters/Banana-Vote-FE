@@ -9,6 +9,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Smartphone+Event",
       end_date: "2023-07-31",
       is_closed: false,
+      vote_id: 1,
     },
     {
       title: "페인트방식 미술전",
@@ -17,6 +18,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Art+Exhibition",
       end_date: "2023-06-15",
       is_closed: false,
+      vote_id: 2,
     },
     {
       title: "스포츠 대회",
@@ -24,6 +26,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Sports+Event",
       end_date: "2023-05-20",
       is_closed: false,
+      vote_id: 3,
     },
     {
       title: "음식 쇼핑몰 오픈 기념 할인 이벤트",
@@ -32,6 +35,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Food+Sale",
       end_date: "2023-06-30",
       is_closed: false,
+      vote_id: 4,
     },
     {
       title: "패션 브랜드 새 제품 출시",
@@ -40,6 +44,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Fashion+New+Product",
       end_date: "2023-05-31",
       is_closed: false,
+      vote_id: 5,
     },
     {
       title: "숨겨진 고양이 찾기",
@@ -47,6 +52,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Hidden+Cat",
       end_date: "2023-06-30",
       is_closed: false,
+      vote_id: 6,
     },
     {
       title: "오늘의 메뉴 투표",
@@ -54,6 +60,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Lunch+Vote",
       end_date: "2023-04-30",
       is_closed: false,
+      vote_id: 7,
     },
     {
       title: "자동차 경주 대회",
@@ -61,6 +68,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Car+Race",
       end_date: "2023-05-10",
       is_closed: false,
+      vote_id: 8,
     },
     {
       title: "헬스장 1주년 기념 이벤트",
@@ -68,6 +76,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Gym+Anniversary",
       end_date: "2023-04-15",
       is_closed: false,
+      vote_id: 9,
     },
     {
       title: "바다에서 놀자!",
@@ -75,6 +84,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Beach+Fun",
       end_date: "2023-07-15",
       is_closed: false,
+      vote_id: 10,
     },
     {
       title: "하루 1분 스트레칭 챌린지",
@@ -82,6 +92,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Stretching+Challenge",
       end_date: "2023-04-30",
       is_closed: false,
+      vote_id: 11,
     },
     {
       title: "대규모 할인 물품 투표",
@@ -89,13 +100,7 @@ const dummyData = {
       image: "https://dummyimage.com/600x400/000/fff&text=Discount+Vote",
       end_date: "2023-05-05",
       is_closed: false,
-    },
-    {
-      title: "어린이날 기념 이벤트",
-      content: "어린이들이 즐길 수 있는 다양한 이벤트!",
-      image: "https://dummyimage.com/600x400/000/fff&text=Children's+Day",
-      end_date: "2023-05-05",
-      is_closed: false,
+      vote_id: 12,
     },
   ],
   is_last: false,
@@ -106,7 +111,7 @@ export async function GET(request: Request) {
   const { searchParams, pathname } = await new URL(request.url);
   const close = searchParams.get("close");
   const page = await pathname.split("/");
-  console.log(page[3]);
+  console.log("test", page[3], close);
 
   if (page[3] === "2") {
     dummyData.is_last = true;

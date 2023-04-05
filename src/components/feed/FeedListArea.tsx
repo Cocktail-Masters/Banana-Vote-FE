@@ -1,6 +1,7 @@
 /**
  * @author mingyu
  */
+"use client";
 import VoteCreateBar from "../home/VoteCreateBar";
 import Feed from "./Feed";
 import { useFeedListQuery } from "@/hooks/reactQuery/useFeedListQuery";
@@ -45,9 +46,11 @@ const FeedListArea = () => {
           {/* 투표 피드 리스트 */}
           {data &&
             data.pages.map((page: voteFeedListType) => {
-              return page.votes.map((feedData: voteFeedType, index: number) => {
-                return <Feed key={index} data={feedData} />;
-              });
+              return page.votes?.map(
+                (feedData: voteFeedType, index: number) => {
+                  return <Feed key={index} data={feedData} />;
+                }
+              );
             })}
 
           {hasNextPage && (

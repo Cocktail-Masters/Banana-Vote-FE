@@ -2,11 +2,11 @@ import Provider from "./Provider";
 import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import LayoutHeader from "@/components/Layout/LayoutHeader";
-
-const languages = ["en"];
+import SettingTheme from "./settingTheme";
+import { i18n } from "./../../../i18n-config";
 
 export async function generateStaticParams() {
-  return languages.map((lng) => ({ lng }));
+  return i18n.locales.map((lng) => ({ lng }));
 }
 
 // export const metadata = {
@@ -24,8 +24,9 @@ export default function RootLayout({
   params: { lang: string };
 }) {
   return (
-    <html lang={lang}>
-      <body>
+    <html lang={lang} className="">
+      <SettingTheme />
+      <body className="bg-white dark:bg-black">
         <Provider>
           <LayoutHeader></LayoutHeader>
           <div className={"tiles"}>{children}</div>

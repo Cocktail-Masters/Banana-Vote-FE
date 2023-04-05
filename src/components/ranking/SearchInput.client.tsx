@@ -10,13 +10,16 @@ import { nanoid } from "nanoid";
 import { useRouter, usePathname } from "next/navigation";
 import getRanking from "@/common/fetch/getRanking";
 import useCreateQueryString from "@/hooks/useCreateQueryString";
+import useRankingRouter from "@/hooks/useRankingRouter";
+import { rankingParamsType } from "@/app/[lng]/ranking/[seasonId]/[paginationIndex]/page";
 
 type searchListType = {
   id: string;
   nickname: string;
 };
 
-const SearchInput = ({ seasonId }: { seasonId: string }) => {
+const SearchInput = ({ params }: { params: rankingParamsType }) => {
+  const { seasonId } = params;
   const router = useRouter();
   const pathname = usePathname();
 
@@ -39,14 +42,14 @@ const SearchInput = ({ seasonId }: { seasonId: string }) => {
 
   const createQueryString = useCreateQueryString();
 
+  const { routeCallbackHandler } = useRankingRouter(params);
+
   const searchHandler = async (nickname: string) => {
     const newRanking: { page: number; now_page: number } = await getRanking({
       seasonId,
       nickname,
     });
-    const newPath =
-      pathname + "?" + createQueryString("page", String(newRanking.now_page));
-    router.push(newPath);
+    routeCallbackHandler({ newPageIndex: newRanking.now_page });
   };
 
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {

@@ -28,6 +28,8 @@ export const feedListFetch = async () => {
     .then((response) => response.json())
     .catch((e) => e);
 
+  console.log("RESPONSE");
+  console.log(response);
   return response.res;
 };
 
@@ -37,6 +39,8 @@ export const useFeedListQuery = ({ queryKey }: { queryKey?: string }) => {
     queryFn: ({ pageParam = 0 }) => getFeedList(pageParam),
     getNextPageParam: (lastPage, allPages) => {
       // find isLast?
+      console.log("LAST PAGE");
+      console.log(lastPage);
       const maxPage = lastPage.total_count / FEEDS_PER_PAGE;
       const nextPage = allPages.length + 1;
       return nextPage <= maxPage ? nextPage : undefined;

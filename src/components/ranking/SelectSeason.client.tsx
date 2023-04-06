@@ -7,8 +7,10 @@ import getSeason from "@/common/fetch/getSeason";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../Loading";
 import Link from "next/link";
+import { rankingParamsType } from "@/app/[lng]/ranking/[seasonId]/[paginationIndex]/page";
 
-const SelectSeason = ({ selectedSeasonId }: { selectedSeasonId: string }) => {
+const SelectSeason = ({ params }: { params: rankingParamsType }) => {
+  const { seasonId: selectedSeasonId } = params;
   const { data: seasonList = [], isLoading } = useQuery<seasonTypes>({
     queryKey: ["season"],
     queryFn: getSeason,
@@ -48,7 +50,7 @@ const SelectSeason = ({ selectedSeasonId }: { selectedSeasonId: string }) => {
                 return (
                   <Menu.Item key={v.id}>
                     {({ active }) => (
-                      <Link href={`/ranking/${String(v.id)}`}>
+                      <Link href={`/ranking/${String(v.id)}/0`}>
                         <button
                           className={`${
                             active

@@ -7,7 +7,7 @@ import { useInterestListDummy } from "@components/home/__test__/useInterestListD
 
 export const fetchInterestList = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/home/interest/a`
+    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/home/interest`
   )
     .then((response) => response.json())
     .catch((e) => e);

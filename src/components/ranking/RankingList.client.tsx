@@ -4,14 +4,15 @@ import { rankingListTypes } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../Loading";
 import Pagination from "./Pagination.client";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { rankingParamsType } from "@/app/[lng]/ranking/[seasonId]/[paginationIndex]/page";
 
-export default function RankingList({ seasonId }: { seasonId: string }) {
-  const searchParams = useSearchParams();
-  const page = searchParams.get("page");
+export default function RankingList({ params }: { params: rankingParamsType }) {
+  const { seasonId } = params;
+  const paginationIndex = Number(params.paginationIndex);
   const { data, isLoading } = useQuery<rankingListTypes>({
-    queryKey: ["ranking", seasonId, page],
-    queryFn: () => getRanking({ seasonId, pageNum: Number(page) }),
+    queryKey: ["ranking", seasonId, paginationIndex],
+    queryFn: () => getRanking({ seasonId, pageNum: paginationIndex }),
   });
 
   if (isLoading) {
@@ -57,7 +58,8 @@ export default function RankingList({ seasonId }: { seasonId: string }) {
       )}
       <Pagination
         total_page={data?.total_page}
-        nowPageIndex={Number(page)}
+        nowPageIndex={paginationIndex}
+        params={params}
       ></Pagination>
     </>
   );

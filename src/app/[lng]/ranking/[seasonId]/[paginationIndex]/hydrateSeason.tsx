@@ -1,6 +1,6 @@
 import { getSeasonFromApi } from "@/app/api/season/route";
 import { dehydrate, Hydrate } from "@tanstack/react-query";
-import getQueryClient from "../../getQueryClient";
+import getQueryClient from "../../../getQueryClient";
 
 export default async function HydratedSeason({
   children,

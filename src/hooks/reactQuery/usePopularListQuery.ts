@@ -7,7 +7,7 @@ import { usePopularListDummy } from "@components/home/__test__/usePopularListDum
 
 export const fetchPopularList = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/home/popular/a`
+    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/home/popular`
   )
     .then((response) => response.json())
     .catch((e) => e);

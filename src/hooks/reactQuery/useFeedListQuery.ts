@@ -6,7 +6,7 @@ import { FEEDS_PER_PAGE } from "@/constants/home";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 // tmp function
-export const getFeedList = async (pageParam: number = 0) => {
+export const getFeedList = (pageParam: number = 0) => {
   const START = FEEDS_PER_PAGE * pageParam;
   const END = FEEDS_PER_PAGE * (pageParam + 1);
 

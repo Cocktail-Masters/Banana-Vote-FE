@@ -5,13 +5,17 @@
 import VoteCreateBar from "../home/VoteCreateBar";
 import Feed from "./Feed";
 import { useFeedListQuery } from "@/hooks/reactQuery/useFeedListQuery";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { voteFeedType } from "@/types";
 import { voteFeedListType } from "@/types";
 import Loading from "./../Loading";
+import VoteSearchBar from "@/components/home/VoteSearchBar";
+import VoteFilterBar from "@/components/home/VoteFilterBar";
 
 const FeedListArea = () => {
+  const [keyword, setKeyword] = useState<string>("");
+
   /**
    * @description useInfiniteQuery를 사용한 무한 스크롤
    */
@@ -41,7 +45,11 @@ const FeedListArea = () => {
         <div className="mx-auto flex justify-center">ERROR</div>
       ) : (
         <>
-          {/* 투표 생성 버튼 */}
+          {/* Search Bar */}
+          <VoteSearchBar keyword={keyword} setKeyword={setKeyword} />
+          {/* Filter Bar */}
+          <VoteFilterBar />
+          {/* Create Bar */}
           <VoteCreateBar badge_image_url="" />
           {/* 투표 피드 리스트 */}
           {data &&

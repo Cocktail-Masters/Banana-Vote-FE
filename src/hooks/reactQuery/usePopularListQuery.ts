@@ -3,21 +3,20 @@
  */
 
 import { useQuery } from "@tanstack/react-query";
-import { usePopularListDummy } from "../dummy/usePopularListDummy";
+import { usePopularListDummy } from "@components/home/__test__/usePopularListDummy";
 
-type Response = {
-  items: Item[];
-};
+export const fetchPopularList = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/home/popular/a`
+  )
+    .then((response) => response.json())
+    .catch((e) => e);
 
-type Item = {
-  vote_id: number;
-  vote_title: string;
-  n_view: number;
-  n_prediction: number;
+  return response.res;
 };
 
 export const usePopularListQuery = ({ queryKey }: { queryKey: string }) => {
-  return useQuery<Response>([queryKey], async () => {
+  return useQuery([queryKey], async () => {
     // TODO : api 요청으로 데이터 받아오기
     const response = usePopularListDummy;
 

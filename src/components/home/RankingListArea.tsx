@@ -6,6 +6,7 @@
  */
 import RankingBox from "./RankingBox";
 import { useRankingTop5Query } from "./../../hooks/reactQuery/useRankingTop5Query";
+import Loading from "@/components/Loading";
 
 const RankingListArea = () => {
   const { isLoading, error, data } = useRankingTop5Query({
@@ -15,7 +16,9 @@ const RankingListArea = () => {
   return (
     <div className="mx-auto mt-4 mb-4 h-[260px] w-[360px] select-none rounded-xl bg-white drop-shadow-md">
       {isLoading || !data ? (
-        <div className="flex justify-center">Loading...</div>
+        <div className="mx-auto mt-10 flex items-center justify-center">
+          <Loading />
+        </div>
       ) : (
         <RankingBox title={"시즌 랭킹"} contents={data.ranking_list} />
       )}

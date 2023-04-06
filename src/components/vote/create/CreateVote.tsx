@@ -7,6 +7,7 @@ import VoteOptionToggleButton from "./VoteOptionToggleButton";
 import { nanoid } from "nanoid";
 import VoteCreatTag from "@components/tag/VoteCreateTag";
 import {
+  fetchCreateVote,
   useRegistrationMutation,
   voteRegistrationItemType,
 } from "@/hooks/reactQuery/mutation/useRegistrationMutation";
@@ -14,6 +15,7 @@ import uploadFirebase from "@/common/uploadFirebase";
 
 import DatePicker from "@/components/date/Datepicker";
 import CreateVoteContent from "./CreateVoteContent";
+import { useMutation } from "@tanstack/react-query";
 
 export type voteItemType = {
   id: string;
@@ -113,7 +115,7 @@ const CreateVote = () => {
                 tags: tagArray,
               };
               mutate(
-                { uri: "test", sendData },
+                { createVoteData: sendData },
                 {
                   onSuccess: () => {
                     alert("성공함");

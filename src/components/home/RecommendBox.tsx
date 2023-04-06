@@ -1,35 +1,23 @@
-"use client";
-
 /**
  * @author mingyu
  */
+import { popularType, popularTypes } from "@/types";
 import Link from "next/link";
 
-type recommendContents = {
-  vote_id: number;
-  vote_title: string;
-  n_view: number;
-  n_prediction: number;
-};
-
-type recommendBoxProps = {
-  contents?: recommendContents[];
-};
-
-const RecommendBox = ({ contents }: recommendBoxProps) => {
+const RecommendBox = ({ votes }: popularTypes) => {
   return (
     <div className="h-full w-full">
-      {!contents || contents.length === 0 ? (
+      {!votes || votes.length === 0 ? (
         <p className="mb-10 flex h-32 items-center justify-center font-semibold">
           글이 없습니다.
         </p>
       ) : (
-        contents.map((content: recommendContents) => {
+        votes.map((content: popularType) => {
           return (
-            <div className="mb-2" key={content.vote_id}>
-              <Link href={`/vote/detail/${content.vote_id}`} passHref>
+            <div className="mb-2" key={content.id}>
+              <Link href={`/vote/detail/${content.id}`} passHref>
                 <p className="truncate hover:text-blue-500 hover:decoration-solid">
-                  {content.vote_title}
+                  {content.title}
                 </p>
               </Link>
             </div>

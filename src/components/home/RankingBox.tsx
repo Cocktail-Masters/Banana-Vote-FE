@@ -5,17 +5,11 @@ import goldMedal from "@assets/icons/medals/gold.svg";
 import silverMedal from "@assets/icons/medals/silver.svg";
 import bronzeMedal from "@assets/icons/medals/bronze.svg";
 import Image from "next/image";
-
-type rankingContents = {
-  user_id: number;
-  ranking: number;
-  nickname: string;
-  score: number;
-};
+import { seasonUserType } from "@/types";
 
 type rankingBoxProps = {
   title: string;
-  contents?: rankingContents[];
+  contents?: seasonUserType[];
 };
 
 const RankingBox = ({ title, contents }: rankingBoxProps) => {
@@ -59,10 +53,10 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
             시즌 랭킹 정보가 없습니다.
           </p>
         ) : (
-          contents.map((content: rankingContents, index: number) => {
+          contents.map((content: seasonUserType, index: number) => {
             if (index === 0) {
               return (
-                <div className="mb-2" key={content.user_id}>
+                <div className="mb-2" key={content.id}>
                   <div className="flex">
                     <Image
                       src={goldMedal}
@@ -80,7 +74,7 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
               );
             } else if (index === 1) {
               return (
-                <div className="mb-2" key={content.user_id}>
+                <div className="mb-2" key={content.id}>
                   <div className="flex">
                     <Image
                       src={silverMedal}
@@ -98,7 +92,7 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
               );
             } else if (index === 2) {
               return (
-                <div className="mb-2" key={content.user_id}>
+                <div className="mb-2" key={content.id}>
                   <div className="flex">
                     <Image
                       src={bronzeMedal}
@@ -116,7 +110,7 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
               );
             } else {
               return (
-                <div className="mb-2" key={content.user_id}>
+                <div className="mb-2" key={content.id}>
                   <div className="flex">
                     <p className="h-auto w-5 text-center text-base font-bold">
                       {index + 1}

@@ -8,6 +8,7 @@ import Link from "next/link";
 import LayoutSidebar from "@components/Layout/LayoutSideBar";
 import HamburgerMenuButton from "../animation/HamburgerMenuButton";
 import LayoutTopBar from "./LayoutTopBar";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export type tabType = {
   label: string;
@@ -15,6 +16,7 @@ export type tabType = {
 };
 
 const LayoutHeader = () => {
+  const minWidth650 = useMediaQuery("(min-width:960px)");
   const tabs: tabType[] = [
     { label: "투표목록", path: "/home" },
     { label: "인기투표", path: "/vote/popular" },
@@ -25,20 +27,9 @@ const LayoutHeader = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const menuClose = useCallback(
-    (event: MediaQueryListEvent) => {
-      if (event.matches && isOpen === true) {
-        setIsOpen(false);
-      }
-    },
-    [isOpen]
-  );
-
   useEffect(() => {
-    let matchMedia650px = window.matchMedia("(min-width:960px)");
-    matchMedia650px.addEventListener("change", menuClose);
-    return () => matchMedia650px.removeEventListener("change", menuClose);
-  }, [menuClose]);
+    if (isOpen && minWidth650) setIsOpen(false);
+  }, [isOpen, minWidth650]);
 
   return (
     <>
@@ -56,7 +47,7 @@ const LayoutHeader = () => {
             <Image src={Logo} alt={"banana vote logo"} />
           </Link>
         </div>
-        <div className="relative hidden h-full w-full flex-row items-center p-0 text-2xl lg:flex">
+        <div className="invisible relative flex h-full w-full flex-row items-center p-0 text-2xl lg:visible">
           <LayoutTopBar tabs={tabs} />
         </div>
         <div className="visible relative z-[110] m-3 p-1 lg:invisible lg:absolute">

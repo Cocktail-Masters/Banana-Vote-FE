@@ -4,11 +4,10 @@ import SelectSeason from "@/components/ranking/SelectSeason.client";
 import HydratedRanking from "./hydrateRanking";
 import HydratedSeason from "./hydrateSeason";
 import { seasonType } from "@/types";
-import getSeason from "@/common/fetch/getSeason";
+import { getSeasonFromApi } from "@/app/api/season/route";
 
 export async function generateStaticParams() {
-  const seasons = await getSeason();
-
+  const seasons = getSeasonFromApi();
   return seasons.map((season: seasonType) => ({
     seasonId: season.id.toString(),
   }));

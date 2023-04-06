@@ -6,6 +6,10 @@
 import { NextResponse } from "next/server";
 import dummyData from "./DummyData.json";
 
+export const getSeasonFromApi = () => {
+  return dummyData.seasons;
+};
+
 export async function GET() {
   return NextResponse.json(dummyData.seasons);
 }

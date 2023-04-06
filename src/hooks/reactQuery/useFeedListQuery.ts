@@ -23,7 +23,12 @@ export const getFeedList = async (pageParam: number = 0) => {
 // TODO : API 호출 수정
 export const feedListFetch = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/feed/a/b`
+    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/feed/a/b`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
   )
     .then((response) => response.json())
     .catch((e) => e);

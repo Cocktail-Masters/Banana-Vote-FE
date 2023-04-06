@@ -18,21 +18,24 @@ export const getFeedList = (pageParam: number = 0) => {
     votes: items,
   };
 
-  console.log("GET FEED LIST");
-  console.log(response);
   return response;
 };
 
 // TODO : API 호출 수정
 export const feedListFetch = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/feed/a/b`
-  )
+  let response = await fetch(`${process.env.NEXT_PUBLIC_HOSTNAME}/api/feed/a/b`)
     .then((response) => response.json())
     .catch((e) => e);
 
-  console.log("RESPONSE");
-  console.log(response);
+  // * Vercel Build 오류로 예외처리 하드코딩
+  if (!response || !response.res) {
+    response = {
+      res: {
+        total_count: 0,
+        votes: [],
+      },
+    };
+  }
   return response.res;
 };
 
@@ -42,9 +45,6 @@ export const useFeedListQuery = ({ queryKey }: { queryKey?: string }) => {
     queryFn: ({ pageParam = 0 }) => getFeedList(pageParam),
     getNextPageParam: (lastPage, allPages) => {
       // find isLast?
-      console.log("LAST PAGE");
-      console.log(lastPage);
-
       const maxPage = lastPage ? lastPage.total_count : 0 / FEEDS_PER_PAGE;
       const nextPage = allPages.length + 1;
       return nextPage <= maxPage ? nextPage : undefined;

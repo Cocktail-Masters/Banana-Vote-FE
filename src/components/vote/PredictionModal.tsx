@@ -13,16 +13,18 @@ const VoteDetailPredictionModal = ({
   onClose,
   voteItemId,
   point,
+  postId,
 }: {
   isOpen: boolean;
   onClose: () => void;
   voteItemId: number;
   point: number;
+  postId: number;
 }) => {
   // 포인트 관련해서는 recoil 완성 하고 나서 작성함.
   const { data, isFetching } = useVotePredictionQuery({
     queryKey: "prediction",
-    postId: 1,
+    postId: postId,
   });
   console.log(data);
 

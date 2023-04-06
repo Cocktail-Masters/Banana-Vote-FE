@@ -23,7 +23,7 @@ export const getFeedList = (pageParam: number = 0) => {
 
 // TODO : API 호출 수정
 export const feedListFetch = async () => {
-  let response = await fetch(`${process.env.NEXT_PUBLIC_HOSTNAME}/api/feed/a/b`)
+  let response = await fetch(`${process.env.NEXT_PUBLIC_HOSTNAME}/api/feed`)
     .then((response) => response.json())
     .catch((e) => e);
 

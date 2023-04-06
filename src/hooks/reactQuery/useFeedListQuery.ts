@@ -17,6 +17,9 @@ export const getFeedList = (pageParam: number = 0) => {
     total_count: tmpArr.length,
     votes: items,
   };
+
+  console.log("GET FEED LIST");
+  console.log(response);
   return response;
 };
 

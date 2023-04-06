@@ -23,12 +23,7 @@ export const getFeedList = async (pageParam: number = 0) => {
 // TODO : API 호출 수정
 export const feedListFetch = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/feed/a/b`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
+    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/feed/a/b`
   )
     .then((response) => response.json())
     .catch((e) => e);
@@ -46,7 +41,8 @@ export const useFeedListQuery = ({ queryKey }: { queryKey?: string }) => {
       // find isLast?
       console.log("LAST PAGE");
       console.log(lastPage);
-      const maxPage = lastPage.total_count / FEEDS_PER_PAGE;
+
+      const maxPage = lastPage ? lastPage.total_count : 0 / FEEDS_PER_PAGE;
       const nextPage = allPages.length + 1;
       return nextPage <= maxPage ? nextPage : undefined;
     },

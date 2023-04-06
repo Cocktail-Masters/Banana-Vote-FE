@@ -14,8 +14,13 @@ type cardBadgeProps = {
 
 const CardBadge = ({ label, bgColor, textColor }: cardBadgeProps) => {
   return (
-    <div className={`mr-2 flex rounded-md bg-[${bgColor}] pl-2 pr-2`}>
-      <p className={`text-sm font-bold text-${textColor}`}>{label}</p>
+    <div
+      className={`mr-2 flex rounded-md pl-2 pr-2`}
+      style={{ backgroundColor: bgColor }}
+    >
+      <p className={`text-sm font-bold`} style={{ color: textColor }}>
+        {label}
+      </p>
     </div>
   );
 };

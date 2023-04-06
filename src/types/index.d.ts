@@ -187,20 +187,25 @@ export type predictionType = {
 };
 
 export type popularType = {
-  vote_id: number;
-  voteTitle: string;
-  voteImage: string;
-  nView: number;
-  nPrediction: number; // 참여 횟수 전체 합
-  voteItems: voteItemTypes[];
+  id: number;
+  title: string;
+  hits: number;
+  voted_number: number;
+};
+
+export type popularTypes = {
+  votes: popularType[];
 };
 
 export type interestType = {
-  vote_id: number;
-  voteTitle: string;
-  voteImage: string;
-  nView: number;
-  nPrediction: number; // 참여 횟수 전체 합
+  id: number;
+  title: string;
+  hits: number;
+  voted_number: number;
+};
+
+export type interestTypes = {
+  votes: interestType[];
 };
 
 export type votesSearchTypes = voteDetailType[];
@@ -251,6 +256,7 @@ export type eventTypes = {
   end_date: string;
   is_closed?: boolean;
   n_view?: number;
+  vote_id: number;
 };
 
 /**
@@ -258,7 +264,7 @@ export type eventTypes = {
  */
 
 export type seasonUserType = {
-  user_id: number;
+  id: number;
   ranking: number;
   nickname: string;
   score: number;
@@ -266,6 +272,7 @@ export type seasonUserType = {
 
 export type rankingListTypes = {
   total_page: number;
+  now_page: number;
   ranking_list: seasonUserType[];
 };
 

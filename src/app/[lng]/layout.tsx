@@ -3,7 +3,7 @@ import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import LayoutHeader from "@/components/Layout/LayoutHeader";
 import SettingTheme from "./settingTheme";
-import { i18n } from "./../../../i18n-config";
+import { i18n } from "i18n-config";
 
 export async function generateStaticParams() {
   return i18n.locales.map((lng) => ({ lng }));

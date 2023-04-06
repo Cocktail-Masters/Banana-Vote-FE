@@ -15,7 +15,7 @@ const nextConfig = {
   swcMinify: true,
   reactStrictMode: true,
   images: {
-    domains: ["cdn.discordapp.com", "search.pstatic.net"],
+    domains: ["cdn.discordapp.com", "search.pstatic.net", "dummyimage.com"],
   },
 };
 

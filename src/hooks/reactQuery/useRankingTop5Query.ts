@@ -7,7 +7,7 @@ import { useRankingTop5Dummy } from "@/components/home/__test__/useRankingTop5Du
 
 export const fetchRankingTop5 = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/home/ranking/a`
+    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/home/ranking`
   )
     .then((response) => response.json())
     .catch((e) => e);

@@ -1,9 +1,8 @@
-"use client";
-
 /**
  * @author mingyu
  * @description 메인페이지에서 인기 투표, 관심 투표 표시하는 영역
  */
+"use client";
 import RecommendBox from "./RecommendBox";
 import Slider from "react-slick";
 import { useState } from "react";
@@ -11,6 +10,7 @@ import "./styles/slick.css";
 import "./styles/slick-theme.css";
 import { usePopularListQuery } from "@/hooks/reactQuery/usePopularListQuery";
 import { useInterestListQuery } from "@/hooks/reactQuery/useInterestListQuery";
+import Loading from "@/components/Loading";
 
 const RecommendArea = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -81,18 +81,18 @@ const RecommendArea = () => {
           }}
         >
           {popResponse.isLoading ? (
-            <div className="flex justify-center">Loading...</div>
+            <div className="mx-auto flex h-[154px] items-center justify-center">
+              <Loading />
+            </div>
           ) : (
-            popResponse.data && (
-              <RecommendBox contents={popResponse.data.items} />
-            )
+            popResponse.data && <RecommendBox votes={popResponse.data.votes} />
           )}
           {intResponse.isLoading ? (
-            <div className="flex justify-center">Loading...</div>
+            <div className="mx-auto flex h-[154px] items-center justify-center">
+              <Loading />
+            </div>
           ) : (
-            intResponse.data && (
-              <RecommendBox contents={intResponse.data.items} />
-            )
+            intResponse.data && <RecommendBox votes={intResponse.data.votes} />
           )}
         </Slider>
       </div>

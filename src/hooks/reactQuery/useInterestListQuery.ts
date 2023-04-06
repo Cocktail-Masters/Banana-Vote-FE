@@ -3,7 +3,17 @@
  */
 
 import { useQuery } from "@tanstack/react-query";
-import { useInterestListDummy } from "../dummy/useInterestListDummy";
+import { useInterestListDummy } from "@components/home/__test__/useInterestListDummy";
+
+export const fetchInterestList = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/home/interest/a`
+  )
+    .then((response) => response.json())
+    .catch((e) => e);
+
+  return response.res;
+};
 
 export const useInterestListQuery = ({ queryKey }: { queryKey: string }) => {
   return useQuery([queryKey], async () => {

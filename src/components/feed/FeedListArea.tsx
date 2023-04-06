@@ -1,6 +1,7 @@
 /**
  * @author mingyu
  */
+"use client";
 import VoteCreateBar from "../home/VoteCreateBar";
 import Feed from "./Feed";
 import { useFeedListQuery } from "@/hooks/reactQuery/useFeedListQuery";
@@ -33,9 +34,11 @@ const FeedListArea = () => {
         /**
          * @TODO Loading 컴포넌트로 교체
          */
-        <div className="flex justify-center">Loading...</div>
+        <div className="mx-auto mt-10 flex items-center justify-center">
+          <Loading />
+        </div>
       ) : status === "error" ? (
-        <div className="flex justify-center">ERROR</div>
+        <div className="mx-auto flex justify-center">ERROR</div>
       ) : (
         <>
           {/* 투표 생성 버튼 */}
@@ -43,9 +46,11 @@ const FeedListArea = () => {
           {/* 투표 피드 리스트 */}
           {data &&
             data.pages.map((page: voteFeedListType) => {
-              return page.votes.map((feedData: voteFeedType, index: number) => {
-                return <Feed key={index} data={feedData} />;
-              });
+              return page.votes?.map(
+                (feedData: voteFeedType, index: number) => {
+                  return <Feed key={index} data={feedData} />;
+                }
+              );
             })}
 
           {hasNextPage && (

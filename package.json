@@ -51,12 +51,12 @@
     "react-i18next": "^12.2.0",
     "react-intersection-observer": "^9.4.3",
     "react-slick": "^0.29.0",
-    "recoil": "0.7.7",
     "server-only": "^0.0.1",
     "slick-carousel": "^1.8.1",
     "timeago.js": "^4.0.2",
     "typescript": "4.9.5",
-    "yarn": "^1.22.19"
+    "yarn": "^1.22.19",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

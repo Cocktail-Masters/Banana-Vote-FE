@@ -23,7 +23,7 @@ const FeedListArea = () => {
   /**
    * @description useInfiniteQuery를 사용한 무한 스크롤
    */
-  let { data, status, hasNextPage, fetchNextPage } = useFeedListQuery(
+  const { data, status, hasNextPage, fetchNextPage } = useFeedListQuery(
     filterOptions.isClosed,
     filterOptions.sortBy,
     keyword

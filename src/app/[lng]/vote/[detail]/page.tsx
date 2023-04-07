@@ -3,10 +3,6 @@ import CommentListArea from "@/components/commentList";
 import { Locale } from "i18n-config";
 import HydrateDetail from "./hydrateDetail";
 
-export async function generateStaticParams() {
-  return [{ detail: "1" }];
-}
-
 const VoteDetail = ({
   params,
 }: {

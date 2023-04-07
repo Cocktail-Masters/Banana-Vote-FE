@@ -10,12 +10,14 @@ import VoteDetailPredictionModal from "../PredictionModal";
 import VoteDetailItemCard from "./ItemCard";
 import { Locale } from "i18n-config";
 import { voteItemType } from "@/types";
+import { getDictionary } from "get-dictionary";
 
 const VoteDetailItem = ({ postId }: { postId: number }) => {
   const { data } = useVoteDetailQuery({
     queryKey: "voteDetail",
     postId: postId,
   });
+  // const { messages } = getDictionary(lng);
 
   const { data: voteCheck } = useVoteCheckQuery({
     queryKey: "voteCheck",
@@ -55,9 +57,15 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
             <div className="flex items-center py-4">
               <div className="lg:text-md mr-2 flex-1 sm:flex-[2] md:flex-[2]">
                 {data.vote.is_closed ? (
-                  <span className="w-full text-red-500">종료</span>
+                  <span className="w-full text-red-500">
+                    {/* {messages["vote"]["detail"].item.end} */}
+                    종료
+                  </span>
                 ) : (
-                  <span className="w-full text-secondary-orange">진행중</span>
+                  <span className="w-full text-secondary-orange">
+                    {/* {messages.vote.detail.item.ing} */}
+                    진행중
+                  </span>
                 )}
               </div>
               <h2 className="flex-[9] font-bold lg:flex-[20] lg:text-xl">
@@ -72,17 +80,23 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
           <div>
             <div className="flex w-full justify-between">
               <div className="w-70 mb- flex">
-                <p className="mr-3">투표 기간</p>
+                <p className="mr-3">
+                  {/* {messages.vote.detail.item.period} */}
+                  투표 기간
+                </p>
                 <p className="ml-1">
                   {getRemainDates({
                     startDate: data.vote.start_date,
                     endDate: data.vote.end_date,
                   })}
-                  일 남음
+                  {/* {messages.vote.detail.item.remaining} */}일 남음
                 </p>
               </div>
               <div className="w-30 flex justify-end">
-                <p className="mr-1">조회수</p>
+                <p className="mr-1">
+                  {/* {messages.vote.detail.item.hits} */}
+                  조회수
+                </p>
                 <p className="mr-1">{data.vote.hits}</p>
               </div>
             </div>
@@ -98,6 +112,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
               ))}
             </div>
             <div className={"ml-auto text-right text-sm"}>
+              {/* {messages.vote.detail.item.image_hint} */}
               이미지를 클릭하면 크게 볼 수 있습니다.
             </div>
             {voteCheck !== undefined && (
@@ -107,6 +122,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                     onClick={onOpen}
                     className="rounded bg-secondary-orange px-4 py-2 text-black"
                   >
+                    {/* {messages.vote.detail.item.predict_result} */}
                     결과 예측하기
                   </button>
                 ) : (
@@ -125,6 +141,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                         selectItem === undefined ? "#D9D9D9" : "#FFA45B",
                     }}
                   >
+                    {/* {messages.vote.detail.item.voting} */}
                     투표하기
                   </button>
                 )}
@@ -158,9 +175,11 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
               </div>
               <div className="ml-auto flex w-[200px]">
                 <button className="mr-4 w-[70px] rounded border bg-secondary-orange py-2 px-4 font-semibold text-black shadow-md hover:bg-primary-yellow">
+                  {/* {messages.vote.detail.item.delete} */}
                   삭제
                 </button>
                 <button className="w-[70px] rounded border bg-red-600 py-2 px-4 font-semibold text-white shadow-md hover:bg-red-500 hover:text-white">
+                  {/* {messages.vote.detail.item.declaration} */}
                   신고
                 </button>
               </div>

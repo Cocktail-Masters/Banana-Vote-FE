@@ -7,14 +7,18 @@ import Feed from "./Feed";
 import { useFeedListQuery } from "@/hooks/reactQuery/useFeedListQuery";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { voteFeedType } from "@/types";
+import { filterOptions, voteFeedType } from "@/types";
 import { voteFeedListType } from "@/types";
 import Loading from "./../Loading";
 import VoteSearchBar from "@/components/home/VoteSearchBar";
 import VoteFilterBar from "@/components/home/VoteFilterBar";
 
 const FeedListArea = () => {
-  const [keyword, setKeyword] = useState<string>("");
+  const [keyword, setKeyword] = useState<string>(""); // 검색 키워드
+  const [filterOptions, setFilterOptions] = useState<filterOptions>({
+    isClosed: false,
+    sortBy: 1, // 1 : 최신순, 2 : 참여순(인기순), 3 : 조회순, 4 : 댓글 많은 순
+  });
 
   /**
    * @description useInfiniteQuery를 사용한 무한 스크롤
@@ -35,9 +39,6 @@ const FeedListArea = () => {
   return (
     <div className="flex w-full flex-col items-start lg:w-[90%] xl:mr-5 xl:w-[800px]">
       {status === "loading" ? (
-        /**
-         * @TODO Loading 컴포넌트로 교체
-         */
         <div className="mx-auto mt-10 flex items-center justify-center">
           <Loading />
         </div>
@@ -45,10 +46,13 @@ const FeedListArea = () => {
         <div className="mx-auto flex justify-center">ERROR</div>
       ) : (
         <>
-          {/* Search Bar */}
-          <VoteSearchBar keyword={keyword} setKeyword={setKeyword} />
-          {/* Filter Bar */}
-          <VoteFilterBar />
+          {/* Search & Filter Bar */}
+          <VoteSearchBar
+            keyword={keyword}
+            setKeyword={setKeyword}
+            filterOptions={filterOptions}
+            setFilterOptions={setFilterOptions}
+          />
           {/* Create Bar */}
           <VoteCreateBar badge_image_url="" />
           {/* 투표 피드 리스트 */}

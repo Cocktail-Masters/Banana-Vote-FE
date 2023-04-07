@@ -6,6 +6,7 @@ import VoteOptionToggleButton from "./VoteOptionToggleButton";
 import { nanoid } from "nanoid";
 import VoteCreatTag from "@components/tag/VoteCreateTag";
 import {
+  fetchCreateVote,
   useRegistrationMutation,
   voteRegistrationItemType,
 } from "@/hooks/reactQuery/mutation/useRegistrationMutation";
@@ -13,6 +14,19 @@ import uploadFirebase from "@/common/uploadFirebase";
 
 import DatePicker from "@/components/date/Datepicker";
 import CreateVoteContent from "./CreateVoteContent";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
+type voteTestType = {
+  id: string;
+  title: string;
+  content: string;
+  image_url: string;
+  end_date: string;
+  is_event: boolean;
+  is_anonymouse: boolean;
+  is_public: boolean;
+  is_closed: boolean;
+};
 
 export type voteItemType = {
   id: string;
@@ -30,20 +44,22 @@ export const getDefaultVoteItem = (): voteItemType => {
 
 export type voteItemTypes = voteItemType[];
 
-const CreateVote = () => {
+const CreateEventVote = ({ params }: any) => {
+  const { data } = useQuery<voteTestType>({
+    queryKey: ["event", "create", `${params.detail}`],
+    queryFn: () => fetch(`/api/events/edit/${params.detail}`),
+  });
   const { state: isAnonymouse, onClickHandler: setIsAnonymouse } =
     useSelectData<boolean>(true);
   const { state: isDisclosure, onClickHandler: setIsDisclosure } =
     useSelectData<boolean>(false);
   const { state: endDate, setState: setEndDate } = useSelectData<Date>(
-    new Date()
+    new Date(data.end_date)
   );
   const [voteTitle, setVoteTitle] = useState("");
   const [voteItems, setVoteItems] = useState<voteItemType[]>([]);
   const [content, setContent] = useState<string>("");
   const [tagArray, setTagArray] = useState<string[]>([]);
-
-  const { mutate } = useRegistrationMutation({ queryKey: ["createVote"] });
 
   return (
     <div className={"flex h-full w-full justify-center"}>
@@ -129,4 +145,4 @@ const CreateVote = () => {
     </div>
   );
 };
-export default CreateVote;
+export default CreateEventVote;

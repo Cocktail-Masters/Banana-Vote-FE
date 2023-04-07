@@ -35,9 +35,9 @@ type getRankingFromApiType = {
 
 export const getRankingFromApi = ({
   season_id,
-  page_num,
-  page_size,
   nickname,
+  page_num = "0",
+  page_size = "10",
 }: getRankingFromApiType) => {
   if (!!nickname && !!page_size) {
     const index = data.ranking_list.map((v) => v.nickname).indexOf(nickname);
@@ -76,11 +76,11 @@ export async function GET(request: Request) {
   const page_num = searchParams.get("page_num");
   const page_size = searchParams.get("page_size");
   const nickname = searchParams.get("nickname");
-  const a = getRankingFromApi({
+  const result = getRankingFromApi({
     season_id,
     page_num,
     page_size,
     nickname,
   });
-  return NextResponse.json(a);
+  return NextResponse.json(result);
 }

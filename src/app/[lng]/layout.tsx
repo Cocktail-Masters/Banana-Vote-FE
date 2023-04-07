@@ -2,6 +2,7 @@ import Provider from "./Provider";
 import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import LayoutHeader from "@/components/Layout/LayoutHeader";
+import SettingTheme from "./settingTheme";
 import { i18n } from "i18n-config";
 
 export async function generateStaticParams() {
@@ -23,8 +24,9 @@ export default function RootLayout({
   params: { lang: string };
 }) {
   return (
-    <html lang={lang}>
-      <body>
+    <html lang={lang} className="">
+      <SettingTheme />
+      <body className="bg-white dark:bg-black">
         <Provider>
           <LayoutHeader></LayoutHeader>
           <div className={"tiles"}>{children}</div>

@@ -5,17 +5,23 @@ import nextDoubleArrow from "@assets/icons/nextDoubleArrow.svg";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import useCreateQueryString from "@/hooks/useCreateQueryString";
+import {
+  rankingParamsType,
+  rankingRouteCallbackFunctionType,
+} from "@/app/[lng]/ranking/[seasonId]/[paginationIndex]/page";
+import useRankingRouter from "@/hooks/useRankingRouter";
 
 const Pagination = ({
   total_page = 0,
   splitSize = 10,
   nowPageIndex,
+  params,
 }: {
   total_page?: number;
   splitSize?: number;
   nowPageIndex: number;
+  params: rankingParamsType;
 }) => {
-  // const [nowPage, setNowPage] = useState(0);
   const isMinWidth768 = useMediaQuery("(max-width: 768px)");
   const pageNumber = isMinWidth768 ? Math.floor(splitSize / 2) : splitSize;
   const startPage = nowPageIndex - (nowPageIndex % pageNumber);
@@ -25,10 +31,7 @@ const Pagination = ({
     .fill(null)
     .map((_, index) => startPage + index);
 
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const createQueryString = useCreateQueryString();
+  const { routeCallbackHandler } = useRankingRouter(params);
 
   const nextButtonHandler = (addNumber: number) => {
     const checkValid = (v: number) => {
@@ -36,11 +39,9 @@ const Pagination = ({
       if (v >= total_page) return total_page - 1;
       return v;
     };
-    const newPath =
-      pathname +
-      "?" +
-      createQueryString("page", String(checkValid(nowPageIndex + addNumber)));
-    router.push(newPath);
+    routeCallbackHandler({
+      newPageIndex: checkValid(nowPageIndex + addNumber),
+    });
   };
 
   return (

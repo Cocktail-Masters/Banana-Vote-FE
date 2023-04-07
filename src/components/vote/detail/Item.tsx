@@ -11,12 +11,15 @@ import VoteDetailItemCard from "./ItemCard";
 import { Locale } from "i18n-config";
 import { voteItemType } from "@/types";
 
-const VoteDetailItem = () => {
-  const { data } = useVoteDetailQuery({ queryKey: "voteDetail", postId: 1 });
+const VoteDetailItem = ({ postId }: { postId: number }) => {
+  const { data } = useVoteDetailQuery({
+    queryKey: "voteDetail",
+    postId: postId,
+  });
 
   const { data: voteCheck } = useVoteCheckQuery({
     queryKey: "voteCheck",
-    postId: 1,
+    postId: postId,
   });
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onOpen = () => {
@@ -29,7 +32,7 @@ const VoteDetailItem = () => {
       return !prev;
     });
   };
-  const { mutate } = useVoteCheckMutation({ queryKey: ["voteCheck", 1] });
+  const { mutate } = useVoteCheckMutation({ queryKey: ["voteCheck", postId] });
 
   const [selectItem, setSelectItem] = useState<number | undefined>();
 
@@ -133,6 +136,7 @@ const VoteDetailItem = () => {
                       onClose={onClose}
                       voteItemId={voteCheck.vote_item_id}
                       point={voteCheck.point}
+                      postId={postId}
                     />
                   )}
               </div>

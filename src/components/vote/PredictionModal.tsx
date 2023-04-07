@@ -13,16 +13,18 @@ const VoteDetailPredictionModal = ({
   onClose,
   voteItemId,
   point,
+  postId,
 }: {
   isOpen: boolean;
   onClose: () => void;
   voteItemId: number;
   point: number;
+  postId: number;
 }) => {
   // 포인트 관련해서는 recoil 완성 하고 나서 작성함.
   const { data, isFetching } = useVotePredictionQuery({
     queryKey: "prediction",
-    postId: 1,
+    postId: postId,
   });
   console.log(data);
 
@@ -38,7 +40,7 @@ const VoteDetailPredictionModal = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-25" />
+          <div className="fixed inset-0 bg-black bg-opacity-75" />
         </Transition.Child>
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4 text-center">

@@ -5,8 +5,8 @@
 import { filterOptions } from "@/types";
 import { RadioGroup, Switch } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import { debounce } from "lodash";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 
 type sortOption = {
   id: 1 | 2 | 3 | 4;
@@ -14,7 +14,6 @@ type sortOption = {
 };
 
 type voteSearchBarProps = {
-  keyword: string;
   setKeyword: Dispatch<SetStateAction<string>>;
   filterOptions: filterOptions;
   setFilterOptions: Dispatch<SetStateAction<filterOptions>>;
@@ -40,34 +39,27 @@ const SORT_OPTIONS: sortOption[] = [
 ];
 
 const VoteSearchBar = ({
-  keyword,
   setKeyword,
   filterOptions,
   setFilterOptions,
 }: voteSearchBarProps) => {
+  const [inputValue, setInputValue] = useState<string>("");
   /**
-   * @description 디바운스를 사용해 입력한 keyword에 해당하는 피드를 불러옴
+   * @description 입력한 keyword에 해당하는 피드를 불러옴
    */
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // Set Keyword
-    setKeyword(e.target.value);
-    // Call API
-    debouncedCallback(e.target.value);
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setKeyword(inputValue);
+      setInputValue(inputValue);
+    }
   };
-
-  /**
-   * @TODO Loading 컴포넌트로 교체
-   */
-  const debouncedCallback = debounce((value) => {
-    console.log(value);
-  }, 1000);
 
   return (
     <div className="m-auto mt-4 mb-4 h-auto w-full select-none rounded-xl bg-white drop-shadow-md">
       {/* 바디 */}
       <div className="flex h-auto flex-col items-center gap-2 p-5">
         {/* 검색창 */}
-        <div className="lg:text-md ml-2 flex h-10 w-full items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-500 transition hover:bg-white hover:outline hover:outline-2 hover:outline-terriary-mint focus:bg-white focus:outline focus:outline-2 focus:outline-terriary-mint  md:text-sm">
+        <div className="lg:text-md ml-2 flex h-10 w-full items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-500 transition hover:bg-white hover:outline hover:outline-2 hover:outline-terriary-mint focus:bg-white focus:outline focus:outline-2 focus:outline-terriary-mint md:text-sm">
           <form className="flex w-full">
             <label className="flex h-5 w-11 justify-center">
               <MagnifyingGlassIcon
@@ -77,8 +69,9 @@ const VoteSearchBar = ({
             </label>
             <input
               type="text"
-              value={keyword}
-              onChange={(e) => handleInputChange(e)}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
               placeholder="검색"
               className="mr-3 h-5 bg-transparent pl-1 pr-1 leading-5 outline-none "
               style={{ width: "calc(100% - 40px)" }}
@@ -102,9 +95,9 @@ const VoteSearchBar = ({
           </form>
         </div>
         {/* 필터 */}
-        <div className="flex h-24 w-full flex-col items-center justify-center lg:h-10 lg:flex-row lg:justify-around">
+        <div className="flex h-24 w-full flex-col items-center justify-center gap-2 md:h-10 md:flex-row md:justify-around md:gap-0">
           {/* 종료 여부 */}
-          <div className="flex h-full w-auto items-center justify-center">
+          <div className="flex h-10 w-auto items-center justify-center lg:h-full">
             <span className="mr-2 text-sm leading-9 md:text-base">
               종료 투표 포함
             </span>
@@ -131,19 +124,17 @@ const VoteSearchBar = ({
             </Switch>
           </div>
           {/* 정렬 순 */}
-          <RadioGroup className="flex h-full w-auto space-x-3">
+          <RadioGroup className="flex h-10 w-auto space-x-3 lg:h-full">
             {SORT_OPTIONS.map((option: sortOption) => {
               return (
                 <RadioGroup.Option
                   key={option.id}
-                  value={option.name}
-                  className={({ active, checked }) =>
-                    `flex h-full w-auto cursor-pointer items-center justify-center rounded-2xl border-transparent pl-2 pr-2 ${
-                      checked && "bg-secondary-orange"
-                    } ${!active && "hover:bg-gray-300"} ${
-                      active && "bg-secondary-orange"
-                    } `
-                  }
+                  value={option}
+                  className={`flex h-full w-auto cursor-pointer items-center justify-center rounded-2xl border-transparent pl-2 pr-2 font-semibold shadow-md ${
+                    filterOptions.sortBy === option.id
+                      ? "bg-secondary-orange"
+                      : "hover:bg-gray-300"
+                  } `}
                   onClick={() =>
                     setFilterOptions({
                       ...filterOptions,
@@ -151,13 +142,11 @@ const VoteSearchBar = ({
                     })
                   }
                 >
-                  {({ active, checked }) => (
-                    <RadioGroup.Label
-                      className={`text-sm text-black md:text-base`}
-                    >
-                      {option.name}
-                    </RadioGroup.Label>
-                  )}
+                  <RadioGroup.Label
+                    className={`text-xs text-black md:text-sm lg:text-base`}
+                  >
+                    {option.name}
+                  </RadioGroup.Label>
                 </RadioGroup.Option>
               );
             })}

@@ -16,23 +16,23 @@ export default async function HydratedHome({
   const queryClient = getQueryClient();
 
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ["feedList"],
-    queryFn: feedListFetch,
+    queryKey: ["feedList", false, 1, ""], // name, isClosed, sortBy, keyword
+    queryFn: () => feedListFetch(false, 1, ""),
   });
 
   await queryClient.prefetchQuery({
     queryKey: ["popular"],
-    queryFn: fetchPopularList,
+    queryFn: () => fetchPopularList(),
   });
 
   await queryClient.prefetchQuery({
     queryKey: ["interest"],
-    queryFn: fetchInterestList,
+    queryFn: () => fetchInterestList(),
   });
 
   await queryClient.prefetchQuery({
     queryKey: ["rankingTop5"],
-    queryFn: fetchRankingTop5,
+    queryFn: () => fetchRankingTop5(),
   });
 
   const dehydratedState = dehydrate(queryClient);

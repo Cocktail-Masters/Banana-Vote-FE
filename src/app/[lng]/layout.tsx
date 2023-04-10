@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang={lang} className="">
       <SettingTheme />
       <body className="bg-white dark:bg-black">
-        <Provider lng={lang}>
+        <Provider>
           <LayoutHeader></LayoutHeader>
           <div className={"tiles"}>{children}</div>
           <div className={"footer"}></div>

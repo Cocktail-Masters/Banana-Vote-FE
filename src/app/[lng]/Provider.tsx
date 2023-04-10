@@ -8,9 +8,9 @@ type providerType = {
   lng: string;
 };
 
-const Provider = ({ children, lng }: providerType) => {
+const Provider = ({ children }: providerType) => {
   const [queryClient] = useState(new QueryClient());
-  console.log(lng);
+
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />

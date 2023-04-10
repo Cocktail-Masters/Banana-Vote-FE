@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSelectData from "@hooks/useSelectData";
 import VoteDnd from "@components/vote/dnd/VoteDnd";
 import VoteOptionToggleButton from "./VoteOptionToggleButton";
@@ -14,7 +14,8 @@ import uploadFirebase from "@/common/uploadFirebase";
 
 import DatePicker from "@/components/date/Datepicker";
 import CreateVoteContent from "./CreateVoteContent";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import Loading from "@/components/Loading";
 
 type voteTestType = {
   id: string;
@@ -44,22 +45,33 @@ export const getDefaultVoteItem = (): voteItemType => {
 
 export type voteItemTypes = voteItemType[];
 
-const CreateEventVote = ({ params }: any) => {
-  const { data } = useQuery<voteTestType>({
-    queryKey: ["event", "create", `${params.detail}`],
-    queryFn: () => fetch(`/api/events/edit/${params.detail}`),
-  });
-  const { state: isAnonymouse, onClickHandler: setIsAnonymouse } =
-    useSelectData<boolean>(true);
+type paramsType = {
+  detail: string;
+  lng: string;
+};
+
+const CreateEventVote = ({ data }: { data: voteTestType }) => {
+  const { state: isEvent, onClickHandler: setIsEvent } = useSelectData<boolean>(
+    data.is_anonymouse
+  );
   const { state: isDisclosure, onClickHandler: setIsDisclosure } =
-    useSelectData<boolean>(false);
+    useSelectData<boolean>(data.is_closed);
   const { state: endDate, setState: setEndDate } = useSelectData<Date>(
     new Date(data.end_date)
   );
-  const [voteTitle, setVoteTitle] = useState("");
+  const [voteTitle, setVoteTitle] = useState(data.title);
   const [voteItems, setVoteItems] = useState<voteItemType[]>([]);
-  const [content, setContent] = useState<string>("");
+  const [content, setContent] = useState<string>(data.content);
   const [tagArray, setTagArray] = useState<string[]>([]);
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: fetchCreateVote,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries(["createEventVote"]);
+    },
+    onError: (error) => {},
+  });
 
   return (
     <div className={"flex h-full w-full justify-center"}>
@@ -77,9 +89,9 @@ const CreateEventVote = ({ params }: any) => {
               ]}
             />
             <VoteOptionToggleButton
-              title={"로그인 여부"}
-              isData={isAnonymouse}
-              onClickHandler={setIsAnonymouse}
+              title={"이벤트 여부"}
+              isData={isEvent}
+              onClickHandler={setIsEvent}
               toggleContent={[
                 { data: false, content: "실명" },
                 { data: true, content: "익명" },
@@ -95,12 +107,13 @@ const CreateEventVote = ({ params }: any) => {
             className=" placeholder-font-bold h-16 rounded-2xl border-2 border-solid px-6 text-2xl placeholder-gray-400 outline-secondary-orange"
             type="text"
             placeholder="제목"
+            value={voteTitle}
             onChange={(e) => setVoteTitle(e.target.value)}
           />
 
           <hr className="border-b-7 rounded-xl border-gray-300" />
           <VoteDnd voteItems={voteItems} setVoteItems={setVoteItems} />
-          <CreateVoteContent setContent={setContent} />
+          <CreateVoteContent content={content} setContent={setContent} />
           <VoteCreatTag tagArray={tagArray} setTagArray={setTagArray} />
         </div>
         <div className="m-10 flex justify-end">
@@ -121,7 +134,8 @@ const CreateEventVote = ({ params }: any) => {
               const sendData = {
                 title: voteTitle,
                 is_disclosure: isDisclosure,
-                is_anonymouse: isAnonymouse,
+                is_Event: isEvent,
+                is_anonymouse: false,
                 end_date: endDate.toString(),
                 vote_items: newVoteItems,
                 content: content,
@@ -145,4 +159,27 @@ const CreateEventVote = ({ params }: any) => {
     </div>
   );
 };
-export default CreateEventVote;
+
+const CreateEventVoteWrapper = ({ params }: { params: paramsType }) => {
+  const { data, isLoading } = useQuery<voteTestType>(
+    ["event", "create", params?.detail],
+    async () => {
+      const response = await fetch(`/api/events/edit/${params.detail}`);
+      return response.json();
+    }
+  );
+
+  if (isLoading) {
+    return (
+      <>
+        <Loading />
+        <div>asdf</div>
+      </>
+    );
+  }
+  if (data === undefined) {
+    return <div>ERROR</div>;
+  }
+  return <CreateEventVote data={data} />;
+};
+export default CreateEventVoteWrapper;

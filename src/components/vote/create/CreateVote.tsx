@@ -84,7 +84,7 @@ const CreateVote = () => {
 
           <hr className="border-b-7 rounded-xl border-gray-300" />
           <VoteDnd voteItems={voteItems} setVoteItems={setVoteItems} />
-          <CreateVoteContent setContent={setContent} />
+          <CreateVoteContent content={content} setContent={setContent} />
           <VoteCreatTag tagArray={tagArray} setTagArray={setTagArray} />
         </div>
         <div className="m-10 flex justify-end">

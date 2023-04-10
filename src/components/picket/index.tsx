@@ -9,6 +9,7 @@ const PicketArea = () => {
     queryKey: "picket",
     voteId: 1,
   });
+
   return (
     <div
       className={`flex h-[350px] w-full flex-col items-center justify-center`}

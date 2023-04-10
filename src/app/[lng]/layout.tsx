@@ -1,5 +1,4 @@
 import Provider from "./Provider";
-import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import LayoutHeader from "@/components/Layout/LayoutHeader";
 import SettingTheme from "./settingTheme";

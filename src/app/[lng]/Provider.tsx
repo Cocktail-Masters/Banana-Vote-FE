@@ -5,10 +5,12 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 type providerType = {
   children: React.ReactNode;
+  lng: string;
 };
 
 const Provider = ({ children }: providerType) => {
   const [queryClient] = useState(new QueryClient());
+
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />

@@ -2737,12 +2737,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:13.2.3":
-  version: 13.2.3
-  resolution: "@next/eslint-plugin-next@npm:13.2.3"
+"@next/eslint-plugin-next@npm:13.3.0":
+  version: 13.3.0
+  resolution: "@next/eslint-plugin-next@npm:13.3.0"
   dependencies:
     glob: 7.1.7
-  checksum: d79674900f60d76ab01ad18f35a84d4dbefb4276df88d757d681c35be04004cd561628ededb68c0d7815cb2da794db4d5dde31b95dfc3124e5106ddd5096009c
+  checksum: 5b8b6e7f3b82db0f6786ffebb50b1a3678cd9b6e6f17422de19bedd0d8f86ddaf8fecc9a75bb669b39b6d76a392806b11cf4f927b1e9efa56edd2beb63ce92e6
   languageName: node
   linkType: hard
 
@@ -6402,14 +6402,14 @@ __metadata:
     axios: ^1.3.4
     babel-loader: ^8.3.0
     eslint: 8.35.0
-    eslint-config-next: 13.2.3
+    eslint-config-next: latest
     firebase: ^9.17.2
     framer-motion: ^10.8.5
     husky: 8.0.3
     lodash: ^4.17.21
     nanoid: ^4.0.1
     negotiator: ^0.6.3
-    next: 13.3.0
+    next: latest
     next-pwa: ^5.6.0
     next-seo: ^5.15.0
     next-sitemap: ^4.0.5
@@ -6418,10 +6418,10 @@ __metadata:
     postinstall-postinstall: ^2.1.0
     prettier: ^2.8.7
     prettier-plugin-tailwindcss: ^0.2.5
-    react: 18.2.0
+    react: latest
     react-beautiful-dnd: ^13.1.1
     react-datepicker: ^4.10.0
-    react-dom: 18.2.0
+    react-dom: latest
     react-dropzone: ^14.2.3
     react-intersection-observer: ^9.4.3
     react-slick: ^0.29.0
@@ -8737,11 +8737,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-next@npm:13.2.3":
-  version: 13.2.3
-  resolution: "eslint-config-next@npm:13.2.3"
+"eslint-config-next@npm:latest":
+  version: 13.3.0
+  resolution: "eslint-config-next@npm:13.3.0"
   dependencies:
-    "@next/eslint-plugin-next": 13.2.3
+    "@next/eslint-plugin-next": 13.3.0
     "@rushstack/eslint-patch": ^1.1.3
     "@typescript-eslint/parser": ^5.42.0
     eslint-import-resolver-node: ^0.3.6
@@ -8756,7 +8756,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 9c265c6eeba4118b95f2d3c84284ee671e2a0acbee7281a6b35877d6b91aa6312d7fc812d98769329719f7df97e251baa04c9f2168586840a906e591e2872325
+  checksum: 19894044c4703977f872e0284a994244a14927a8ee636da299767b88232ef679fd9c889e30f52ceed01a115649cbced8c07d03b270e162745d06b8b2754c3576
   languageName: node
   linkType: hard
 
@@ -12956,7 +12956,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:13.3.0":
+"next@npm:latest":
   version: 13.3.0
   resolution: "next@npm:13.3.0"
   dependencies:
@@ -14762,7 +14762,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.2.0":
+"react-dom@npm:latest":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
   dependencies:
@@ -14965,7 +14965,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0":
+"react@npm:latest":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:

@@ -1,7 +1,7 @@
 export const usePopularListDummy = {
   votes: [
     {
-      id: 834562342,
+      id: 83456234,
       title: "낙곱새 곱도리탕 곱떡중에 저녁 추천받는다",
       hits: 7262,
       voted_number: 145,

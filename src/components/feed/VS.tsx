@@ -6,7 +6,7 @@ import React from "react";
 
 const VS = () => {
   return (
-    <p className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-75%] md:translate-y-[-50%] text-4xl font-bold select-none">
+    <p className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-75%] select-none text-4xl font-bold">
       VS
     </p>
   );

@@ -28,16 +28,26 @@ const Feed = ({ data }: { data: voteFeedType }) => {
         </div>
         <div className="grid grid-cols-1 divide-y">
           {/* 피드 바디 */}
-
-          <div className="pb-5 pl-5 pr-5">
+          <div className="pb-3 pl-5 pr-5">
             {/* 피드 제목 */}
             <Link href={`/vote/detail/${data.vote.id}`}>
               <FeedTitle content={data.vote.title} />
             </Link>
             {/* 피드 투표 항목들 */}
             <VoteItemList vote_items={data.vote_items} />
-            {/* 요소의 갯수가 2일때 등장하는 VS */}
-            {data.vote_items && data.vote_items.length === 2 && <VS />}
+            {/* 태그 */}
+            <div className="mt-2 flex h-auto w-full select-none flex-wrap gap-2 p-2 pb-0">
+              {data.vote.tags.map((tag: string, index: number) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex whitespace-nowrap rounded-3xl bg-primary-yellow pl-2 pr-2 pt-1 pb-1 text-sm font-semibold hover:bg-primary-yellow/75"
+                  >
+                    #{tag}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
         <hr />

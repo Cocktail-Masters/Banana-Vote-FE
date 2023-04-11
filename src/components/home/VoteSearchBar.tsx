@@ -68,6 +68,7 @@ const VoteSearchBar = ({
               />
             </label>
             <input
+              id="search-input"
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
@@ -102,6 +103,7 @@ const VoteSearchBar = ({
               종료 투표 포함
             </span>
             <Switch
+              id="include-closed-toggle"
               checked={filterOptions.isClosed}
               onChange={() =>
                 setFilterOptions({
@@ -128,6 +130,7 @@ const VoteSearchBar = ({
             {SORT_OPTIONS.map((option: sortOption) => {
               return (
                 <RadioGroup.Option
+                  id={option.name}
                   key={option.id}
                   value={option}
                   className={`flex h-full w-auto cursor-pointer items-center justify-center rounded-2xl border-transparent pl-2 pr-2 font-semibold shadow-md ${

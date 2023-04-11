@@ -91,6 +91,7 @@ const FeedHeader = ({
       >
         {/* 메뉴 버튼 */}
         <motion.button
+          id="menu button"
           whileTap={{ scale: 0.9 }}
           className="h-10 w-10 rounded-full hover:bg-gray-200 active:bg-gray-300"
         >

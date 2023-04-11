@@ -4,17 +4,18 @@ import React, { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 import VoteItemCard from "@components/vote/create/VoteItemCard";
-import { getDefaultVoteItem, voteItemTypes } from "../create/CreateVote";
 import Image from "next/image";
 
 import plusImage from "@assets/images/plus.svg";
 import VoteItemLayout from "@components/vote/create/VoteItemLayout";
+import { createVoteItemType, createVoteItemTypes } from "@/types";
+import { getDefaultVoteItem } from "@/common/getVoteItem";
 
 const reorder = (
-  list: voteItemTypes,
+  list: createVoteItemTypes,
   startIndex: number,
   endIndex: number
-): voteItemTypes => {
+): createVoteItemTypes => {
   const result = [...list];
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
@@ -22,8 +23,8 @@ const reorder = (
 };
 
 type VoteDndPropsType = {
-  voteItems: voteItemTypes;
-  setVoteItems: React.Dispatch<React.SetStateAction<voteItemTypes>>;
+  voteItems: createVoteItemTypes;
+  setVoteItems: React.Dispatch<React.SetStateAction<createVoteItemTypes>>;
 };
 
 const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
@@ -64,7 +65,7 @@ const Item = ({ voteItems, setVoteItems }: VoteDndPropsType) => {
                   {voteItems.map((voteItem, index) => (
                     <Draggable
                       key={voteItem.id}
-                      draggableId={voteItem.id}
+                      draggableId={String(voteItem.id)}
                       index={index}
                     >
                       {(draggableProvided, snapshot) => {

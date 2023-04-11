@@ -11,12 +11,41 @@ const json = {
   is_anonymouse: true,
   is_public: true,
   is_closed: false,
+  tags: [
+    "아무튼 태그임",
+    "두번째 태그임",
+    "세번째 태그임",
+    "네번째 태그임",
+    "다섯번째 태그임",
+    "여섯번째 태그임",
+  ],
+  vote_items: [
+    {
+      id: 1,
+      item_number: 1,
+      title: "부워먹으셈",
+      total_points: 500,
+      voted_number: 1,
+      iframe_link: "",
+      image_url:
+        "https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_960_720.jpg",
+    },
+    {
+      id: 2,
+      item_number: 2,
+      title: "찍어먹으셈",
+      total_points: 1500,
+      voted_number: 2,
+      iframe_link: "",
+      image_url:
+        "https://cdn.pixabay.com/photo/2017/07/24/19/57/tiger-2535888_960_720.jpg",
+    },
+  ],
 };
 
 export async function GET(request: Request) {
   const { searchParams, pathname } = new URL(request.url);
   const detail = pathname.split("/")[4];
   const result = { ...json, id: detail };
-  console.log(result);
   return NextResponse.json(result);
 }

@@ -8,27 +8,12 @@ import VoteCreatTag from "@components/tag/VoteCreateTag";
 import {
   useRegistrationMutation,
   voteRegistrationItemType,
-} from "@/hooks/reactQuery/mutation/useRegistrationMutation";
+} from "@/hooks/reactQuery/mutation/useVoteRegistrationMutation";
 import uploadFirebase from "@/common/uploadFirebase";
 
 import DatePicker from "@/components/date/Datepicker";
 import CreateVoteContent from "./CreateVoteContent";
-
-export type voteItemType = {
-  id: string;
-  imageFile: File | null;
-  title: string;
-};
-
-export const getDefaultVoteItem = (): voteItemType => {
-  return {
-    id: nanoid(),
-    imageFile: null,
-    title: "",
-  };
-};
-
-export type voteItemTypes = voteItemType[];
+import { createVoteItemType } from "@/types";
 
 const CreateVote = () => {
   const { state: isAnonymouse, onClickHandler: setIsAnonymouse } =
@@ -39,11 +24,41 @@ const CreateVote = () => {
     new Date()
   );
   const [voteTitle, setVoteTitle] = useState("");
-  const [voteItems, setVoteItems] = useState<voteItemType[]>([]);
+  const [voteItems, setVoteItems] = useState<createVoteItemType[]>([]);
   const [content, setContent] = useState<string>("");
   const [tagArray, setTagArray] = useState<string[]>([]);
 
   const { mutate } = useRegistrationMutation({ queryKey: ["createVote"] });
+
+  const onClickVoteAddHandler = async () => {
+    const uploadUrls = await Promise.all(
+      voteItems.map((v) => (v.imageFile ? uploadFirebase(v.imageFile) : ""))
+    );
+    const newVoteItems: voteRegistrationItemType[] = [];
+    for (let i = 0; i < voteItems.length; i++) {
+      newVoteItems.push({
+        title: voteItems[i]["title"],
+        imageUrl: uploadUrls[i],
+      });
+    }
+    const sendData = {
+      title: voteTitle,
+      is_disclosure: isDisclosure,
+      is_anonymouse: isAnonymouse,
+      end_date: endDate.toString(),
+      vote_items: newVoteItems,
+      content: content,
+      tags: tagArray,
+    };
+    mutate(
+      { createVoteData: sendData },
+      {
+        onSuccess: () => {
+          alert("성공함");
+        },
+      }
+    );
+  };
 
   return (
     <div className={"flex h-full w-full justify-center"}>
@@ -89,37 +104,7 @@ const CreateVote = () => {
         </div>
         <div className="m-10 flex justify-end">
           <button
-            onClick={async () => {
-              const uploadUrls = await Promise.all(
-                voteItems.map((v) =>
-                  v.imageFile ? uploadFirebase(v.imageFile) : ""
-                )
-              );
-              const newVoteItems: voteRegistrationItemType[] = [];
-              for (let i = 0; i < voteItems.length; i++) {
-                newVoteItems.push({
-                  title: voteItems[i]["title"],
-                  imageUrl: uploadUrls[i],
-                });
-              }
-              const sendData = {
-                title: voteTitle,
-                is_disclosure: isDisclosure,
-                is_anonymouse: isAnonymouse,
-                end_date: endDate.toString(),
-                vote_items: newVoteItems,
-                content: content,
-                tags: tagArray,
-              };
-              mutate(
-                { createVoteData: sendData },
-                {
-                  onSuccess: () => {
-                    alert("성공함");
-                  },
-                }
-              );
-            }}
+            onClick={onClickVoteAddHandler}
             className="h-12 w-32 rounded-lg bg-yellow-400 px-4 py-2 text-xl font-bold drop-shadow-lg hover:bg-white"
           >
             등록

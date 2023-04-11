@@ -7,17 +7,18 @@ import { nanoid } from "nanoid";
 import VoteCreatTag from "@components/tag/VoteCreateTag";
 import {
   fetchCreateVote,
-  useRegistrationMutation,
   voteRegistrationItemType,
-} from "@/hooks/reactQuery/mutation/useRegistrationMutation";
+} from "@/hooks/reactQuery/mutation/useVoteRegistrationMutation";
 import uploadFirebase from "@/common/uploadFirebase";
 
 import DatePicker from "@/components/date/Datepicker";
 import CreateVoteContent from "./CreateVoteContent";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "@/components/Loading";
+import { createVoteItemTypes, voteItemType } from "@/types";
+import { getVoteItemsFromResponse } from "@/common/getVoteItem";
 
-type voteTestType = {
+type voteResponseType = {
   id: string;
   title: string;
   content: string;
@@ -27,30 +28,16 @@ type voteTestType = {
   is_anonymouse: boolean;
   is_public: boolean;
   is_closed: boolean;
+  tags: string[];
+  vote_items: voteItemType[];
 };
-
-export type voteItemType = {
-  id: string;
-  imageFile: File | null;
-  title: string;
-};
-
-export const getDefaultVoteItem = (): voteItemType => {
-  return {
-    id: nanoid(),
-    imageFile: null,
-    title: "",
-  };
-};
-
-export type voteItemTypes = voteItemType[];
 
 type paramsType = {
   detail: string;
   lng: string;
 };
 
-const CreateEventVote = ({ data }: { data: voteTestType }) => {
+const CreateEventVote = ({ data }: { data: voteResponseType }) => {
   const { state: isEvent, onClickHandler: setIsEvent } = useSelectData<boolean>(
     data.is_anonymouse
   );
@@ -60,9 +47,11 @@ const CreateEventVote = ({ data }: { data: voteTestType }) => {
     new Date(data.end_date)
   );
   const [voteTitle, setVoteTitle] = useState(data.title);
-  const [voteItems, setVoteItems] = useState<voteItemType[]>([]);
+  const [voteItems, setVoteItems] = useState<createVoteItemTypes>(
+    data.vote_items.map((v) => getVoteItemsFromResponse(v))
+  );
   const [content, setContent] = useState<string>(data.content);
-  const [tagArray, setTagArray] = useState<string[]>([]);
+  const [tagArray, setTagArray] = useState<string[]>(data.tags);
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
@@ -72,6 +61,37 @@ const CreateEventVote = ({ data }: { data: voteTestType }) => {
     },
     onError: (error) => {},
   });
+
+  const onClickHandler = async () => {
+    const uploadUrls = await Promise.all(
+      voteItems.map((v) => (v.imageFile ? uploadFirebase(v.imageFile) : ""))
+    );
+    const newVoteItems: voteRegistrationItemType[] = [];
+    for (let i = 0; i < voteItems.length; i++) {
+      newVoteItems.push({
+        title: voteItems[i]["title"],
+        imageUrl: uploadUrls[i],
+      });
+    }
+    const sendData = {
+      title: voteTitle,
+      is_disclosure: isDisclosure,
+      is_Event: isEvent,
+      is_anonymouse: false,
+      end_date: endDate.toString(),
+      vote_items: newVoteItems,
+      content: content,
+      tags: tagArray,
+    };
+    mutate(
+      { createVoteData: sendData },
+      {
+        onSuccess: () => {
+          alert("성공함");
+        },
+      }
+    );
+  };
 
   return (
     <div className={"flex h-full w-full justify-center"}>
@@ -93,8 +113,8 @@ const CreateEventVote = ({ data }: { data: voteTestType }) => {
               isData={isEvent}
               onClickHandler={setIsEvent}
               toggleContent={[
-                { data: false, content: "실명" },
-                { data: true, content: "익명" },
+                { data: false, content: "이벤트" },
+                { data: true, content: "일반" },
               ]}
             />
             <DatePicker
@@ -118,38 +138,7 @@ const CreateEventVote = ({ data }: { data: voteTestType }) => {
         </div>
         <div className="m-10 flex justify-end">
           <button
-            onClick={async () => {
-              const uploadUrls = await Promise.all(
-                voteItems.map((v) =>
-                  v.imageFile ? uploadFirebase(v.imageFile) : ""
-                )
-              );
-              const newVoteItems: voteRegistrationItemType[] = [];
-              for (let i = 0; i < voteItems.length; i++) {
-                newVoteItems.push({
-                  title: voteItems[i]["title"],
-                  imageUrl: uploadUrls[i],
-                });
-              }
-              const sendData = {
-                title: voteTitle,
-                is_disclosure: isDisclosure,
-                is_Event: isEvent,
-                is_anonymouse: false,
-                end_date: endDate.toString(),
-                vote_items: newVoteItems,
-                content: content,
-                tags: tagArray,
-              };
-              mutate(
-                { createVoteData: sendData },
-                {
-                  onSuccess: () => {
-                    alert("성공함");
-                  },
-                }
-              );
-            }}
+            onClick={onClickHandler}
             className="h-12 w-32 rounded-lg bg-yellow-400 px-4 py-2 text-xl font-bold drop-shadow-lg hover:bg-white"
           >
             등록
@@ -161,7 +150,7 @@ const CreateEventVote = ({ data }: { data: voteTestType }) => {
 };
 
 const CreateEventVoteWrapper = ({ params }: { params: paramsType }) => {
-  const { data, isLoading } = useQuery<voteTestType>(
+  const { data, isLoading } = useQuery<voteResponseType>(
     ["event", "create", params?.detail],
     async () => {
       const response = await fetch(`/api/events/edit/${params.detail}`);

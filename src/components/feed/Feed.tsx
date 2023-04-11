@@ -5,14 +5,16 @@
 "use client";
 import React from "react";
 import FeedHeader from "./FeedHeader";
-import VS from "./VS";
 import VoteItemList from "./VoteItemList";
 import FeedTitle from "./FeedTitle";
 import { voteFeedType } from "@/types";
 import BestOpinion from "./BestOpinion";
 import Link from "next/link";
+import { getDictionary } from "get-dictionary";
 
 const Feed = ({ data }: { data: voteFeedType }) => {
+  // const { messages } = getDictionary(lng);
+
   return (
     <>
       <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white drop-shadow-md transition duration-100 ease-in-out md:rounded-xl">

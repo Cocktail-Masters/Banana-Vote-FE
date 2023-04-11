@@ -25,14 +25,14 @@ const VoteDetailItemCard = ({
     setIsOpen(false);
   };
   return (
-    <div
-      className={`flex h-full w-full rounded-2xl border-2 shadow-md mb-2 ${
+    <button
+      className={`mb-2 flex h-full w-full rounded-2xl border-2 shadow-md ${
         !isParti && selectItem === item.item_number
           ? " border-secondary-orange bg-primary-yellow"
           : ""
       }  ${
         !isParti &&
-        `hover: hover:border-secondary-orange hover:bg-primary-yellow cursor-pointer`
+        `hover: cursor-pointer hover:border-secondary-orange hover:bg-primary-yellow`
       }`}
       style={{ overflow: "hidden" }}
       onClick={() => {
@@ -78,7 +78,7 @@ const VoteDetailItemCard = ({
           </Modal>
         </Portal>
       )}
-    </div>
+    </button>
   );
 };
 

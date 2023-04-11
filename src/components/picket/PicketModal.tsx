@@ -120,6 +120,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                       )}
                       <h1>피캣 올리기</h1>
                       <button
+                        id="picketModalCloseButton"
                         className={`absolute top-1 right-3`}
                         onClick={() => {
                           setChangeState({

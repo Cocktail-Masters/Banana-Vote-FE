@@ -11,51 +11,59 @@
       "test3": "asdf"
     }
   },
-  "vote":{
-    "detail":{
-      "item":{
-        "end":"종료",
-        "ing":"진행중",
-        "period":"투표 기간",
-        "remaining":"일 남음",
-        "hits":"조회수",
-        "image_hint":"이미지를 클릭하면 크게 볼 수 있습니다.",
-        "predict_result":"결과 예측하기",
-        "voting":"투표하기",
-        "delete":"삭제",
-        "declaration":"신고",
-        "prediction_modal":{
-          "title":"바나나 포인트로 투표 결과를 예측하기",
-          "user_vote_result":"을 투표 하셨어요!",
-          "setting_point":"예측에 사용할 포인트를 설정 해주세요!",
-          "submit":"제출",
-          "has_banana":"가지고 있는 바나나 포인트"
+  "event": {
+    "pageTitle": "이벤트"
+  },
+  "ranking": {
+    "nickname": "닉네임",
+    "point": "점수",
+    "rank": "등수"
+  },
+  "vote": {
+    "detail": {
+      "item": {
+        "end": "종료",
+        "ing": "진행중",
+        "period": "투표 기간",
+        "remaining": "일 남음",
+        "hits": "조회수",
+        "image_hint": "이미지를 클릭하면 크게 볼 수 있습니다.",
+        "predict_result": "결과 예측하기",
+        "voting": "투표하기",
+        "delete": "삭제",
+        "declaration": "신고",
+        "prediction_modal": {
+          "title": "바나나 포인트로 투표 결과를 예측하기",
+          "user_vote_result": "을 투표 하셨어요!",
+          "setting_point": "예측에 사용할 포인트를 설정 해주세요!",
+          "submit": "제출",
+          "has_banana": "가지고 있는 바나나 포인트"
         }
       },
-      "picket_area":{
-        "electioneering":"선거 운동",
-        "modal":{
-          "join":"참여하기",
-          "upload":"피캣 올리기",
-          "content":{
-            "change":"으로 현재 피캣 바꾸기",
-            "dropzone":{
-              "upload_hint1":"이곳에 파일을 드래그 하거나",
-              "upload_hint2":"파일을 직접 선택해주세요!",
-              "upload_hint3":"사용 가능한 확장자는 JPG,PNG,WEBP입니다.",
-              "min_banana":"최소 바나나",
-              "submit":"제출",
-              "has_banana":"가지고 있는 바나나"
+      "picket_area": {
+        "electioneering": "선거 운동",
+        "modal": {
+          "join": "참여하기",
+          "upload": "피캣 올리기",
+          "content": {
+            "change": "으로 현재 피캣 바꾸기",
+            "dropzone": {
+              "upload_hint1": "이곳에 파일을 드래그 하거나",
+              "upload_hint2": "파일을 직접 선택해주세요!",
+              "upload_hint3": "사용 가능한 확장자는 JPG,PNG,WEBP입니다.",
+              "min_banana": "최소 바나나",
+              "submit": "제출",
+              "has_banana": "가지고 있는 바나나"
             }
           }
         }
       },
-      "comment_area":{
-        "count_comment":"개의 댓글",
-        "sort_by_agree":"공감순",
-        "sort_by_latest":"최신순",
-        "comment_input":{
-          "placeholder":"나의 의견을 전해주세요"
+      "comment_area": {
+        "count_comment": "개의 댓글",
+        "sort_by_agree": "공감순",
+        "sort_by_latest": "최신순",
+        "comment_input": {
+          "placeholder": "나의 의견을 전해주세요"
         }
       }
     }

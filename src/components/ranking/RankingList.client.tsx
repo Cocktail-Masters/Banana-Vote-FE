@@ -4,8 +4,9 @@ import { rankingListTypes } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../Loading";
 import Pagination from "./Pagination.client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { rankingParamsType } from "@/app/[lng]/ranking/[seasonId]/[paginationIndex]/page";
+import TextLangauge from "../common/TextLanguage";
 
 export default function RankingList({ params }: { params: rankingParamsType }) {
   const { seasonId } = params;
@@ -22,7 +23,6 @@ export default function RankingList({ params }: { params: rankingParamsType }) {
       </div>
     );
   }
-
   return (
     <>
       {data && (
@@ -30,9 +30,15 @@ export default function RankingList({ params }: { params: rankingParamsType }) {
           <table className="mb-8 w-full  table-auto text-[20px]">
             <thead className="m-2 truncate">
               <tr className="w-full border-b-8 border-[#E8C254] text-[29px] font-bold">
-                <td className="border-1 p-2 text-left">등수</td>
-                <td className="border-1 p-2 text-left">닉네임</td>
-                <td className="border-1 p-2 text-left">포인트</td>
+                <td className="border-1 p-2 text-left">
+                  <TextLangauge lng={params.lng} textKey={"ranking.rank"} />
+                </td>
+                <td className="border-1 p-2 text-left">
+                  <TextLangauge lng={params.lng} textKey={"ranking.nickname"} />
+                </td>
+                <td className="border-1 p-2 text-left">
+                  <TextLangauge lng={params.lng} textKey={"ranking.point"} />
+                </td>
               </tr>
             </thead>
             <tbody className="m-2 text-[20px]">

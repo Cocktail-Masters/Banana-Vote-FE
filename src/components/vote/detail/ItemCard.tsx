@@ -32,7 +32,7 @@ const VoteDetailItemCard = ({
           : ""
       }  ${
         !isParti &&
-        `hover: hover:border-secondary-orange hover:bg-primary-yellow`
+        `hover: hover:border-secondary-orange hover:bg-primary-yellow cursor-pointer`
       }`}
       style={{ overflow: "hidden" }}
       onClick={() => {

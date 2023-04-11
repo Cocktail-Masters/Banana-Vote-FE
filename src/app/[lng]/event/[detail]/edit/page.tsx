@@ -1,3 +1,4 @@
+import Loading from "@/components/Loading";
 import CreateEventVote from "@/components/vote/create/CreateEventVote";
 import { Suspense } from "react";
 
@@ -23,7 +24,7 @@ const page = ({ params }: { params: paramsType }) => {
         width="958"
         height="100"
       ></canvas>
-      <Suspense fallback={<div>에러가 났음</div>}>
+      <Suspense fallback={<Loading />}>
         <CreateEventVote params={params} />
       </Suspense>
     </>

@@ -160,10 +160,9 @@ const CreateEventVoteWrapper = ({ params }: { params: paramsType }) => {
 
   if (isLoading) {
     return (
-      <>
+      <div className={"flex h-full w-full items-center justify-center"}>
         <Loading />
-        <div>asdf</div>
-      </>
+      </div>
     );
   }
   if (data === undefined) {

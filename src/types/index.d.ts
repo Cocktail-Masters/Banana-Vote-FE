@@ -141,6 +141,14 @@ export type voteItemType = {
 };
 export type voteItemTypes = voteItemType[];
 
+export type createVoteItemType = Omit<voteItemType, "id" | "image_url"> & {
+  id: number | string;
+  image_url: string | null;
+  imageFile?: file | null;
+};
+
+export type createVoteItemTypes = createVoteItemType[];
+
 export type voteDetailType = {
   vote: {
     id: number;

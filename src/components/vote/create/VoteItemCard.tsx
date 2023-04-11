@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import UploadImage from "@components/UploadImage";
 import VoteItemLayout from "./VoteItemLayout";
-import { voteItemTypes, voteItemType } from "./CreateVote";
 import Image from "next/image";
 
 import minus from "@assets/images/minus.svg";
 import close from "@assets/images/close.png";
 import React from "react";
 import handleImage from "@assets/icons/handle.svg";
+import { createVoteItemType, createVoteItemTypes } from "@/types";
 
 const VoteItemCard = ({
   voteItem,
@@ -17,13 +17,13 @@ const VoteItemCard = ({
   setVoteItems,
   onChangeHandler,
 }: {
-  voteItem: voteItemType;
+  voteItem: createVoteItemType;
   index: number;
-  setVoteItems: React.Dispatch<React.SetStateAction<voteItemTypes>>;
+  setVoteItems: React.Dispatch<React.SetStateAction<createVoteItemTypes>>;
   onChangeHandler: (value: string, index: number) => void;
 }) => {
   const { imageFile, title } = voteItem;
-  const [imageSrc, setImageSrc] = useState<string | null>("");
+  const [imageSrc, setImageSrc] = useState<string | null>(voteItem.image_url);
 
   const uploadImageHandler = (file: File | null) => {
     setVoteItems((prevItems) => {

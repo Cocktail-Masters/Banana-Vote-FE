@@ -1,4 +1,3 @@
-import "server-only";
 import type { Locale } from "./i18n-config";
 import { i18n, dictionaries, transitionType } from "./i18n-config";
 

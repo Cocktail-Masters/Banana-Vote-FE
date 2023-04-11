@@ -9,7 +9,6 @@ import { rankingParamsType } from "@/app/[lng]/ranking/[seasonId]/[paginationInd
 import TextLangauge from "../common/TextLanguage";
 
 export default function RankingList({ params }: { params: rankingParamsType }) {
-  const newParams = useParams();
   const { seasonId } = params;
   const paginationIndex = Number(params.paginationIndex);
   const { data, isLoading } = useQuery<rankingListTypes>({
@@ -24,8 +23,6 @@ export default function RankingList({ params }: { params: rankingParamsType }) {
       </div>
     );
   }
-  console.log("newParams", newParams);
-
   return (
     <>
       {data && (

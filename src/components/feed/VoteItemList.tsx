@@ -1,8 +1,8 @@
-"use client";
 /**
  * @author mingyu
  * @description 투표 항목들을 CArd 리스트 형태로 표시
  */
+"use client";
 import VoteItem from "./VoteItem";
 import { voteItemType } from "@/types";
 import { motion } from "framer-motion";
@@ -17,7 +17,7 @@ const VoteItemList = ({ vote_items }: { vote_items: voteItemType[] }) => {
             return (
               <>
                 <motion.div
-                  className={`relative w-full truncate drop-shadow-md transition duration-150 ease-in-out hover:-translate-y-1`}
+                  className={`relative w-full truncate transition duration-150 ease-in-out hover:-translate-y-1`}
                   whileHover={{ scale: 1.03 }}
                   key={index}
                 >

@@ -32,7 +32,7 @@ const VoteItem = ({ imageLink = defaultImg, content }: voteFeedItemProps) => {
         />
       </div>
 
-      <p className="mb-2 h-[48px] w-full truncate p-4 text-center font-semibold">
+      <p className="h-[52px] truncate rounded-b-2xl border border-inherit px-5 text-center font-semibold leading-[52px]">
         {content}
       </p>
     </div>

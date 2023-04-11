@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx}", // Note the addition of the `app` directory.
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -23,6 +23,7 @@ module.exports = {
         "primary-yellow": "#FCDA76",
         "secondary-orange": "#FFA45B",
         "secondary-dark-orange": "#ff821f",
+        tag: "#F9F6ED",
         tertiary: "#F9F6ED",
       },
     },

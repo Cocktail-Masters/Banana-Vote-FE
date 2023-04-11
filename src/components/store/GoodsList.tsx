@@ -1,6 +1,4 @@
-"use client";
 import { storeGoodsType, storeGoodsTypes } from "@/types";
-import React, { useEffect } from "react";
 import CardList from "@/components/common/cardList/CardList";
 import Goods from "./Goods";
 

@@ -41,7 +41,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
                 return (
                   <div
                     key={index}
-                    className="flex whitespace-nowrap rounded-3xl bg-primary-yellow pl-2 pr-2 pt-1 pb-1 text-sm font-semibold hover:bg-primary-yellow/75"
+                    className="flex whitespace-nowrap rounded-3xl bg-tag pl-2 pr-2 pt-1 pb-1 text-sm font-semibold"
                   >
                     #{tag}
                   </div>
@@ -57,6 +57,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
             {/* 댓글 더보기 */}
             <div className="flex h-6 w-full">
               <div className="absolute left-0 flex h-5 text-sm font-bold">
+                {/* {messages["feed"]["feed"].best_opinion} */}
                 베스트 댓글
               </div>
               <Link href={`/vote/detail/${data.vote.id}`}>

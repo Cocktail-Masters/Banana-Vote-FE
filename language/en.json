@@ -11,53 +11,101 @@
       "test3": "asdf"
     }
   },
-  "vote":{
-    "detail":{
-      "item":{
-        "end":"End",
-        "ing":"In Progress",
-        "period":"Voting Period",
-        "remaining":"Days Remaining",
-        "hits":"Views",
-        "image_hint":"Click the image to view it larger.",
-        "predict_result":"Predict Results",
-        "voting":"Vote",
-        "delete":"Delete",
-        "declaration":"Report",
-        "prediction_modal":{
-          "title":"Predict Voting Results with Bananas",
-          "user_vote_result":"You voted for!",
-          "setting_point":"Please set the points to use for prediction!",
-          "submit":"Submit",
-          "has_banana":"Bananas you have"
+  "vote": {
+    "detail": {
+      "item": {
+        "end": "End",
+        "ing": "In Progress",
+        "period": "Voting Period",
+        "remaining": "Days Remaining",
+        "hits": "Views",
+        "image_hint": "Click the image to view it larger.",
+        "predict_result": "Predict Results",
+        "voting": "Vote",
+        "delete": "Delete",
+        "declaration": "Report",
+        "prediction_modal": {
+          "title": "Predict Voting Results with Bananas",
+          "user_vote_result": "You voted for!",
+          "setting_point": "Please set the points to use for prediction!",
+          "submit": "Submit",
+          "has_banana": "Bananas you have"
         }
       },
-      "picket_area":{
-        "electioneering":"Electioneering",
-        "modal":{
-          "join":"Join",
-          "upload":"Upload Picket",
-          "content":{
-            "change":"Change to current picket",
-            "dropzone":{
-              "upload_hint1":"Drag files here or",
-              "upload_hint2":"Select files directly!",
-              "upload_hint3":"Available extensions are JPG, PNG, WEBP.",
-              "min_banana":"Minimum Bananas",
-              "submit":"Submit",
-              "has_banana":"Bananas you have"
+      "picket_area": {
+        "electioneering": "Electioneering",
+        "modal": {
+          "join": "Join",
+          "upload": "Upload Picket",
+          "content": {
+            "change": "Change to current picket",
+            "dropzone": {
+              "upload_hint1": "Drag files here or",
+              "upload_hint2": "Select files directly!",
+              "upload_hint3": "Available extensions are JPG, PNG, WEBP.",
+              "min_banana": "Minimum Bananas",
+              "submit": "Submit",
+              "has_banana": "Bananas you have"
             }
           }
         }
       },
-      "comment_area":{
-        "count_comment":"Comments",
-        "sort_by_agree":"Agree Order",
-        "sort_by_latest":"Latest Order",
-        "comment_input":{
-          "placeholder":"Please share your opinion"
+      "comment_area": {
+        "count_comment": "Comments",
+        "sort_by_agree": "Agree Order",
+        "sort_by_latest": "Latest Order",
+        "comment_input": {
+          "placeholder": "Please share your opinion"
         }
       }
+    }
+  },
+  "feed": {
+    "feed": {
+      "best_opinion": "Best opinion",
+      "opinion": "",
+      "opinion_num": "comments"
+    },
+    "feed_header": {
+      "report": "Report",
+      "share": "Share",
+      "error_message": "Invalid request.",
+      "closed": "Closed"
+    },
+    "feed_list_area": {
+      "no_vote_list_title": "There is no voting list.",
+      "no_vote_list_description": "Create a new vote!"
+    }
+  },
+  "home": {
+    "ranking_box": {
+      "see_more": "See more...",
+      "no_ranking_list": "There is no season ranking information."
+    },
+    "ranking_list_area": {
+      "box_title": "Season Ranking"
+    },
+    "recommend_area": {
+      "titles_popular": "Now Popular",
+      "titles_recommend": "Recent Interest"
+    },
+    "recommend_box": {
+      "no_recommend_list": "There is no voting."
+    },
+    "vote_create_bar": {
+      "create_vote_message": "Create a new vote"
+    },
+    "vote_search_bar": {
+      "sort_recent": "New",
+      "sort_participant_high": "Hot",
+      "sort_hit_high": "Popular",
+      "sort_opinion_high": "Many Opinions",
+      "contain_closed_votes": "Include closed voting"
+    }
+  },
+  "store": {
+    "page": {
+      "title": "Banana Store"
     }
   }
 }

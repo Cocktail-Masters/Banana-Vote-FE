@@ -10,54 +10,102 @@
     "test2": {
       "test3": "asdf"
     }
-  }, 
-"vote":{
-    "detail":{
-      "item":{
-        "end":"終了",
-        "ing":"進行中",
-        "period":"投票期間",
-        "remaining":"日残り",
-        "hits":"閲覧数",
-        "image_hint":"画像をクリックすると拡大表示されます。",
-        "predict_result":"結果を予測する",
-        "voting":"投票する",
-        "delete":"削除",
-        "declaration":"通報",
-        "prediction_modal":{
-          "title":"バナナポイントで投票結果を予測する",
-          "user_vote_result":"投票しました！",
-          "setting_point":"予測に使用するポイントを設定してください！",
-          "submit":"提出",
-          "has_banana":"持っているバナナ"
+  },
+  "vote": {
+    "detail": {
+      "item": {
+        "end": "終了",
+        "ing": "進行中",
+        "period": "投票期間",
+        "remaining": "日残り",
+        "hits": "閲覧数",
+        "image_hint": "画像をクリックすると拡大表示されます。",
+        "predict_result": "結果を予測する",
+        "voting": "投票する",
+        "delete": "削除",
+        "declaration": "通報",
+        "prediction_modal": {
+          "title": "バナナポイントで投票結果を予測する",
+          "user_vote_result": "投票しました！",
+          "setting_point": "予測に使用するポイントを設定してください！",
+          "submit": "提出",
+          "has_banana": "持っているバナナ"
         }
       },
-      "picket_area":{
-        "electioneering":"選挙運動",
-        "modal":{
-          "join":"参加する",
-          "upload":"ピケットをアップロードする",
-          "content":{
-            "change":"現在のピケットに変更する",
-            "dropzone":{
-              "upload_hint1":"ここにファイルをドラッグするか、",
-              "upload_hint2":"ファイルを直接選択してください！",
-              "upload_hint3":"使用可能な拡張子はJPG、PNG、WEBPです。",
-              "min_banana":"最小バナナ",
-              "submit":"提出",
-              "has_banana":"持っているバナナ"
+      "picket_area": {
+        "electioneering": "選挙運動",
+        "modal": {
+          "join": "参加する",
+          "upload": "ピケットをアップロードする",
+          "content": {
+            "change": "現在のピケットに変更する",
+            "dropzone": {
+              "upload_hint1": "ここにファイルをドラッグするか、",
+              "upload_hint2": "ファイルを直接選択してください！",
+              "upload_hint3": "使用可能な拡張子はJPG、PNG、WEBPです。",
+              "min_banana": "最小バナナ",
+              "submit": "提出",
+              "has_banana": "持っているバナナ"
             }
           }
         }
       },
-      "comment_area":{
-        "count_comment":"コメント数",
-        "sort_by_agree":"同意順",
-        "sort_by_latest":"最新順",
-        "comment_input":{
-          "placeholder":"意見を伝えてください"
+      "comment_area": {
+        "count_comment": "コメント数",
+        "sort_by_agree": "同意順",
+        "sort_by_latest": "最新順",
+        "comment_input": {
+          "placeholder": "意見を伝えてください"
         }
       }
+    }
+  },
+  "feed": {
+    "feed": {
+      "best_opinion": "最高の意見",
+      "opinion": "",
+      "opinion_num": "comments"
+    },
+    "feed_header": {
+      "report": "Report",
+      "share": "Share",
+      "error_message": "無効な要求です。",
+      "closed": "終了"
+    },
+    "feed_list_area": {
+      "no_vote_list_title": "投票リストがありません。",
+      "no_vote_list_description": "新しい投票を作成します！"
+    }
+  },
+  "home": {
+    "ranking_box": {
+      "see_more": "もっと見る···",
+      "no_ranking_list": "シーズンランキングの情報はありません。"
+    },
+    "ranking_list_area": {
+      "box_title": "シーズンランキング"
+    },
+    "recommend_area": {
+      "titles_popular": "今や人気",
+      "titles_recommend": "最近の関心事"
+    },
+    "recommend_box": {
+      "no_recommend_list": "投票はありません。"
+    },
+    "vote_create_bar": {
+      "create_vote_message": "新しい投票を作成する"
+    },
+    "vote_search_bar": {
+      "sort_recent": "新規",
+      "sort_participant_high": "参加の多い順",
+      "sort_hit_high": "照会順",
+      "sort_opinion_high": "コメントが多い順",
+      "contain_closed_votes": "終了した投票文を含む"
+    }
+  },
+  "store": {
+    "page": {
+      "title": "バナナストア"
     }
   }
 }

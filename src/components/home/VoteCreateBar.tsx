@@ -1,10 +1,8 @@
-"use client";
-
 /**
  * @author mingyu
  * @description 투표 생성으로 이동하는 바
  */
-
+"use client";
 import Link from "next/link";
 import React from "react";
 import BadgeImage from "../common/BadgeImage";

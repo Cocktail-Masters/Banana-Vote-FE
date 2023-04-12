@@ -10,6 +10,8 @@ import close from "@assets/images/close.png";
 import React from "react";
 import handleImage from "@assets/icons/handle.svg";
 import { createVoteItemType, createVoteItemTypes } from "@/types";
+import { translatedText } from "@/common/translation";
+import { useParams } from "next/navigation";
 
 const VoteItemCard = ({
   voteItem,
@@ -22,6 +24,7 @@ const VoteItemCard = ({
   setVoteItems: React.Dispatch<React.SetStateAction<createVoteItemTypes>>;
   onChangeHandler: (value: string, index: number) => void;
 }) => {
+  const { lng } = useParams();
   const { imageFile, title } = voteItem;
   const [imageSrc, setImageSrc] = useState<string | null>(voteItem.image_url);
 
@@ -91,7 +94,10 @@ const VoteItemCard = ({
           <div className={"h-full w-full"}>
             <input
               className={`vote-input-${index} base:text-xl focus:border-yellow h-full w-full p-5 font-bold outline-none xl:text-3xl`}
-              placeholder={"내용 입력"}
+              placeholder={translatedText({
+                lng,
+                textKey: "vote.create.enterContent",
+              })}
               value={title}
               onChange={(e) => onChangeHandler(e.target.value, index)}
             ></input>

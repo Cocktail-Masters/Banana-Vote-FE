@@ -21,18 +21,20 @@
   },
   "vote": {
     "create": {
-      "isDisclosure": "공개 여부",
-      "disclosureTrue": "공개",
-      "disclosureFalse": "비공개",
-      "isEvent": "이벤트 여부",
-      "eventTrue": "이벤트",
-      "eventFalse": "일반",
-      "isLogin": "로그인 여부",
-      "loginTrue": "실명",
-      "loginFalse": "익명",
-      "voteDeadline": "투표 마감일",
-      "title": "제목",
-      "enterContent": "내용 입력"
+      "registration": "登録",
+      "voteGeneration": "投票の作成",
+      "isDisclosure": "公開するかどうか",
+      "disclosureTrue": "公開",
+      "disclosureFalse": "非公開",
+      "isEvent": "イベントかどうか",
+      "eventTrue": "イベント",
+      "eventFalse": "一般",
+      "isAnonymouse": "ログインが必要かどうか",
+      "anonymouseTrue": "実名",
+      "anonymouseFalse": "匿名",
+      "voteDeadline": "投票締め切り日",
+      "title": "タイトル",
+      "enterContent": "内容を入力してください"
     },
     "detail": {
       "item": {

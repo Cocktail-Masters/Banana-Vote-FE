@@ -23,6 +23,7 @@ module.exports = {
         "primary-yellow": "#FCDA76",
         "secondary-orange": "#FFA45B",
         "secondary-dark-orange": "#ff821f",
+        
         tertiary: "#F9F6ED",
       },
     },

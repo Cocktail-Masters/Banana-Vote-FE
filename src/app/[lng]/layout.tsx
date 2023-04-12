@@ -28,9 +28,8 @@ export default function RootLayout({
     <html lang={lang} className="">
       {/* <SettingTheme /> */}
       <head>
-        <Script
+        <script
           id="inline-script"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
           if (
@@ -48,7 +47,6 @@ export default function RootLayout({
           }}
         />
       </head>
-
       <body className="bg-white transition-colors duration-300 dark:bg-black">
         <Provider>
           <LayoutHeader></LayoutHeader>

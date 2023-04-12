@@ -8,7 +8,6 @@ const CreateVoteContent = ({
   content: string;
   setContent: Dispatch<SetStateAction<string>>;
 }) => {
-  console.log("content", content);
   return (
     <div className="w-full">
       <div className="relative w-full min-w-[200px]">

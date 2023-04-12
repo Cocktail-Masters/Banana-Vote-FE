@@ -20,6 +20,20 @@
     "rank": "등수"
   },
   "vote": {
+    "create": {
+      "isDisclosure": "공개 여부",
+      "disclosureTrue": "공개",
+      "disclosureFalse": "비공개",
+      "isEvent": "이벤트 여부",
+      "eventTrue": "이벤트",
+      "eventFalse": "일반",
+      "isLogin": "로그인 여부",
+      "loginTrue": "실명",
+      "loginFalse": "익명",
+      "voteDeadline": "투표 마감일",
+      "title": "제목",
+      "enterContent": "내용 입력"
+    },
     "detail": {
       "item": {
         "end": "종료",

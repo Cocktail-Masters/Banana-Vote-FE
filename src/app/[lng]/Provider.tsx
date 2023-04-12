@@ -5,7 +5,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 type providerType = {
   children: React.ReactNode;
-  lng: string;
 };
 
 const Provider = ({ children }: providerType) => {

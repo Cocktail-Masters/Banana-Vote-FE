@@ -53,6 +53,7 @@ const VoteDetailPredictionModal = ({
                 className={"header relative flex items-center justify-center"}
               >
                 <button
+                  id="modalCloseButton"
                   className={`absolute sm:right-1 lg:right-4`}
                   onClick={onClose}
                 >

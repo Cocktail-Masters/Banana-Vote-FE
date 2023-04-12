@@ -100,7 +100,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 <p className="mr-1">{data.vote.hits}</p>
               </div>
             </div>
-            <div className="mt-[25px] flex flex-col">
+            <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
               {data.vote_items.map((e: voteItemType, i: Key) => (
                 <VoteDetailItemCard
                   key={i}

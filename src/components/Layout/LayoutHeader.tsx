@@ -50,6 +50,7 @@ const LayoutHeader = () => {
         <div className="invisible relative flex h-full w-full flex-row items-center p-0 text-2xl lg:visible">
           <LayoutTopBar tabs={tabs} />
         </div>
+
         <div className="visible relative z-[110] m-3 p-1 lg:invisible lg:absolute">
           <HamburgerMenuButton
             isOpen={isOpen}

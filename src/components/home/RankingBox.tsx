@@ -25,7 +25,7 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
           {/* 더보기 */}
           <div className="relative h-7 w-auto">
             <Link href={`/rank`}>
-              <p className="absolute top-[66%] right-3 flex h-7 w-20 items-center justify-center text-sm text-gray-400 hover:text-gray-500 hover:decoration-solid">
+              <p className="see-more-ranking fabsolute top-[66%] right-3 flex h-7 w-20 items-center justify-center text-sm text-gray-400 hover:text-gray-500 hover:decoration-solid">
                 더보기
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

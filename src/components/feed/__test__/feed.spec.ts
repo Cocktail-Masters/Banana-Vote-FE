@@ -14,13 +14,11 @@ test("feed", async ({ page }) => {
   await page.waitForTimeout(200);
 
   // 무한스크롤 테스트
-  // for (let i = 0; i < 10; i++) {
-  //   await page.evaluate((param) => {
-  //     console.log(param);
-  //     window.scrollBy(2000, 5000);
-  //   });
-  //   await page.waitForTimeout(100);
-  // }
+  for (let i = 0; i < 10; i++) {
+    const scrollY = await page.evaluate(() => document.body.scrollHeight);
+    await page.mouse.wheel(0, scrollY);
+    await page.waitForTimeout(500);
+  }
 
   // 필터 버튼 클릭 시 옵션에 맞게 피드리스트 정렬
   await page.getByRole("radio", { name: "최신 순" }).click();
@@ -51,22 +49,49 @@ test("feed", async ({ page }) => {
   await page.waitForTimeout(1000);
   await page.fill("#search-input", "");
   await page.waitForTimeout(1000);
+  await page.keyboard.press("Enter");
+  await page.waitForTimeout(1000);
   await page.evaluate(() => {
     (document.activeElement as HTMLElement).blur();
   });
   await page.waitForTimeout(1000);
 
   // 뱃지 클릭
+  await page.locator(".badge").first().click();
+  // await page.goback();
 
   // 작성자 닉네임 클릭
+  await page.locator(".writer").first().click();
+  // await page.goback();
 
   // 피드의 메뉴 버튼 클릭 및 신고 기능 이용
+  await page.locator("#menu-button").first().hover();
+  await page.waitForTimeout(1000);
+  await page.locator("#menu-button").first().click();
+  await page.waitForTimeout(1500);
+  await page.locator('li:has-text("신고")').click();
+  await page.waitForTimeout(1000);
 
   // 피드의 공유 버튼 클릭 및 공유 기능 이용
+  await page.locator("#menu-button").first().hover();
+  await page.waitForTimeout(1000);
+  await page.locator("#menu-button").first().click();
+  await page.waitForTimeout(1500);
+  await page.locator('li:has-text("공유")').click();
+  await page.waitForTimeout(1000);
 
   // 각 투표항목 카드 hover
+  const voteItems = await page.locator(".vote-item");
+  const len = await voteItems.count();
+  for (let i = 0; i < len; i++) {
+    await voteItems.nth(i).hover();
+    // await page.waitForTimeout(200);
+  }
 
   // 댓글 더보기 클릭
+  await page.locator(".see-more").first().click();
+  await page.waitForLoadState();
+  await page.goBack();
 
   // 투표 생성 페이지 이동 버튼 hover 및 click
   await page.locator("#vote-create-button").hover();

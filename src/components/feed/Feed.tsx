@@ -19,6 +19,8 @@ const Feed = ({ data }: { data: voteFeedType }) => {
         {/* 피드 헤더 */}
         <div className="p-5">
           <FeedHeader
+            writer_id={data.writer.id}
+            vote_id={data.vote.id}
             badge_image_url={data.writer.badge_image_url}
             nickname={data.writer.nickname}
             end_date={data.vote.end_date}
@@ -60,7 +62,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
                 베스트 댓글
               </div>
               <Link href={`/vote/detail/${data.vote.id}`}>
-                <div className="absolute right-0 flex h-5 text-sm font-bold hover:border-b">
+                <div className="see-more absolute right-0 flex h-5 text-sm font-bold hover:border-b">
                   댓글 {data.vote.opinion_number.toLocaleString()}개
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -83,6 +85,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
           {/* 베스트 댓글 1개 */}
           <div className="relative h-auto w-full">
             <BestOpinion
+              writer_id={data.writer.id}
               nickname={data.best_opinion.writer.nickname}
               best_opinion={data.best_opinion}
             />

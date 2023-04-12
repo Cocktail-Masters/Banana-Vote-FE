@@ -68,7 +68,7 @@ const CreateVote = () => {
         <div className="my-4 mr-3 ml-3 flex text-2xl font-bold">
           {translatedText({
             lng,
-            textKey: "vote.create.voteGeneration",
+            textKey: "vote.create.vote_generation",
           })}
         </div>
         <div className="flex flex-col gap-8 rounded-2xl border border-gray-300 p-10">
@@ -76,7 +76,7 @@ const CreateVote = () => {
             <VoteOptionToggleButton
               title={translatedText({
                 lng,
-                textKey: "vote.create.isDisclosure",
+                textKey: "vote.create.is_disclosure",
               })}
               isData={isDisclosure}
               onClickHandler={setIsDisclosure}
@@ -85,14 +85,14 @@ const CreateVote = () => {
                   data: true,
                   content: translatedText({
                     lng,
-                    textKey: "vote.create.disclosureTrue",
+                    textKey: "vote.create.disclosure_true",
                   }),
                 },
                 {
                   data: false,
                   content: translatedText({
                     lng,
-                    textKey: "vote.create.disclosureFalse",
+                    textKey: "vote.create.disclosure_false",
                   }),
                 },
               ]}
@@ -100,7 +100,7 @@ const CreateVote = () => {
             <VoteOptionToggleButton
               title={translatedText({
                 lng,
-                textKey: "vote.create.isAnonymouse",
+                textKey: "vote.create.is_anonymouse",
               })}
               isData={isAnonymouse}
               onClickHandler={setIsAnonymouse}
@@ -109,14 +109,14 @@ const CreateVote = () => {
                   data: false,
                   content: translatedText({
                     lng,
-                    textKey: "vote.create.anonymouseTrue",
+                    textKey: "vote.create.anonymouse_true",
                   }),
                 },
                 {
                   data: true,
                   content: translatedText({
                     lng,
-                    textKey: "vote.create.anonymouseFalse",
+                    textKey: "vote.create.anonymouse_false",
                   }),
                 },
               ]}
@@ -124,7 +124,7 @@ const CreateVote = () => {
             <DatePicker
               title={translatedText({
                 lng,
-                textKey: "vote.create.voteDeadline",
+                textKey: "vote.create.vote_deadline",
               })}
               onDateChange={setEndDate}
               endDate={endDate}

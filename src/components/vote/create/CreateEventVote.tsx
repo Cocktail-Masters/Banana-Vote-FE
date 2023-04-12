@@ -101,7 +101,7 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
         <div className="my-4 mr-3 ml-3 flex text-2xl font-bold">
           {translatedText({
             lng,
-            textKey: "vote.create.voteGeneration",
+            textKey: "vote.create.vote_generation",
           })}
         </div>
         <div className="flex flex-col gap-8 rounded-2xl border border-gray-300 p-10">
@@ -109,7 +109,7 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
             <VoteOptionToggleButton
               title={translatedText({
                 lng,
-                textKey: "vote.create.isDisclosure",
+                textKey: "vote.create.is_disclosure",
               })}
               isData={isDisclosure}
               onClickHandler={setIsDisclosure}
@@ -118,14 +118,14 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
                   data: true,
                   content: translatedText({
                     lng,
-                    textKey: "vote.create.disclosureTrue",
+                    textKey: "vote.create.disclosure_true",
                   }),
                 },
                 {
                   data: false,
                   content: translatedText({
                     lng,
-                    textKey: "vote.create.disclosureFalse",
+                    textKey: "vote.create.disclosure_false",
                   }),
                 },
               ]}
@@ -133,7 +133,7 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
             <VoteOptionToggleButton
               title={translatedText({
                 lng,
-                textKey: "vote.create.isEvent",
+                textKey: "vote.create.is_event",
               })}
               isData={isEvent}
               onClickHandler={setIsEvent}
@@ -142,14 +142,14 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
                   data: false,
                   content: translatedText({
                     lng,
-                    textKey: "vote.create.eventTrue",
+                    textKey: "vote.create.event_true",
                   }),
                 },
                 {
                   data: true,
                   content: translatedText({
                     lng,
-                    textKey: "vote.create.eventFalse",
+                    textKey: "vote.create.event_false",
                   }),
                 },
               ]}
@@ -157,7 +157,7 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
             <DatePicker
               title={translatedText({
                 lng,
-                textKey: "vote.create.voteDeadline",
+                textKey: "vote.create.vote_deadline",
               })}
               onDateChange={setEndDate}
               endDate={endDate}

@@ -96,7 +96,7 @@ const VoteItemCard = ({
               className={`vote-input-${index} base:text-xl focus:border-yellow h-full w-full p-5 font-bold outline-none xl:text-3xl`}
               placeholder={translatedText({
                 lng,
-                textKey: "vote.create.enterContent",
+                textKey: "vote.create.enter_content",
               })}
               value={title}
               onChange={(e) => onChangeHandler(e.target.value, index)}

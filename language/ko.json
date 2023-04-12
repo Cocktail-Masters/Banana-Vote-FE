@@ -19,22 +19,29 @@
     "point": "점수",
     "rank": "등수"
   },
+  "header": {
+    "vote_list": "투표목록",
+    "popular": "인기투표",
+    "event": "이벤트",
+    "store": "스토어",
+    "ranking": "랭킹"
+  },
   "vote": {
     "create": {
       "registration": "등록",
-      "voteGeneration": "투표 생성",
-      "isDisclosure": "공개 여부",
-      "disclosureTrue": "공개",
-      "disclosureFalse": "비공개",
-      "isEvent": "이벤트 여부",
-      "eventTrue": "이벤트",
-      "eventFalse": "일반",
-      "isAnonymouse": "로그인 여부",
-      "anonymouseTrue": "실명",
-      "anonymouseFalse": "익명",
-      "voteDeadline": "투표 마감일",
+      "vote_generation": "투표 생성",
+      "is_disclosure": "공개 여부",
+      "disclosure_true": "공개",
+      "disclosure_false": "비공개",
+      "is_event": "이벤트 여부",
+      "event_true": "이벤트",
+      "event_false": "일반",
+      "is_anonymouse": "로그인 여부",
+      "anonymouse_true": "실명",
+      "anonymouse_false": "익명",
+      "vote_deadline": "투표 마감일",
       "title": "제목",
-      "enterContent": "내용 입력"
+      "enter_content": "내용 입력"
     },
     "detail": {
       "item": {

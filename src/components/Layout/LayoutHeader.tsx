@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useCallback, useEffect, useState } from "react";
 import Logo from "@assets/icons/logo.svg";
 import Image from "next/image";
@@ -9,6 +8,7 @@ import LayoutSidebar from "@components/Layout/LayoutSideBar";
 import HamburgerMenuButton from "../animation/HamburgerMenuButton";
 import LayoutTopBar from "./LayoutTopBar";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import useTranslation from "@/hooks/useTranslation";
 
 export type tabType = {
   label: string;
@@ -17,12 +17,13 @@ export type tabType = {
 
 const LayoutHeader = () => {
   const minWidth650 = useMediaQuery("(min-width:960px)");
+  const { translation } = useTranslation();
   const tabs: tabType[] = [
-    { label: "투표목록", path: "/home" },
-    { label: "인기투표", path: "/vote/popular" },
-    { label: "이벤트", path: "/event" },
-    { label: "스토어", path: "/store" },
-    { label: "랭킹", path: "/ranking" },
+    { label: translation("header.vote_list"), path: "/home" },
+    { label: translation("header.popular"), path: "/vote/popular" },
+    { label: translation("header.event"), path: "/event" },
+    { label: translation("header.store"), path: "/store" },
+    { label: translation("header.ranking"), path: "/ranking" },
   ];
 
   const [isOpen, setIsOpen] = useState(false);

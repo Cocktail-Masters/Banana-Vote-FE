@@ -25,7 +25,7 @@ const LayoutSideBar = ({
   return (
     <>
       <div
-        className="absolute top-0 right-0 z-[100] flex h-full w-[300px] transform flex-col gap-[30px] bg-gray-300 pt-[80px]  transition duration-200"
+        className="absolute top-0 right-0 z-[100] flex h-full w-[300px] transform flex-col gap-[30px] bg-bg-feed-dark pt-[80px] text-text-normal-dark transition  duration-200 dark:bg-black"
         style={{
           transform: isOpen ? "translate(0%)" : "translate(100%)",
         }}

@@ -16,11 +16,11 @@ const DatePickerComp = ({
 }) => {
   return (
     <>
-      <div className="flex items-center">
-        <div className="flex border-secondary-orange p-2.5 text-center">
+      <div className="flex items-center ">
+        <div className="flex border-secondary-orange p-2.5 text-center ">
           {title}
         </div>
-        <div className="relative flex rounded-2xl border-2 border-secondary-orange p-1">
+        <div className="relative flex rounded-2xl border-2 border-secondary-orange bg-white p-1 text-text-normal">
           <DatePicker
             dateFormat="yyyy/MM/dd"
             startDate={new Date()}

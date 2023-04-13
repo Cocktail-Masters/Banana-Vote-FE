@@ -1,6 +1,7 @@
 "use client";
 import Loading from "@/components/Loading";
 import { usePicketQuery } from "@/hooks/reactQuery/usePicketQuery";
+import useTranslation from "@/hooks/useTranslation";
 import Carousel from "./Carousel";
 import PicketAreaModal from "./PicketModal";
 
@@ -9,6 +10,7 @@ const PicketArea = () => {
     queryKey: "picket",
     voteId: 1,
   });
+  const { translation } = useTranslation();
 
   return (
     <div
@@ -18,7 +20,7 @@ const PicketArea = () => {
         className={`mb-[15px] flex h-[25px] w-full items-center justify-between`}
       >
         <div className={`p-[3%] text-center text-2xl font-extrabold`}>
-          선거 운동
+          {translation("vote.detail.picket_area.electioneering")}
         </div>
         {data !== undefined && (
           <div className={`mr-[10px] p-[10px]`}>

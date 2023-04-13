@@ -3,6 +3,7 @@ import Image from "next/image";
 import banana from "@assets/icons/banana_svgrepo.com.svg";
 import React from "react";
 import PicketDropzone from "./PicketDropzone";
+import useTranslation from "@/hooks/useTranslation";
 type picketChangeType = {
   change: boolean;
   picket: picketType;
@@ -18,6 +19,7 @@ const PicketAreaModalContent = ({
   const onClick = ({ picket }: { picket: picketType }) => {
     onChangeState({ change: true, picket });
   };
+  const { translation } = useTranslation();
   return (
     <div className={`flex h-fit w-full flex-col items-center pb-[20px]`}>
       {pickets.map((e, i) => (
@@ -51,7 +53,8 @@ const PicketAreaModalContent = ({
             >
               <Image src={banana} alt={"바나나"} style={{ width: "30px" }} />
               <div className={`text-xl font-bold`}>
-                {e.price} 으로 현재 피캣 바꾸기
+                {e.price}
+                {translation("vote.detail.picket_area.modal.content.change")}
               </div>
             </button>
             <button>🚨</button>

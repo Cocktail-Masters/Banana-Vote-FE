@@ -2,6 +2,7 @@ import PicketArea from "@/components/picket";
 import CommentListArea from "@/components/commentList";
 import { Locale } from "i18n-config";
 import HydrateDetail from "./hydrateDetail";
+import VoteDetailItem from "@/components/vote/detail/Item";
 
 const VoteDetail = ({
   params,
@@ -11,8 +12,8 @@ const VoteDetail = ({
   console.log("params", params);
   return (
     <div className={"VoteDetail"} style={{ width: "100%", height: "100%" }}>
-      {/* @ts-expect-error Server Component */}
-      <HydrateDetail postId={params.detail} />
+      {/* <HydrateDetail postId={params.detail} /> */}
+      <VoteDetailItem postId={parseInt(params.detail)} />
       <PicketArea />
       <CommentListArea />
     </div>

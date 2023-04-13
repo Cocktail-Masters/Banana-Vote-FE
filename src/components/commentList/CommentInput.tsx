@@ -1,11 +1,13 @@
 "use client";
 import { useCommentMutation } from "@/hooks/reactQuery/mutation/useCommentMutation";
+import useTranslation from "@/hooks/useTranslation";
 import { opinionType } from "@/types";
 import { useRef } from "react";
 
 const CommentInput = () => {
   const { mutate } = useCommentMutation();
   const commentInputRef = useRef<HTMLTextAreaElement>(null);
+  const { translation } = useTranslation();
 
   const sendOpinion = () => {
     if (
@@ -45,7 +47,9 @@ const CommentInput = () => {
       >
         <textarea
           className={`mr-[2%] h-full w-full resize-none rounded-2xl bg-[#F6F6F6] p-2`}
-          placeholder={"나의 의견을 전해주세요"}
+          placeholder={translation(
+            "vote.detail.comment_area.comment_input.placeholder"
+          )}
           ref={commentInputRef}
         ></textarea>
         <button

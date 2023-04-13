@@ -41,7 +41,7 @@ module.exports = {
         text: {
           normal: {
             dark: "#dfdddf",
-            DEFAULT: "#0000FF",
+            DEFAULT: "#000000",
           },
           title: {
             dark: "#dfdddf",

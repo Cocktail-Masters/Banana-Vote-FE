@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 import { picketType } from "@/types";
+import useTranslation from "@/hooks/useTranslation";
 
 const PicketDropzone = ({
   change,
@@ -16,6 +17,7 @@ const PicketDropzone = ({
 }) => {
   const [file, setFile] = useState<File>();
   const [fileType, setFileType] = useState<string>();
+  const { translation } = useTranslation();
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     console.log(acceptedFiles);
@@ -25,7 +27,7 @@ const PicketDropzone = ({
   const removePicture = () => {
     setFile(undefined);
   };
-  console.log("price?:", price, "position", position);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   return (
     <div
@@ -77,33 +79,66 @@ const PicketDropzone = ({
             <div
               className={`flex h-full w-full flex-col items-center justify-center`}
             >
-              <div className={`text-2xl`}>이곳에 파일을 드래그 하거나</div>
-              <div className={`text-2xl`}>파일을 직접 선택해주세요!</div>
+              <div className={`text-2xl`}>
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint1"
+                )}
+              </div>
+              <div className={`text-2xl`}>
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint2"
+                )}
+              </div>
               <div className={`text-lg`}>
-                사용 가능한 확장자는 JPG,PNG,WEBP입니다.
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint3"
+                )}
               </div>
             </div>
           ) : (
             <div
               className={`flex h-full w-full flex-col items-center justify-center`}
             >
-              <div className={`text-2xl`}>이곳에 파일을 드래그 하거나</div>
-              <div className={`text-2xl`}>파일을 직접 선택해주세요!</div>
+              <div className={`text-2xl`}>
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint1"
+                )}
+              </div>
+              <div className={`text-2xl`}>
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint2"
+                )}
+              </div>
               <div className={`text-lg`}>
-                사용 가능한 확장자는 JPG,PNG,WEBP입니다.
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint3"
+                )}
               </div>
             </div>
           )}
         </div>
       )}
       <div className={`mt-[5%] flex h-[20%] w-full flex-col items-center`}>
-        <div>최소 바나나 : {change ? price : "1000"}</div>
+        <div>
+          {translation(
+            "vote.detail.picket_area.modal.content.dropzone.min_banana"
+          )}{" "}
+          : {change ? price : "1000"}
+        </div>
         <div className={`flex`}>
           <input></input>
-          <button>제출</button>
+          <button>
+            {translation(
+              "vote.detail.picket_area.modal.content.dropzone.submit"
+            )}
+          </button>
         </div>
         <div>
-          <div>가지고 있는 바나나</div>
+          <div>
+            {translation(
+              "vote.detail.picket_area.modal.content.dropzone.has_banana"
+            )}
+          </div>
         </div>
       </div>
     </div>

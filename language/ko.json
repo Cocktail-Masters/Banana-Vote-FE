@@ -12,7 +12,10 @@
     }
   },
   "event": {
-    "pageTitle": "이벤트"
+    "pageTitle": "이벤트",
+    "ing":"진행중",
+    "end":"종료"
+
   },
   "ranking": {
     "nickname": "닉네임",

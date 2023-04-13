@@ -12,7 +12,9 @@
     }
   },
   "event": {
-    "pageTitle": "Event"
+    "pageTitle": "Event",
+    "ing":"Proceeding",
+    "end":"end"
   },
   "ranking": {
     "nickname": "nickname",

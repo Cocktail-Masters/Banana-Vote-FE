@@ -50,6 +50,7 @@ const RecommendArea = () => {
               viewBox="0 0 24 24"
               strokeWidth={2}
               stroke="currentColor"
+              id="slick-prev-arrow"
               className="h-6 w-6 rounded-full p-4 hover:bg-slate-100"
             >
               <path
@@ -66,6 +67,7 @@ const RecommendArea = () => {
               viewBox="0 0 24 24"
               strokeWidth={2}
               stroke="currentColor"
+              id="slick-next-arrow"
               className="h-6 w-6 rounded-full p-4 hover:bg-slate-100"
             >
               <path

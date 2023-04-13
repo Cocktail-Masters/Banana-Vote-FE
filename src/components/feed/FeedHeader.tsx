@@ -12,7 +12,9 @@ import { motion } from "framer-motion";
 import ModalBackground from "../common/modal/ModalBackground";
 import { getRemainDates } from "@/common/getRemainDates";
 
-type HeaderContentProps = {
+type headerContentProps = {
+  writer_id: number;
+  vote_id: number;
   badge_image_url?: string;
   nickname: string;
   end_date: string;
@@ -21,12 +23,14 @@ type HeaderContentProps = {
 };
 
 const FeedHeader = ({
+  writer_id,
+  vote_id,
   badge_image_url,
   nickname,
   end_date,
   is_closed,
   voted_number,
-}: HeaderContentProps) => {
+}: headerContentProps) => {
   const [menuToggle, setMenuToggle] = useState<boolean>(false);
 
   /**
@@ -37,7 +41,7 @@ const FeedHeader = ({
   };
 
   /**
-   * @descirption 메뉴 요소 클릭 시 이벤트
+   * @todo 메뉴 요소 클릭 시 이벤트
    */
   const handleMenuElementClick = (e: React.MouseEvent<HTMLElement>) => {
     const menuName = (e.target as HTMLElement).innerText;
@@ -52,13 +56,26 @@ const FeedHeader = ({
     }
   };
 
+  /**
+   * @todo 닉네임 클릭 시 사용자 프로필 페이지 이동
+   */
+  const handleNicknameClick = () => {
+    console.log(writer_id);
+  };
+
   return (
     <div className="relative flex">
       {/* 프로필 */}
       <div className="flex flex-wrap items-center gap-4">
-        <BadgeImage badge_image_url={badge_image_url} />
+        <BadgeImage user_id={writer_id} badge_image_url={badge_image_url} />
         <div>
-          <h3 className="mb-1 text-base font-bold">{nickname}</h3>
+          <h3
+            id={`writer-${writer_id}`}
+            className="writer mb-1 cursor-pointer text-base font-bold"
+            onClick={() => handleNicknameClick()}
+          >
+            {nickname}
+          </h3>
           <div className="flex text-sm">
             <div className="mr-3 h-4">
               {is_closed || getRemainDates({ endDate: end_date }) <= 0
@@ -91,6 +108,7 @@ const FeedHeader = ({
       >
         {/* 메뉴 버튼 */}
         <motion.button
+          id="menu-button"
           whileTap={{ scale: 0.9 }}
           className="h-10 w-10 rounded-full hover:bg-gray-200 active:bg-gray-300"
         >
@@ -104,7 +122,7 @@ const FeedHeader = ({
         {menuToggle && (
           <>
             <ModalBackground setState={setMenuToggle} />
-            <ul className="absolute top-10 right-1 z-50 h-auto w-36 rounded-lg border bg-white p-2 drop-shadow-sm hover:cursor-pointer">
+            <ul className="absolute top-10 right-1 z-50 h-auto w-36 rounded-lg border bg-white p-2 drop-shadow-sm hover:cursor-pointer ">
               <li
                 className="rounded-lg pt-2 pb-2 pl-3 text-left transition duration-100 hover:bg-gray-100"
                 onClick={(e) => handleMenuElementClick(e)}

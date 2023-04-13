@@ -16,7 +16,7 @@ const RecommendBox = ({ votes }: popularTypes) => {
           return (
             <div className="mb-2" key={content.id}>
               <Link href={`/vote/detail/${content.id}`} passHref>
-                <p className="truncate hover:text-blue-500 hover:decoration-solid">
+                <p className="recommend-title truncate hover:text-blue-500 hover:decoration-solid">
                   {content.title}
                 </p>
               </Link>

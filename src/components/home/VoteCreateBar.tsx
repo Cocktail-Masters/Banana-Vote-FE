@@ -26,7 +26,10 @@ const VoteCreateBar = ({ badge_image_url }: voteCreateBarProps) => {
           href="/vote/create"
           passHref
         >
-          <button className="lg:text-md ml-2 h-10 w-full rounded-full bg-gray-100 text-xs font-semibold text-gray-500 transition hover:bg-gray-200 md:text-sm">
+          <button
+            id="vote-create-button"
+            className="lg:text-md ml-2 h-10 w-full rounded-full bg-gray-100 text-xs font-semibold text-gray-500 transition hover:bg-gray-200 md:text-sm"
+          >
             원하는 투표를 만들어보세요
           </button>
         </Link>

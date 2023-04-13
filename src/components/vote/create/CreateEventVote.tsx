@@ -164,7 +164,7 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
             />
           </div>
           <input
-            className=" placeholder-font-bold h-16 rounded-2xl border-2 border-solid px-6 text-2xl placeholder-gray-400 outline-secondary-orange"
+            className=" placeholder-font-bold h-16 rounded-2xl border-2 border-solid px-6 text-2xl text-text-normal placeholder-gray-400 outline-secondary-orange"
             type="text"
             placeholder="제목"
             value={voteTitle}

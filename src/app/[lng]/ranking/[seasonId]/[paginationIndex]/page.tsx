@@ -32,7 +32,7 @@ export async function generateStaticParams(): Promise<
 
 const Page = ({ params }: { params: rankingParamsType }) => {
   return (
-    <div className="">
+    <div className="flex flex-col gap-[20px] pt-10">
       <div className="flex w-full flex-row justify-between">
         {/* @ts-expect-error Server Component */}
         <HydratedSeason>

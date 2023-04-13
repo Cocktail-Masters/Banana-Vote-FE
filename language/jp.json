@@ -13,13 +13,14 @@
   },
   "event": {
     "pageTitle": "イベント",
-    "ing":"進行中",
-    "end":"終了"
+    "ing": "進行中",
+    "end": "終了"
   },
   "ranking": {
     "nickname": "ニックネーム",
     "point": "スコア",
-    "rank": "ランク"
+    "rank": "ランク",
+    "ranking_update_time": "ランキングは毎日0時に更新されます。"
   },
   "header": {
     "vote_list": "投票リスト",

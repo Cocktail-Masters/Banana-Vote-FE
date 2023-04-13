@@ -13,13 +13,14 @@
   },
   "event": {
     "pageTitle": "Event",
-    "ing":"Proceeding",
-    "end":"end"
+    "ing": "Proceeding",
+    "end": "end"
   },
   "ranking": {
     "nickname": "nickname",
     "point": "point",
-    "rank": "rank"
+    "rank": "rank",
+    "ranking_update_time": "Ranking is updated every day at 0:00."
   },
   "header": {
     "vote_list": "VoteList",

@@ -35,7 +35,7 @@ const LayoutHeader = () => {
   return (
     <>
       <div
-        className="absolute top-0 left-0 z-10 h-full w-full bg-black/[0.5] transition-opacity"
+        className="absolute top-0 left-0 z-10 h-full w-full bg-bg-header dark:bg-bg-header-dark"
         style={{
           visibility: isOpen ? "visible" : "hidden",
           opacity: isOpen ? 1 : 0,

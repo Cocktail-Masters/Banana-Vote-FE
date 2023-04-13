@@ -47,7 +47,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-white text-text-normal transition-colors duration-300 dark:bg-black dark:text-text-normal-dark">
+      <body className="bg-white text-text-normal transition-colors dark:bg-black dark:text-text-normal-dark">
         <Provider>
           <LayoutHeader></LayoutHeader>
           <div className={"tiles"}>{children}</div>

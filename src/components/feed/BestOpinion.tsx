@@ -40,7 +40,7 @@ const BestOpinion = ({
           {/* 닉네임, 날짜 표시 */}
           <div className="flex h-5">
             <h5
-              className="jusitfy-center mt-1 mr-2 flex h-full cursor-pointer items-start text-sm font-semibold"
+              className="jusitfy-center mt-1 mr-2 flex h-full cursor-pointer items-start text-sm font-semibold text-text-normal dark:text-text-normal-dark"
               onClick={() => handleNicknameClick()}
             >
               {nickname}
@@ -54,7 +54,9 @@ const BestOpinion = ({
           </div>
           {/* 댓글 내용 */}
           <div className="mt-2 flex h-5 truncate">
-            <p className="truncate text-sm">{best_opinion.content}</p>
+            <p className="truncate text-sm text-text-article dark:text-text-article-dark">
+              {best_opinion.content}
+            </p>
           </div>
         </div>
       </div>

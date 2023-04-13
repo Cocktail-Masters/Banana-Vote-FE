@@ -32,8 +32,8 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
                   data.pages[0].best.some((e: number) => {
                     return e === element.id;
                   })
-                    ? "bg-[#AEE6E3]"
-                    : "bg-[#F9F6ED]"
+                    ? "bg-[#AEE6E3] transition-colors duration-300 dark:bg-[#5297947a] dark:text-text-normal-dark"
+                    : "bg-[#F9F6ED] transition-colors duration-300 dark:bg-bg-feed-dark dark:text-text-normal-dark"
                 } border-["#F9F6ED"] shadow-md`}
                 key={index}
               >

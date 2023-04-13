@@ -60,6 +60,7 @@
         "declaration": "Report",
         "prediction_modal": {
           "title": "Predict Voting Results with Bananas",
+          "no":"th",
           "user_vote_result": "You voted for!",
           "setting_point": "Please set the points to use for prediction!",
           "submit": "Submit",

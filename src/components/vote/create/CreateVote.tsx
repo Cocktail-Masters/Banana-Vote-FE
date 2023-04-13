@@ -63,16 +63,16 @@ const CreateVote = () => {
   };
 
   return (
-    <div className={"flex h-full w-full justify-center"}>
-      <div className="m-1 flex w-[1200px] flex-col lg:m-10">
+    <div className={"flex h-full w-full justify-center "}>
+      <div className="m-1 flex w-[1200px] flex-col lg:m-10 ">
         <div className="my-4 mr-3 ml-3 flex text-2xl font-bold">
           {translatedText({
             lng,
             textKey: "vote.create.vote_generation",
           })}
         </div>
-        <div className="flex flex-col gap-8 rounded-2xl border border-gray-300 p-10">
-          <div className="flex flex-col gap-10 lg:flex-row xl:flex-row">
+        <div className="flex flex-col gap-8 rounded-2xl border border-gray-300 bg-white p-10 dark:bg-bg-normal-dark">
+          <div className="flex flex-col gap-10 lg:flex-row xl:flex-row ">
             <VoteOptionToggleButton
               title={translatedText({
                 lng,

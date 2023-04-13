@@ -23,7 +23,7 @@ function VoteOptionToggleButton<T>({
   return (
     <>
       <div className={"flex content-center"}>
-        <div className={"flex border-secondary-orange p-2.5 text-center "}>
+        <div className={"border-secondary-orange p-2.5 text-center "}>
           {title}
         </div>
         {toggleContent.map(({ data, content }, index) => {
@@ -31,7 +31,7 @@ function VoteOptionToggleButton<T>({
             <button
               className={`${getRoundedOption(
                 index
-              )} h-[40px] w-[84px] border-2 border-secondary-orange p-1 drop-shadow-md transition duration-500`}
+              )} h-[40px] w-[84px] border-2 border-secondary-orange p-1 text-text-normal drop-shadow-md transition duration-500`}
               key={content}
               onClick={() => onClickHandler(data)}
               style={{

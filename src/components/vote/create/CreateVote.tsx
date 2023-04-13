@@ -71,7 +71,7 @@ const CreateVote = () => {
             textKey: "vote.create.vote_generation",
           })}
         </div>
-        <div className="flex flex-col gap-8 rounded-2xl border border-gray-300 bg-white p-10 dark:bg-bg-normal-dark">
+        <div className="flex flex-col gap-8 rounded-2xl border p-10 dark:bg-bg-normal-dark">
           <div className="flex flex-col gap-10 lg:flex-row xl:flex-row ">
             <VoteOptionToggleButton
               title={translatedText({
@@ -148,7 +148,7 @@ const CreateVote = () => {
         <div className="m-10 flex justify-end">
           <button
             onClick={onClickVoteAddHandler}
-            className="h-12 w-32 rounded-lg bg-yellow-400 px-4 py-2 text-xl font-bold drop-shadow-lg hover:bg-white"
+            className="h-12 w-32 rounded-lg bg-yellow-400 px-4 py-2 text-xl font-bold text-text-normal drop-shadow-lg hover:bg-white"
           >
             {translatedText({
               lng,

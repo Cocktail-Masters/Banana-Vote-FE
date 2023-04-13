@@ -179,7 +179,7 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
         <div className="m-10 flex justify-end">
           <button
             onClick={onClickHandler}
-            className="h-12 w-32 rounded-lg bg-yellow-400 px-4 py-2 text-xl font-bold drop-shadow-lg hover:bg-white"
+            className="h-12 w-32 rounded-lg bg-yellow-400 px-4 py-2 text-xl font-bold text-text-normal drop-shadow-lg hover:bg-white"
           >
             {translatedText({
               lng,

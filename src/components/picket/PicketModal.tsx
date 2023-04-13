@@ -44,7 +44,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
         }
         onClick={onOpen}
       >
-        {translation("vote.picket_area.modal.join")}
+        {translation("vote.detail.picket_area.modal.join")}
       </button>
       {isOpen && (
         <Transition appear show={isOpen} as={Fragment}>

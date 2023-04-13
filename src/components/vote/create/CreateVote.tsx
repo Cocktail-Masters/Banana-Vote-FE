@@ -63,16 +63,16 @@ const CreateVote = () => {
   };
 
   return (
-    <div className={"flex h-full w-full justify-center"}>
-      <div className="m-1 flex w-[1200px] flex-col lg:m-10">
+    <div className={"flex h-full w-full justify-center "}>
+      <div className="m-1 flex w-[1200px] flex-col lg:m-10 ">
         <div className="my-4 mr-3 ml-3 flex text-2xl font-bold">
           {translatedText({
             lng,
             textKey: "vote.create.vote_generation",
           })}
         </div>
-        <div className="flex flex-col gap-8 rounded-2xl border border-gray-300 p-10">
-          <div className="flex flex-col gap-10 lg:flex-row xl:flex-row">
+        <div className="flex flex-col gap-8 rounded-2xl border p-10 dark:bg-bg-normal-dark">
+          <div className="flex flex-col gap-10 lg:flex-row xl:flex-row ">
             <VoteOptionToggleButton
               title={translatedText({
                 lng,
@@ -131,7 +131,7 @@ const CreateVote = () => {
             />
           </div>
           <input
-            className=" placeholder-font-bold h-16 rounded-2xl border-2 border-solid px-6 text-2xl placeholder-gray-400 outline-secondary-orange"
+            className=" placeholder-font-bold h-16 rounded-2xl border-2 border-solid px-6 text-2xl text-text-normal outline-secondary-orange"
             type="text"
             placeholder={translatedText({
               lng,
@@ -148,7 +148,7 @@ const CreateVote = () => {
         <div className="m-10 flex justify-end">
           <button
             onClick={onClickVoteAddHandler}
-            className="h-12 w-32 rounded-lg bg-yellow-400 px-4 py-2 text-xl font-bold drop-shadow-lg hover:bg-white"
+            className="h-12 w-32 rounded-lg bg-yellow-400 px-4 py-2 text-xl font-bold text-text-normal drop-shadow-lg hover:bg-white"
           >
             {translatedText({
               lng,

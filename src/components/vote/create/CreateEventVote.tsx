@@ -164,7 +164,7 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
             />
           </div>
           <input
-            className=" placeholder-font-bold h-16 rounded-2xl border-2 border-solid px-6 text-2xl placeholder-gray-400 outline-secondary-orange"
+            className=" placeholder-font-bold h-16 rounded-2xl border-2 border-solid px-6 text-2xl text-text-normal placeholder-gray-400 outline-secondary-orange"
             type="text"
             placeholder="제목"
             value={voteTitle}
@@ -179,7 +179,7 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
         <div className="m-10 flex justify-end">
           <button
             onClick={onClickHandler}
-            className="h-12 w-32 rounded-lg bg-yellow-400 px-4 py-2 text-xl font-bold drop-shadow-lg hover:bg-white"
+            className="h-12 w-32 rounded-lg bg-yellow-400 px-4 py-2 text-xl font-bold text-text-normal drop-shadow-lg hover:bg-white"
           >
             {translatedText({
               lng,

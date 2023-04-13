@@ -35,6 +35,14 @@ module.exports = {
           },
           button: {
             dark: "#3A3B3C",
+            yellow: {
+              light: "#FFE9A7",
+              DEFAULT: "#E8C254",
+            },
+            DEFAULT: "#ffffff",
+          },
+          header: {
+            dark: "#242526",
             DEFAULT: "#ffffff",
           },
         },

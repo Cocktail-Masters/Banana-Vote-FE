@@ -35,14 +35,14 @@ const LayoutHeader = () => {
   return (
     <>
       <div
-        className="absolute top-0 left-0 z-10 h-full w-full bg-black/[0.5] transition-opacity"
+        className="absolute top-0 left-0 z-10 h-full w-full bg-bg-header-dark bg-opacity-70 dark:bg-opacity-90 "
         style={{
           visibility: isOpen ? "visible" : "hidden",
           opacity: isOpen ? 1 : 0,
         }}
         onClick={() => setIsOpen(false)}
       />
-      <div className="flex h-[90px] w-full select-none items-center justify-between border-b border-[#CACACA]">
+      <div className="flex h-[90px] w-full select-none items-center justify-between">
         <div className="p-1">
           <Link href={"/home"}>
             <Image src={Logo} alt={"banana vote logo"} />

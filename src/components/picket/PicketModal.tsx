@@ -84,7 +84,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className="w-full max-w-7xl transform overflow-y-auto rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Panel className="w-full max-w-7xl transform overflow-y-auto rounded-2xl  bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-bg-feed-dark dark:text-text-normal-dark">
                     <Dialog.Title
                       as="h3"
                       className="relative mb-4 flex justify-center text-xl font-extrabold leading-6 text-gray-900"
@@ -109,7 +109,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                             viewBox="0 0 12 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            className="h-6 w-6"
+                            className="h-6 w-6 transition-colors duration-300 dark:text-text-normal-dark"
                           >
                             <path
                               stroke-linecap="round"
@@ -119,7 +119,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                           </svg>
                         </div>
                       )}
-                      <h1>
+                      <h1 className="transition-colors duration-300 dark:text-text-normal-dark">
                         {translation("vote.detail.picket_area.modal.upload")}
                       </h1>
                       <button
@@ -143,7 +143,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                           viewBox="0 0 24 24"
                           stroke-width="1.5"
                           stroke="currentColor"
-                          className="h-6 w-6"
+                          className="h-6 w-6 transition-colors duration-300 dark:text-text-normal-dark"
                         >
                           <path
                             stroke-linecap="round"

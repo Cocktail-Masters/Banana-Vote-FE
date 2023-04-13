@@ -60,6 +60,7 @@
         "declaration": "신고",
         "prediction_modal": {
           "title": "바나나 포인트로 투표 결과를 예측하기",
+          "no":"번",
           "user_vote_result": "을 투표 하셨어요!",
           "setting_point": "예측에 사용할 포인트를 설정 해주세요!",
           "submit": "제출",

@@ -32,16 +32,20 @@ const EventDataSection = () => {
     <div className="h-full w-full">
       <div className="mt-3 flex w-full justify-end">
         <button
-          className={`mr-4 h-10 w-24 rounded-2xl font-semibold shadow-md hover:bg-secondary-orange active:bg-primary-yellow ${
-            !isEnd ? `bg-secondary-orange` : `none`
+          className={`mr-4 h-10 w-24 rounded-2xl font-semibold shadow-md hover:bg-secondary-orange active:bg-primary-yellow active:dark:text-text-normal ${
+            !isEnd
+              ? `bg-secondary-orange dark:text-text-normal`
+              : `dark:bg-bg-button-dark`
           }`}
           onClick={isIng}
         >
           {translation("event.ing")}
         </button>
         <button
-          className={`mr-2 h-10 w-24 rounded-2xl font-semibold shadow-md hover:bg-secondary-orange active:bg-primary-yellow ${
-            isEnd ? `bg-secondary-orange` : `none`
+          className={`mr-2 h-10 w-24 rounded-2xl font-semibold shadow-md hover:bg-secondary-orange active:bg-primary-yellow active:dark:text-text-normal ${
+            isEnd
+              ? `bg-secondary-orange dark:text-text-normal`
+              : `dark:bg-bg-button-dark`
           }`}
           onClick={isNotIng}
         >

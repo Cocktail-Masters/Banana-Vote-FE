@@ -59,6 +59,7 @@
         "declaration": "通報",
         "prediction_modal": {
           "title": "バナナポイントで投票結果を予測する",
+          "no":"番",
           "user_vote_result": "投票しました！",
           "setting_point": "予測に使用するポイントを設定してください！",
           "submit": "提出",

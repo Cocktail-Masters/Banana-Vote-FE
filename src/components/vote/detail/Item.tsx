@@ -49,55 +49,57 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
     }
   };
   return (
-    <div>
+    <div className="rounded-2xl bg-bg-feed transition-colors duration-300 dark:bg-bg-feed-dark">
       {data && (
-        <div className="mt-10 rounded-2xl border px-[5%] shadow-md ">
+        <div className="mt-10 rounded-2xl border px-[5%] shadow-md transition-colors duration-300 dark:border-border-dark ">
           <div className="mb-5 border-b-[5px] border-gray-200">
             <div className="flex items-center py-4">
               <div className="lg:text-md mr-2 flex-1 sm:flex-[2] md:flex-[2]">
                 {data.vote.is_closed ? (
-                  <span className="w-full text-red-500">
-                    {/* {messages["vote"]["detail"].item.end} */}
+                  <span className="w-full text-red-500 ">
                     {translation("vote.detail.item.end")}
                   </span>
                 ) : (
                   <span className="w-full text-secondary-orange">
-                    {/* {messages.vote.detail.item.ing} */}
                     {translation("vote.detail.item.ing")}
                   </span>
                 )}
               </div>
-              <h2 className="flex-[9] font-bold lg:flex-[20] lg:text-xl">
+              <h2 className="flex-[9] font-bold transition-colors duration-300 dark:text-text-normal-dark lg:flex-[20] lg:text-xl">
                 {data.vote.title}
               </h2>
             </div>
             <div className="mb-3 flex items-center">
-              <BadgeImage badge_image_url={data.writer.badge_image_url} />
-              <div className="ml-1 text-xs">{data.writer.nickname}</div>
+              <BadgeImage
+                user_id={data.writer.id}
+                badge_image_url={data.writer.badge_image_url}
+              />
+              <div className="ml-1 text-xs transition-colors duration-300 dark:text-text-normal-dark">
+                {data.writer.nickname}
+              </div>
             </div>
           </div>
           <div>
             <div className="flex w-full justify-between">
               <div className="w-70 mb- flex">
-                <p className="mr-3">
-                  {/* {messages.vote.detail.item.period} */}
+                <p className="mr-3 transition-colors duration-300 dark:text-text-normal-dark">
                   {translation("vote.detail.item.period")}
                 </p>
-                <p className="ml-1">
+                <p className="ml-1 transition-colors duration-300 dark:text-text-normal-dark">
                   {getRemainDates({
                     startDate: data.vote.start_date,
                     endDate: data.vote.end_date,
                   })}
-                  {/* {messages.vote.detail.item.remaining} */}
                   {translation("vote.detail.item.remaining")}
                 </p>
               </div>
               <div className="w-30 flex justify-end">
-                <p className="mr-1">
-                  {/* {messages.vote.detail.item.hits} */}
+                <p className="mr-1 transition-colors duration-300 dark:text-text-normal-dark">
                   {translation("vote.detail.item.hits")}
                 </p>
-                <p className="mr-1">{data.vote.hits}</p>
+                <p className="mr-1 transition-colors duration-300 dark:text-text-normal-dark">
+                  {data.vote.hits}
+                </p>
               </div>
             </div>
             <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
@@ -111,8 +113,11 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 />
               ))}
             </div>
-            <div className={"ml-auto text-right text-sm"}>
-              {/* {messages.vote.detail.item.image_hint} */}
+            <div
+              className={
+                "ml-auto text-right text-sm  transition-colors duration-300 dark:text-text-normal-dark"
+              }
+            >
               {translation("vote.detail.item.image_hint")}
             </div>
             {voteCheck !== undefined && (
@@ -120,9 +125,8 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 {voteCheck.is_participation ? (
                   <button
                     onClick={onOpen}
-                    className="rounded bg-secondary-orange px-4 py-2 text-black"
+                    className="rounded bg-secondary-orange px-4 py-2 text-black transition-colors duration-300 dark:text-text-normal-dark"
                   >
-                    {/* {messages.vote.detail.item.predict_result} */}
                     {translation("vote.detail.item.predict_result")}
                   </button>
                 ) : (
@@ -135,14 +139,12 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                         point: 0,
                       });
                     }}
-                    className="mt-[25px] rounded px-4 py-2 text-black"
+                    className="mt-[25px] rounded px-4 py-2 text-black transition-colors duration-300 dark:text-text-normal-dark"
                     style={{
                       background:
-                        selectItem === undefined ? "#D9D9D9" : "#FFA45B",
+                        selectItem === undefined ? "#313131" : "#FFA45B",
                     }}
                   >
-                    {/* {messages.vote.detail.item.voting} */}
-
                     {translation("vote.detail.item.voting")}
                   </button>
                 )}
@@ -175,12 +177,10 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 ))}
               </div>
               <div className="ml-auto flex w-[200px]">
-                <button className="mr-4 w-[70px] rounded border bg-secondary-orange py-2 px-4 font-semibold text-black shadow-md hover:bg-primary-yellow">
-                  {/* {messages.vote.detail.item.delete} */}
+                <button className="mr-4 w-[70px] rounded border bg-secondary-orange py-2 px-4 font-semibold text-black shadow-md hover:bg-primary-yellow ">
                   {translation("vote.detail.item.delete")}
                 </button>
                 <button className="w-[70px] rounded border bg-red-600 py-2 px-4 font-semibold text-white shadow-md hover:bg-red-500 hover:text-white">
-                  {/* {messages.vote.detail.item.declaration} */}
                   {translation("vote.detail.item.declaration")}
                 </button>
               </div>

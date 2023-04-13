@@ -19,7 +19,30 @@
     "point": "point",
     "rank": "rank"
   },
+  "header": {
+    "vote_list": "VoteList",
+    "popular": "Popular",
+    "event": "Event",
+    "store": "Store",
+    "ranking": "Ranking"
+  },
   "vote": {
+    "create": {
+      "registration": "registration",
+      "vote_generation": "Vote Generation",
+      "is_disclosure": "Disclosure",
+      "disclosure_true": "Public",
+      "disclosure_false": "Private",
+      "is_event": "Event",
+      "event_true": "Yes",
+      "event_false": "No",
+      "is_anonymouse": "Login",
+      "anonymouse_true": "Real name",
+      "anonymouse_false": "Anonymous",
+      "vote_deadline": "Voting Deadline",
+      "title": "Title",
+      "enter_content": "Enter content"
+    },
     "detail": {
       "item": {
         "end": "End",

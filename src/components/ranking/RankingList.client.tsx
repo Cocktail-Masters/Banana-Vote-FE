@@ -6,7 +6,7 @@ import Loading from "../Loading";
 import Pagination from "./Pagination.client";
 import { useRouter, useParams } from "next/navigation";
 import { rankingParamsType } from "@/app/[lng]/ranking/[seasonId]/[paginationIndex]/page";
-import TextLangauge from "../common/TextLanguage";
+import { translatedText } from "@/common/translation";
 
 export default function RankingList({ params }: { params: rankingParamsType }) {
   const { seasonId } = params;
@@ -31,13 +31,19 @@ export default function RankingList({ params }: { params: rankingParamsType }) {
             <thead className="m-2 truncate">
               <tr className="w-full border-b-8 border-[#E8C254] text-[29px] font-bold">
                 <td className="border-1 p-2 text-left">
-                  <TextLangauge lng={params.lng} textKey={"ranking.rank"} />
+                  {translatedText({ lng: params.lng, textKey: "ranking.rank" })}
                 </td>
                 <td className="border-1 p-2 text-left">
-                  <TextLangauge lng={params.lng} textKey={"ranking.nickname"} />
+                  {translatedText({
+                    lng: params.lng,
+                    textKey: "ranking.nickname",
+                  })}
                 </td>
                 <td className="border-1 p-2 text-left">
-                  <TextLangauge lng={params.lng} textKey={"ranking.point"} />
+                  {translatedText({
+                    lng: params.lng,
+                    textKey: "ranking.point",
+                  })}
                 </td>
               </tr>
             </thead>

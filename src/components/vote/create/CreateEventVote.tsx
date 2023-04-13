@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import useSelectData from "@hooks/useSelectData";
 import VoteDnd from "@components/vote/dnd/VoteDnd";
 import VoteOptionToggleButton from "./VoteOptionToggleButton";
-import { nanoid } from "nanoid";
 import VoteCreatTag from "@components/tag/VoteCreateTag";
 import {
   fetchCreateVote,
@@ -17,6 +16,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "@/components/Loading";
 import { createVoteItemTypes, voteItemType } from "@/types";
 import { getVoteItemsFromResponse } from "@/common/getVoteItem";
+import { translatedText } from "@/common/translation";
+import { useParams } from "next/navigation";
 
 type voteResponseType = {
   id: string;
@@ -38,6 +39,7 @@ type paramsType = {
 };
 
 const CreateEventVote = ({ data }: { data: voteResponseType }) => {
+  const { lng } = useParams();
   const { state: isEvent, onClickHandler: setIsEvent } = useSelectData<boolean>(
     data.is_anonymouse
   );
@@ -96,29 +98,67 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
   return (
     <div className={"flex h-full w-full justify-center"}>
       <div className="m-1 flex w-[1200px] flex-col lg:m-10">
-        <div className="my-4 mr-3 ml-3 flex text-2xl font-bold">투표생성</div>
+        <div className="my-4 mr-3 ml-3 flex text-2xl font-bold">
+          {translatedText({
+            lng,
+            textKey: "vote.create.vote_generation",
+          })}
+        </div>
         <div className="flex flex-col gap-8 rounded-2xl border border-gray-300 p-10">
           <div className="flex flex-col gap-10 lg:flex-row xl:flex-row">
             <VoteOptionToggleButton
-              title={"공개 여부"}
+              title={translatedText({
+                lng,
+                textKey: "vote.create.is_disclosure",
+              })}
               isData={isDisclosure}
               onClickHandler={setIsDisclosure}
               toggleContent={[
-                { data: true, content: "공개" },
-                { data: false, content: "비공개" },
+                {
+                  data: true,
+                  content: translatedText({
+                    lng,
+                    textKey: "vote.create.disclosure_true",
+                  }),
+                },
+                {
+                  data: false,
+                  content: translatedText({
+                    lng,
+                    textKey: "vote.create.disclosure_false",
+                  }),
+                },
               ]}
             />
             <VoteOptionToggleButton
-              title={"이벤트 여부"}
+              title={translatedText({
+                lng,
+                textKey: "vote.create.is_event",
+              })}
               isData={isEvent}
               onClickHandler={setIsEvent}
               toggleContent={[
-                { data: false, content: "이벤트" },
-                { data: true, content: "일반" },
+                {
+                  data: false,
+                  content: translatedText({
+                    lng,
+                    textKey: "vote.create.event_true",
+                  }),
+                },
+                {
+                  data: true,
+                  content: translatedText({
+                    lng,
+                    textKey: "vote.create.event_false",
+                  }),
+                },
               ]}
             />
             <DatePicker
-              title={"투표 마감일"}
+              title={translatedText({
+                lng,
+                textKey: "vote.create.vote_deadline",
+              })}
               onDateChange={setEndDate}
               endDate={endDate}
             />
@@ -141,7 +181,10 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
             onClick={onClickHandler}
             className="h-12 w-32 rounded-lg bg-yellow-400 px-4 py-2 text-xl font-bold drop-shadow-lg hover:bg-white"
           >
-            등록
+            {translatedText({
+              lng,
+              textKey: "vote.create.registration",
+            })}
           </button>
         </div>
       </div>

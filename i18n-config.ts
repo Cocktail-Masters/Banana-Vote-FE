@@ -8,7 +8,7 @@ export type Locale = keyof dictionariesType;
 export type transitionType = {
   readonly locale: string;
   readonly label: string;
-  readonly messages: Partial<typeof i18n.defaultLocale>;
+  readonly messages: typeof ko;
 };
 
 // dictionaries에 언어를 추가하면 OK

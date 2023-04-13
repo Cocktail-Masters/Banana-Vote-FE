@@ -19,7 +19,30 @@
     "point": "スコア",
     "rank": "ランク"
   },
+  "header": {
+    "vote_list": "投票リスト",
+    "popular": "人気投票",
+    "event": "イベント",
+    "store": "ストア",
+    "ranking": "ランキング"
+  },
   "vote": {
+    "create": {
+      "registration": "登録",
+      "vote_generation": "投票の作成",
+      "is_disclosure": "公開するかどうか",
+      "disclosure_true": "公開",
+      "disclosure_false": "非公開",
+      "is_event": "イベントかどうか",
+      "event_true": "イベント",
+      "event_false": "一般",
+      "is_anonymouse": "ログインが必要かどうか",
+      "anonymouse_true": "実名",
+      "anonymouse_false": "匿名",
+      "vote_deadline": "投票締め切り日",
+      "title": "タイトル",
+      "enter_content": "内容を入力してください"
+    },
     "detail": {
       "item": {
         "end": "終了",

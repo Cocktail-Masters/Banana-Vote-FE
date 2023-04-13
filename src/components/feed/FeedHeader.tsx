@@ -112,7 +112,7 @@ const FeedHeader = ({
         <motion.button
           id="menu-button"
           whileTap={{ scale: 0.9 }}
-          className="hover:(dark:bg-gray-600) active:(dark:bg-gray-600) h-10 w-10 rounded-full hover:bg-gray-200 active:bg-gray-200"
+          className="h-10 w-10 rounded-full hover:bg-gray-200 active:bg-gray-200 dark:hover:bg-[#3A3B3C] dark:active:bg-[#3A3B3C]"
         >
           <Image
             src={MB}
@@ -124,15 +124,15 @@ const FeedHeader = ({
         {menuToggle && (
           <>
             <ModalBackground setState={setMenuToggle} />
-            <ul className="absolute top-10 right-1 z-50 h-auto w-36 rounded-lg border bg-white p-2 drop-shadow-sm hover:cursor-pointer ">
+            <ul className="absolute top-10 right-1 z-50 h-auto w-36 rounded-lg border bg-bg-feed p-2 shadow-md shadow-black/50 hover:cursor-pointer dark:border-none dark:bg-bg-feed-dark dark:shadow-black">
               <li
-                className="rounded-lg pt-2 pb-2 pl-3 text-left transition duration-100 hover:bg-gray-100"
+                className="rounded-lg pt-2 pb-2 pl-3 text-left text-text-feed transition duration-100 hover:bg-gray-100 dark:text-text-feed-dark dark:hover:bg-[#3A3B3C]"
                 onClick={(e) => handleMenuElementClick(e)}
               >
                 신고
               </li>
               <li
-                className="rounded-lg pt-2 pb-2 pl-3 text-left transition duration-100 hover:bg-gray-100"
+                className="rounded-lg pt-2 pb-2 pl-3 text-left text-text-feed transition duration-100 hover:bg-gray-100 dark:text-text-feed-dark dark:hover:bg-[#3A3B3C]"
                 onClick={(e) => handleMenuElementClick(e)}
               >
                 공유

@@ -20,8 +20,8 @@ const VoteItem = ({ imageLink = defaultImg, content }: voteFeedItemProps) => {
   };
 
   return (
-    <div className="h-full w-full rounded-2xl bg-white">
-      <div className="m-auto grid h-[200px] w-full place-content-center overflow-hidden rounded-t-2xl border border-inherit">
+    <div className="h-full w-full truncate rounded-2xl pl-2 pr-2">
+      <div className="m-auto grid h-[200px] w-full place-content-center overflow-hidden rounded-t-2xl border border-border dark:border-border-dark">
         <Image
           className="m-auto h-fit w-fit rounded-2xl object-cover"
           src={!imageLink ? defaultImg : imageLink}
@@ -31,10 +31,11 @@ const VoteItem = ({ imageLink = defaultImg, content }: voteFeedItemProps) => {
           onClick={(e) => handleImageClick(e)}
         />
       </div>
-
-      <p className="mb-2 h-[48px] w-full truncate p-4 text-center font-semibold">
-        {content}
-      </p>
+      <div className="flex h-[48px] w-full items-center justify-center truncate rounded-b-2xl border border-border px-3 py-4 leading-[48px] dark:border-border-dark">
+        <p className="w-full truncate text-center font-semibold text-text-feed dark:text-text-feed-dark">
+          {content}
+        </p>
+      </div>
     </div>
   );
 };

@@ -45,7 +45,7 @@ module.exports = {
           },
           title: {
             dark: "#dfdddf",
-            DEFAULT: "#dfdfaa",
+            DEFAULT: "#000000",
           },
           button: {
             dark: "#E4E6EB",

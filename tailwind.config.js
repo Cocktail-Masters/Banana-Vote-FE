@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx}", // Note the addition of the `app` directory.
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -23,8 +23,47 @@ module.exports = {
         "primary-yellow": "#FCDA76",
         "secondary-orange": "#FFA45B",
         "secondary-dark-orange": "#ff821f",
-        
         tertiary: "#F9F6ED",
+        bg: {
+          normal: {
+            dark: "#18191A",
+            DEFAULT: "#F1F5F9",
+          },
+          feed: {
+            dark: "#242526",
+            DEFAULT: "#ffffff",
+          },
+          button: {
+            dark: "#3A3B3C",
+            DEFAULT: "#ffffff",
+          },
+        },
+        text: {
+          normal: {
+            dark: "#dfdddf",
+            DEFAULT: "#0000FF",
+          },
+          title: {
+            dark: "#dfdddf",
+            DEFAULT: "#dfdfaa",
+          },
+          button: {
+            dark: "#E4E6EB",
+            DEFAULT: "#000000",
+          },
+          feed: {
+            dark: "#D0D2D6",
+            DEFAULT: "#000000",
+          },
+          article: {
+            dark: "#d1d3d8",
+            DEFAULT: "#000000",
+          },
+        },
+        border: {
+          dark: "#353637",
+          DEFAULT: "#E5E7EB",
+        },
       },
     },
     fontFamily: {

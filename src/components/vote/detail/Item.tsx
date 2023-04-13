@@ -8,17 +8,16 @@ import { useVoteDetailQuery } from "@/hooks/reactQuery/useVoteDetailQuery";
 import { Key, useState } from "react";
 import VoteDetailPredictionModal from "../PredictionModal";
 import VoteDetailItemCard from "./ItemCard";
-import { Locale } from "i18n-config";
 import { voteItemType } from "@/types";
-import { getDictionary } from "get-dictionary";
+import { useParams } from "next/navigation";
+import useTranslation from "@/hooks/useTranslation";
 
 const VoteDetailItem = ({ postId }: { postId: number }) => {
   const { data } = useVoteDetailQuery({
     queryKey: "voteDetail",
     postId: postId,
   });
-  // const { messages } = getDictionary(lng);
-
+  const { translation } = useTranslation();
   const { data: voteCheck } = useVoteCheckQuery({
     queryKey: "voteCheck",
     postId: postId,
@@ -59,12 +58,12 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 {data.vote.is_closed ? (
                   <span className="w-full text-red-500">
                     {/* {messages["vote"]["detail"].item.end} */}
-                    종료
+                    {translation("vote.detail.item.end")}
                   </span>
                 ) : (
                   <span className="w-full text-secondary-orange">
                     {/* {messages.vote.detail.item.ing} */}
-                    진행중
+                    {translation("vote.detail.item.ing")}
                   </span>
                 )}
               </div>
@@ -82,20 +81,21 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
               <div className="w-70 mb- flex">
                 <p className="mr-3">
                   {/* {messages.vote.detail.item.period} */}
-                  투표 기간
+                  {translation("vote.detail.item.period")}
                 </p>
                 <p className="ml-1">
                   {getRemainDates({
                     startDate: data.vote.start_date,
                     endDate: data.vote.end_date,
                   })}
-                  {/* {messages.vote.detail.item.remaining} */}일 남음
+                  {/* {messages.vote.detail.item.remaining} */}
+                  {translation("vote.detail.item.remaining")}
                 </p>
               </div>
               <div className="w-30 flex justify-end">
                 <p className="mr-1">
                   {/* {messages.vote.detail.item.hits} */}
-                  조회수
+                  {translation("vote.detail.item.hits")}
                 </p>
                 <p className="mr-1">{data.vote.hits}</p>
               </div>
@@ -113,7 +113,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
             </div>
             <div className={"ml-auto text-right text-sm"}>
               {/* {messages.vote.detail.item.image_hint} */}
-              이미지를 클릭하면 크게 볼 수 있습니다.
+              {translation("vote.detail.item.image_hint")}
             </div>
             {voteCheck !== undefined && (
               <div className="mt-[25px] mb-[25px] flex w-full justify-center">
@@ -123,7 +123,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                     className="rounded bg-secondary-orange px-4 py-2 text-black"
                   >
                     {/* {messages.vote.detail.item.predict_result} */}
-                    결과 예측하기
+                    {translation("vote.detail.item.predict_result")}
                   </button>
                 ) : (
                   <button
@@ -142,7 +142,8 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                     }}
                   >
                     {/* {messages.vote.detail.item.voting} */}
-                    투표하기
+
+                    {translation("vote.detail.item.voting")}
                   </button>
                 )}
                 {isOpen &&
@@ -176,11 +177,11 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
               <div className="ml-auto flex w-[200px]">
                 <button className="mr-4 w-[70px] rounded border bg-secondary-orange py-2 px-4 font-semibold text-black shadow-md hover:bg-primary-yellow">
                   {/* {messages.vote.detail.item.delete} */}
-                  삭제
+                  {translation("vote.detail.item.delete")}
                 </button>
                 <button className="w-[70px] rounded border bg-red-600 py-2 px-4 font-semibold text-white shadow-md hover:bg-red-500 hover:text-white">
                   {/* {messages.vote.detail.item.declaration} */}
-                  신고
+                  {translation("vote.detail.item.declaration")}
                 </button>
               </div>
             </div>

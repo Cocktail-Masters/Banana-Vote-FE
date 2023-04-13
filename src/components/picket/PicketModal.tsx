@@ -4,6 +4,7 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import PicketAreaModalContent from "./ModalContent";
 import SelectPicketImage from "./SelectPicketImage";
+import useTranslation from "@/hooks/useTranslation";
 
 type picketChangeType = {
   change: boolean;
@@ -11,6 +12,7 @@ type picketChangeType = {
 };
 
 const PicketAreaModal = ({ pickets }: picketsType) => {
+  const { translation } = useTranslation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onOpen = () => {
     setIsOpen(true);
@@ -29,7 +31,6 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
   });
 
   const onClick = ({ change, picket }: picketChangeType) => {
-    console.log("picket", picket);
     setChangeState((prev) => {
       return { change, picket };
     });
@@ -43,7 +44,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
         }
         onClick={onOpen}
       >
-        참여하기
+        {translation("vote.picket_area.modal.join")}
       </button>
       {isOpen && (
         <Transition appear show={isOpen} as={Fragment}>
@@ -118,7 +119,9 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                           </svg>
                         </div>
                       )}
-                      <h1>피캣 올리기</h1>
+                      <h1>
+                        {translation("vote.detail.picket_area.modal.upload")}
+                      </h1>
                       <button
                         id="picketModalCloseButton"
                         className={`absolute top-1 right-3`}

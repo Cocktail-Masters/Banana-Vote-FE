@@ -5,7 +5,6 @@
 "use client";
 import React from "react";
 import FeedHeader from "./FeedHeader";
-import VS from "./VS";
 import VoteItemList from "./VoteItemList";
 import FeedTitle from "./FeedTitle";
 import { voteFeedType } from "@/types";
@@ -15,7 +14,7 @@ import Link from "next/link";
 const Feed = ({ data }: { data: voteFeedType }) => {
   return (
     <>
-      <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white drop-shadow-md transition duration-100 ease-in-out md:rounded-xl">
+      <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white bg-bg-feed drop-shadow-md transition duration-100 ease-in-out dark:bg-bg-feed-dark md:rounded-xl">
         {/* 피드 헤더 */}
         <div className="p-5">
           <FeedHeader

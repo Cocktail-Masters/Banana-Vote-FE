@@ -71,24 +71,24 @@ const FeedHeader = ({
         <div>
           <h3
             id={`writer-${writer_id}`}
-            className="writer mb-1 cursor-pointer text-base font-bold"
+            className="writer mb-1 cursor-pointer text-base font-bold text-text-title dark:text-text-title-dark"
             onClick={() => handleNicknameClick()}
           >
             {nickname}
           </h3>
           <div className="flex text-sm">
-            <div className="mr-3 h-4">
+            <p className="mr-3 h-4 text-text-feed dark:text-text-feed-dark">
               {is_closed || getRemainDates({ endDate: end_date }) <= 0
                 ? "종료됨"
                 : getRemainDates({ endDate: end_date }) + "일 남음"}
-            </div>
+            </p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="h-4 w-4"
+              className="h-4 w-4 text-text-feed dark:text-text-feed-dark"
             >
               <path
                 strokeLinecap="round"
@@ -97,7 +97,9 @@ const FeedHeader = ({
               />
             </svg>
 
-            <div className="text-sm">{voted_number.toLocaleString()}</div>
+            <p className="ml-[2px] text-sm text-text-feed dark:text-text-feed-dark">
+              {voted_number.toLocaleString()}
+            </p>
           </div>
         </div>
       </div>
@@ -110,7 +112,7 @@ const FeedHeader = ({
         <motion.button
           id="menu-button"
           whileTap={{ scale: 0.9 }}
-          className="h-10 w-10 rounded-full hover:bg-gray-200 active:bg-gray-300"
+          className="hover:(dark:bg-gray-600) active:(dark:bg-gray-600) h-10 w-10 rounded-full hover:bg-gray-200 active:bg-gray-200"
         >
           <Image
             src={MB}

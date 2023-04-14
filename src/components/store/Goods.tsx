@@ -17,7 +17,9 @@ const Goods = ({ goods }: { goods: storeGoodsType }) => {
   return (
     <Card handleClick={handleClick}>
       {/* 아이템 이름 */}
-      <p className="text-base font-semibold text-slate-900">{goods.name}</p>
+      <p className="text-base font-semibold text-slate-900 text-text-feed dark:text-text-feed-dark">
+        {goods.name}
+      </p>
       {/* 뱃지 리스트 */}
       <CardBadgeList>
         {/* Hot 뱃지 */}

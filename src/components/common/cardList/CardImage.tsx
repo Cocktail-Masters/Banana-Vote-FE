@@ -12,7 +12,7 @@ type cardImageProps = {
 
 const CardImage = ({ image_url, imgRef }: cardImageProps) => {
   return (
-    <div className="h-2/3 w-full overflow-hidden rounded-t-2xl border-b border-inherit bg-white">
+    <div className="h-2/3 w-full overflow-hidden rounded-t-2xl border-b border-border bg-bg-feed dark:border dark:border-border-dark dark:bg-bg-feed-dark">
       <Image
         src={!image_url || image_url.length < 1 ? banana : image_url}
         className="flex h-full w-full items-center justify-center"

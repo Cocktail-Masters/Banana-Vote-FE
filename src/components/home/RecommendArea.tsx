@@ -6,8 +6,8 @@
 import RecommendBox from "./RecommendBox";
 import Slider, { CustomArrowProps } from "react-slick";
 import { useState } from "react";
-import "./styles/slick.css";
-import "./styles/slick-theme.css";
+import "@/components/home/styles/slick.css";
+import "@/components/home/styles/slick-theme.css";
 import { usePopularListQuery } from "@/hooks/reactQuery/usePopularListQuery";
 import { useInterestListQuery } from "@/hooks/reactQuery/useInterestListQuery";
 import Loading from "@/components/Loading";
@@ -34,7 +34,7 @@ const RecommendArea = () => {
       const { className, style, onClick } = props;
       return (
         <div
-          className={`${className} flex h-8 w-8 items-center justify-center rounded-full stroke-black hover:bg-slate-100`}
+          className={`${className} flex h-8 w-8 items-center justify-center rounded-full stroke-black hover:bg-slate-100 dark:hover:bg-[#3A3B3C]`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@ const RecommendArea = () => {
   const RightArrow = CreateArrow(arrows.right);
 
   return (
-    <div className="relative mx-auto mt-4 mb-4 h-[260px] w-[360px] select-none rounded-xl bg-white drop-shadow-md">
+    <div className="relative mx-auto mt-4 mb-4 h-[260px] w-[360px] select-none rounded-xl bg-bg-feed drop-shadow-md dark:bg-bg-feed-dark">
       <div className="h-16 w-full">
         <div className="relative flex w-full items-center justify-center text-center">
           <div className="h-7 w-auto" />
@@ -66,7 +66,7 @@ const RecommendArea = () => {
         </div>
       </div>
       <hr className="mx-auto h-[1.5px] w-11/12 border-0 bg-yellow-500" />
-      <div className="h-52 w-full p-4">
+      <div className="h-52 w-full stroke-black p-4 text-text-article dark:stroke-white dark:text-text-article-dark">
         <Slider
           dots={true}
           infinite={false}

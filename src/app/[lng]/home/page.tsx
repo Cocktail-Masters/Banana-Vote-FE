@@ -16,12 +16,8 @@ const Home = () => {
           <FeedListArea />
           {/* Recommend, Ranking */}
           <div className="hidden xl:block">
-            <div className="mb-5">
-              <RecommendArea />
-            </div>
-            <div className="mt-5">
-              <RankingListArea />
-            </div>
+            <div className="mb-5">{/* <RecommendArea /> */}</div>
+            <div className="mt-5">{/* <RankingListArea /> */}</div>
           </div>
         </div>
       </HydratedHome>

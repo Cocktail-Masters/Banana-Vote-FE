@@ -58,10 +58,12 @@ const FeedListArea = () => {
           {/* 투표 피드 리스트 */}
           {(!data || data.pages[0].votes.length === 0) && (
             <div className="flex h-auto w-full flex-col items-center justify-center pt-3">
-              <h3 className="mb-2 text-2xl font-semibold">
+              <h3 className="mb-2 text-2xl font-semibold text-text-feed dark:text-text-feed-dark">
                 투표 목록이 없습니다.
               </h3>
-              <p className="text-sm">새로운 투표를 만들어보세요!</p>
+              <p className="text-sm text-text-feed dark:text-text-feed-dark">
+                새로운 투표를 만들어보세요!
+              </p>
             </div>
           )}
           {data &&

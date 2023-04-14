@@ -149,8 +149,9 @@ const VoteSearchBar = ({
                 >
                   <RadioGroup.Label
                     className={`text-xs text-black text-text-feed dark:text-text-feed-dark md:text-sm lg:text-base ${
-                      filterOptions.sortBy === option.id &&
-                      "dark:text-text-feed"
+                      filterOptions.sortBy === option.id
+                        ? "dark:text-text-normal"
+                        : ""
                     }`}
                   >
                     {option.name}

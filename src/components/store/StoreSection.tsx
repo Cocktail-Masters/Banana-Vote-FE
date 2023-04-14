@@ -10,6 +10,7 @@ import { STORE_CATEGORIES, STORE_FILTER_ELEMENT_LIST } from "@/constants/store";
 import { useStoreGoodsQuery } from "./../../hooks/reactQuery/useStoreGoodsQuery";
 import { storeGoodsTypes } from "@/types";
 import { useEffect } from "react";
+import Loading from "../Loading";
 
 const StoreSection = () => {
   const [currentCategory, setCurrentCategory] = useState<number>(0); // 현재 카테고리
@@ -34,6 +35,7 @@ const StoreSection = () => {
         filterElementList={STORE_FILTER_ELEMENT_LIST}
       />
       {/* 아이템 영역 */}
+      {isLoading && <Loading />}
       {data && (
         <GoodsListArea
           currentCategory={currentCategory}

@@ -42,7 +42,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
                 return (
                   <div
                     key={index}
-                    className="flex whitespace-nowrap rounded-3xl bg-primary-yellow pl-2 pr-2 pt-1 pb-1 text-sm font-semibold hover:bg-primary-yellow/75"
+                    className="flex whitespace-nowrap rounded-3xl bg-primary-yellow pl-2 pr-2 pt-1 pb-1 text-sm font-semibold text-black hover:opacity-75"
                   >
                     #{tag}
                   </div>
@@ -61,7 +61,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
                 베스트 댓글
               </div>
               <Link href={`/vote/detail/${data.vote.id}`}>
-                <div className="see-more absolute right-0 flex h-5 text-sm font-bold hover:border-b text-text-title dark:text-text-title-dark">
+                <div className="see-more absolute right-0 flex h-5 text-sm font-bold text-text-title hover:border-b dark:text-text-title-dark">
                   댓글 {data.vote.opinion_number.toLocaleString()}개
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

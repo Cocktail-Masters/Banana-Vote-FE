@@ -34,7 +34,7 @@ const RecommendArea = () => {
       const { className, style, onClick } = props;
       return (
         <div
-          className={`${className} flex h-8 w-8 items-center justify-center rounded-full stroke-black hover:bg-slate-100`}
+          className={`${className} flex h-8 w-8 items-center justify-center rounded-full stroke-black hover:bg-slate-100 dark:hover:bg-[#3A3B3C]`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

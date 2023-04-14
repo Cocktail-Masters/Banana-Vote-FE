@@ -34,7 +34,7 @@ const Card = ({ image_url, handleClick, children }: cardProps) => {
 
   return (
     <div
-      className="relative h-60 w-full rounded-2xl drop-shadow-lg "
+      className="relative h-60 w-full rounded-2xl drop-shadow-lg"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
       onClick={handleClick}

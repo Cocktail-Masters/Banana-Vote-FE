@@ -23,7 +23,7 @@ const CategoryArea = ({
   categories,
 }: categoryAreaProps) => {
   return (
-    <div className="relative mt-5 flex h-12 w-full items-start border-b-2 border-inherit">
+    <div className="relative mt-5 flex h-12 w-full items-start border-b-2 border-border dark:border-border-dark">
       {/* 메뉴 요소들 */}
       {categories.map((item: categories) => {
         return (

@@ -1,3 +1,4 @@
+"use client";
 import useTranslation from "@/hooks/useTranslation";
 import { eventTypes } from "@/types";
 import Link from "next/link";
@@ -7,6 +8,7 @@ import CardBadgeList from "../common/cardList/CardBadgeList";
 
 const EventContent = ({ content }: { content: eventTypes }) => {
   const { translation } = useTranslation();
+  
   return (
     <Link href={`/vote/${content.vote_id}`}>
       <Card image_url={content.image}>

@@ -50,9 +50,10 @@ export default function RootLayout({
       <body className="bg-white text-text-normal transition-colors dark:bg-black dark:text-text-normal-dark">
         <Provider>
           <LayoutHeader></LayoutHeader>
+
           <div className={"tiles"}>{children}</div>
           <div className={"footer"}></div>
-          <div id="modal-root" />
+          <div id="modal-root"></div>
         </Provider>
       </body>
     </html>

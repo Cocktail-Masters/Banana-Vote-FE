@@ -24,7 +24,11 @@ const MultipleElementPrediction = ({
   }, [items]);
   if (totalPoint !== undefined) {
     return (
-      <div className={"card mt-8 h-2/4 w-11/12 rounded-2xl bg-[#D9D9D9]"}>
+      <div
+        className={
+          "card mt-8 h-2/4 w-11/12 rounded-2xl bg-[#D9D9D9] dark:bg-bg-normal-dark"
+        }
+      >
         <div className={`h-5 w-full rounded-t-2xl bg-[#ffd60c]`}></div>
         <div className={`flex h-full w-full flex-col p-6`}>
           {items.map((e, i) => (

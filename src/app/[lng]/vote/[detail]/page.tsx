@@ -9,7 +9,7 @@ const VoteDetail = ({
 }: {
   params: { detail: string; lng: Locale };
 }) => {
-  console.log("params", params);
+
   return (
     <div className={"VoteDetail"} style={{ width: "100%", height: "100%" }}>
       {/* <HydrateDetail postId={params.detail} /> */}

@@ -16,7 +16,7 @@ const TwoElementPrediction = ({
   }[];
 }) => {
   return (
-    <div className={"card mt-8 h-2/4 w-11/12 rounded-2xl bg-[#D9D9D9]"}>
+    <div className={"card mt-8 h-2/4 w-11/12 rounded-2xl bg-[#D9D9D9] dark:bg-bg-normal-dark "}>
       <div className={`h-5 w-full rounded-t-2xl bg-[#ffd60c]`}></div>
       <div className={`flex h-full w-full p-6`}>
         <div className={`relative flex h-full w-1/2`}>

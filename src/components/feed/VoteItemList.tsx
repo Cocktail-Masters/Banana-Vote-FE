@@ -15,17 +15,16 @@ const VoteItemList = ({ vote_items }: { vote_items: voteItemType[] }) => {
         {vote_items &&
           vote_items.map((item: voteItemType, index: number) => {
             return (
-              <>
+              <div key={index}>
                 <motion.div
                   className={`vote-item relative w-full truncate transition duration-150 ease-in-out hover:-translate-y-1`}
                   whileHover={{ scale: 1.03 }}
-                  key={index}
                 >
                   <VoteItem imageLink={item.image_url} content={item.title} />
                 </motion.div>
                 {/* 요소의 갯수가 2일때 등장하는 VS */}
                 {vote_items && vote_items.length === 2 && <VS />}
-              </>
+              </div>
             );
           })}
       </div>

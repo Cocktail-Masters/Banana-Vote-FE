@@ -43,17 +43,17 @@ const CommentInput = () => {
       className={`w-full flex-col items-center justify-center px-[2%] drop-shadow-md`}
     >
       <div
-        className={`flex h-[100px] w-full rounded-2xl bg-[#D9D9D9] p-[1%] lg:h-[150px]`}
+        className={`flex h-[100px] w-full rounded-2xl bg-[#D9D9D9] p-[1%] dark:bg-bg-feed-dark lg:h-[150px]`}
       >
         <textarea
-          className={`mr-[2%] h-full w-full resize-none rounded-2xl bg-[#F6F6F6] p-2`}
+          className={`mr-[2%] h-full w-full resize-none rounded-2xl bg-[#F6F6F6] p-2 dark:bg-bg-button-dark`}
           placeholder={translation(
             "vote.detail.comment_area.comment_input.placeholder"
           )}
           ref={commentInputRef}
         ></textarea>
         <button
-          className={`h-full rounded-2xl bg-[#B6B6B6] p-[2%]`}
+          className={`h-full rounded-2xl bg-bg-button p-[2%] dark:bg-bg-button-dark`}
           onClick={sendOpinion}
         >
           <svg

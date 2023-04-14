@@ -42,15 +42,15 @@
 .slick-prev {
   left: 0px;
 }
+
+.slick-prev:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
 [dir="rtl"] .slick-prev {
   right: -25px;
   left: auto;
-}
-.slick-prev:before {
-  content: "←";
-}
-[dir="rtl"] .slick-prev:before {
-  content: "→";
 }
 
 .slick-next {
@@ -59,12 +59,6 @@
 [dir="rtl"] .slick-next {
   right: auto;
   left: -25px;
-}
-.slick-next:before {
-  content: "→";
-}
-[dir="rtl"] .slick-next:before {
-  content: "←";
 }
 
 /* Dots */
@@ -145,3 +139,5 @@
   opacity: 1;
   color: #e8c254;
 }
+
+/* slick-arrow slick-prev slick-disabled */

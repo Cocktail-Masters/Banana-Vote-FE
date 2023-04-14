@@ -26,13 +26,13 @@ const VoteDetailItemCard = ({
   };
   return (
     <button
-      className={`mb-2 flex h-full w-full rounded-2xl border-2 shadow-md ${
+      className={`mb-2 flex h-full w-full rounded-2xl border-2 shadow-md transition-colors duration-300 dark:text-text-normal-dark ${
         !isParti && selectItem === item.item_number
-          ? " border-secondary-orange bg-primary-yellow"
+          ? " border-secondary-orange bg-primary-yellow dark:text-black"
           : ""
       }  ${
         !isParti &&
-        `hover: cursor-pointer hover:border-secondary-orange hover:bg-primary-yellow`
+        `hover: cursor-pointer hover:border-secondary-orange hover:bg-primary-yellow hover:dark:text-black`
       }`}
       style={{ overflow: "hidden" }}
       onClick={() => {
@@ -44,7 +44,7 @@ const VoteDetailItemCard = ({
         alt="기본 이미지"
         width="100"
         height="100"
-        className="w-100 h-auto rounded-2xl object-contain"
+        className="w-100 h-auto rounded-xl object-contain"
         onClick={onOpen}
       />
       <div className="ml-2 flex w-full items-center">

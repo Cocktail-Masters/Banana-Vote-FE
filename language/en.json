@@ -13,13 +13,14 @@
   },
   "event": {
     "pageTitle": "Event",
-    "ing":"Proceeding",
-    "end":"end"
+    "ing": "Proceeding",
+    "end": "end"
   },
   "ranking": {
     "nickname": "nickname",
     "point": "point",
-    "rank": "rank"
+    "rank": "rank",
+    "ranking_update_time": "Ranking is updated every day at 0:00."
   },
   "header": {
     "vote_list": "VoteList",
@@ -59,6 +60,7 @@
         "declaration": "Report",
         "prediction_modal": {
           "title": "Predict Voting Results with Bananas",
+          "no":"th",
           "user_vote_result": "You voted for!",
           "setting_point": "Please set the points to use for prediction!",
           "submit": "Submit",

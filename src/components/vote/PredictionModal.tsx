@@ -7,6 +7,7 @@ import { useVotePredictionQuery } from "@/hooks/reactQuery/useVotePrediction";
 import TwoElementPrediction from "./TwoElementPrediction";
 import MultipleElementPrediction from "./MultipleElementPrediction";
 import { Dialog, Transition } from "@headlessui/react";
+import useTranslation from "@/hooks/useTranslation";
 
 const VoteDetailPredictionModal = ({
   isOpen,
@@ -26,8 +27,7 @@ const VoteDetailPredictionModal = ({
     queryKey: "prediction",
     postId: postId,
   });
-  console.log(data);
-
+  const { translation } = useTranslation();
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog open={isOpen} onClose={onClose}>
@@ -46,7 +46,7 @@ const VoteDetailPredictionModal = ({
           <div className="flex min-h-full items-center justify-center p-4 text-center">
             <Dialog.Panel
               className={
-                "modalContent h-full w-full max-w-2xl rounded-2xl bg-white p-3"
+                "modalContent h-full w-full max-w-2xl rounded-2xl bg-white p-3 text-black transition-colors duration-300 dark:bg-bg-feed-dark dark:text-text-normal-dark"
               }
             >
               <div
@@ -73,7 +73,7 @@ const VoteDetailPredictionModal = ({
                   </svg>
                 </button>
                 <h1 className={"mt-4 font-bold sm:text-lg lg:text-xl"}>
-                  바나나로 투표 결과를 예측하기!
+                  {translation("vote.detail.item.prediction_modal.title")}
                 </h1>
               </div>
               <div
@@ -81,7 +81,8 @@ const VoteDetailPredictionModal = ({
               >
                 {data !== undefined && data.items.length > 2 && (
                   <div className={"text-5xl font-bold text-[#1E69FF]"}>
-                    {voteItemId}번
+                    {voteItemId}
+                    {translation("vote.detail.item.prediction_modal.no")}
                   </div>
                 )}
                 {data !== undefined && data.items.length <= 2 && (
@@ -96,10 +97,15 @@ const VoteDetailPredictionModal = ({
                           : "#E0008E",
                     }}
                   >
-                    {voteItemId}번
+                    {voteItemId}
+                    {translation("vote.detail.item.prediction_modal.no")}
                   </div>
                 )}
-                <div>을 투표 하셨어요!</div>
+                <div>
+                  {translation(
+                    "vote.detail.item.prediction_modal.user_vote_result"
+                  )}
+                </div>
               </div>
 
               <div className={"flex h-3/4 w-full flex-col items-center"}>
@@ -113,7 +119,9 @@ const VoteDetailPredictionModal = ({
                 )}
                 <div className="mt-auto flex w-full flex-col items-center">
                   <div className="text-xs">
-                    예측에 사용할 포인트를 설정 해주세요!
+                    {translation(
+                      "vote.detail.item.prediction_modal.setting_point"
+                    )}
                   </div>
                   <div className="mt-4 flex h-12 w-40">
                     <input
@@ -132,16 +140,24 @@ const VoteDetailPredictionModal = ({
                               : "#E0008E",
                         }}
                       >
-                        제출
+                        {translation(
+                          "vote.detail.item.prediction_modal.setting_point"
+                        )}
                       </button>
                     )}
                     {data !== undefined && data.items.length > 2 && (
                       <button className="w-2/4 rounded-r-lg bg-[#1E69FF] text-white">
-                        제출
+                        {translation(
+                          "vote.detail.item.prediction_modal.submit"
+                        )}
                       </button>
                     )}
                   </div>
-                  <div className="mt-2 text-xs">가지고 있는 바나나</div>
+                  <div className="mt-2 text-xs">
+                    {translation(
+                      "vote.detail.item.prediction_modal.has_banana"
+                    )}
+                  </div>
                   <div className="flex">
                     <Image src={banana_svg} alt={"바나나이미지"} width={20} />
                     <div>1,234,124</div>

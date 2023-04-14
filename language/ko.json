@@ -13,14 +13,14 @@
   },
   "event": {
     "pageTitle": "이벤트",
-    "ing":"진행중",
-    "end":"종료"
-
+    "ing": "진행중",
+    "end": "종료"
   },
   "ranking": {
     "nickname": "닉네임",
     "point": "점수",
-    "rank": "등수"
+    "rank": "등수",
+    "ranking_update_time": "랭킹은 매일 0시에 갱신 됩니다."
   },
   "header": {
     "vote_list": "투표목록",
@@ -60,6 +60,7 @@
         "declaration": "신고",
         "prediction_modal": {
           "title": "바나나 포인트로 투표 결과를 예측하기",
+          "no":"번",
           "user_vote_result": "을 투표 하셨어요!",
           "setting_point": "예측에 사용할 포인트를 설정 해주세요!",
           "submit": "제출",

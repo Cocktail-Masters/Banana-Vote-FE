@@ -1,55 +1,26 @@
 "use client";
+import useTheme from "@/hooks/useTheme";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useInsertionEffect } from "react";
+import { useState, useEffect } from "react";
 import { tabType } from "./LayoutHeader";
 
 const LayoutTopBar = ({ tabs }: { tabs: tabType[] }) => {
   const pathname = usePathname();
 
   const [selectedTabPath, setSelectedTabPath] = useState<string | null>(null);
-  const [themeMode, setThemeMode] = useState<"light" | "dark">();
   useEffect(() => {
     const removeLanguagePath = "/" + pathname.split("/").slice(2).join("/");
     setSelectedTabPath(removeLanguagePath);
   }, [pathname]);
-  useInsertionEffect(() => {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      setThemeMode("dark");
-    } else {
-      setThemeMode("light");
-    }
-  });
+  const { themeMode, toggleThemeHandler } = useTheme();
 
   const isMatchPath = (path: string) => {
     if (selectedTabPath === null) return false;
     return selectedTabPath.substring(0, path.length) === path;
   };
-  const changeDarkTheme = () => {
-    if (localStorage.theme === "dark") {
-      localStorage.theme = "light";
-    } else if (localStorage.theme === "light") {
-      localStorage.theme = "dark";
-    }
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-      setThemeMode("dark");
-      localStorage.theme = "dark";
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.theme = "light";
-      setThemeMode("light");
-    }
-  };
+
   return (
     <>
       <div className="flex h-full flex-grow flex-row justify-center gap-[30px]">
@@ -71,7 +42,7 @@ const LayoutTopBar = ({ tabs }: { tabs: tabType[] }) => {
         ))}
       </div>
       {themeMode === "light" ? (
-        <button onClick={changeDarkTheme}>
+        <button onClick={toggleThemeHandler}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -88,7 +59,7 @@ const LayoutTopBar = ({ tabs }: { tabs: tabType[] }) => {
           </svg>
         </button>
       ) : (
-        <button onClick={changeDarkTheme}>
+        <button onClick={toggleThemeHandler}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="darkBlue"

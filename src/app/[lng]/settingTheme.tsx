@@ -16,7 +16,7 @@ const SettingTheme = () => {
       document.documentElement.classList.remove("dark");
       localStorage.theme = "light";
     }
-  });
+  }, []);
 
   return <></>;
 };

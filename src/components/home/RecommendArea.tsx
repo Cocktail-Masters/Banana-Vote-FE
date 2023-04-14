@@ -4,7 +4,7 @@
  */
 "use client";
 import RecommendBox from "./RecommendBox";
-import Slider from "react-slick";
+import Slider, { CustomArrowProps } from "react-slick";
 import { useState } from "react";
 import "./styles/slick.css";
 import "./styles/slick-theme.css";
@@ -23,6 +23,36 @@ const RecommendArea = () => {
   const intResponse = useInterestListQuery({
     queryKey: "interest",
   });
+
+  const arrows = {
+    left: "M15.75 19.5L8.25 12l7.5-7.5",
+    right: "M8.25 4.5l7.5 7.5-7.5 7.5",
+  };
+
+  const CreateArrow = (arrowPath: string) => {
+    const newArrow = (props: any) => {
+      const { className, style, onClick } = props;
+      return (
+        <div
+          className={`${className} flex h-8 w-8 items-center justify-center rounded-full stroke-black hover:bg-slate-100`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            className={`h-6 w-6`}
+            onClick={onClick}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d={arrowPath} />
+          </svg>
+        </div>
+      );
+    };
+    return newArrow;
+  };
+  const LeftArrow = CreateArrow(arrows.left);
+  const RightArrow = CreateArrow(arrows.right);
 
   return (
     <div className="relative mx-auto mt-4 mb-4 h-[260px] w-[360px] select-none rounded-xl bg-white drop-shadow-md">
@@ -43,40 +73,8 @@ const RecommendArea = () => {
           speed={500}
           slidesToShow={1}
           slidesToScroll={1}
-          prevArrow={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              id="slick-prev-arrow"
-              className="h-6 w-6 rounded-full p-4 hover:bg-slate-100"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
-              />
-            </svg>
-          }
-          nextArrow={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              id="slick-next-arrow"
-              className="h-6 w-6 rounded-full p-4 hover:bg-slate-100"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          }
+          prevArrow={<LeftArrow />}
+          nextArrow={<RightArrow />}
           initialSlide={currentIndex}
           afterChange={(index: number) => {
             setCurrentIndex(index);

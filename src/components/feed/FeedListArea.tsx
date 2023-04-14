@@ -10,8 +10,9 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { filterOptions, voteFeedType } from "@/types";
 import { voteFeedListType } from "@/types";
-import Loading from "./../Loading";
+import Loading from "@/components/Loading";
 import VoteSearchBar from "@/components/home/VoteSearchBar";
+import VoteIcon from "@/components/animation/VoteIcon";
 
 const FeedListArea = () => {
   const [keyword, setKeyword] = useState<string>(""); // 검색 키워드
@@ -58,10 +59,13 @@ const FeedListArea = () => {
           {/* 투표 피드 리스트 */}
           {(!data || data.pages[0].votes.length === 0) && (
             <div className="flex h-auto w-full flex-col items-center justify-center pt-3">
-              <h3 className="mb-2 text-2xl font-semibold text-text-feed dark:text-text-feed-dark">
+              <div className="mb-3 h-24 w-full md:h-32">
+                <VoteIcon />
+              </div>
+              <h3 className="mb-2 text-xl font-semibold text-text-feed dark:text-text-feed-dark md:text-3xl">
                 투표 목록이 없습니다.
               </h3>
-              <p className="text-sm text-text-feed dark:text-text-feed-dark">
+              <p className="text-sm text-text-feed dark:text-text-feed-dark md:text-base">
                 새로운 투표를 만들어보세요!
               </p>
             </div>

@@ -6407,7 +6407,6 @@ __metadata:
     next-seo: ^5.15.0
     next-sitemap: ^4.0.5
     postcss: ^8.4.21
-    postinstall-postinstall: ^2.1.0
     prettier: ^2.8.7
     prettier-plugin-tailwindcss: ^0.2.5
     react: latest
@@ -14162,13 +14161,6 @@ __metadata:
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
   checksum: e39ac60ccd1542d4f9d93d894048aac0d686b3bb38e927d8386005718e6793dbbb46930f0a523fe382f1bbd843c6d980aaea791252bf5e176180e5a4336d9679
-  languageName: node
-  linkType: hard
-
-"postinstall-postinstall@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "postinstall-postinstall@npm:2.1.0"
-  checksum: e1d34252cf8d2c5641c7d2db7426ec96e3d7a975f01c174c68f09ef5b8327bc8d5a9aa2001a45e693db2cdbf69577094d3fe6597b564ad2d2202b65fba76134b
   languageName: node
   linkType: hard
 

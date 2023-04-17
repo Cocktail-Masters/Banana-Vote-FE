@@ -53,7 +53,6 @@ export default function RootLayout({
 
           <div className={"tiles"}>{children}</div>
           <div className={"footer"}></div>
-          <div id="modal-root"></div>
         </Provider>
       </body>
     </html>

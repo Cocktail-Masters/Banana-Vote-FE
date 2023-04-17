@@ -99,13 +99,14 @@
     "feed": {
       "best_opinion": "最高の意見",
       "opinion": "",
-      "opinion_num": "comments"
+      "opinion_num": " comments"
     },
     "feed_header": {
       "report": "Report",
       "share": "Share",
       "error_message": "無効な要求です。",
-      "closed": "終了"
+      "closed": "終了",
+      "days_left": "日 残り"
     },
     "feed_list_area": {
       "no_vote_list_title": "投票リストがありません。",
@@ -114,7 +115,7 @@
   },
   "home": {
     "ranking_box": {
-      "see_more": "もっと見る···",
+      "see_more": "もっと見る",
       "no_ranking_list": "シーズンランキングの情報はありません。"
     },
     "ranking_list_area": {

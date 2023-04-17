@@ -99,13 +99,14 @@
     "feed": {
       "best_opinion": "Best opinion",
       "opinion": "",
-      "opinion_num": "comments"
+      "opinion_num": " comments"
     },
     "feed_header": {
       "report": "Report",
       "share": "Share",
       "error_message": "Invalid request.",
-      "closed": "Closed"
+      "closed": "Closed",
+      "days_left": "days left"
     },
     "feed_list_area": {
       "no_vote_list_title": "There is no voting list.",
@@ -114,7 +115,7 @@
   },
   "home": {
     "ranking_box": {
-      "see_more": "See more...",
+      "see_more": "more",
       "no_ranking_list": "There is no season ranking information."
     },
     "ranking_list_area": {

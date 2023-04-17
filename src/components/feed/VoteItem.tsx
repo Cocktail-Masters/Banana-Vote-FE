@@ -13,6 +13,10 @@ type voteFeedItemProps = {
 };
 
 const VoteItem = ({ imageLink = defaultImg, content }: voteFeedItemProps) => {
+  /**
+   * @todo 이미지 클릭 시 아래 링크 참고하여 이미지 모달 띄우기 구현
+   * @link https://github.com/krishnerkar/next-intercepting-routes-demo
+   */
   const handleImageClick = (
     e: React.MouseEvent<HTMLImageElement, MouseEvent>
   ) => {

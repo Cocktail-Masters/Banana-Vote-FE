@@ -4,10 +4,13 @@
  */
 "use client";
 import RankingBox from "./RankingBox";
-import { useRankingTop5Query } from "./../../hooks/reactQuery/useRankingTop5Query";
+import { useRankingTop5Query } from "@/hooks/reactQuery/useRankingTop5Query";
 import Loading from "@/components/Loading";
+import useTranslation from "@/hooks/useTranslation";
 
 const RankingListArea = () => {
+  const { translation } = useTranslation();
+
   const { isLoading, error, data } = useRankingTop5Query({
     queryKey: "rankingTop5",
   });
@@ -19,7 +22,10 @@ const RankingListArea = () => {
           <Loading />
         </div>
       ) : (
-        <RankingBox title={"시즌 랭킹"} contents={data.ranking_list} />
+        <RankingBox
+          title={translation("home.ranking_list_area.box_title")}
+          contents={data.ranking_list}
+        />
       )}
     </div>
   );

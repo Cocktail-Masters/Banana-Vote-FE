@@ -8,11 +8,13 @@ import FilterArea from "@/components/store/FilterArea";
 import GoodsListArea from "@/components/store/GoodsListArea";
 import { STORE_CATEGORIES, STORE_FILTER_ELEMENT_LIST } from "@/constants/store";
 import { useStoreGoodsQuery } from "./../../hooks/reactQuery/useStoreGoodsQuery";
-import { storeGoodsTypes } from "@/types";
-import { useEffect } from "react";
-import Loading from "../Loading";
+import Loading from "@/components/Loading";
+import PageTitle from "@/components/common/PageTitle";
+import useTranslation from "@/hooks/useTranslation";
 
 const StoreSection = () => {
+  const { translation } = useTranslation();
+
   const [currentCategory, setCurrentCategory] = useState<number>(0); // 현재 카테고리
   const [orderBy, setOrderBy] = useState<number>(0); // 0 : 최신 순, 1 : 인기 순, 2 : 가격 순
 
@@ -22,6 +24,8 @@ const StoreSection = () => {
 
   return (
     <>
+      {/* 타이틀 영역 */}
+      <PageTitle title={translation("store.page.title")} />
       {/* 카테고리 영역 */}
       <CategoryArea
         currentCategory={currentCategory}

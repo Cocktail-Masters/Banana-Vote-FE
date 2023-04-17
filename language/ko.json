@@ -105,7 +105,8 @@
       "report": "신고",
       "share": "공유",
       "error_message": "잘못된 요청입니다.",
-      "closed": "종료됨"
+      "closed": "종료됨",
+      "days_left": "일 남음"
     },
     "feed_list_area": {
       "no_vote_list_title": "투표 목록이 없습니다.",

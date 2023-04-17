@@ -13,8 +13,11 @@ import { voteFeedListType } from "@/types";
 import Loading from "@/components/Loading";
 import VoteSearchBar from "@/components/home/VoteSearchBar";
 import VoteIcon from "@/components/animation/VoteIcon";
+import useTranslation from "@/hooks/useTranslation";
 
 const FeedListArea = () => {
+  const { translation } = useTranslation();
+
   const [keyword, setKeyword] = useState<string>(""); // 검색 키워드
   const [filterOptions, setFilterOptions] = useState<filterOptions>({
     isClosed: false, // 종료 투표 포함 여부
@@ -63,10 +66,10 @@ const FeedListArea = () => {
                 <VoteIcon />
               </div>
               <h3 className="mb-2 text-xl font-semibold text-text-feed dark:text-text-feed-dark md:text-3xl">
-                투표 목록이 없습니다.
+                {translation("feed.feed_list_area.no_vote_list_title")}
               </h3>
               <p className="text-sm text-text-feed dark:text-text-feed-dark md:text-base">
-                새로운 투표를 만들어보세요!
+                {translation("feed.feed_list_area.no_vote_list_description")}
               </p>
             </div>
           )}

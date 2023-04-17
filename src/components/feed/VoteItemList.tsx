@@ -17,7 +17,7 @@ const VoteItemList = ({ vote_items }: { vote_items: voteItemType[] }) => {
             return (
               <div key={index}>
                 <motion.div
-                  className={`vote-item relative w-full truncate drop-shadow-md transition duration-150 ease-in-out hover:-translate-y-1`}
+                  className={`vote-item relative w-full truncate transition duration-150 ease-in-out hover:-translate-y-1`}
                   whileHover={{ scale: 1.03 }}
                 >
                   <VoteItem imageLink={item.image_url} content={item.title} />

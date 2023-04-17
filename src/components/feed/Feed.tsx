@@ -5,7 +5,6 @@
 "use client";
 import React from "react";
 import FeedHeader from "./FeedHeader";
-import VS from "./VS";
 import VoteItemList from "./VoteItemList";
 import FeedTitle from "./FeedTitle";
 import { voteFeedType } from "@/types";
@@ -15,7 +14,7 @@ import Link from "next/link";
 const Feed = ({ data }: { data: voteFeedType }) => {
   return (
     <>
-      <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white drop-shadow-md transition duration-100 ease-in-out md:rounded-xl">
+      <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white bg-bg-feed drop-shadow-md transition duration-100 ease-in-out dark:bg-bg-feed-dark md:rounded-xl">
         {/* 피드 헤더 */}
         <div className="p-5">
           <FeedHeader
@@ -28,7 +27,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
             voted_number={data.vote.voted_number}
           />
         </div>
-        <div className="grid grid-cols-1 divide-y">
+        <div className="grid grid-cols-1">
           {/* 피드 바디 */}
           <div className="pb-3 pl-5 pr-5">
             {/* 피드 제목 */}
@@ -43,7 +42,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
                 return (
                   <div
                     key={index}
-                    className="flex whitespace-nowrap rounded-3xl bg-primary-yellow pl-2 pr-2 pt-1 pb-1 text-sm font-semibold hover:bg-primary-yellow/75"
+                    className="flex whitespace-nowrap rounded-3xl bg-primary-yellow pl-2 pr-2 pt-1 pb-1 text-sm font-semibold text-black hover:opacity-75"
                   >
                     #{tag}
                   </div>
@@ -52,17 +51,17 @@ const Feed = ({ data }: { data: voteFeedType }) => {
             </div>
           </div>
         </div>
-        <hr />
+        <hr className="border-border dark:border-border-dark" />
         <div className="p-5">
           {/* 피드 푸터 */}
           <div className="relative flex h-auto w-full">
             {/* 댓글 더보기 */}
             <div className="flex h-6 w-full">
-              <div className="absolute left-0 flex h-5 text-sm font-bold">
+              <div className="absolute left-0 flex h-5 text-sm font-bold text-text-title dark:text-text-title-dark">
                 베스트 댓글
               </div>
               <Link href={`/vote/detail/${data.vote.id}`}>
-                <div className="see-more absolute right-0 flex h-5 text-sm font-bold hover:border-b">
+                <div className="see-more absolute right-0 flex h-5 text-sm font-bold text-text-title hover:border-b dark:text-text-title-dark">
                   댓글 {data.vote.opinion_number.toLocaleString()}개
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +69,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="h-5 w-5 font-bold"
+                    className="h-5 w-5 font-bold text-text-title dark:text-text-title-dark"
                   >
                     <path
                       strokeLinecap="round"

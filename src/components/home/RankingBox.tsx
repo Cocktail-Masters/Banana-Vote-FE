@@ -1,5 +1,7 @@
+/**
+ * @author mingyu
+ */
 "use client";
-
 import Link from "next/link";
 import goldMedal from "@assets/icons/medals/gold.svg";
 import silverMedal from "@assets/icons/medals/silver.svg";
@@ -25,7 +27,7 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
           {/* 더보기 */}
           <div className="relative h-7 w-auto">
             <Link href={`/rank`}>
-              <p className="see-more-ranking fabsolute top-[66%] right-3 flex h-7 w-20 items-center justify-center text-sm text-gray-400 hover:text-gray-500 hover:decoration-solid">
+              <p className="see-more-ranking absolute top-[66%] right-3 flex h-7 w-20 items-center justify-center text-sm text-gray-400 hover:text-gray-500 hover:decoration-solid">
                 더보기
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +49,7 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
         </div>
       </div>
       <hr className="mx-auto h-[1.5px] w-11/12 border-0 bg-yellow-500" />
-      <div className="h-52 w-full p-4">
+      <div className="h-52 w-full p-4 text-text-article dark:text-text-article-dark">
         {!contents || contents.length === 0 ? (
           <p className="flex h-32 justify-center font-bold leading-8">
             시즌 랭킹 정보가 없습니다.

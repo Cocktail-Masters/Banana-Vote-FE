@@ -14,9 +14,9 @@ export default async function Home({
       <LocaleSwitcher />
       <p>Current locale: {lng}</p>
       <p>
-        This text is rendered on the serve r:{" "}
+        This text is rendered on the server:
         {messages["server-component"].welcome}
-        This text is rendered on the server:{" "}
+        This text is rendered on the server:
         {messages["test"]["test2"]["test3"]}
       </p>
     </div>

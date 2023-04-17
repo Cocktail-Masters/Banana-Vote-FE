@@ -10,8 +10,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test:e2e": "playwright test",
-    "test-ct": "playwright test -c playwright-ct.config.ts",
-    "postinstall": "patch-package"
+    "test-ct": "playwright test -c playwright-ct.config.ts"
   },
   "packageManager": "yarn@3.4.1",
   "dependencies": {
@@ -26,7 +25,7 @@
     "lodash": "^4.17.21",
     "nanoid": "^4.0.1",
     "negotiator": "^0.6.3",
-    "next": "latest",
+    "next": "13.3.1-canary.4",
     "next-pwa": "^5.6.0",
     "next-seo": "^5.15.0",
     "next-sitemap": "^4.0.5",
@@ -72,9 +71,7 @@
     "eslint": "8.35.0",
     "eslint-config-next": "latest",
     "husky": "8.0.3",
-    "patch-package": "^6.5.1",
     "postcss": "^8.4.21",
-    "postinstall-postinstall": "^2.1.0",
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.5",
     "storybook-addon-next-router": "^4.0.2",

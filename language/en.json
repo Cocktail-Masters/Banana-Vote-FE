@@ -93,54 +93,54 @@
           "placeholder": "Please share your opinion"
         }
       }
-    },
+    }
+  },
+  "feed": {
     "feed": {
-      "feed": {
-        "best_opinion": "Best opinion",
-        "opinion": "",
-        "opinion_num": "comments"
-      },
-      "feed_header": {
-        "report": "Report",
-        "share": "Share",
-        "error_message": "Invalid request.",
-        "closed": "Closed"
-      },
-      "feed_list_area": {
-        "no_vote_list_title": "There is no voting list.",
-        "no_vote_list_description": "Create a new vote!"
-      }
+      "best_opinion": "Best opinion",
+      "opinion": "",
+      "opinion_num": "comments"
     },
-    "home": {
-      "ranking_box": {
-        "see_more": "See more...",
-        "no_ranking_list": "There is no season ranking information."
-      },
-      "ranking_list_area": {
-        "box_title": "Season Ranking"
-      },
-      "recommend_area": {
-        "titles_popular": "Now Popular",
-        "titles_recommend": "Recent Interest"
-      },
-      "recommend_box": {
-        "no_recommend_list": "There is no voting."
-      },
-      "vote_create_bar": {
-        "create_vote_message": "Create a new vote"
-      },
-      "vote_search_bar": {
-        "sort_recent": "New",
-        "sort_participant_high": "Hot",
-        "sort_hit_high": "Popular",
-        "sort_opinion_high": "Many Opinions",
-        "contain_closed_votes": "Include closed voting"
-      }
+    "feed_header": {
+      "report": "Report",
+      "share": "Share",
+      "error_message": "Invalid request.",
+      "closed": "Closed"
     },
-    "store": {
-      "page": {
-        "title": "Banana Store"
-      }
+    "feed_list_area": {
+      "no_vote_list_title": "There is no voting list.",
+      "no_vote_list_description": "Create a new vote!"
+    }
+  },
+  "home": {
+    "ranking_box": {
+      "see_more": "See more...",
+      "no_ranking_list": "There is no season ranking information."
+    },
+    "ranking_list_area": {
+      "box_title": "Season Ranking"
+    },
+    "recommend_area": {
+      "titles_popular": "Now Popular",
+      "titles_recommend": "Recent Interest"
+    },
+    "recommend_box": {
+      "no_recommend_list": "There is no voting."
+    },
+    "vote_create_bar": {
+      "create_vote_message": "Create a new vote"
+    },
+    "vote_search_bar": {
+      "sort_recent": "New",
+      "sort_participant_high": "Hot",
+      "sort_hit_high": "Popular",
+      "sort_opinion_high": "Many Opinions",
+      "contain_closed_votes": "Include closed voting"
+    }
+  },
+  "store": {
+    "page": {
+      "title": "Banana Store"
     }
   }
 }

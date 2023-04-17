@@ -59,7 +59,10 @@ const VoteSearchBar = ({
       {/* 바디 */}
       <div className="flex h-auto flex-col items-center gap-2 p-5">
         {/* 검색창 */}
-        <div className="lg:text-md ml-2 flex h-10 w-full items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-500 transition hover:bg-white hover:outline hover:outline-2 hover:outline-terriary-mint focus:bg-white focus:outline focus:outline-2 focus:outline-terriary-mint md:text-sm">
+        <div className="lg:text-md ml-2 flex h-10 w-full items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-500 transition hover:bg-white hover:outline hover:outline-2 hover:outline-terriary-mint focus:bg-white focus:outline focus:outline-2 focus:outline-terriary-mint md:text-sm" 
+        onBlur={(e)=>{
+
+        }}>
           <form className="flex w-full">
             <label className="flex h-5 w-11 justify-center">
               <MagnifyingGlassIcon

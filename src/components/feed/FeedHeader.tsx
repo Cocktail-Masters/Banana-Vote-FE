@@ -7,6 +7,7 @@ import React from "react";
 import BadgeImage from "./../common/BadgeImage";
 import { getRemainDates } from "@/common/getRemainDates";
 import OptionMenu from "@/components/common/menu/OptionMenu";
+import useTranslation from "@/hooks/useTranslation";
 
 type headerContentProps = {
   writer_id: number;
@@ -27,14 +28,16 @@ const FeedHeader = ({
   is_closed,
   voted_number,
 }: headerContentProps) => {
+  const { translation } = useTranslation();
+
   const MENU_LIST = [
     {
       id: 1,
-      label: "신고",
+      label: translation("feed.feed_header.report"),
     },
     {
       id: 2,
-      label: "공유",
+      label: translation("feed.feed_header.share"),
     },
   ];
 
@@ -46,12 +49,12 @@ const FeedHeader = ({
     const menuId = (e.target as HTMLElement).getAttribute("id");
 
     // TODO : 각 메뉴 이름에 해당하는 메소드 작성
-    if (menuName === "신고") {
+    if (menuName === translation("feed.feed_header.report")) {
       console.log(menuId + " : " + menuName);
-    } else if (menuName === "공유") {
+    } else if (menuName === translation("feed.feed_header.share")) {
       console.log(menuId + " : " + menuName);
     } else {
-      alert("잘못된 요청입니다." + menuName);
+      alert("Error : " + menuName);
     }
   };
 
@@ -78,8 +81,9 @@ const FeedHeader = ({
           <div className="flex text-sm">
             <p className="mr-3 h-4 text-text-feed dark:text-text-feed-dark">
               {is_closed || getRemainDates({ endDate: end_date }) <= 0
-                ? "종료됨"
-                : getRemainDates({ endDate: end_date }) + "일 남음"}
+                ? translation("feed.feed_header.closed")
+                : getRemainDates({ endDate: end_date }) +
+                  translation("feed.feed_header.days_left")}
             </p>
             <svg
               xmlns="http://www.w3.org/2000/svg"

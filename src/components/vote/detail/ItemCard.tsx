@@ -2,9 +2,9 @@
 import Image from "next/image";
 import defaultImg from "@assets/images/defalut_vote_element_img.png";
 import { voteItemType } from "@/types";
-import Modal from "@/components/modal/Modal";
-import Portal from "@/components/modal/Portal";
+
 import { useState } from "react";
+import Modal from "@/components/common/modal";
 
 const VoteDetailItemCard = ({
   item,
@@ -51,32 +51,14 @@ const VoteDetailItemCard = ({
         <h2 className="text-lg font-semibold">{item.title}</h2>
       </div>
       {isOpen && (
-        <Portal>
-          <Modal onClose={onClose} width={"95%"} height={"85%"}>
-            <button className={"absolute right-5 top-3 z-50"}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="h-6 w-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-            <Image
-              src={defaultImg}
-              alt="기본 이미지"
-              fill
-              className="z-10 h-auto w-auto rounded-2xl object-contain"
-            ></Image>
-          </Modal>
-        </Portal>
+        <Modal onClose={onClose}>
+          <Image
+            src={defaultImg}
+            alt="기본 이미지"
+            // fill
+            className="z-10 h-auto w-auto rounded-2xl object-contain"
+          ></Image>
+        </Modal>
       )}
     </button>
   );

@@ -4,18 +4,24 @@
  */
 "use client";
 import RecommendBox from "./RecommendBox";
-import Slider, { CustomArrowProps } from "react-slick";
+import Slider from "react-slick";
 import { useState } from "react";
 import "@/components/home/styles/slick.css";
 import "@/components/home/styles/slick-theme.css";
 import { usePopularListQuery } from "@/hooks/reactQuery/usePopularListQuery";
 import { useInterestListQuery } from "@/hooks/reactQuery/useInterestListQuery";
 import Loading from "@/components/Loading";
+import useTranslation from "@/hooks/useTranslation";
 
 const RecommendArea = () => {
+  const { translation } = useTranslation();
+
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  const TITLES = ["지금 인기있는 투표", "관심있을만한 최신 투표"];
+  const TITLES = [
+    translation("home.recommend_area.titles_popular"),
+    translation("home.recommend_area.titles_recommend"),
+  ];
 
   const popResponse = usePopularListQuery({
     queryKey: "popular",

@@ -69,7 +69,7 @@
         },
         "prediction_modal": {
           "title": "바나나 포인트로 투표 결과를 예측하기",
-          "no":"번",
+          "no": "번",
           "user_vote_result": "을 투표 하셨어요!",
           "setting_point": "예측에 사용할 포인트를 설정 해주세요!",
           "submit": "제출",
@@ -102,6 +102,55 @@
           "placeholder": "나의 의견을 전해주세요"
         }
       }
+    }
+  },
+  "feed": {
+    "feed": {
+      "best_opinion": "베스트 댓글",
+      "opinion": "댓글",
+      "opinion_num": "개"
+    },
+    "feed_header": {
+      "report": "신고",
+      "share": "공유",
+      "error_message": "잘못된 요청입니다.",
+      "closed": "종료됨",
+      "days_left": "일 남음"
+    },
+    "feed_list_area": {
+      "no_vote_list_title": "투표 목록이 없습니다.",
+      "no_vote_list_description": "새로운 투표를 만들어보세요!"
+    }
+  },
+  "home": {
+    "ranking_box": {
+      "see_more": "더보기",
+      "no_ranking_list": "시즌 랭킹 정보가 없습니다."
+    },
+    "ranking_list_area": {
+      "box_title": "시즌 랭킹"
+    },
+    "recommend_area": {
+      "titles_popular": "지금 있기있는 투표",
+      "titles_recommend": "관심있을만한 최신 투표"
+    },
+    "recommend_box": {
+      "no_recommend_list": "글이 없습니다."
+    },
+    "vote_create_bar": {
+      "create_vote_message": "원하는 투표를 만들어보세요"
+    },
+    "vote_search_bar": {
+      "sort_recent": "최신 순",
+      "sort_participant_high": "참여 순",
+      "sort_hit_high": "조회 순",
+      "sort_opinion_high": "댓글 많은 순",
+      "contain_closed_votes": "종료 투표 포함"
+    }
+  },
+  "store": {
+    "page": {
+      "title": "바나나 스토어"
     }
   }
 }

@@ -69,7 +69,7 @@
         },
         "prediction_modal": {
           "title": "Predict Voting Results with Bananas",
-          "no":"th",
+          "no": "th",
           "user_vote_result": "You voted for!",
           "setting_point": "Please set the points to use for prediction!",
           "submit": "Submit",
@@ -102,6 +102,55 @@
           "placeholder": "Please share your opinion"
         }
       }
+    }
+  },
+  "feed": {
+    "feed": {
+      "best_opinion": "Best opinion",
+      "opinion": "",
+      "opinion_num": " comments"
+    },
+    "feed_header": {
+      "report": "Report",
+      "share": "Share",
+      "error_message": "Invalid request.",
+      "closed": "Closed",
+      "days_left": "days left"
+    },
+    "feed_list_area": {
+      "no_vote_list_title": "There is no voting list.",
+      "no_vote_list_description": "Create a new vote!"
+    }
+  },
+  "home": {
+    "ranking_box": {
+      "see_more": "more",
+      "no_ranking_list": "There is no season ranking information."
+    },
+    "ranking_list_area": {
+      "box_title": "Season Ranking"
+    },
+    "recommend_area": {
+      "titles_popular": "Now Popular",
+      "titles_recommend": "Recent Interest"
+    },
+    "recommend_box": {
+      "no_recommend_list": "There is no voting."
+    },
+    "vote_create_bar": {
+      "create_vote_message": "Create a new vote"
+    },
+    "vote_search_bar": {
+      "sort_recent": "New",
+      "sort_participant_high": "Hot",
+      "sort_hit_high": "Popular",
+      "sort_opinion_high": "Many Opinions",
+      "contain_closed_votes": "Include closed voting"
+    }
+  },
+  "store": {
+    "page": {
+      "title": "Banana Store"
     }
   }
 }

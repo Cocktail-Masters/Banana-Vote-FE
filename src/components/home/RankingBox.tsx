@@ -8,6 +8,7 @@ import silverMedal from "@assets/icons/medals/silver.svg";
 import bronzeMedal from "@assets/icons/medals/bronze.svg";
 import Image from "next/image";
 import { seasonUserType } from "@/types";
+import useTranslation from "@/hooks/useTranslation";
 
 type rankingBoxProps = {
   title: string;
@@ -15,6 +16,8 @@ type rankingBoxProps = {
 };
 
 const RankingBox = ({ title, contents }: rankingBoxProps) => {
+  const { translation } = useTranslation();
+
   return (
     <div>
       <div className="h-16 w-full">
@@ -28,7 +31,7 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
           <div className="relative h-7 w-auto">
             <Link href={`/rank`}>
               <p className="see-more-ranking absolute top-[66%] right-3 flex h-7 w-20 items-center justify-center text-sm text-gray-400 hover:text-gray-500 hover:decoration-solid">
-                더보기
+                {translation("home.ranking_box.see_more")}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -52,7 +55,7 @@ const RankingBox = ({ title, contents }: rankingBoxProps) => {
       <div className="h-52 w-full p-4 text-text-article dark:text-text-article-dark">
         {!contents || contents.length === 0 ? (
           <p className="flex h-32 justify-center font-bold leading-8">
-            시즌 랭킹 정보가 없습니다.
+            {translation("home.ranking_box.no_ranking_list")}
           </p>
         ) : (
           contents.map((content: seasonUserType, index: number) => {

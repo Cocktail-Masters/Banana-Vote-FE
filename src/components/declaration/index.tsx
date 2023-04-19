@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import { ReactElement, useState } from "react";
 import Modal from "../common/modal";
 import ModalDescription from "../common/modal/Description";
-import ModalHader from "../common/modal/Hader";
+import ModalHeader from "../common/modal/Header";
 
 const DeclarationModal = ({
   onClose,
@@ -29,7 +29,7 @@ const DeclarationModal = ({
       className={`w-full max-w-xl rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-bg-feed-dark dark:text-text-normal-dark`}
       onClose={onClose}
     >
-      <ModalHader className="relative mb-4 flex justify-center text-xl font-extrabold leading-6 text-gray-900">
+      <ModalHeader className="relative mb-4 flex justify-center text-xl font-extrabold leading-6 text-gray-900">
         <div className="flex w-full justify-center dark:text-white">
           🚨{translation("vote.detail.item.declaration_modal.title")}🚨
         </div>
@@ -53,7 +53,7 @@ const DeclarationModal = ({
             />
           </svg>
         </button>
-      </ModalHader>
+      </ModalHeader>
       <ModalDescription>
         <div
           className={`flex h-full w-full flex-col items-center justify-center`}

@@ -1,12 +1,16 @@
+"use client";
 import useTranslation from "@/hooks/useTranslation";
 import { eventTypes } from "@/types";
 import Link from "next/link";
 import Card from "../common/cardList/Card";
 import CardBadge from "../common/cardList/CardBadge";
 import CardBadgeList from "../common/cardList/CardBadgeList";
+import { useParams } from "next/navigation";
 
 const EventContent = ({ content }: { content: eventTypes }) => {
   const { translation } = useTranslation();
+  const params = useParams();
+  // console.log(params);
   return (
     <Link href={`/vote/${content.vote_id}`}>
       <Card image_url={content.image}>

@@ -58,12 +58,28 @@ const VoteSearchBar = ({
     }
   };
 
+  const [isFocus, setIsFocus] = useState(false);
+
+  const handleInputFocusCss = () => {
+    return isFocus
+      ? "bg-white outline outline-2 outline-terriary-mint dark:bg-[#f0f2f5]"
+      : "";
+  };
+
   return (
     <div className="m-auto mt-4 mb-4 h-auto w-full select-none rounded-xl bg-bg-feed drop-shadow-md dark:bg-bg-feed-dark">
       {/* 바디 */}
       <div className="flex h-auto flex-col items-center gap-2 p-5">
         {/* 검색창 */}
-        <div className="lg:text-md ml-2 flex h-10 w-full items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-500 transition hover:bg-white hover:outline hover:outline-2 hover:outline-terriary-mint focus:bg-white focus:outline focus:outline-2 focus:outline-terriary-mint md:text-sm">
+        <div
+          className={`lg:text-md ml-2 flex h-10 w-full items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-500 transition hover:bg-white hover:outline hover:outline-2 hover:outline-terriary-mint focus:bg-white focus:outline focus:outline-2 focus:outline-terriary-mint md:text-sm ${handleInputFocusCss()}`}
+          onFocus={() => {
+            setIsFocus(true);
+          }}
+          onBlur={() => {
+            setIsFocus(false);
+          }}
+        >
           <form className="flex w-full">
             <label className="flex h-5 w-11 justify-center">
               <MagnifyingGlassIcon
@@ -80,24 +96,6 @@ const VoteSearchBar = ({
               placeholder="검색"
               className="mr-3 h-5 bg-transparent pl-1 pr-1 leading-5 outline-none "
               style={{ width: "calc(100% - 40px)" }}
-              onFocus={(e) => {
-                const pa1 = e.target.parentNode as Element;
-                const pa2 = pa1.parentNode as Element;
-                pa2.classList.add("bg-white");
-                pa2.classList.add("outline");
-                pa2.classList.add("outline-2");
-                pa2.classList.add("outline-terriary-mint");
-                pa2.classList.add("dark:bg-[#f0f2f5]");
-              }}
-              onBlur={(e) => {
-                const pa1 = e.target.parentNode as Element;
-                const pa2 = pa1.parentNode as Element;
-                pa2.classList.remove("bg-white");
-                pa2.classList.remove("outline");
-                pa2.classList.remove("outline-2");
-                pa2.classList.remove("outline-terriary-mint");
-                pa2.classList.remove("dark:bg-[#f0f2f5]");
-              }}
             />
           </form>
         </div>

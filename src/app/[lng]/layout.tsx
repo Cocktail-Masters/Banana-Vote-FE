@@ -1,6 +1,6 @@
 import Provider from "./Provider";
 import "./globals.css";
-import LayoutHeader from "@/components/Layout/LayoutHeader";
+import LayoutHeader from "@/components/header/LayoutHeader";
 import SettingTheme from "./settingTheme";
 import Head from "next/head";
 import { i18n } from "i18n-config";
@@ -50,9 +50,9 @@ export default function RootLayout({
       <body className="bg-white text-text-normal transition-colors dark:bg-black dark:text-text-normal-dark">
         <Provider>
           <LayoutHeader></LayoutHeader>
+
           <div className={"tiles"}>{children}</div>
           <div className={"footer"}></div>
-          <div id="modal-root" />
         </Provider>
       </body>
     </html>

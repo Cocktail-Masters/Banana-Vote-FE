@@ -1,12 +1,12 @@
 "use client";
 /**
  * @author mingyu
- * @description 투표 항목들을 CArd 리스트 형태로 표시
+ * @description 투표 항목들을 Card 리스트 형태로 표시
  */
-import VoteItem from "./VoteItem";
+import VoteItem from "@/components/feed/VoteItem";
 import { voteItemType } from "@/types";
 import { motion } from "framer-motion";
-import VS from "./VS";
+import VS from "@/components/feed/VS";
 
 const VoteItemList = ({ vote_items }: { vote_items: voteItemType[] }) => {
   return (

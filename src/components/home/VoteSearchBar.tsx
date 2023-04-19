@@ -2,6 +2,7 @@
  * @author mingyu
  */
 "use client";
+import useTranslation from "@/hooks/useTranslation";
 import { filterOptions } from "@/types";
 import { RadioGroup, Switch } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
@@ -19,31 +20,34 @@ type voteSearchBarProps = {
   setFilterOptions: Dispatch<SetStateAction<filterOptions>>;
 };
 
-const SORT_OPTIONS: sortOption[] = [
-  {
-    id: 1,
-    name: "최신 순",
-  },
-  {
-    id: 2,
-    name: "참여 순",
-  },
-  {
-    id: 3,
-    name: "조회 순",
-  },
-  {
-    id: 4,
-    name: "댓글 많은 순",
-  },
-];
-
 const VoteSearchBar = ({
   setKeyword,
   filterOptions,
   setFilterOptions,
 }: voteSearchBarProps) => {
+  const { translation } = useTranslation();
+
   const [inputValue, setInputValue] = useState<string>("");
+
+  const SORT_OPTIONS: sortOption[] = [
+    {
+      id: 1,
+      name: translation("home.vote_search_bar.sort_recent"),
+    },
+    {
+      id: 2,
+      name: translation("home.vote_search_bar.sort_participant_high"),
+    },
+    {
+      id: 3,
+      name: translation("home.vote_search_bar.sort_hit_high"),
+    },
+    {
+      id: 4,
+      name: translation("home.vote_search_bar.sort_opinion_high"),
+    },
+  ];
+
   /**
    * @description 입력한 keyword에 해당하는 피드를 불러옴
    */
@@ -100,7 +104,7 @@ const VoteSearchBar = ({
           {/* 종료 여부 */}
           <div className="flex h-10 w-auto items-center justify-center lg:h-full">
             <span className="mr-2 text-sm leading-9 text-text-feed dark:text-text-feed-dark md:text-base">
-              종료 투표 포함
+              {translation("home.vote_search_bar.contain_closed_votes")}
             </span>
             <Switch
               id="include-closed-toggle"

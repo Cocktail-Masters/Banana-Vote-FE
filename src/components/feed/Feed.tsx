@@ -10,8 +10,11 @@ import FeedTitle from "./FeedTitle";
 import { voteFeedType } from "@/types";
 import BestOpinion from "./BestOpinion";
 import Link from "next/link";
+import useTranslation from "@/hooks/useTranslation";
 
 const Feed = ({ data }: { data: voteFeedType }) => {
+  const { translation } = useTranslation();
+
   return (
     <>
       <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white bg-bg-feed drop-shadow-md transition duration-100 ease-in-out dark:bg-bg-feed-dark md:rounded-xl">
@@ -58,11 +61,13 @@ const Feed = ({ data }: { data: voteFeedType }) => {
             {/* 댓글 더보기 */}
             <div className="flex h-6 w-full">
               <div className="absolute left-0 flex h-5 text-sm font-bold text-text-title dark:text-text-title-dark">
-                베스트 댓글
+                {translation("feed.feed.best_opinion")}
               </div>
               <Link href={`/vote/detail/${data.vote.id}`}>
                 <div className="see-more absolute right-0 flex h-5 text-sm font-bold text-text-title hover:border-b dark:text-text-title-dark">
-                  댓글 {data.vote.opinion_number.toLocaleString()}개
+                  {translation("feed.feed.opinion")}{" "}
+                  {data.vote.opinion_number.toLocaleString()}
+                  {translation("feed.feed.opinion_num")}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

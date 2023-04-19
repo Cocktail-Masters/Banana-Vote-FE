@@ -58,6 +58,15 @@
         "voting": "Vote",
         "delete": "Delete",
         "declaration": "Report",
+        "declaration_modal":{
+          "title":"Report",
+          "content":"Please select a reason for reporting.",
+          "type_spam":"Spam, advertisement",
+          "type_porn":"Pornography",
+          "type_criticism":"Excessive criticism of others",
+          "type_etc":"Other",
+          "text_area":"Please write the reason for reporting in detail."
+        },
         "prediction_modal": {
           "title": "Predict Voting Results with Bananas",
           "no": "th",

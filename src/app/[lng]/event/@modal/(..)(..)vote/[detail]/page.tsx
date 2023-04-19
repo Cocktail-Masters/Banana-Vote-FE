@@ -10,7 +10,7 @@ const VoteDetailModal = ({
   params: { detail: string; lng: Locale };
 }) => {
   return (
-    <Modal>
+    <Modal onClose={() => {}}>
       <div
         className={"VoteDetailModal"}
         style={{ width: "100%", height: "100%" }}

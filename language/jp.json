@@ -58,6 +58,15 @@
         "voting": "投票する",
         "delete": "削除",
         "declaration": "通報",
+        "declaration_modal":{
+           "title":"報告",
+           "content":"報告の理由を選択してください。",
+           "type_spam":"スパム、広告",
+           "type_porn":"ポルノ",
+           "type_criticism":"他人の過度な批判",
+           "type_etc":"その他",
+           "text_area":"報告の理由を詳しく書いてください。"
+          },
         "prediction_modal": {
           "title": "バナナポイントで投票結果を予測する",
           "no": "番",

@@ -11,6 +11,7 @@ import VoteDetailItemCard from "./ItemCard";
 import { voteItemType } from "@/types";
 import { useParams } from "next/navigation";
 import useTranslation from "@/hooks/useTranslation";
+import DeclarationModal from "@/components/declaration";
 
 const VoteDetailItem = ({ postId }: { postId: number }) => {
   const { data } = useVoteDetailQuery({
@@ -23,6 +24,14 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
     postId: postId,
   });
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isDeclaration, setIsDeclaration] = useState<boolean>(false);
+  const declarationHandler = () => {
+    // 신고 모달 닫기,열기
+    setIsDeclaration((prev) => {
+      return !prev;
+    });
+  };
+
   const onOpen = () => {
     setIsOpen((prev) => {
       return !prev;
@@ -50,6 +59,10 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
   };
   return (
     <div className="rounded-2xl bg-bg-feed transition-colors duration-300 dark:bg-bg-feed-dark">
+      {data && isDeclaration && (
+        <DeclarationModal title={data.vote.title} onClose={declarationHandler} type={0} />
+      )}
+
       {data && (
         <div className="mt-10 rounded-2xl border px-[5%] shadow-md transition-colors duration-300 dark:border-border-dark ">
           <div className="mb-5 border-b-[5px] border-gray-200">
@@ -180,7 +193,10 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 <button className="mr-4 w-[70px] rounded border bg-secondary-orange py-2 px-4 font-semibold text-black shadow-md hover:bg-primary-yellow ">
                   {translation("vote.detail.item.delete")}
                 </button>
-                <button className="w-[70px] rounded border bg-red-600 py-2 px-4 font-semibold text-white shadow-md hover:bg-red-500 hover:text-white">
+                <button
+                  onClick={declarationHandler}
+                  className="w-[70px] rounded border bg-red-600 py-2 px-4 font-semibold text-white shadow-md hover:bg-red-500 hover:text-white"
+                >
                   {translation("vote.detail.item.declaration")}
                 </button>
               </div>

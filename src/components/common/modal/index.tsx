@@ -5,9 +5,11 @@ import { Fragment, ReactNode, useCallback } from "react";
 
 const Modal = ({
   children,
+  className = "w-full max-w-7xl rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-bg-feed-dark dark:text-text-normal-dark",
   onClose,
 }: {
   onClose: () => void;
+  className?: string;
   children: ReactNode | undefined;
 }) => {
   return (
@@ -22,7 +24,7 @@ const Modal = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-25" />
+          <div className="fixed inset-0 bg-black bg-opacity-75" />
         </Transition.Child>
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4 text-center">
@@ -35,37 +37,10 @@ const Modal = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-7xl transform overflow-y-auto rounded-2xl  bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-bg-feed-dark dark:text-text-normal-dark">
-                <Dialog.Title
-                  as="h3"
-                  className="relative mb-4 flex justify-center text-xl font-extrabold leading-6 text-gray-900"
-                >
-                  <button
-                    id="picketModalCloseButton"
-                    className={`absolute top-1 right-3`}
-                    onClick={onClose}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      className="h-6 w-6 transition-colors duration-300 dark:text-text-normal-dark"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </Dialog.Title>
-                <Dialog.Description
-                  className={`flex h-full max-h-[86%] w-full max-w-[1200px] justify-center`}
-                >
-                  {children}
-                </Dialog.Description>
+              <Dialog.Panel
+                className={`transform overflow-y-auto ${className}`}
+              >
+                {children}
               </Dialog.Panel>
             </Transition.Child>
           </div>

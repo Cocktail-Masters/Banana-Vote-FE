@@ -59,7 +59,10 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
   };
   return (
     <div className="rounded-2xl bg-bg-feed transition-colors duration-300 dark:bg-bg-feed-dark">
-      {isDeclaration && <DeclarationModal onClose={declarationHandler} />}
+      {data && isDeclaration && (
+        <DeclarationModal title={data.vote.title} onClose={declarationHandler} type={0} />
+      )}
+
       {data && (
         <div className="mt-10 rounded-2xl border px-[5%] shadow-md transition-colors duration-300 dark:border-border-dark ">
           <div className="mb-5 border-b-[5px] border-gray-200">

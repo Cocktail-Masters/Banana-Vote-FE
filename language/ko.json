@@ -58,6 +58,15 @@
         "voting": "투표하기",
         "delete": "삭제",
         "declaration": "신고",
+        "declaration_modal":{
+          "title":"신고",
+          "content":"신고하기 위한 사유를 선택해주세요.",
+          "type_spam":"스팸, 광고",
+          "type_porn":"음란물",
+          "type_criticism":"상대방에 대한 과도한 비난",
+          "type_etc":"기타",
+          "text_area":"신고 사유를 상세하게 작성해 주십시오."
+        },
         "prediction_modal": {
           "title": "바나나 포인트로 투표 결과를 예측하기",
           "no":"번",

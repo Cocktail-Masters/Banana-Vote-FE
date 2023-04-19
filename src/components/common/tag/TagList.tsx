@@ -27,7 +27,7 @@ const TagList = ({ tags, handleClick }: tagListProps) => {
 
   return (
     <div className="mt-2 flex h-auto w-full select-none flex-wrap gap-2 px-2 py-0">
-      {tags.map((tag: tagListType, index: number) => {
+      {tags.map((tag: tagListType) => {
         return (
           <Tag key={tag.id} tagName={tag.name} handleClick={handleTagClick} />
         );

@@ -1,7 +1,7 @@
 /**
  * @author mingyu
  */
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useCallback } from "react";
 
 type searchProps = {
@@ -13,23 +13,23 @@ type searchProps = {
 const useSearchVoteByKeyword = () => {
   const router = useRouter();
 
+  const urlParams = useParams();
+  const lng = urlParams.lng;
+
   const routeSearchResultHandler = useCallback(
     (params: searchProps) => {
+      // 태그인지 아닌지 판별
       let isTag = false;
-      // 태그일 경우
       if (params.keyword.startsWith("#")) {
+        params.keyword = params.keyword.slice(1);
         isTag = true;
       }
 
-      // router.prefetch(
-      //   `${process.env.NEXT_PUBLIC_HOSTNAME}/home?keyword=${params.keyword}&is-tag=${isTag}&is-closed=${params.isClosed}&sort-by=${params.sortBy}`
-      // );
-
       router.push(
-        `${process.env.NEXT_PUBLIC_HOSTNAME}/ko/home?keyword=${params.keyword}&is-tag=${isTag}&is-closed=${params.isClosed}&sort-by=${params.sortBy}`
+        `${process.env.NEXT_PUBLIC_HOSTNAME}/${lng}/home?keyword=${params.keyword}&is-tag=${isTag}&is-closed=${params.isClosed}&sort-by=${params.sortBy}`
       );
     },
-    [router]
+    [router, lng]
   );
   return { routeSearchResultHandler };
 };

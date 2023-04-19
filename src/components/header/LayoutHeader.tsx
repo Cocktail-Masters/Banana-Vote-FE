@@ -4,7 +4,7 @@ import Logo from "@assets/icons/logo.svg";
 import Image from "next/image";
 import "./LayoutHeader.style.css";
 import Link from "next/link";
-import LayoutSidebar from "@/components/layout/LayoutSideBar";
+import LayoutSidebar from "@/components/header/LayoutSideBar";
 import HamburgerMenuButton from "../animation/HamburgerMenuButton";
 import LayoutTopBar from "./LayoutTopBar";
 import { useMediaQuery } from "@/hooks/useMediaQuery";

@@ -19,7 +19,23 @@ export const useFeedListDummy = [
       hits: 8272362,
       voted_number: 6121,
       opinion_number: 35,
-      tags: ["ㅋㅋ", "이거슨 태그!"],
+      tags: [
+        {
+          id: 6161,
+          name: "태그11",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그22",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그33",
+          used_number: 1234,
+        },
+      ],
     },
     writer: {
       id: 1414,
@@ -76,7 +92,23 @@ export const useFeedListDummy = [
       hits: 11616,
       voted_number: 51,
       opinion_number: 8,
-      tags: ["ㅋㅋ", "이거슨 태그!"],
+      tags: [
+        {
+          id: 6161,
+          name: "태그11",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그22",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그33",
+          used_number: 1234,
+        },
+      ],
     },
     writer: {
       id: 1414,
@@ -143,7 +175,23 @@ export const useFeedListDummy = [
       hits: 1854,
       voted_number: 611,
       opinion_number: 85,
-      tags: ["ㅋㅋ", "이거슨 태그!"],
+      tags: [
+        {
+          id: 6161,
+          name: "태그11",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그22",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그33",
+          used_number: 1234,
+        },
+      ],
     },
     writer: {
       id: 1414,
@@ -242,7 +290,23 @@ export const useFeedListDummy = [
       hits: 62624724727,
       voted_number: 72626,
       opinion_number: 5,
-      tags: ["색깔", "선호도"],
+      tags: [
+        {
+          id: 6161,
+          name: "태그11",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그22",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그33",
+          used_number: 1234,
+        },
+      ],
     },
     writer: {
       id: 100,
@@ -317,7 +381,23 @@ export const useFeedListDummy = [
       hits: 2847,
       voted_number: 1896,
       opinion_number: 7,
-      tags: ["여행", "최고의 여행지"],
+      tags: [
+        {
+          id: 6161,
+          name: "태그11",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그22",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그33",
+          used_number: 1234,
+        },
+      ],
     },
     writer: {
       id: 334,
@@ -401,7 +481,23 @@ export const useFeedListDummy = [
       hits: 88993,
       voted_number: 12765,
       opinion_number: 87,
-      tags: ["한식", "맛집", "음식"],
+      tags: [
+        {
+          id: 6161,
+          name: "태그11",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그22",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그33",
+          used_number: 1234,
+        },
+      ],
     },
     writer: {
       id: 2468,
@@ -484,7 +580,23 @@ export const useFeedListDummy = [
       hits: 5678,
       voted_number: 33,
       opinion_number: 7,
-      tags: ["이탈리안", "맛집", "음식"],
+      tags: [
+        {
+          id: 6161,
+          name: "태그11",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그22",
+          used_number: 1234,
+        },
+        {
+          id: 6161,
+          name: "태그33",
+          used_number: 1234,
+        },
+      ],
     },
     writer: {
       id: 5678,

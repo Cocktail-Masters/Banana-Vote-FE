@@ -7,6 +7,7 @@ import { feedListFetch } from "@/hooks/reactQuery/useFeedListQuery";
 import { fetchPopularList } from "@/hooks/reactQuery/usePopularListQuery";
 import { fetchInterestList } from "@/hooks/reactQuery/useInterestListQuery";
 import { fetchRankingTop5 } from "@/hooks/reactQuery/useRankingTop5Query";
+import { fetchTagTop10 } from "@/hooks/reactQuery/useTagTop10Query";
 
 export default async function HydratedHome({
   children,
@@ -33,6 +34,11 @@ export default async function HydratedHome({
   await queryClient.prefetchQuery({
     queryKey: ["rankingTop5"],
     queryFn: () => fetchRankingTop5(),
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: ["tagTop10"],
+    queryFn: () => fetchTagTop10(),
   });
 
   const dehydratedState = dehydrate(queryClient);

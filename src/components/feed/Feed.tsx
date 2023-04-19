@@ -10,8 +10,16 @@ import FeedTitle from "./FeedTitle";
 import { voteFeedType } from "@/types";
 import BestOpinion from "./BestOpinion";
 import Link from "next/link";
+import TagList from "@components/common/tag/TagList";
 
 const Feed = ({ data }: { data: voteFeedType }) => {
+  /**
+   * @todo 태그 클릭 시 해당 태그로 투표 목록 검색
+   */
+  const handleTagClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    console.log((e.target as HTMLElement).innerText);
+  };
+
   return (
     <>
       <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white bg-bg-feed drop-shadow-md transition duration-100 ease-in-out dark:bg-bg-feed-dark md:rounded-xl">
@@ -37,18 +45,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
             {/* 피드 투표 항목들 */}
             <VoteItemList vote_items={data.vote_items} />
             {/* 태그 */}
-            <div className="mt-2 flex h-auto w-full select-none flex-wrap gap-2 p-2 pb-0">
-              {data.vote.tags.map((tag: string, index: number) => {
-                return (
-                  <div
-                    key={index}
-                    className="flex whitespace-nowrap rounded-3xl bg-primary-yellow pl-2 pr-2 pt-1 pb-1 text-sm font-semibold text-black hover:opacity-75"
-                  >
-                    #{tag}
-                  </div>
-                );
-              })}
-            </div>
+            <TagList tags={data.vote.tags} handleClick={handleTagClick} />
           </div>
         </div>
         <hr className="border-border dark:border-border-dark" />

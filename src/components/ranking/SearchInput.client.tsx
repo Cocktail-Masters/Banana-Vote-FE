@@ -79,7 +79,7 @@ const SearchInput = ({ params }: { params: rankingParamsType }) => {
   }, []);
 
   return (
-    <div className="z-40 flex h-[60px] w-[330px] items-center justify-center gap-2 rounded-[20px] border-[1px] border-[#D9D9D9] bg-white p-2 drop-shadow-md">
+    <div className="z-19 flex h-[60px] w-[330px] items-center justify-center gap-2 rounded-[20px] border-[1px] border-[#D9D9D9] bg-white p-2 drop-shadow-md">
       <Combobox
         value={selected}
         onChange={(prevSearch: searchListType) => {

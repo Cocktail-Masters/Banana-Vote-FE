@@ -1,6 +1,6 @@
 import Provider from "./Provider";
 import "./globals.css";
-import LayoutHeader from "@/components/Layout/LayoutHeader";
+import LayoutHeader from "@/components/layout/LayoutHeader";
 import SettingTheme from "./settingTheme";
 import Head from "next/head";
 import { i18n } from "i18n-config";

@@ -20,19 +20,19 @@ const VoteItem = ({ imageLink = defaultImg, content }: voteFeedItemProps) => {
   const handleImageClick = (
     e: React.MouseEvent<HTMLImageElement, MouseEvent>
   ) => {
-    console.log(e);
+    console.log(e.target);
   };
 
   return (
-    <div className="h-full w-full truncate rounded-2xl pl-2 pr-2">
-      <div className="m-auto grid h-[200px] w-full place-content-center overflow-hidden rounded-t-2xl border border-border dark:border-border-dark">
+    <div className="h-full w-full  truncate rounded-2xl">
+      <div className="relative m-auto grid h-[200px] w-full place-content-center overflow-hidden rounded-t-2xl border border-border dark:border-border-dark">
         <Image
-          className="m-auto h-fit w-fit rounded-2xl object-cover"
+          className="m-auto object-cover"
           src={!imageLink ? defaultImg : imageLink}
           alt="vote element img"
-          width={1000}
-          height={1000}
           onClick={(e) => handleImageClick(e)}
+          // placeholder="blur"
+          fill={true}
         />
       </div>
       <div className="flex h-[48px] w-full items-center justify-center truncate rounded-b-2xl border border-border px-3 py-4 leading-[48px] dark:border-border-dark">

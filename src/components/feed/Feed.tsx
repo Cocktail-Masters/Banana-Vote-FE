@@ -11,9 +11,18 @@ import { voteFeedType } from "@/types";
 import BestOpinion from "./BestOpinion";
 import Link from "next/link";
 import useTranslation from "@/hooks/useTranslation";
+import TagList from "@components/common/tag/TagList";
+import VS from "./VS";
 
 const Feed = ({ data }: { data: voteFeedType }) => {
   const { translation } = useTranslation();
+
+  /**
+   * @todo 태그 클릭 시 해당 태그로 투표 목록 검색
+   */
+  const handleTagClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    console.log((e.target as HTMLElement).innerText);
+  };
 
   return (
     <>
@@ -40,19 +49,10 @@ const Feed = ({ data }: { data: voteFeedType }) => {
             {/* 피드 투표 항목들 */}
             <VoteItemList vote_items={data.vote_items} />
             {/* 태그 */}
-            <div className="mt-2 flex h-auto w-full select-none flex-wrap gap-2 p-2 pb-0">
-              {data.vote.tags.map((tag: string, index: number) => {
-                return (
-                  <div
-                    key={index}
-                    className="flex whitespace-nowrap rounded-3xl bg-primary-yellow pl-2 pr-2 pt-1 pb-1 text-sm font-semibold text-black hover:opacity-75"
-                  >
-                    #{tag}
-                  </div>
-                );
-              })}
-            </div>
+            <TagList tags={data.vote.tags} handleClick={handleTagClick} />
           </div>
+          {/* 요소의 갯수가 2일때 등장하는 VS */}
+          {data.vote_items && data.vote_items.length === 2 && <VS />}
         </div>
         <hr className="border-border dark:border-border-dark" />
         <div className="p-5">
@@ -65,7 +65,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
               </div>
               <Link href={`/vote/detail/${data.vote.id}`}>
                 <div className="see-more absolute right-0 flex h-5 text-sm font-bold text-text-title hover:border-b dark:text-text-title-dark">
-                  {translation("feed.feed.opinion")}{" "}
+                  {translation("feed.feed.opinion")}
                   {data.vote.opinion_number.toLocaleString()}
                   {translation("feed.feed.opinion_num")}
                   <svg

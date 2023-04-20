@@ -10,7 +10,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 
 type sortOption = {
-  id: 1 | 2 | 3 | 4;
+  id: number;
   name: string;
 };
 
@@ -26,9 +26,6 @@ const VoteSearchBar = ({
   setFilterOptions,
 }: voteSearchBarProps) => {
   const { translation } = useTranslation();
-
-  const [inputValue, setInputValue] = useState<string>("");
-
   const SORT_OPTIONS: sortOption[] = [
     {
       id: 1,
@@ -47,6 +44,8 @@ const VoteSearchBar = ({
       name: translation("home.vote_search_bar.sort_opinion_high"),
     },
   ];
+
+  const [inputValue, setInputValue] = useState<string>("");
 
   /**
    * @description 입력한 keyword에 해당하는 피드를 불러옴
@@ -93,7 +92,9 @@ const VoteSearchBar = ({
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="검색"
+              placeholder={translation(
+                "home.vote_search_bar.search_placeholder"
+              )}
               className="mr-3 h-5 bg-transparent pl-1 pr-1 leading-5 outline-none "
               style={{ width: "calc(100% - 40px)" }}
             />

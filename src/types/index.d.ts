@@ -126,6 +126,16 @@ export type voteTypes = voteType[];
  */
 export type tagTypes = string[];
 
+export type tagListType = {
+  id: number;
+  name: string;
+  used_number: number;
+};
+
+export type tagListTypes = {
+  tags: tagListType[];
+};
+
 /**
  * vote
  */
@@ -164,7 +174,7 @@ export type voteDetailType = {
     hits: number;
     voted_number: number;
     opinion_number: number;
-    tags: string[];
+    tags: tagListType[];
   };
   writer: {
     id: number;
@@ -347,5 +357,5 @@ type MenuProps = {
  */
 export type filterOptions = {
   isClosed: boolean;
-  sortBy: 1 | 2 | 3 | 4;
+  sortBy: number;
 };

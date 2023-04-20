@@ -21,17 +21,17 @@ export const useFeedListDummy = [
       opinion_number: 35,
       tags: [
         {
-          id: 6161,
+          id: 515,
           name: "태그11",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 16,
           name: "태그22",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 8782,
           name: "태그33",
           used_number: 1234,
         },
@@ -48,7 +48,8 @@ export const useFeedListDummy = [
         item_number: 1,
         title: "당근 부먹 아님?? 부먹은 오래 전부터 유행했던 방식이다.",
         iframe_link: "",
-        image_url: "",
+        image_url:
+          "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxODA1MjlfMjEw%2FMDAxNTI3NTQ3OTM1Nzc0.wF4_ve_cDESKiNSFxdWgDi3G6F8SL8jKiCgTSttss-sg.A7YlO_F06WDJlymZvmJVqmPnGtJiwthYdZnWnxqBxdwg.GIF.dwssunja%2F1527520896520.gif&type=sc960_832_gif",
         total_points: 3434165,
         voted_number: 726,
       },
@@ -94,17 +95,17 @@ export const useFeedListDummy = [
       opinion_number: 8,
       tags: [
         {
-          id: 6161,
+          id: 515,
           name: "태그11",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 16,
           name: "태그22",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 8782,
           name: "태그33",
           used_number: 1234,
         },
@@ -177,17 +178,17 @@ export const useFeedListDummy = [
       opinion_number: 85,
       tags: [
         {
-          id: 6161,
+          id: 515,
           name: "태그11",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 16,
           name: "태그22",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 8782,
           name: "태그33",
           used_number: 1234,
         },
@@ -292,17 +293,17 @@ export const useFeedListDummy = [
       opinion_number: 5,
       tags: [
         {
-          id: 6161,
+          id: 515,
           name: "태그11",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 16,
           name: "태그22",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 8782,
           name: "태그33",
           used_number: 1234,
         },
@@ -383,17 +384,17 @@ export const useFeedListDummy = [
       opinion_number: 7,
       tags: [
         {
-          id: 6161,
+          id: 515,
           name: "태그11",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 16,
           name: "태그22",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 8782,
           name: "태그33",
           used_number: 1234,
         },
@@ -483,17 +484,17 @@ export const useFeedListDummy = [
       opinion_number: 87,
       tags: [
         {
-          id: 6161,
+          id: 515,
           name: "태그11",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 16,
           name: "태그22",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 8782,
           name: "태그33",
           used_number: 1234,
         },
@@ -510,7 +511,8 @@ export const useFeedListDummy = [
         item_number: 1,
         title: "삼계탕",
         iframe_link: "",
-        image_url: "https://dummyimage.com/400x300/000/fff",
+        image_url:
+          "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAxMjNfMTI2%2FMDAxNjc0NDE0MTU0ODkz.fFdilIcSEMsuVmpEzlEiKY2FlWiLiKb3ARDsDmAgplUg.i4Re9381w1wmco4TNZzrMeBvW8i5KW9-lbpbz_E1gJsg.JPEG.wlgml3505%2FIMG_1529.jpg&type=sc960_832",
         total_points: 987,
         voted_number: 45,
       },
@@ -519,7 +521,8 @@ export const useFeedListDummy = [
         item_number: 2,
         title: "갈비탕",
         iframe_link: "",
-        image_url: "https://dummyimage.com/400x300/000/fff",
+        image_url:
+          "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMTlfMjg0%2FMDAxNjc2Nzk2NjQ0OTUw.imkNWAwaL3G9Z01dgP4lhdXk7EjazAXi9ZK8W6yW9Fog.t2RJqeJSKubQ3OODibFKAWEE_I5qysBlp1kpKSd4BlQg.JPEG.rkdgydms%2F20230218%25A3%25DF124725.jpg&type=sc960_832",
         total_points: 654,
         voted_number: 36,
       },
@@ -528,7 +531,8 @@ export const useFeedListDummy = [
         item_number: 3,
         title: "떡갈비",
         iframe_link: "",
-        image_url: "https://dummyimage.com/400x300/000/fff",
+        image_url:
+          "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMTRfODAg%2FMDAxNjc4NzgzMDU2ODEw.GGtQv8p1uKyC5T54gX9zOiAjX-IIp2xV79RktARr96Yg.Tf3K9NS7FCuDfDXptPp01vX8ANsAfvzUBU1vJm5clIQg.JPEG.matolife%2FA6D8CA77-9404-48A6-9DDF-A038714C2452.jpg&type=sc960_832",
         total_points: 321,
         voted_number: 23,
       },
@@ -537,7 +541,8 @@ export const useFeedListDummy = [
         item_number: 4,
         title: "순대국밥",
         iframe_link: "",
-        image_url: "https://dummyimage.com/400x300/000/fff",
+        image_url:
+          "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMjNfMTM4%2FMDAxNjc3MTU4NDYxNTEz.DtCsG_-Vi8QdsaG-7z9YS6_kk3bAOyM9nXvWd79oi2Ig.ZXB2rOKVLCuVVM4quL6OqcSU9qG-kvDFX0zNB8cubgwg.JPEG.dhwjdals322%2FKakaoTalk_20230223_220134858.jpg&type=sc960_832",
         total_points: 789,
         voted_number: 54,
       },
@@ -546,7 +551,8 @@ export const useFeedListDummy = [
         item_number: 5,
         title: "칼국수",
         iframe_link: "",
-        image_url: "https://dummyimage.com/400x300/000/fff",
+        image_url:
+          "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMzFfMTMg%2FMDAxNjgwMjE4NzA2MjIx.4CIoi0y_VmeEfUKWGA07pgJ8uanBIE4FlMnVQXrBgOIg.SjlTyicn5w3rSIGZMp5iudkZpEb8YFJdQ3SjjbjM0b4g.JPEG.accepteverything%2FIMG_7253.jpg&type=sc960_832",
         total_points: 432,
         voted_number: 31,
       },
@@ -582,17 +588,17 @@ export const useFeedListDummy = [
       opinion_number: 7,
       tags: [
         {
-          id: 6161,
+          id: 515,
           name: "태그11",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 16,
           name: "태그22",
           used_number: 1234,
         },
         {
-          id: 6161,
+          id: 8782,
           name: "태그33",
           used_number: 1234,
         },
@@ -609,7 +615,8 @@ export const useFeedListDummy = [
         item_number: 1,
         title: "피자",
         iframe_link: "",
-        image_url: "https://dummyimage.com/400x300",
+        image_url:
+          "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMzFfMTAz%2FMDAxNjgwMjYyNTUzNDIy.PQNFiBwmYTwgXmodrRNwUHLoq3YiAtYQhHRY3RDkhnQg.y2RPLNgqTt4jYLo19iadT_LPzMLN9wyqdSP845U6Ikgg.JPEG.jasmin905%2FSE-56af4a27-cfb2-11ed-ba66-630b9cde3359.jpg&type=sc960_832",
         total_points: 654,
         voted_number: 45,
       },
@@ -618,7 +625,8 @@ export const useFeedListDummy = [
         item_number: 2,
         title: "파스타",
         iframe_link: "",
-        image_url: "https://dummyimage.com/400x300",
+        image_url:
+          "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjNfOTkg%2FMDAxNjc5NTY1NzkyMjg0.kdHsq1PdU-d7NfUtiGUlYLi-C2JfGEWHLR-L5ShUtMQg.OBZtSfieZcDA0HVSpmWgoFpmMNBpNrrgYlBJGGgk1Acg.JPEG.pudding0216%2FKakaoTalk_20230323_171428416_18.jpg&type=sc960_832",
         total_points: 432,
         voted_number: 36,
       },

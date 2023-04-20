@@ -12,6 +12,7 @@ import BestOpinion from "./BestOpinion";
 import Link from "next/link";
 import useTranslation from "@/hooks/useTranslation";
 import TagList from "@components/common/tag/TagList";
+import VS from "./VS";
 
 const Feed = ({ data }: { data: voteFeedType }) => {
   const { translation } = useTranslation();
@@ -50,6 +51,8 @@ const Feed = ({ data }: { data: voteFeedType }) => {
             {/* 태그 */}
             <TagList tags={data.vote.tags} handleClick={handleTagClick} />
           </div>
+          {/* 요소의 갯수가 2일때 등장하는 VS */}
+          {data.vote_items && data.vote_items.length === 2 && <VS />}
         </div>
         <hr className="border-border dark:border-border-dark" />
         <div className="p-5">
@@ -62,7 +65,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
               </div>
               <Link href={`/vote/detail/${data.vote.id}`}>
                 <div className="see-more absolute right-0 flex h-5 text-sm font-bold text-text-title hover:border-b dark:text-text-title-dark">
-                  {translation("feed.feed.opinion")}{" "}
+                  {translation("feed.feed.opinion")}
                   {data.vote.opinion_number.toLocaleString()}
                   {translation("feed.feed.opinion_num")}
                   <svg

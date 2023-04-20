@@ -6,6 +6,8 @@ import RankingListArea from "@/components/home/RankingListArea";
 import RecommendArea from "@/components/home/RecommendArea";
 import HydratedHome from "./hydratedHome";
 import TagListArea from "@/components/home/TagListArea";
+import { Suspense } from "react";
+import Loading from "@/components/Loading";
 
 const Home = () => {
   return (
@@ -14,7 +16,10 @@ const Home = () => {
       <HydratedHome>
         <div className="flex items-start justify-center xl:justify-between">
           {/* Feed List */}
-          <FeedListArea />
+          <Suspense fallback={<Loading />}>
+            <FeedListArea />
+          </Suspense>
+
           {/* Recommend, Ranking */}
           <div className="hidden xl:block">
             <div className="mb-5">

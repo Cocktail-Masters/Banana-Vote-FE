@@ -6,7 +6,7 @@
 import VoteCreateBar from "../home/VoteCreateBar";
 import Feed from "./Feed";
 import { useFeedListQuery } from "@/hooks/reactQuery/useFeedListQuery";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { filterOptions, voteFeedType } from "@/types";
 import { voteFeedListType } from "@/types";
@@ -14,6 +14,7 @@ import Loading from "@/components/Loading";
 import VoteSearchBar from "@/components/home/VoteSearchBar";
 import VoteIcon from "@/components/animation/VoteIcon";
 import useTranslation from "@/hooks/useTranslation";
+import { useSearchParams } from "next/navigation";
 
 const FeedListArea = () => {
   const { translation } = useTranslation();

@@ -1,5 +1,6 @@
 /**
  * @author mingyu
+ * @deprecated
  */
 import { useRouter, useParams } from "next/navigation";
 import { useCallback } from "react";
@@ -11,8 +12,6 @@ type searchProps = {
 };
 
 const useSearchVoteByKeyword = () => {
-  const router = useRouter();
-
   const urlParams = useParams();
   const lng = urlParams.lng;
 
@@ -25,11 +24,13 @@ const useSearchVoteByKeyword = () => {
         isTag = true;
       }
 
-      router.push(
+      window.history?.pushState(
+        null,
+        "",
         `${process.env.NEXT_PUBLIC_HOSTNAME}/${lng}/home?keyword=${params.keyword}&is-tag=${isTag}&is-closed=${params.isClosed}&sort-by=${params.sortBy}`
       );
     },
-    [router, lng]
+    [lng]
   );
   return { routeSearchResultHandler };
 };

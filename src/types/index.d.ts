@@ -357,5 +357,5 @@ type MenuProps = {
  */
 export type filterOptions = {
   isClosed: boolean;
-  sortBy: 1 | 2 | 3 | 4;
+  sortBy: number;
 };

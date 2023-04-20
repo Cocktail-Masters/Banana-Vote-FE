@@ -109,6 +109,7 @@
       "days_left": "일 남음"
     },
     "feed_list_area": {
+      "result": "에 대한 검색 결과입니다.",
       "no_vote_list_title": "투표 목록이 없습니다.",
       "no_vote_list_description": "새로운 투표를 만들어보세요!"
     }
@@ -136,7 +137,8 @@
       "sort_participant_high": "참여 순",
       "sort_hit_high": "조회 순",
       "sort_opinion_high": "댓글 많은 순",
-      "contain_closed_votes": "종료 투표 포함"
+      "contain_closed_votes": "종료 투표 포함",
+      "search_placeholder": "검색"
     }
   },
   "store": {

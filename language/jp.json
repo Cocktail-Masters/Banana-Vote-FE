@@ -109,6 +109,7 @@
       "days_left": "日 残り"
     },
     "feed_list_area": {
+      "result": "に対する検索結果です。",
       "no_vote_list_title": "投票リストがありません。",
       "no_vote_list_description": "新しい投票を作成します！"
     }
@@ -136,7 +137,8 @@
       "sort_participant_high": "参加の多い順",
       "sort_hit_high": "照会順",
       "sort_opinion_high": "コメントが多い順",
-      "contain_closed_votes": "終了した投票文を含む"
+      "contain_closed_votes": "終了した投票文を含む",
+      "search_placeholder": "検索"
     }
   },
   "store": {

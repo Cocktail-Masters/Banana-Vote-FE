@@ -6,7 +6,6 @@
 import VoteItem from "@/components/feed/VoteItem";
 import { voteItemType } from "@/types";
 import { motion } from "framer-motion";
-import VS from "@/components/feed/VS";
 
 type gridColumnsType = {
   [key: number]: string;

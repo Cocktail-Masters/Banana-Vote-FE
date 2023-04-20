@@ -14,7 +14,6 @@ import Loading from "@/components/Loading";
 import VoteSearchBar from "@/components/home/VoteSearchBar";
 import VoteIcon from "@/components/animation/VoteIcon";
 import useTranslation from "@/hooks/useTranslation";
-import { useSearchParams } from "next/navigation";
 
 const FeedListArea = () => {
   const { translation } = useTranslation();
@@ -60,6 +59,19 @@ const FeedListArea = () => {
           />
           {/* Create Bar */}
           <VoteCreateBar badge_image_url="" />
+          {/* 검색 시 안내 문구 */}
+          {keyword &&
+            keyword.length > 1 &&
+            data &&
+            data.pages[0].votes.length > 0 && (
+              <div className="flex w-full items-center justify-center py-3 text-center">
+                <h3 className="text-xl lg:text-2xl">
+                  <span className="font-bold">{keyword}</span>
+                  {translation("feed.feed_list_area.result")}
+                </h3>
+              </div>
+            )}
+          <h3></h3>
           {/* 투표 피드 리스트 */}
           {(!data || data.pages[0].votes.length === 0) && (
             <div className="flex h-auto w-full flex-col items-center justify-center pt-3">

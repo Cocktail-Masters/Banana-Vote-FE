@@ -76,7 +76,9 @@ const VoteSearchBar = ({
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="검색"
+              placeholder={translation(
+                "home.vote_search_bar.search_placeholder"
+              )}
               className="mr-3 h-5 bg-transparent pl-1 pr-1 leading-5 outline-none "
               style={{ width: "calc(100% - 40px)" }}
               onFocus={(e) => {

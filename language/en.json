@@ -109,6 +109,7 @@
       "days_left": "days left"
     },
     "feed_list_area": {
+      "result": "search results",
       "no_vote_list_title": "There is no voting list.",
       "no_vote_list_description": "Create a new vote!"
     }
@@ -136,7 +137,8 @@
       "sort_participant_high": "Hot",
       "sort_hit_high": "Popular",
       "sort_opinion_high": "Many Opinions",
-      "contain_closed_votes": "Include closed voting"
+      "contain_closed_votes": "Include closed voting",
+      "search_placeholder": "search"
     }
   },
   "store": {

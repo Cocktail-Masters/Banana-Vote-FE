@@ -12,6 +12,7 @@ import { voteItemType } from "@/types";
 import { useParams } from "next/navigation";
 import useTranslation from "@/hooks/useTranslation";
 import DeclarationModal from "@/components/declaration";
+import TagList from "@/components/common/tag/TagList";
 
 const VoteDetailItem = ({ postId }: { postId: number }) => {
   const { data } = useVoteDetailQuery({
@@ -60,7 +61,11 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
   return (
     <div className="rounded-2xl bg-bg-feed transition-colors duration-300 dark:bg-bg-feed-dark">
       {data && isDeclaration && (
-        <DeclarationModal title={data.vote.title} onClose={declarationHandler} type={0} />
+        <DeclarationModal
+          title={data.vote.title}
+          onClose={declarationHandler}
+          type={0}
+        />
       )}
 
       {data && (
@@ -178,7 +183,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
           <div className="relative border-t border-gray-200 px-4 py-4 sm:px-6">
             <div className="flex h-full w-full items-center">
               <div className="w-full flex-wrap">
-                {data.vote.tags.map((e: string, i: Key) => (
+                {/* {data.vote.tags.map((e: string, i: Key) => (
                   <span
                     key={i}
                     className="mr-2 inline-flex w-fit min-w-[100px] flex-shrink-0"
@@ -187,7 +192,8 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                       {e}
                     </span>
                   </span>
-                ))}
+                ))} */}
+                <TagList tags={data.vote.tags} />
               </div>
               <div className="ml-auto flex w-[200px]">
                 <button className="mr-4 w-[70px] rounded border bg-secondary-orange py-2 px-4 font-semibold text-black shadow-md hover:bg-primary-yellow ">

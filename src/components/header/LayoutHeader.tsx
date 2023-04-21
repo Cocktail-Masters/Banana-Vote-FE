@@ -11,6 +11,7 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import useTranslation from "@/hooks/useTranslation";
 import LoginModal from "../login/LoginModal";
 import Login from "../login/Login";
+import { useThemeStore } from "@/store/colorModeSlice";
 
 export type tabType = {
   label: string;
@@ -27,9 +28,9 @@ const LayoutHeader = () => {
     { label: translation("header.store"), path: "/store" },
     { label: translation("header.ranking"), path: "/ranking" },
   ];
-
+  const theme = useThemeStore((state) => state);
+  console.log(theme);
   const [isOpen, setIsOpen] = useState(false);
-
   useEffect(() => {
     if (isOpen && minWidth650) setIsOpen(false);
   }, [isOpen, minWidth650]);

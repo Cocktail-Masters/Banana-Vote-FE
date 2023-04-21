@@ -18,12 +18,31 @@ const voteDetailDummy: voteDetailType[] = [
       voted_number: 1230123,
       opinion_number: 35,
       tags: [
-        "아무튼 태그임",
-        "두번째 태그임",
-        "세번째 태그임",
-        "네번째 태그임",
-        "다섯번째 태그임",
-        "여섯번째 태그임",
+        {
+          id: 1,
+          name: "첫번째 태그",
+          used_number: 1,
+        },
+        {
+          id: 2,
+          name: "두번째 태그",
+          used_number: 1,
+        },
+        {
+          id: 3,
+          name: "세번째 태그",
+          used_number: 2,
+        },
+        {
+          id: 4,
+          name: "네번째 태그",
+          used_number: 6,
+        },
+        {
+          id: 5,
+          name: "다섯번째 태그",
+          used_number: 87,
+        },
       ],
     },
     writer: {
@@ -67,7 +86,33 @@ const voteDetailDummy: voteDetailType[] = [
       hits: 42,
       voted_number: 56,
       opinion_number: 3,
-      tags: ["음식", "식당", "점심", "저녁", "메뉴"],
+      tags: [
+        {
+          id: 1,
+          name: "첫번째 태그",
+          used_number: 1,
+        },
+        {
+          id: 2,
+          name: "두번째 태그",
+          used_number: 1,
+        },
+        {
+          id: 3,
+          name: "세번째 태그",
+          used_number: 2,
+        },
+        {
+          id: 4,
+          name: "네번째 태그",
+          used_number: 6,
+        },
+        {
+          id: 5,
+          name: "다섯번째 태그",
+          used_number: 87,
+        },
+      ],
     },
 
     writer: {
@@ -143,7 +188,33 @@ const voteDetailDummy: voteDetailType[] = [
       hits: 35,
       voted_number: 29,
       opinion_number: 5,
-      tags: ["꽃", "플라워", "가게", "꽃집"],
+      tags: [
+        {
+          id: 1,
+          name: "첫번째 태그",
+          used_number: 1,
+        },
+        {
+          id: 2,
+          name: "두번째 태그",
+          used_number: 1,
+        },
+        {
+          id: 3,
+          name: "세번째 태그",
+          used_number: 2,
+        },
+        {
+          id: 4,
+          name: "네번째 태그",
+          used_number: 6,
+        },
+        {
+          id: 5,
+          name: "다섯번째 태그",
+          used_number: 87,
+        },
+      ],
     },
 
     writer: {

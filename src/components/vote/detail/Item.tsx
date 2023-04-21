@@ -183,16 +183,6 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
           <div className="relative border-t border-gray-200 px-4 py-4 sm:px-6">
             <div className="flex h-full w-full items-center">
               <div className="w-full flex-wrap">
-                {/* {data.vote.tags.map((e: string, i: Key) => (
-                  <span
-                    key={i}
-                    className="mr-2 inline-flex w-fit min-w-[100px] flex-shrink-0"
-                  >
-                    <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-sm font-medium text-gray-800">
-                      {e}
-                    </span>
-                  </span>
-                ))} */}
                 <TagList tags={data.vote.tags} />
               </div>
               <div className="ml-auto flex w-[200px]">

@@ -51,8 +51,6 @@ const Feed = ({ data }: { data: voteFeedType }) => {
             {/* 태그 */}
             <TagList tags={data.vote.tags} handleClick={handleTagClick} />
           </div>
-          {/* 요소의 갯수가 2일때 등장하는 VS */}
-          {data.vote_items && data.vote_items.length === 2 && <VS />}
         </div>
         <hr className="border-border dark:border-border-dark" />
         <div className="p-5">

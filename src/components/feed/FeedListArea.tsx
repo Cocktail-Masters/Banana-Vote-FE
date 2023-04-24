@@ -6,7 +6,7 @@
 import VoteCreateBar from "../home/VoteCreateBar";
 import Feed from "./Feed";
 import { useFeedListQuery } from "@/hooks/reactQuery/useFeedListQuery";
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { filterOptions, voteFeedType } from "@/types";
 import { voteFeedListType } from "@/types";

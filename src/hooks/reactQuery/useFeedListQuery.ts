@@ -78,12 +78,12 @@ export const getFeedList = (
 export const feedListFetch = async (
   isClosed: boolean,
   sortBy: number,
-  keyword: string
+  keyword: string | null
 ) => {
+  const isTag = keyword && keyword.startsWith("#") ? true : false;
+
   let response = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_HOSTNAME
-    }/api/feed?keyword=${keyword}&is-tag=${false}&is-closed=${isClosed}&sort-by=${sortBy}`
+    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/feed?keyword=${keyword}&is-tag=${isTag}&is-closed=${isClosed}&sort-by=${sortBy}`
   )
     .then((response) => response.json())
     .catch((e) => e);

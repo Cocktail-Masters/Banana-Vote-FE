@@ -17,7 +17,7 @@ export default async function HydratedHome({
   const queryClient = getQueryClient();
 
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ["feedList", false, 1, ""], // name, isClosed, sortBy, keyword
+    queryKey: ["feedList", false, 1], // name, isClosed, sortBy
     queryFn: () => feedListFetch(false, 1, ""),
   });
 

@@ -29,19 +29,19 @@ const VoteSearchBar = ({
   const SORT_OPTIONS: sortOption[] = [
     {
       id: 1,
-      name: translation("home.vote_search_bar.sort_recent"),
+      name: translation("home.vote_search_bar.sort_recent"), // 최신 순
     },
     {
       id: 2,
-      name: translation("home.vote_search_bar.sort_participant_high"),
+      name: translation("home.vote_search_bar.sort_participant_high"), // 참여 순 (투표 많은 순)
     },
     {
       id: 3,
-      name: translation("home.vote_search_bar.sort_hit_high"),
+      name: translation("home.vote_search_bar.sort_hit_high"), // 조회 순
     },
     {
       id: 4,
-      name: translation("home.vote_search_bar.sort_opinion_high"),
+      name: translation("home.vote_search_bar.sort_opinion_high"), // 댓글 많은 순
     },
   ];
 

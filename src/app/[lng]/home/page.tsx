@@ -19,8 +19,7 @@ const Home = () => {
           <Suspense fallback={<Loading />}>
             <FeedListArea />
           </Suspense>
-
-          {/* Recommend, Ranking */}
+          {/* Recommend, Ranking, Trending Tags */}
           <div className="hidden xl:block">
             <div className="mb-5">
               <RecommendArea />

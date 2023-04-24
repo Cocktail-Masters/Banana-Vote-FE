@@ -138,7 +138,7 @@ const VoteSearchBar = ({
                   id={option.name}
                   key={option.id}
                   value={option}
-                  className={`flex h-full w-auto cursor-pointer items-center justify-center rounded-2xl border-transparent pl-2 pr-2 font-semibold shadow-md ${
+                  className={`flex h-full w-auto cursor-pointer items-center justify-center rounded-2xl border-transparent pl-2 pr-2 font-semibold shadow-md  ${
                     filterOptions.sortBy === option.id
                       ? "bg-secondary-orange"
                       : "hover:bg-gray-300 dark:hover:bg-[#3a3b3c]"

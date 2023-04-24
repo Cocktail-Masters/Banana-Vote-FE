@@ -9,6 +9,7 @@ export type anotherUserType = {
 };
 
 export type userType = anotherUserType & {
+  id?: number;
   age: number;
   gender: string;
 };

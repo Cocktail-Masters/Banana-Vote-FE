@@ -12,7 +12,6 @@ import BestOpinion from "./BestOpinion";
 import Link from "next/link";
 import useTranslation from "@/hooks/useTranslation";
 import TagList from "@components/common/tag/TagList";
-import VS from "./VS";
 
 const Feed = ({ data }: { data: voteFeedType }) => {
   const { translation } = useTranslation();

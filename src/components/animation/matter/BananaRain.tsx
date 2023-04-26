@@ -1,15 +1,19 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import {
+  MutableRefObject,
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import { Engine, Render, Bodies, World, Runner, Body } from "matter-js";
 // import banana from "@/assets/icons/banana_svgrepo.com.svg";
 import banana from "@/assets/images/bumeok.jpg";
 
-const MoneyRain = () => {
-  const scene = useRef<HTMLDivElement>(null);
+const BananaRain = ({ scene }: { scene: RefObject<HTMLDivElement> }) => {
   const isPressed = useRef(false);
   const engine = useRef(Engine.create());
-  const imgRef = useRef(null);
 
   useEffect(() => {
     const cw = document.body.clientWidth;
@@ -26,57 +30,58 @@ const MoneyRain = () => {
       },
     });
 
-    World.add(engine.current.world, [
-      Bodies.rectangle(cw / 2, -10, cw, 20, { isStatic: true }),
-      Bodies.rectangle(-10, ch / 2, 20, ch, { isStatic: true }),
-      Bodies.rectangle(cw / 2, ch + 10, cw, 20, { isStatic: true }),
-      Bodies.rectangle(cw + 10, ch / 2, 20, ch, { isStatic: true }),
-    ]);
+    Engine.update(engine.current, 1000 / 30);
+
+    // 시간 스케일을 0.5로 설정하여 물리 시뮬레이션을 느리게 실행
+    engine.current.timing.timeScale = 0.6;
 
     Runner.run(engine.current);
     Render.run(render);
-
+    handleDown();
     return () => {
       Render.stop(render);
       World.clear(engine.current.world, true);
       Engine.clear(engine.current);
       render.canvas.remove();
-      // render.canvas = null;
-      // render.context = null;
       render.textures = {};
     };
   }, []);
 
-  const handleDown = (e: any) => {
+  const handleDown = () => {
     isPressed.current = true;
-    handleAddCircle(e);
+    handleAddCircle();
   };
 
   const handleUp = () => {
     isPressed.current = false;
   };
 
-  const handleAddCircle = (e: any) => {
+  const handleAddCircle = () => {
     const circleRadius = 10 + Math.random() * 5;
     const textureSize = circleRadius / 100;
     const bananaImageUrl =
       "https://cdn.pixabay.com/photo/2012/04/26/18/41/banana-42793_960_720.png";
     if (isPressed.current) {
-      for (let i = 0; i < document.body.clientWidth; i += 100) {
-        const randomY = Math.random() * 1000 - 1000;
+      for (let i = 0; i < document.body.clientWidth; i += 50) {
+        const randomY = Math.random() * 2000;
         console.log(randomY);
-        const ball = Bodies.circle(i, e.clientY - randomY, circleRadius, {
-          mass: 10,
-          restitution: 0.9,
-          friction: 0.005, // 마찰
-          render: {
-            sprite: {
-              texture: bananaImageUrl,
-              xScale: textureSize,
-              yScale: textureSize,
+        const ball = Bodies.circle(
+          i,
+          -document.body.clientHeight - randomY,
+          circleRadius,
+          {
+            mass: 1,
+            restitution: 0.9,
+            friction: 0.005, // 마찰
+            render: {
+              sprite: {
+                texture: bananaImageUrl,
+                xScale: textureSize,
+                yScale: textureSize,
+              },
             },
-          },
-        });
+          }
+        );
         Body.rotate(ball, Math.PI * Math.random());
         World.add(engine.current.world, [ball]);
       }
@@ -84,13 +89,15 @@ const MoneyRain = () => {
   };
 
   return (
-    <div
-      onMouseDown={handleDown}
-      onMouseUp={handleUp}
-      // onMouseMove={handleAddCircle}
-    >
-      <div ref={scene} style={{ width: "100%", height: "100%" }} />
-    </div>
+    <>
+      <div
+        // className="h-full w-full"
+        onMouseDown={handleDown}
+        onMouseUp={handleUp}
+      >
+        축하합니다 당첨되었습니다. 아이디와 비밀번호를 입력하세요????
+      </div>
+    </>
   );
 };
-export default MoneyRain;
+export default BananaRain;

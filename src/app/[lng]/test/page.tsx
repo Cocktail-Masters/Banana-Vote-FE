@@ -1,9 +1,9 @@
-import MoneyRain from "@/components/animation/matter/MoneyRain";
+import VoteResult from "@/components/vote/VoteResult";
 
 const Page = () => {
   return (
     <>
-      <MoneyRain />
+      <VoteResult />
     </>
   );
 };

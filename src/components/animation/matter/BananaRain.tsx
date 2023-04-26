@@ -1,15 +1,7 @@
 "use client";
 
-import {
-  MutableRefObject,
-  RefObject,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react";
+import { RefObject, useEffect, useRef } from "react";
 import { Engine, Render, Bodies, World, Runner, Body } from "matter-js";
-// import banana from "@/assets/icons/banana_svgrepo.com.svg";
-import banana from "@/assets/images/bumeok.jpg";
 
 const BananaRain = ({ scene }: { scene: RefObject<HTMLDivElement> }) => {
   const isPressed = useRef(false);
@@ -91,11 +83,13 @@ const BananaRain = ({ scene }: { scene: RefObject<HTMLDivElement> }) => {
   return (
     <>
       <div
-        // className="h-full w-full"
+        className="h-full w-full"
         onMouseDown={handleDown}
         onMouseUp={handleUp}
       >
-        축하합니다 당첨되었습니다. 아이디와 비밀번호를 입력하세요????
+        <div>축하합니다 당첨되었습니다.</div>
+        <div>아이디와 비밀번호를 입력하세요????</div>
+        <div></div>
       </div>
     </>
   );

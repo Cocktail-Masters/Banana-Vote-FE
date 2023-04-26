@@ -16,7 +16,7 @@ const ModalVoteResult = () => {
       >
         isOpen : {isOpen}
       </button>
-      <div ref={scene} className="absolute left-0 right-0 h-full w-full" />
+      <div ref={scene} className="absolute left-0 right-0 z-10 h-full w-full" />
       <Modal
         className="h-96 w-96"
         isOpen={isOpen}

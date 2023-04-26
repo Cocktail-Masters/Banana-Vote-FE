@@ -1,4 +1,4 @@
-import ModalVoteResult from "../common/modal/ModalVoteResult";
+import ModalVoteResult from "../../common/modal/ModalVoteResult";
 
 const VoteResult = () => {
   return (

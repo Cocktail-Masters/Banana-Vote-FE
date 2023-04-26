@@ -16,7 +16,7 @@ const Modal = ({
 }) => {
   return (
     <Transition appear as={Fragment} show={isOpen}>
-      <Dialog onClose={onClose}>
+      <Dialog open={isOpen} onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

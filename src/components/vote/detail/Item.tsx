@@ -13,6 +13,7 @@ import { useParams } from "next/navigation";
 import useTranslation from "@/hooks/useTranslation";
 import DeclarationModal from "@/components/declaration";
 import TagList from "@/components/common/tag/TagList";
+import VoteDetailEndItemCard from "./endItems/EndItemCard";
 
 const VoteDetailItem = ({ postId }: { postId: number }) => {
   const { data } = useVoteDetailQuery({
@@ -120,17 +121,29 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 </p>
               </div>
             </div>
-            <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
-              {data.vote_items.map((e: voteItemType, i: Key) => (
-                <VoteDetailItemCard
-                  key={i}
-                  item={e}
-                  setSelectItem={select}
-                  selectItem={selectItem}
-                  isParti={voteCheck?.is_participation}
-                />
-              ))}
-            </div>
+            {!data.vote.is_closed ? (
+              <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
+                {data.vote_items.map((e: voteItemType, i: Key) => (
+                  <VoteDetailItemCard
+                    key={i}
+                    item={e}
+                    setSelectItem={select}
+                    selectItem={selectItem}
+                    isParti={voteCheck?.is_participation}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
+                {data.vote_items.map((e: voteItemType, i: Key) => (
+                  <VoteDetailEndItemCard
+                    key={i}
+                    item={e}
+                    total_voted={data.vote.voted_number}
+                  />
+                ))}
+              </div>
+            )}
             <div
               className={
                 "ml-auto text-right text-sm  transition-colors duration-300 dark:text-text-normal-dark"

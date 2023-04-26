@@ -13,16 +13,16 @@ type tagListProps = {
 };
 
 const TagList = ({ tags, handleClick }: tagListProps) => {
-  const useSearch = useSearchVoteByKeyword();
-
+  /**
+   * @description 태그 클릭 시 디폴트 이벤트
+   */
   const handleTagClick = (e: MouseEvent<HTMLElement>) => {
-    const params = {
-      keyword: (e.target as HTMLElement).innerText,
-      isClosed: false,
-      sortBy: 1,
-    };
+    const keyword = (e.target as HTMLElement).innerText;
+    console.log(keyword);
 
-    useSearch.routeSearchResultHandler(params);
+    /**
+     * @todo route to search result page with (keyword)
+     */
   };
 
   return (
@@ -30,7 +30,11 @@ const TagList = ({ tags, handleClick }: tagListProps) => {
       {tags &&
         tags.map((tag: tagListType, index: number) => {
           return (
-            <Tag key={tag.id} tagName={tag.name} handleClick={handleTagClick} />
+            <Tag
+              key={tag.id}
+              tagName={tag.name}
+              handleClick={handleClick ? handleClick : handleTagClick}
+            />
           );
         })}
     </div>

@@ -17,8 +17,8 @@ type gridColumnsType = {
 const gridColumns: gridColumnsType = {
   1: "relative w-full grid gap-x-4 gap-y-4 grid-cols-1",
   2: "relative w-full grid gap-x-4 gap-y-4 grid-cols-2",
-  3: "relative w-full grid gap-x-3 gap-y-4 grid-cols-3",
-  4: "relative w-full grid gap-x-2 gap-y-4 grid-cols-4",
+  3: "relative w-full grid gap-x-3 gap-y-4 grid-cols-1 sm:grid-cols-3",
+  4: "relative w-full grid gap-x-2 gap-y-4 grid-cols-2 ms:grid-cols-4",
 };
 
 const cardVariants = ({

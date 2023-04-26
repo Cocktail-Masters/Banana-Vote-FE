@@ -1,5 +1,7 @@
 "use client";
+import { useStore } from "@/hooks/useStore";
 import useTheme from "@/hooks/useTheme";
+import { colorStoreType, useColorModeStore } from "@/store/colorMode";
 import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -12,6 +14,11 @@ const LayoutTopBar = ({ tabs }: { tabs: tabType[] }) => {
   const pathname = usePathname();
 
   const [selectedTabPath, setSelectedTabPath] = useState<string | null>(null);
+  const themeStore = useStore<colorStoreType, any>(
+    useColorModeStore,
+    (state) => state
+  );
+
   useEffect(() => {
     const removeLanguagePath = "/" + pathname.split("/").slice(2).join("/");
     setSelectedTabPath(removeLanguagePath);
@@ -21,6 +28,16 @@ const LayoutTopBar = ({ tabs }: { tabs: tabType[] }) => {
   const isMatchPath = (path: string) => {
     if (selectedTabPath === null) return false;
     return selectedTabPath.substring(0, path.length) === path;
+  };
+
+  const themeModeHandler = () => {
+    toggleThemeHandler();
+    const theme = themeStore.theme;
+    if (theme === "dark") {
+      themeStore.setTheme("light");
+    } else {
+      themeStore.setTheme("dark");
+    }
   };
 
   return (
@@ -44,7 +61,7 @@ const LayoutTopBar = ({ tabs }: { tabs: tabType[] }) => {
         ))}
       </div>
       <DarkModeSwitch
-        onChange={toggleThemeHandler}
+        onChange={themeModeHandler}
         checked={themeMode === "dark" ? true : false}
       />
       <div className="p-3">마이페이지</div>

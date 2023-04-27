@@ -71,6 +71,7 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
     const newVoteItems: voteRegistrationItemType[] = [];
     for (let i = 0; i < voteItems.length; i++) {
       newVoteItems.push({
+        itemNumber: i,
         title: voteItems[i]["title"],
         imageUrl: uploadUrls[i],
       });

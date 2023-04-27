@@ -84,13 +84,9 @@ const BananaRain = ({ scene }: { scene: RefObject<HTMLDivElement> }) => {
     <>
       <div
         className="h-full w-full"
-        onMouseDown={handleDown}
-        onMouseUp={handleUp}
-      >
-        <div>축하합니다 당첨되었습니다.</div>
-        <div>아이디와 비밀번호를 입력하세요????</div>
-        <div></div>
-      </div>
+        // onMouseDown={handleDown}
+        // onMouseUp={handleUp}
+      ></div>
     </>
   );
 };

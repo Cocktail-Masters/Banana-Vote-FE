@@ -3,9 +3,10 @@
  * @description 카드 형태로 보여지는 투표항목 하나에 대한 컴포넌트
  */
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import defaultImg from "@assets/images/defalut_vote_element_img.png";
+import ImageModal from "./ImageModal";
 
 type voteFeedItemProps = {
   imageLink?: string | StaticImageData;
@@ -23,14 +24,16 @@ const VoteItem = ({ imageLink = defaultImg, content }: voteFeedItemProps) => {
     console.log(e.target);
   };
 
+  const [modalToggle, setModalToggle] = useState<boolean>(false);
+
   return (
     <div className="h-full w-full  truncate rounded-2xl">
-      <div className="relative m-auto grid h-[200px] w-full place-content-center overflow-hidden rounded-t-2xl border border-border dark:border-border-dark">
+      <div className="relative m-auto grid h-[100px] w-full place-content-center overflow-hidden rounded-t-2xl border border-border dark:border-border-dark ms:h-[150px] md:h-[200px]">
         <Image
           className="m-auto object-cover"
           src={!imageLink ? defaultImg : imageLink}
           alt="vote element img"
-          onClick={(e) => handleImageClick(e)}
+          onClick={() => setModalToggle(true)}
           // placeholder="blur"
           fill={true}
         />
@@ -40,6 +43,13 @@ const VoteItem = ({ imageLink = defaultImg, content }: voteFeedItemProps) => {
           {content}
         </p>
       </div>
+      {/* Image Modal */}
+      {modalToggle && (
+        <ImageModal
+          setModalToggle={setModalToggle}
+          imageLink={!imageLink ? defaultImg : imageLink}
+        />
+      )}
     </div>
   );
 };

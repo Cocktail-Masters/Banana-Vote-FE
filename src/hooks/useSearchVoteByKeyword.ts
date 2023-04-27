@@ -2,17 +2,17 @@
  * @author mingyu
  * @deprecated
  */
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 type searchProps = {
   keyword: string;
-  isClosed: boolean;
-  sortBy: number;
 };
 
 const useSearchVoteByKeyword = () => {
   const urlParams = useParams();
+  const router = useRouter();
   const lng = urlParams.lng;
 
   const routeSearchResultHandler = useCallback(
@@ -24,13 +24,17 @@ const useSearchVoteByKeyword = () => {
         isTag = true;
       }
 
-      window.history?.pushState(
-        null,
-        "",
-        `${process.env.NEXT_PUBLIC_HOSTNAME}/${lng}/home?keyword=${params.keyword}&is-tag=${isTag}&is-closed=${params.isClosed}&sort-by=${params.sortBy}`
+      // 해당 keyword 검색 결과로 push
+      // window.history?.pushState(
+      //   null,
+      //   "",
+      //   `${process.env.NEXT_PUBLIC_HOSTNAME}/${lng}/home?keyword=${params.keyword}&is-tag=${isTag}`
+      // );
+      router.push(
+        `${process.env.NEXT_PUBLIC_HOSTNAME}/${lng}/home?keyword=${params.keyword}&is-tag=${isTag}`
       );
     },
-    [lng]
+    [lng, router]
   );
   return { routeSearchResultHandler };
 };

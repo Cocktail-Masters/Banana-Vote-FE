@@ -6,7 +6,7 @@
 import VoteCreateBar from "../home/VoteCreateBar";
 import Feed from "./Feed";
 import { useFeedListQuery } from "@/hooks/reactQuery/useFeedListQuery";
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { filterOptions, voteFeedType } from "@/types";
 import { voteFeedListType } from "@/types";
@@ -14,10 +14,12 @@ import Loading from "@/components/Loading";
 import VoteSearchBar from "@/components/home/VoteSearchBar";
 import VoteIcon from "@/components/animation/VoteIcon";
 import useTranslation from "@/hooks/useTranslation";
+import ImageModal from "./ImageModal";
 
 const FeedListArea = () => {
   const { translation } = useTranslation();
 
+  const [imgModalToggle, setImgModalToggle] = useState<boolean>(false); // 이미지 모달 토글
   const [keyword, setKeyword] = useState<string>(""); // 검색 키워드
   const [filterOptions, setFilterOptions] = useState<filterOptions>({
     isClosed: false, // 종료 투표 포함 여부

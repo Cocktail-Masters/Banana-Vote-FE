@@ -4,17 +4,19 @@ import { useRouter } from "next/dist/client/router";
 import { Fragment, ReactNode, useCallback } from "react";
 
 const Modal = ({
+  isOpen = true,
   children,
   className = "w-full max-w-7xl rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-bg-feed-dark dark:text-text-normal-dark",
   onClose,
 }: {
+  isOpen?: boolean;
   onClose: () => void;
   className?: string;
   children: ReactNode | undefined;
 }) => {
   return (
-    <Transition appear as={Fragment} show={true}>
-      <Dialog onClose={onClose}>
+    <Transition appear as={Fragment} show={isOpen}>
+      <Dialog open={isOpen} onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

@@ -1,17 +1,19 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
+import axios from "axios";
 export type voteRegistrationItemType = {
+  itemNumber: number;
   title: string;
   imageUrl: string;
+  iframeLink?: string;
 };
 
 export type voteRegistrationType = {
   title: string;
   content: string;
-  is_disclosure: boolean;
-  is_anonymouse: boolean;
+  is_public: boolean;
+  is_anonymous: boolean;
   end_date: string;
-  vote_items: voteRegistrationItemType[];
+  items: voteRegistrationItemType[];
   tags: string[];
 };
 
@@ -19,7 +21,7 @@ type fetchCreateVoteType = {
   createVoteData: voteRegistrationType;
 };
 
-export const fetchCreateVote = async ({
+export const fetchCreateVoteTest = async ({
   createVoteData,
 }: fetchCreateVoteType) => {
   const response = await fetch("/api/vote/create", {
@@ -27,6 +29,20 @@ export const fetchCreateVote = async ({
     body: JSON.stringify(createVoteData),
   });
   const result = await response.json();
+  return result;
+};
+
+export const fetchCreateVote = async ({
+  createVoteData,
+}: fetchCreateVoteType) => {
+  const test = JSON.stringify(createVoteData);
+  console.log(createVoteData);
+  console.log(test);
+  const { data } = await axios.post("/api/v1/votes", {
+    method: "POST",
+    body: test,
+  });
+  const result = await data.json();
   return result;
 };
 

@@ -29,7 +29,6 @@ const LayoutHeader = () => {
   ];
 
   const [isOpen, setIsOpen] = useState(false);
-
   useEffect(() => {
     if (isOpen && minWidth650) setIsOpen(false);
   }, [isOpen, minWidth650]);

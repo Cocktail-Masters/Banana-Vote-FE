@@ -8,23 +8,35 @@ import Modal from "@/components/common/modal";
 import ModalDescription from "@/components/common/modal/Description";
 import ModalHeader from "@/components/common/modal/Header";
 
+type imageModalType = {
+  image_url: string;
+  isOpen: boolean;
+};
+
 const VoteDetailItemCard = ({
   item,
   setSelectItem,
   selectItem,
   isParti,
+  imageModalHandler,
+  isOpen,
 }: {
   item: voteItemType;
   setSelectItem: (itemId: number) => void;
   selectItem: number | undefined;
   isParti: boolean | undefined;
+  imageModalHandler: (e: imageModalType) => void;
+  isOpen: boolean;
 }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const onOpen = () => {
-    setIsOpen(true);
-  };
-  const onClose = () => {
-    setIsOpen(false);
+  // const [isOpen, setIsOpen] = useState<boolean>(false);
+  // const onOpen = () => {
+  //   setIsOpen(true);
+  // };
+  // const onClose = () => {
+  //   setIsOpen(false);
+  // };
+  const onOpen = (e: string) => {
+    imageModalHandler({ isOpen: true, image_url: e });
   };
   return (
     <button
@@ -48,7 +60,11 @@ const VoteDetailItemCard = ({
           width="100"
           height="100"
           className="w-100 h-auto rounded-xl object-contain"
-          onClick={onOpen}
+          onClick={() => {
+            onOpen(
+              "https://cdn.discordapp.com/attachments/433506654009425921/1021417880207753237/unknown.png"
+            );
+          }}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +73,11 @@ const VoteDetailItemCard = ({
           strokeWidth={1.5}
           stroke="currentColor"
           className="absolute bottom-0 right-0 h-6 w-6"
-          onClick={onOpen}
+          onClick={() => {
+            onOpen(
+              "https://cdn.discordapp.com/attachments/433506654009425921/1021417880207753237/unknown.png"
+            );
+          }}
         >
           <path
             strokeLinecap="round"
@@ -70,7 +90,7 @@ const VoteDetailItemCard = ({
       <div className="ml-2 flex w-full items-center">
         <h2 className="text-lg font-semibold">{item.title}</h2>
       </div>
-      {isOpen && (
+      {/* {isOpen && (
         <Modal
           onClose={onClose}
           className={`relative h-[95vh] max-h-[800px] w-full max-w-[1200px] rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-bg-feed-dark dark:text-text-normal-dark`}
@@ -107,7 +127,7 @@ const VoteDetailItemCard = ({
             ></Image>
           </ModalDescription>
         </Modal>
-      )}
+      )} */}
     </button>
   );
 };

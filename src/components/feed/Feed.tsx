@@ -12,7 +12,6 @@ import BestOpinion from "./BestOpinion";
 import Link from "next/link";
 import useTranslation from "@/hooks/useTranslation";
 import TagList from "@components/common/tag/TagList";
-import VS from "./VS";
 
 const Feed = ({ data }: { data: voteFeedType }) => {
   const { translation } = useTranslation();
@@ -63,7 +62,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
               </div>
               <Link href={`/vote/detail/${data.vote.id}`}>
                 <div className="see-more absolute right-0 flex h-5 text-sm font-bold text-text-title hover:border-b dark:text-text-title-dark">
-                  {translation("feed.feed.opinion")}
+                  {translation("feed.feed.opinion")}{" "}
                   {data.vote.opinion_number.toLocaleString()}
                   {translation("feed.feed.opinion_num")}
                   <svg

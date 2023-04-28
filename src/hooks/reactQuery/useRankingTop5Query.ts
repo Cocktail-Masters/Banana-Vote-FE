@@ -3,22 +3,31 @@
  */
 
 import { useQuery } from "@tanstack/react-query";
-import { useRankingTop5Dummy } from "@/components/home/__test__/useRankingTop5Dummy";
+import { api } from "@/common/axiosInstance";
 
 export const fetchRankingTop5 = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/home/ranking`
-  )
-    .then((response) => response.json())
-    .catch((e) => e);
+  try {
+    const res = await api.get(`/ranking/1?page=${1}&size=${5}&nickname=`);
+    // console.log("RESSSS");
+    // console.log(res);
+    // console.log(res.status);
 
-  return response.res;
+    // No Contents
+    if (res.status === 204) {
+      // RETURN EMPTY LIST
+    }
+
+    return res.data;
+  } catch (e: any) {
+    return e.response.data;
+  }
 };
 
 export const useRankingTop5Query = ({ queryKey }: { queryKey: string }) => {
   return useQuery([queryKey], async () => {
     // TODO : api 요청으로 데이터 받아오기
-    const response = useRankingTop5Dummy;
-    return response;
+    const response = await api.get(`/ranking/1?page=${1}&size=${5}&nickname=`);
+    // console.log(response.data);
+    return response.data;
   });
 };

@@ -1,21 +1,11 @@
 import Provider from "./Provider";
 import "./globals.css";
 import LayoutHeader from "@/components/header/LayoutHeader";
-import SettingTheme from "./settingTheme";
-import Head from "next/head";
 import { i18n } from "i18n-config";
-import Script from "next/script";
 
 export async function generateStaticParams() {
   return i18n.locales.map((lng) => ({ lng }));
 }
-
-// export const metadata = {
-//   title: {
-//     default: "Acme",
-//     template: "%s | Acme",
-//   },
-// };
 
 export default function RootLayout({
   children,

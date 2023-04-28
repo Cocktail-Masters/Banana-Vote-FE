@@ -20,7 +20,7 @@ const CreateVote = () => {
   const { lng } = useParams();
   const { state: isAnonymouse, onClickHandler: setIsAnonymouse } =
     useSelectData<boolean>(true);
-  const { state: isDisclosure, onClickHandler: setIsDisclosure } =
+  const { state: isPublic, onClickHandler: setIsPublic } =
     useSelectData<boolean>(false);
   const { state: endDate, setState: setEndDate } = useSelectData<Date>(
     new Date()
@@ -39,19 +39,22 @@ const CreateVote = () => {
     const newVoteItems: voteRegistrationItemType[] = [];
     for (let i = 0; i < voteItems.length; i++) {
       newVoteItems.push({
+        itemNumber: i,
         title: voteItems[i]["title"],
         imageUrl: uploadUrls[i],
       });
     }
+
     const sendData = {
       title: voteTitle,
-      is_disclosure: isDisclosure,
-      is_anonymouse: isAnonymouse,
-      end_date: endDate.toString(),
-      vote_items: newVoteItems,
       content: content,
+      end_date: endDate.toISOString(),
+      is_anonymous: isAnonymouse,
+      is_public: isPublic,
+      items: newVoteItems,
       tags: tagArray,
     };
+
     mutate(
       { createVoteData: sendData },
       {
@@ -78,8 +81,8 @@ const CreateVote = () => {
                 lng,
                 textKey: "vote.create.is_disclosure",
               })}
-              isData={isDisclosure}
-              onClickHandler={setIsDisclosure}
+              isData={isPublic}
+              onClickHandler={setIsPublic}
               toggleContent={[
                 {
                   data: true,

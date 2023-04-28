@@ -22,6 +22,14 @@ const nextConfig = {
       "cdn.pixabay.com",
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api/v1/:path*",
+        destination: "http://localhost:8000/api/v1/:path*", // The :path parameter isn't used here so will be automatically passed in the query
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

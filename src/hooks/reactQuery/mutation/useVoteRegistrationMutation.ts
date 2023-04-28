@@ -1,5 +1,7 @@
+import api from "@/common/axiosInstance";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { camelizeKeys } from "humps";
 export type voteRegistrationItemType = {
   itemNumber: number;
   title: string;
@@ -37,9 +39,7 @@ export const fetchCreateVote = async ({
   createVoteData,
 }: fetchCreateVoteType) => {
   const test = JSON.stringify(createVoteData);
-  console.log(createVoteData);
-  console.log(test);
-  const { data } = await axios.post("/api/v1/votes", {
+  const { data } = await api.post("/api/v1/votes", {
     method: "POST",
     body: test,
   });

@@ -34,6 +34,14 @@ export const api = axios.create({
  * response camelize setting
  */
 
+const jsonToObj = async (data: string) => {
+  return await JSON.parse(data);
+};
+
+const ObjToJson = (data: Object) => {
+  return JSON.stringify(data);
+};
+
 // Axios middleware to convert all api responses to camelCase
 api.interceptors.response.use((response: AxiosResponse) => {
   if (
@@ -45,16 +53,16 @@ api.interceptors.response.use((response: AxiosResponse) => {
   return response;
 });
 // Axios middleware to convert all api requests to snake_case
-api.interceptors.request.use((config) => {
+api.interceptors.request.use(async (config) => {
   const newConfig = { ...config };
   newConfig.url = `api/${config.url}`;
-  if (newConfig.headers["Content-Type"] === "multipart/form-data")
-    return newConfig;
-  if (config.params) {
+  if (!!config?.params) {
     newConfig.params = decamelizeKeys(config.params);
   }
-  if (config.data) {
-    newConfig.data = decamelizeKeys(config.data);
+  if (!!config?.data?.body) {
+    newConfig.data.body = ObjToJson(
+      decamelizeKeys(await jsonToObj(config.data.body))
+    );
   }
   return newConfig;
 });

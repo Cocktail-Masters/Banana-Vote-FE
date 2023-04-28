@@ -27,3 +27,24 @@ export const api = axios.create({
 //     return Promise.reject(error);
 //   }
 // );
+
+/**
+ * request camelize setting
+ */
+
+// api.interceptors.request.use(
+//   (config) => {
+//     const accessToken = sessionStorage.getItem("ACCESS_TOKEN");
+
+//     if (!accessToken) {
+//       config.headers["Authorization"] = null;
+//     } else {
+//       config.headers["Authorization"] = `Bearer ${accessToken}`;
+//     }
+
+//     return config;
+//   },
+//   (error) => {
+//     return Promise.reject(error);
+//   }
+// );

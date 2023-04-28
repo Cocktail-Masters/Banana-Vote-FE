@@ -1,8 +1,9 @@
 /**
  * @author mingyu
  */
-import axios from "axios";
-import camelize from "camelize";
+import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
+
+import { camelizeKeys, decamelizeKeys } from "humps";
 
 export const api = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1`,
@@ -33,12 +34,28 @@ export const api = axios.create({
  * response camelize setting
  */
 
-api.interceptors.response.use(
-  (response) => {
-    camelize;
-    return response;
-  },
-  (error) => {
-    return Promise.reject(error);
+// Axios middleware to convert all api responses to camelCase
+api.interceptors.response.use((response: AxiosResponse) => {
+  if (
+    response.data &&
+    response.headers["content-type"] === "application/json"
+  ) {
+    response.data = camelizeKeys(response.data);
   }
-);
+  return response;
+});
+// Axios middleware to convert all api requests to snake_case
+api.interceptors.request.use((config) => {
+  const newConfig = { ...config };
+  newConfig.url = `api/${config.url}`;
+  if (newConfig.headers["Content-Type"] === "multipart/form-data")
+    return newConfig;
+  if (config.params) {
+    newConfig.params = decamelizeKeys(config.params);
+  }
+  if (config.data) {
+    newConfig.data = decamelizeKeys(config.data);
+  }
+  return newConfig;
+});
+export default api;

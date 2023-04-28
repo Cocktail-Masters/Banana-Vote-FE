@@ -2,7 +2,6 @@
  * @author mingyu
  */
 "use client";
-import Link from "next/link";
 import goldMedal from "@assets/icons/medals/gold.svg";
 import silverMedal from "@assets/icons/medals/silver.svg";
 import bronzeMedal from "@assets/icons/medals/bronze.svg";
@@ -10,48 +9,11 @@ import Image from "next/image";
 import { seasonUserType } from "@/types";
 import useTranslation from "@/hooks/useTranslation";
 
-type rankingBoxProps = {
-  title: string;
-  contents?: seasonUserType[];
-};
-
-const RankingBox = ({ title, contents }: rankingBoxProps) => {
+const RankingBox = ({ contents }: { contents: seasonUserType[] }) => {
   const { translation } = useTranslation();
 
   return (
     <div>
-      <div className="h-16 w-full">
-        <div className="relative flex w-full items-center justify-between">
-          <div className="h-7 w-auto" />
-          {/* 박스 제목 */}
-          <h5 className="absolute top-[66%] left-[50%] h-7 w-60 translate-x-[-50%] text-center text-xl font-bold text-blue-500">
-            {title}
-          </h5>
-          {/* 더보기 */}
-          <div className="relative h-7 w-auto">
-            <Link href={`/rank`}>
-              <p className="see-more-ranking absolute top-[66%] right-3 flex h-7 w-20 items-center justify-center text-sm text-gray-400 hover:text-gray-500 hover:decoration-solid">
-                {translation("home.ranking_box.see_more")}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-3 w-3 font-bold"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </p>
-            </Link>
-          </div>
-        </div>
-      </div>
-      <hr className="mx-auto h-[1.5px] w-11/12 border-0 bg-yellow-500" />
       <div className="h-52 w-full p-4 text-text-article dark:text-text-article-dark">
         {!contents || contents.length === 0 ? (
           <p className="flex h-32 justify-center font-bold leading-8">

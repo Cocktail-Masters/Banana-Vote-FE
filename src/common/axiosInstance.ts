@@ -2,6 +2,7 @@
  * @author mingyu
  */
 import axios from "axios";
+import camelize from "camelize";
 
 export const api = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1`,
@@ -29,22 +30,15 @@ export const api = axios.create({
 // );
 
 /**
- * request camelize setting
+ * response camelize setting
  */
 
-// api.interceptors.request.use(
-//   (config) => {
-//     const accessToken = sessionStorage.getItem("ACCESS_TOKEN");
-
-//     if (!accessToken) {
-//       config.headers["Authorization"] = null;
-//     } else {
-//       config.headers["Authorization"] = `Bearer ${accessToken}`;
-//     }
-
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
+api.interceptors.response.use(
+  (response) => {
+    camelize;
+    return response;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);

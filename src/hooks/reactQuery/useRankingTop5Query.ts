@@ -8,9 +8,6 @@ import { api } from "@/common/axiosInstance";
 export const fetchRankingTop5 = async () => {
   try {
     const res = await api.get(`/ranking/1?page=${1}&size=${5}&nickname=`);
-    // console.log("RESSSS");
-    // console.log(res);
-    // console.log(res.status);
 
     // No Contents
     if (res.status === 204) {

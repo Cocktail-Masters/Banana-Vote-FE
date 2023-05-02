@@ -55,7 +55,7 @@ api.interceptors.response.use((response: AxiosResponse) => {
 // Axios middleware to convert all api requests to snake_case
 api.interceptors.request.use(async (config) => {
   const newConfig = { ...config };
-  newConfig.url = `api/${config.url}`;
+  newConfig.url = config.url;
   if (!!config?.params) {
     newConfig.params = decamelizeKeys(config.params);
   }

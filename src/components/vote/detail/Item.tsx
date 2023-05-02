@@ -9,10 +9,19 @@ import { Key, useState } from "react";
 import VoteDetailPredictionModal from "../PredictionModal";
 import VoteDetailItemCard from "./ItemCard";
 import { voteItemType } from "@/types";
-import { useParams } from "next/navigation";
+import Image from "next/image";
 import useTranslation from "@/hooks/useTranslation";
 import DeclarationModal from "@/components/declaration";
 import TagList from "@/components/common/tag/TagList";
+import VoteDetailEndItemCard from "./endItems/EndItemCard";
+import Modal from "@/components/common/modal";
+import ModalHeader from "@/components/common/modal/Header";
+import ModalDescription from "@/components/common/modal/Description";
+
+type imageModalType = {
+  image_url: string;
+  isOpen: boolean;
+};
 
 const VoteDetailItem = ({ postId }: { postId: number }) => {
   const { data } = useVoteDetailQuery({
@@ -25,6 +34,12 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
     postId: postId,
   });
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  // 이미지 전용 모달
+  const [isImageModalOpen, setIsImageModalOpen] = useState<imageModalType>({
+    image_url: "",
+    isOpen: false,
+  });
+
   const [isDeclaration, setIsDeclaration] = useState<boolean>(false);
   const declarationHandler = () => {
     // 신고 모달 닫기,열기
@@ -43,6 +58,22 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
       return !prev;
     });
   };
+
+  const imageModalHandler = ({
+    isOpen,
+    image_url,
+  }: {
+    isOpen: boolean;
+    image_url: string;
+  }) => {
+    setIsImageModalOpen((prev) => {
+      return {
+        isOpen,
+        image_url,
+      };
+    });
+  };
+
   const { mutate } = useVoteCheckMutation({ queryKey: ["voteCheck", postId] });
 
   const [selectItem, setSelectItem] = useState<number | undefined>();
@@ -67,7 +98,49 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
           type={0}
         />
       )}
-
+      {data && isImageModalOpen.isOpen && (
+        <Modal
+          onClose={() => {
+            imageModalHandler({ isOpen: false, image_url: "" });
+          }}
+          className={`relative h-[95vh] max-h-[800px] w-full max-w-[1200px] rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-bg-feed-dark dark:text-text-normal-dark`}
+        >
+          <ModalHeader className="absolute right-0 top-0  mb-4 flex justify-center text-xl font-extrabold leading-6 text-gray-900">
+            <button
+              id="picketModalCloseButton"
+              className={`absolute top-1 right-3 z-10`}
+              onClick={() => {
+                imageModalHandler({ isOpen: false, image_url: "" });
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="h-6 w-6 transition-colors duration-300 dark:text-text-normal-dark"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </ModalHeader>
+          <ModalDescription className="relative flex h-full w-full items-center justify-center">
+            <div className="relative flex h-[90%] w-[90%] justify-center">
+              <Image
+                src="https://cdn.discordapp.com/attachments/433506654009425921/1021417880207753237/unknown.png"
+                alt="기본 이미지"
+                fill
+                style={{ objectFit: "contain" }}
+              ></Image>
+            </div>
+          </ModalDescription>
+        </Modal>
+      )}
       {data && (
         <div className="mt-10 rounded-2xl border px-[5%] shadow-md transition-colors duration-300 dark:border-border-dark ">
           <div className="mb-5 border-b-[5px] border-gray-200">
@@ -120,17 +193,33 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 </p>
               </div>
             </div>
-            <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
-              {data.vote_items.map((e: voteItemType, i: Key) => (
-                <VoteDetailItemCard
-                  key={i}
-                  item={e}
-                  setSelectItem={select}
-                  selectItem={selectItem}
-                  isParti={voteCheck?.is_participation}
-                />
-              ))}
-            </div>
+            {!data.vote.is_closed ? (
+              <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
+                {data.vote_items.map((e: voteItemType, i: Key) => (
+                  <VoteDetailItemCard
+                    key={i}
+                    item={e}
+                    setSelectItem={select}
+                    selectItem={selectItem}
+                    isParti={voteCheck?.is_participation}
+                    imageModalHandler={imageModalHandler}
+                    isOpen={isImageModalOpen.isOpen}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
+                {data.vote_items.map((e: voteItemType, i: Key) => (
+                  <VoteDetailEndItemCard
+                    key={i}
+                    item={e}
+                    total_voted={data.vote.voted_number}
+                    imageModalHandler={imageModalHandler}
+                    isOpen={isImageModalOpen.isOpen}
+                  />
+                ))}
+              </div>
+            )}
             <div
               className={
                 "ml-auto text-right text-sm  transition-colors duration-300 dark:text-text-normal-dark"

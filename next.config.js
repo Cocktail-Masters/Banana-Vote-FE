@@ -20,6 +20,7 @@ const nextConfig = {
       "search.pstatic.net",
       "dummyimage.com",
       "cdn.pixabay.com",
+      "images.unsplash.com",
     ],
   },
   async rewrites() {

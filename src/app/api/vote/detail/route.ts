@@ -80,11 +80,11 @@ const voteDetailDummy: voteDetailType[] = [
       is_event: false,
       is_anonymous: true,
       is_public: true,
-      is_closed: false,
+      is_closed: true,
       start_date: "2023-04-07",
       end_date: "2023-04-14",
       hits: 42,
-      voted_number: 56,
+      voted_number: 46,
       opinion_number: 3,
       tags: [
         {

@@ -34,7 +34,7 @@ const PicketAreaModalContent = ({
               maxWidth: "800",
               margin: "auto",
             }}
-            alt={"피켓 이밎"}
+            alt={"picket image"}
           ></Image>
           <div
             className={`flex w-full max-w-5xl items-center justify-between p-3`}

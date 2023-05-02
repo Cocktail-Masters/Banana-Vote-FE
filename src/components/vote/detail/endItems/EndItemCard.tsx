@@ -37,8 +37,7 @@ const VoteDetailEndItemCard = ({
           <Image
             src="https://cdn.discordapp.com/attachments/433506654009425921/1021417880207753237/unknown.png"
             alt="기본 이미지"
-            // width="100"
-            // height="100"
+
             fill
             className="absolute rounded-xl object-contain"
             onClick={() => {

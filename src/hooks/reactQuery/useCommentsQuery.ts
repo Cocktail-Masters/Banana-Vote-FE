@@ -7,7 +7,7 @@ export const commentFetch = async (
 ) => {
   const res = await fetch(
     new URL(
-      `${process.env.NEXT_PUBLIC_HOSTNAME}/api/vote/opinion/${postId}/${nowPageIndex}?sort-option=${sortOption}`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/vote/opinion/${postId}/${nowPageIndex}?sort-option=${sortOption}`
     )
   );
   return res.json();

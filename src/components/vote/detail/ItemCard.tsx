@@ -3,11 +3,6 @@ import Image from "next/image";
 import defaultImg from "@assets/images/defalut_vote_element_img.png";
 import { voteItemType } from "@/types";
 
-import { useState } from "react";
-import Modal from "@/components/common/modal";
-import ModalDescription from "@/components/common/modal/Description";
-import ModalHeader from "@/components/common/modal/Header";
-
 type imageModalType = {
   image_url: string;
   isOpen: boolean;
@@ -28,13 +23,6 @@ const VoteDetailItemCard = ({
   imageModalHandler: (e: imageModalType) => void;
   isOpen: boolean;
 }) => {
-  // const [isOpen, setIsOpen] = useState<boolean>(false);
-  // const onOpen = () => {
-  //   setIsOpen(true);
-  // };
-  // const onClose = () => {
-  //   setIsOpen(false);
-  // };
   const onOpen = (e: string) => {
     imageModalHandler({ isOpen: true, image_url: e });
   };
@@ -90,44 +78,6 @@ const VoteDetailItemCard = ({
       <div className="ml-2 flex w-full items-center">
         <h2 className="text-lg font-semibold">{item.title}</h2>
       </div>
-      {/* {isOpen && (
-        <Modal
-          onClose={onClose}
-          className={`relative h-[95vh] max-h-[800px] w-full max-w-[1200px] rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-bg-feed-dark dark:text-text-normal-dark`}
-        >
-          <ModalHeader className="absolute right-0 top-0 z-10 mb-4 flex justify-center text-xl font-extrabold leading-6 text-gray-900">
-            <button
-              id="picketModalCloseButton"
-              className={`absolute top-1 right-3`}
-              onClick={onClose}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="h-6 w-6 transition-colors duration-300 dark:text-text-normal-dark"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </ModalHeader>
-          <ModalDescription className="relative flex h-full w-full justify-center">
-            <Image
-              src={defaultImg}
-              alt="기본 이미지"
-              fill
-              style={{ objectFit: "contain" }}
-              // className="rounded-2xl"
-            ></Image>
-          </ModalDescription>
-        </Modal>
-      )} */}
     </button>
   );
 };

@@ -1,4 +1,4 @@
-# Banana Vote
+# 🍌Banana Vote
 
 **투표하며 놀자!**
 

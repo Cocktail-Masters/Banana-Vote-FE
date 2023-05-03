@@ -11,9 +11,11 @@ import LayoutSideBarMenuLine from "./LayoutSideBarMenuLine";
 const LayoutSideBar = ({
   isOpen,
   tabs,
+  closer,
 }: {
   isOpen: boolean;
   tabs: tabType[];
+  closer: () => void;
 }) => {
   const pathname = usePathname();
   const [selectedTabPath, setSelectedTabPath] = useState<string | null>(null);
@@ -37,7 +39,10 @@ const LayoutSideBar = ({
                 className={`h-full ${
                   item.path === selectedTabPath ? "selected" : ""
                 }`}
-                onClick={() => setSelectedTabPath(item.path)}
+                onClick={() => {
+                  setSelectedTabPath(item.path);
+                  closer();
+                }}
               >
                 <div className="flex h-full items-center justify-end">
                   <Link href={item.path}>{`${item.label}`}</Link>

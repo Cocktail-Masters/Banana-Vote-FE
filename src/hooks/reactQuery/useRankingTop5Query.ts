@@ -21,8 +21,12 @@ export const fetchRankingTop5 = async () => {
 
     return res.data;
   } catch (e: any) {
-    console.log(e);
-    return e.response.data;
+    // return empty list
+    return {
+      totalPage: 0,
+      nowPage: 0,
+      rankingList: [],
+    };
   }
 };
 

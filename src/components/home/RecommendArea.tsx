@@ -87,14 +87,14 @@ const RecommendArea = () => {
           }}
         >
           {popResponse.isLoading ? (
-            <div className="mx-auto flex h-[154px] items-center justify-center">
+            <div className="mx-auto flex h-[154px] items-center justify-center bg-indigo-100">
               <Loading />
             </div>
           ) : (
             popResponse.data && <RecommendBox votes={popResponse.data.votes} />
           )}
           {intResponse.isLoading ? (
-            <div className="mx-auto flex h-[154px] items-center justify-center">
+            <div className="mx-auto flex h-[154px] w-full items-center justify-center">
               <Loading />
             </div>
           ) : (

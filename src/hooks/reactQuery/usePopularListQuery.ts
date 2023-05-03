@@ -11,7 +11,10 @@ export const fetchPopularList = async () => {
 
     return res.data;
   } catch (e: any) {
-    return e.response.data;
+    // return empty list
+    return {
+      votes: [],
+    };
   }
 };
 

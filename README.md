@@ -27,4 +27,6 @@
 
 |       Name       |        Version         |    Category    |         Description            |
 |:----------------:|:----------------------:|:--------------:|:------------------------------:|
-|      Spring     |         0.00           |    Framework   | 서버              |
+|      SpringBoot     |         3.0.5           |    Framework   |               |
+|      JDK     |         17.0.6           |    Framework   |               |
+|      MySQL     |         8.0.32           |    Framework   |               |

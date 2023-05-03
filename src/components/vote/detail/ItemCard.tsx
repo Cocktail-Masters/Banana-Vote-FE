@@ -28,7 +28,7 @@ const VoteDetailItemCard = ({
   };
   return (
     <button
-      className={`mb-2 flex h-full w-full rounded-2xl border-2 shadow-md transition-colors duration-300 dark:text-text-normal-dark ${
+      className={`mb-2 flex h-full w-full rounded-2xl border-2 shadow-md dark:text-text-normal-dark ${
         !isParti && selectItem === item.item_number
           ? " border-secondary-orange bg-primary-yellow dark:text-black"
           : ""

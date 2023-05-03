@@ -2,17 +2,13 @@ import { picketType } from "@/types";
 import Image from "next/image";
 import PicketDropzone from "./PicketDropzone";
 
-const SelectPicketImage = ({
-  picket_image_url,
-  position,
-  price,
-}: picketType) => {
+const SelectPicketImage = ({ picketImageUrl, position, price }: picketType) => {
   return (
     <div className={`mb-[10px] h-fit w-full`}>
       <div className={`mb-[10px] flex min-h-[300px] w-full justify-center`}>
         <div className={`relative block w-[800px]`}>
           <Image
-            src={picket_image_url}
+            src={picketImageUrl}
             alt={"picket Image"}
             fill
             sizes="(max-width: 768px) 100vw,

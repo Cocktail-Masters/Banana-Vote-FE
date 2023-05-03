@@ -3,8 +3,9 @@
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
-import { picketType } from "@/types";
 import useTranslation from "@/hooks/useTranslation";
+import { usePicketModifyUploadMutation } from "@/hooks/reactQuery/mutation/usePicketModifyUploadMutatation";
+import { useParams } from "next/navigation";
 
 const PicketDropzone = ({
   change,
@@ -15,12 +16,16 @@ const PicketDropzone = ({
   price?: number;
   position?: number;
 }) => {
+  const params = useParams();
   const [file, setFile] = useState<File>();
   const [fileType, setFileType] = useState<string>();
   const { translation } = useTranslation();
+  const { mutate } = usePicketModifyUploadMutation({
+    queryKey: ["picket", params.detail],
+  });
+  const [guestPrice, setGuestPrice] = useState<number>(0);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    console.log(acceptedFiles);
     setFile(acceptedFiles[0]);
   }, []);
 
@@ -31,7 +36,7 @@ const PicketDropzone = ({
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   return (
     <div
-      className={`ltems-center mb-[20px] flex w-full flex-col items-center  justify-center`}
+      className={`ltems-center flex w-full flex-col items-center  justify-center`}
     >
       {file ? (
         <div
@@ -119,22 +124,42 @@ const PicketDropzone = ({
         </div>
       )}
       <div className={`mt-[5%] flex h-[20%] w-full flex-col items-center`}>
-        <div>
+        <div className={`text-base font-bold dark:text-white`}>
           {translation(
             "vote.detail.picket_area.modal.content.dropzone.min_banana"
           )}{" "}
           : {change ? price : "1000"}
         </div>
-        <div className={`flex`}>
-          <input></input>
-          <button>
+        <div className={`mt-1 flex h-10 w-full justify-center`}>
+          <input
+            onChange={(e) => {
+              setGuestPrice((prev) => {
+                return parseInt(e.target.value);
+              });
+            }}
+            className={`w-1/3 rounded-xl border `}
+          ></input>
+          <button
+            className={`ml-2 h-full w-24 rounded-xl bg-bg-button-yellow active:bg-bg-button-yellow-light`}
+            onClick={() => {
+              if (change && position != undefined) {
+                mutate({
+                  voteId: parseInt(params.detail),
+                  picketImageUrl:
+                    "https://cdn.discordapp.com/attachments/433506654009425921/1021418121933885460/unknown.png",
+                  paidPrice: guestPrice,
+                  position,
+                });
+              }
+            }}
+          >
             {translation(
               "vote.detail.picket_area.modal.content.dropzone.submit"
             )}
           </button>
         </div>
         <div>
-          <div>
+          <div className={`text-sm`}>
             {translation(
               "vote.detail.picket_area.modal.content.dropzone.has_banana"
             )}

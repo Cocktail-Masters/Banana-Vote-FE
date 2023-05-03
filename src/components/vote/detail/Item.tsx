@@ -90,7 +90,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
     }
   };
   return (
-    <div className="rounded-2xl bg-bg-feed transition-colors duration-300 dark:bg-bg-feed-dark">
+    <div className="rounded-2xl bg-bg-feed dark:bg-bg-feed-dark">
       {data && isDeclaration && (
         <DeclarationModal
           title={data.vote.title}
@@ -142,7 +142,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
         </Modal>
       )}
       {data && (
-        <div className="mt-10 rounded-2xl border px-[5%] shadow-md transition-colors duration-300 dark:border-border-dark ">
+        <div className="mt-10 rounded-2xl border px-[5%] shadow-md dark:border-border-dark ">
           <div className="mb-5 border-b-[5px] border-gray-200">
             <div className="flex items-center py-4">
               <div className="lg:text-md mr-2 flex-1 sm:flex-[2] md:flex-[2]">

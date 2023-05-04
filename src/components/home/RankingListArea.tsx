@@ -55,7 +55,7 @@ const RankingListArea = () => {
           <Loading />
         </div>
       ) : (
-        <RankingBox contents={data.ranking_list} />
+        <RankingBox contents={data.rankingList} />
       )}
     </div>
   );

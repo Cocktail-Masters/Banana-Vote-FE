@@ -3,23 +3,23 @@
  */
 
 import { useQuery } from "@tanstack/react-query";
-import { useInterestListDummy } from "@components/home/__test__/useInterestListDummy";
+import api from "@/common/axiosInstance";
 
 export const fetchInterestList = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/home/interest`
-  )
-    .then((response) => response.json())
-    .catch((e) => e);
+  try {
+    const res = await api.get(`/votes/interest`);
 
-  return response.res;
+    return res.data;
+  } catch (e: any) {
+    // return empty list
+    return {
+      votes: [],
+    };
+  }
 };
 
 export const useInterestListQuery = ({ queryKey }: { queryKey: string }) => {
   return useQuery([queryKey], async () => {
-    // TODO : api 요청으로 데이터 받아오기
-    const response = useInterestListDummy;
-
-    return response;
+    return fetchInterestList();
   });
 };

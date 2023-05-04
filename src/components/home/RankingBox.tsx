@@ -23,7 +23,7 @@ const RankingBox = ({ contents }: { contents: seasonUserType[] }) => {
           contents.map((content: seasonUserType, index: number) => {
             if (index === 0) {
               return (
-                <div className="mb-2" key={content.id}>
+                <div className="mb-2" key={index}>
                   <div className="flex">
                     <Image
                       src={goldMedal}
@@ -41,7 +41,7 @@ const RankingBox = ({ contents }: { contents: seasonUserType[] }) => {
               );
             } else if (index === 1) {
               return (
-                <div className="mb-2" key={content.id}>
+                <div className="mb-2" key={index}>
                   <div className="flex">
                     <Image
                       src={silverMedal}
@@ -59,7 +59,7 @@ const RankingBox = ({ contents }: { contents: seasonUserType[] }) => {
               );
             } else if (index === 2) {
               return (
-                <div className="mb-2" key={content.id}>
+                <div className="mb-2" key={index}>
                   <div className="flex">
                     <Image
                       src={bronzeMedal}
@@ -77,7 +77,7 @@ const RankingBox = ({ contents }: { contents: seasonUserType[] }) => {
               );
             } else {
               return (
-                <div className="mb-2" key={content.id}>
+                <div className="mb-2" key={index}>
                   <div className="flex">
                     <p className="h-auto w-5 text-center text-base font-bold">
                       {index + 1}

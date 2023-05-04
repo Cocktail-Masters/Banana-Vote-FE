@@ -29,6 +29,11 @@ const LayoutHeader = () => {
   ];
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const closer = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
   useEffect(() => {
     if (isOpen && minWidth650) setIsOpen(false);
   }, [isOpen, minWidth650]);
@@ -55,7 +60,7 @@ const LayoutHeader = () => {
         <LoginModal>
           <Login />
         </LoginModal>
-        <div className="visible relative z-[110] m-3 p-1 lg:invisible lg:absolute">
+        <div className="visible relative z-[110] m-3 cursor-pointer p-1 	lg:invisible lg:absolute">
           <HamburgerMenuButton
             isOpen={isOpen}
             strokeWidth={5}
@@ -67,7 +72,11 @@ const LayoutHeader = () => {
           />
         </div>
       </div>
-      <LayoutSidebar tabs={tabs} isOpen={isOpen}></LayoutSidebar>
+      <LayoutSidebar
+        tabs={tabs}
+        isOpen={isOpen}
+        closer={closer}
+      ></LayoutSidebar>
     </>
   );
 };

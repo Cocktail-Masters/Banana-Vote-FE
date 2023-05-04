@@ -58,8 +58,8 @@
 ### DevOps
 |       Name         |        Version         |    Category    |         Description            |
 |:------------------:|:----------------------:|:--------------:|:------------------------------:|
-|      Vercel        |         3.0.5          |    Framework   |                                |
-|      Docker        |         17.0.6         |    Framework   |                             |
+|      Vercel        |         3.0.5          |    Framework   | 프론트엔드 배포                 |
+|      Docker        |         17.0.6         |    Framework   | 백엔드, DB 배포                 |
 
 ## 📐 Architecture
 준비 중...

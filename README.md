@@ -43,7 +43,9 @@
 |   timeago.js                   |         4.0.2          |    Library     | 시간값을 통한 상대시간 표현에 사용, format 자동화                         |
 |   Firebase                     |         9.17.2         |    Library     | 이미지 스토리지                                                          |
 |   Nano Id                      |         4.0.1          |    Library     | 랜덤 문자열 생성                                                         |
-|   Humps                        |         2.0.2          |    Dev Library |  axios request, response 시 케이스 자동 변환                             |
+|   Humps                        |         2.0.2          |    Dev Library | axios request, response 시 케이스 자동 변환                              |
+|   Playwright                   |         1.31.2         |    Dev Tools   | E2E 테스트                                                               |
+|   StoryBook                    |         6.5.16         |    Dev Tools   | UI 컴포넌트 테스트                                                       |
 
 ### Backend
 
@@ -52,6 +54,12 @@
 |      SpringBoot    |         3.0.5          |    Framework   |                                |
 |      JDK           |         17.0.6         |    Framework   |                                |
 |      MySQL         |         8.0.32         |    Framework   |                                |
+
+### DevOps
+|       Name         |        Version         |    Category    |         Description            |
+|:------------------:|:----------------------:|:--------------:|:------------------------------:|
+|      Vercel        |         3.0.5          |    Framework   |                                |
+|      Docker        |         17.0.6         |    Framework   |                             |
 
 ## 📐 Architecture
 준비 중...
@@ -65,7 +73,7 @@
 ## 🏗️ Directory Structure
 ### Frontend
 ```
-📦Banana_Vote_FE
+💻Banana_Vote_FE
 ├─📦language
 ├─📦playrgiht
 ├─📦public
@@ -75,7 +83,7 @@
 │  │  ├─📂[lng]
 │  │  ├─📂api
 │  ├─📂types
-│  └─middleware.ts
+│  └─📄middleware.ts
 ├─📜.env
 ├─📜...
 └─📜tsconfig.json

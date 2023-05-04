@@ -9,8 +9,22 @@
 
 ### Banana Vote (바나나 보트)를 이용해보세요! <br />
 
-## 기술 스택
-### 🐥 Frontend
+## 📅 개발 기간
+- 2023.3.10 ~ 진행 중
+
+## 🔥 주요 기능
+### 메인 페이지 (투표 목록 페이지)
+- 투표글 목록 피드 형태로 조회
+### 검색 결과 페이지
+- 클릭 혹은 검색한 태그에 해당하는 투표글 목록 조회
+### 투표글 작성 페이지
+### 이벤트 페이지
+### 스토어 페이지
+### 랭킹 페이지
+### 마이 페이지
+
+## 🐒 기술 스택
+### Frontend
 
 |       Name                     |        Version         |    Category    |         Description                                                     |
 |:------------------------------:|:----------------------:|:--------------:|:-----------------------------------------------------------------------:|
@@ -31,10 +45,48 @@
 |   Nano Id                      |         4.0.1          |    Library     | 랜덤 문자열 생성                                                         |
 |   Humps                        |         2.0.2          |    Dev Library |  axios request, response 시 케이스 자동 변환                             |
 
-### 🐒 Backend
+### Backend
 
 |       Name         |        Version         |    Category    |         Description            |
 |:------------------:|:----------------------:|:--------------:|:------------------------------:|
 |      SpringBoot    |         3.0.5          |    Framework   |                                |
 |      JDK           |         17.0.6         |    Framework   |                                |
 |      MySQL         |         8.0.32         |    Framework   |                                |
+
+## 📐 Architecture
+준비 중...
+
+## ☁️ ERD Cloud
+준비 중...
+
+## 📄 Rules
+### Git
+
+## 🏗️ Directory Structure
+### Frontend
+```
+📦Banana_Vote_FE
+├─📦language
+├─📦playrgiht
+├─📦public
+│  └─📂fonts
+├─📦src
+│  ├─📂app
+│  │  ├─📂[lng]
+│  │  ├─📂api
+│  ├─📂types
+│  └─middleware.ts
+├─📜.env
+├─📜...
+└─📜tsconfig.json
+```
+### Backend
+
+## 👥 Team
+| 이름 | 역할 |
+|------|------|
+| <p align="center"><a href="https://github.com/YeoUlFox"><img src="https://avatars.githubusercontent.com/u/41969902?v=4" width="150px;" style="max-width: 100%;"/></a><br/><strong>우상욱</strong></p> | - 백엔드 개발 |
+| <p align="center"><a href="https://github.com/YeoUlFox"><img src="https://avatars.githubusercontent.com/u/96644445?v=4" width="150px;" style="max-width: 100%;"/></a><br/><strong>이상우</strong></p> | - 백엔드 개발 |
+| <p align="center"><a href="https://github.com/YeoUlFox"><img src="https://avatars.githubusercontent.com/u/20225380?v=4" width="150px;" style="max-width: 100%;"/></a><br/><strong>장석찬</strong></p> | - 프론트엔드 개발 |
+| <p align="center"><a href="https://github.com/YeoUlFox"><img src="https://avatars.githubusercontent.com/u/38030774?v=4" width="150px;" style="max-width: 100%;"/></a><br/><strong>정진</strong></p> | - 프론트엔드 개발 |
+| <p align="center"><a href="https://github.com/YeoUlFox"><img src="https://avatars.githubusercontent.com/u/64128134?v=4" width="150px;" style="max-width: 100%;"/></a><br/><strong>조민규</strong></p> | - 프론트엔드 개발 |

@@ -21,6 +21,7 @@ const nextConfig = {
       "dummyimage.com",
       "cdn.pixabay.com",
       "images.unsplash.com",
+      "firebasestorage.googleapis.com",
     ],
   },
   async rewrites() {

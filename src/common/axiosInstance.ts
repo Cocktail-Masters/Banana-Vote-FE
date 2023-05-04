@@ -57,6 +57,9 @@ api.interceptors.request.use(async (config) => {
   const newConfig = { ...config };
   newConfig.url = config.url;
   console.log("newConfig", newConfig);
+  if (config.method === "patch") {
+    newConfig.data = decamelizeKeys(newConfig.data);
+  }
   if (!!config?.params) {
     newConfig.params = decamelizeKeys(config.params);
   }

@@ -25,7 +25,7 @@ const PicketAreaModalContent = ({
       {pickets.map((e, i) => (
         <div key={i}>
           <Image
-            src={e.picket_image_url}
+            src={e.picketImageUrl}
             width={1200}
             height={200}
             style={{
@@ -44,7 +44,7 @@ const PicketAreaModalContent = ({
               onClick={() => {
                 onClick({
                   picket: {
-                    picket_image_url: e.picket_image_url,
+                    picketImageUrl: e.picketImageUrl,
                     price: e.price,
                     position: e.position,
                   },

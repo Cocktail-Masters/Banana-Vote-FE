@@ -313,7 +313,7 @@ export type seasonTypes = seasonType[];
  */
 
 export type picketType = {
-  picket_image_url: string;
+  picketImageUrl: string;
   position: number;
   price: number;
 };

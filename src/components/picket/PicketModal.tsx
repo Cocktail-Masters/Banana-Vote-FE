@@ -20,11 +20,10 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
   const onClose = () => {
     setIsOpen(false);
   };
-
   const [changeState, setChangeState] = useState<picketChangeType>({
     change: false,
     picket: {
-      picket_image_url: "",
+      picketImageUrl: "",
       position: 0,
       price: 0,
     },
@@ -54,7 +53,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
               setChangeState({
                 change: false,
                 picket: {
-                  picket_image_url: "",
+                  picketImageUrl: "",
                   price: 0,
                   position: 0,
                 },
@@ -96,7 +95,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                             setChangeState({
                               change: false,
                               picket: {
-                                picket_image_url: "",
+                                picketImageUrl: "",
                                 price: 0,
                                 position: 0,
                               },
@@ -129,7 +128,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                           setChangeState({
                             change: false,
                             picket: {
-                              picket_image_url: "",
+                              picketImageUrl: "",
                               price: 0,
                               position: 0,
                             },
@@ -156,7 +155,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                     <Dialog.Description>
                       {changeState.change ? (
                         <SelectPicketImage
-                          picket_image_url={changeState.picket.picket_image_url}
+                          picketImageUrl={changeState.picket.picketImageUrl}
                           position={changeState.picket.position}
                           price={changeState.picket.price}
                         />

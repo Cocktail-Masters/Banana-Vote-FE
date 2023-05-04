@@ -26,19 +26,33 @@ const VoteDetailEndItemCard = ({
   };
   return (
     <div
-      className={` mb-2 flex h-full w-full overflow-hidden rounded-2xl border-2 bg-primary-yellow shadow-md transition-colors duration-300 dark:text-text-normal-dark hover:dark:text-black `}
+      className={` mb-2 flex h-full w-full overflow-hidden rounded-2xl border-2 bg-primary-yellow shadow-md dark:text-text-normal-dark hover:dark:text-black `}
     >
-      <div className="relative">
+      <div className="relative flex h-full w-full">
+        <div className="relative ml-[115px] flex h-[100px] w-[calc(100%_-_100px)] items-center">
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{
+              x: `${
+                -100 + Math.round((item.voted_number / total_voted) * 100)
+              }%`,
+            }}
+            transition={{ duration: 1 }}
+            className={` h-full w-full rounded-2xl bg-[#81D1FF]`}
+          ></motion.div>
+          <h2
+            className={`absolute text-base  font-semibold dark:text-black md:text-lg`}
+          >
+            {item.item_number}번 {item.title}{" "}
+            {Math.round((item.voted_number / total_voted) * 100)}%
+          </h2>
+        </div>
         <div
-          className={`relative ${
-            !isOpen ? "z-[1]" : "z-0"
-          } h-[100px] w-[100px]  rounded-2xl bg-white dark:bg-black`}
+          className={`absolute h-[100px] w-[100px]  rounded-2xl bg-white dark:bg-black`}
         >
           <Image
             src="https://cdn.discordapp.com/attachments/433506654009425921/1021417880207753237/unknown.png"
             alt="기본 이미지"
-            // width="100"
-            // height="100"
             fill
             className="absolute rounded-xl object-contain"
             onClick={() => {
@@ -67,20 +81,6 @@ const VoteDetailEndItemCard = ({
             />
           </svg>
         </div>
-      </div>
-      <div className="relative ml-2 flex w-full items-center">
-        <motion.div
-          initial={{ x: "-100%" }}
-          animate={{
-            x: `${-100 + Math.round((item.voted_number / total_voted) * 100)}%`,
-          }}
-          transition={{ duration: 1 }}
-          className={` h-full w-full rounded-2xl bg-[#81D1FF]`}
-        ></motion.div>
-        <h2 className={`absolute text-lg font-semibold`}>
-          {item.item_number}번 {item.title}{" "}
-          {Math.round((item.voted_number / total_voted) * 100)}%
-        </h2>
       </div>
     </div>
   );

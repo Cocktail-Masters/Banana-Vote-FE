@@ -21,7 +21,7 @@ const Carousel = ({ pickets }: picketsType) => {
         {pickets.map((e, i) => (
           <div className={`h-[200px] w-[350px] lg:w-[1200px]`} key={i}>
             <Image
-              src={e.picket_image_url}
+              src={e.picketImageUrl}
               alt={"피켓 이미지"}
               height={"200"}
               width={"1200"}

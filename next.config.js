@@ -7,7 +7,7 @@ const nextConfig = {
     prependData: ``,
   },
   experimental: {
-    appDir: true,
+    // appDir: true,
     fontLoaders: [
       { loader: "@next/font/google", options: { subsets: ["korean"] } },
     ],

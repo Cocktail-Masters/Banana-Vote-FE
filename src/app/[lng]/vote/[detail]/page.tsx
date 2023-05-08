@@ -10,11 +10,15 @@ const VoteDetail = ({
   params: { detail: string; lng: Locale };
 }) => {
   return (
-    <div className={"VoteDetail"} style={{ width: "100%", height: "100%" }}>
+    <div
+      className={
+        "VoteDetail mt-10 mb-10 h-full w-full rounded-2xl border px-[5%] shadow-md dark:border-border-dark "
+      }
+    >
       {/* <HydrateDetail postId={params.detail} /> */}
       <VoteDetailItem postId={parseInt(params.detail)} />
       <PicketArea />
-      {/* <CommentListArea /> */}
+      <CommentListArea />
     </div>
   );
 };

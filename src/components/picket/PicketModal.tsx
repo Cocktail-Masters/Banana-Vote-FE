@@ -39,7 +39,7 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
     <>
       <button
         className={
-          "h-[45px] w-[100px] rounded-2xl bg-terriary-mint font-semibold shadow-md hover:bg-primary-yellow active:bg-secondary-orange"
+          "h-[30px] w-[85px] mt-5 rounded-2xl bg-terriary-mint text-sm font-semibold shadow-md hover:bg-primary-yellow active:bg-secondary-orange"
         }
         onClick={onOpen}
       >

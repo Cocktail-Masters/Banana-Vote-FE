@@ -5,7 +5,7 @@ import { userType } from "@/types";
 
 export type userSliceType = {
   isLogin: boolean;
-  user: userType;
+  user: userType
   setIsLogin: (input: boolean) => void;
   setNickname: (input: string) => void;
 };
@@ -18,6 +18,7 @@ export const createUserSlice = (set: any) => ({
     age: 0,
     gender: "",
     ranking: 0,
+    badge_image_url: "",
     percentage: 0.0,
   },
   setIsLogin: (input: boolean) =>

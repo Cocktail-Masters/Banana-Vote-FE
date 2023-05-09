@@ -1,5 +1,5 @@
 import LocaleSwitcher from "@/components/common/locale-switcher";
-import Redirect from "@/components/common/redirect.client";
+import Redirect from "@/components/common/Redirect.client";
 import Loading from "@/components/Loading";
 import { getDictionary } from "get-dictionary";
 import { Locale } from "i18n-config";

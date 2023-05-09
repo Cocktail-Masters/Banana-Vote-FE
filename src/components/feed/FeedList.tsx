@@ -54,7 +54,8 @@ const FeedList = ({ filterOptions, keyword }: feedListProps) => {
               <div className="flex w-full items-center justify-center py-3 text-center">
                 <h3 className="text-xl lg:text-2xl">
                   <span className="font-bold">{keyword}</span>
-                  {translation("feed.feed_list_area.result")}
+                  {!keyword.startsWith("#") &&
+                    translation("feed.feed_list_area.result")}
                 </h3>
               </div>
             )}
@@ -80,9 +81,6 @@ const FeedList = ({ filterOptions, keyword }: feedListProps) => {
               );
             })}
           {hasNextPage && (
-            /**
-             * @todo 스켈레톤 만들기
-             */
             <div className="h-100 mt-5 mb-5 flex w-full" ref={ref}>
               <Loading />
             </div>

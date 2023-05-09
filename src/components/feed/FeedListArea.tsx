@@ -15,10 +15,6 @@ const FeedListArea = () => {
     sortBy: 1, // 1 : 최신순, 2 : 참여순(인기순), 3 : 조회순, 4 : 댓글 많은 순
   });
 
-  useEffect(() => {
-    console.log(keyword);
-  }, [keyword]);
-
   return (
     <div className="flex w-full flex-col items-start lg:w-[90%] xl:mr-5 xl:w-[800px]">
       {/* Search & Filter Bar */}

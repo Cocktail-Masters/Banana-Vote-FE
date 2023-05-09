@@ -22,17 +22,17 @@ export const useFeedListDummy = [
       tags: [
         {
           id: 515,
-          name: "태그11",
+          name: "탕수육",
           used_number: 1234,
         },
         {
           id: 16,
-          name: "태그22",
+          name: "탕수육_논쟁",
           used_number: 1234,
         },
         {
           id: 8782,
-          name: "태그33",
+          name: "부먹vs찍먹",
           used_number: 1234,
         },
       ],

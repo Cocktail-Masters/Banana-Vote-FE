@@ -33,7 +33,7 @@ const VoteSearchBar = ({
     },
     {
       id: 2,
-      name: translation("home.vote_search_barsort_participant_high"), // 참여 순 (투표 많은 순)
+      name: translation("home.vote_search_bar.sort_participant_high"), // 참여 순 (투표 많은 순)
     },
     {
       id: 3,

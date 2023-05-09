@@ -1,13 +1,12 @@
 /**
  * @author mingyu
  */
-"use client";
 import FeedListArea from "@/components/feed/FeedListArea";
 import Loading from "@/components/Loading";
 import React, { Suspense } from "react";
 import HydratedHashtag from "./hydratedHashtag";
 
-const Hashtag = () => {
+const HashTag = () => {
   return (
     <>
       {/* @ts-expect-error Server Component */}
@@ -22,4 +21,4 @@ const Hashtag = () => {
   );
 };
 
-export default Hashtag;
+export default HashTag;

@@ -1,3 +1,4 @@
+import api from "@/common/axiosInstance";
 import { useQuery } from "@tanstack/react-query";
 
 export const usePicketQuery = ({
@@ -10,12 +11,14 @@ export const usePicketQuery = ({
   return useQuery({
     queryKey: [queryKey, voteId],
     queryFn: async () => {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_HOSTNAME + "/api/pickets/" + voteId
-      );
-      const res = await response.json();
-      return res.res;
+      const response = await api.get(`pickets/` + String(voteId));
+      if (response.status === 200) {
+        return response.data;
+      } else if (response.status === 204) {
+        return response.data;
+      }
+      return response;
     },
-    // suspense: true,
+    suspense: true,
   });
 };

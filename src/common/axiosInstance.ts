@@ -56,6 +56,9 @@ api.interceptors.response.use((response: AxiosResponse) => {
 api.interceptors.request.use(async (config) => {
   const newConfig = { ...config };
   newConfig.url = config.url;
+  if (config.method === "patch") {
+    newConfig.data = decamelizeKeys(newConfig.data);
+  }
   if (!!config?.params) {
     newConfig.params = decamelizeKeys(config.params);
   }

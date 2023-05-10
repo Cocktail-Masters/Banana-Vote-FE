@@ -79,26 +79,22 @@ const VoteSearchBar = ({
             setIsFocus(false);
           }}
         >
-          <form className="flex w-full">
-            <label className="flex h-5 w-11 justify-center">
-              <MagnifyingGlassIcon
-                className="h-5 w-5"
-                onClick={() => alert("Search")}
-              />
-            </label>
-            <input
-              id="search-input"
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder={translation(
-                "home.vote_search_bar.search_placeholder"
-              )}
-              className="mr-3 h-5 bg-transparent pl-1 pr-1 leading-5 outline-none "
-              style={{ width: "calc(100% - 40px)" }}
+          <label className="flex h-5 w-11 justify-center">
+            <MagnifyingGlassIcon
+              className="h-5 w-5"
+              onClick={() => alert("Search")}
             />
-          </form>
+          </label>
+          <input
+            id="search-input"
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder={translation("home.vote_search_bar.search_placeholder")}
+            className="mr-3 h-5 bg-transparent pl-1 pr-1 leading-5 outline-none "
+            style={{ width: "calc(100% - 40px)" }}
+          />
         </div>
         {/* 필터 */}
         <div className="flex h-24 w-full flex-col items-center justify-center gap-2 md:h-10 md:flex-row md:justify-around md:gap-0">

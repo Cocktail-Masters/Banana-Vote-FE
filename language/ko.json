@@ -120,7 +120,8 @@
     "feed_list_area": {
       "result": "에 대한 검색 결과입니다.",
       "no_vote_list_title": "투표 목록이 없습니다.",
-      "no_vote_list_description": "새로운 투표를 만들어보세요!"
+      "no_vote_list_description": "새로운 투표를 만들어보세요!",
+      "num_list": "개의 글"
     }
   },
   "home": {

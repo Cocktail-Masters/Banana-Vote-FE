@@ -120,7 +120,8 @@
     "feed_list_area": {
       "result": "search results",
       "no_vote_list_title": "There is no voting list.",
-      "no_vote_list_description": "Create a new vote!"
+      "no_vote_list_description": "Create a new vote!",
+      "num_list": " articles"
     }
   },
   "home": {

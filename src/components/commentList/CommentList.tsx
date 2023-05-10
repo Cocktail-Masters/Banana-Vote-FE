@@ -21,14 +21,23 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
   if (isLoading) {
     return <>now loading</>;
   }
+  console.log(data);
   return (
-    <div className={`real relative w-11/12`}>
+    <div className={`real relative h-auto w-[95%]`}>
       {data !== undefined &&
         data.pages.map((e: any, i: number) => (
-          <div className={``} key={i}>
+          <div className={`h-auto border-t`} key={i}>
             {Object.keys(e.opinions).map((element, index: number) => (
-              <div key={index}>
-                <Opinion opinion={e.opinions[element]} />
+              <div className=" h-auto border-b pb-1" key={index}>
+                <Opinion
+                  opinion={e.opinions[element]}
+                  isBest={
+                    data.pages[0].best !== undefined &&
+                    data.pages[0].best.some((el: number) => {
+                      return el === e.opinions[element].id;
+                    })
+                  }
+                />
               </div>
             ))}
           </div>

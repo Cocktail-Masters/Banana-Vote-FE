@@ -99,7 +99,7 @@
         "sort_by_agree": "공감순",
         "sort_by_latest": "최신순",
         "comment_input": {
-          "placeholder": "나의 의견을 전해주세요"
+          "placeholder": "의견 작성하기"
         }
       }
     }

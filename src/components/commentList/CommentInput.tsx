@@ -52,7 +52,9 @@ const CommentInput = () => {
               badge_image_url={userInformation.badge_image_url}
             />
           </div>
-          <div className={`flex h-16 w-full p-[1%] dark:bg-bg-feed-dark`}>
+          <div
+            className={`flex h-16 w-full items-center p-[1%] dark:bg-bg-feed-dark`}
+          >
             <input
               className={`mr-[2%] h-full w-full border-b p-2`}
               placeholder={translation(
@@ -61,7 +63,7 @@ const CommentInput = () => {
               ref={commentInputRef}
             ></input>
             <button
-              className={`flex h-full w-28 items-center justify-center rounded-2xl bg-bg-button-yellow-light p-[2%] drop-shadow-md active:bg-bg-button-yellow active:shadow-inner dark:bg-bg-button-dark`}
+              className={`flex h-2/3 min-h-[20px]  w-28 items-center justify-center rounded-2xl bg-bg-button-yellow-light p-[2%] drop-shadow-md active:bg-bg-button-yellow active:shadow-inner dark:bg-bg-button-dark`}
               onClick={sendOpinion}
             >
               등록

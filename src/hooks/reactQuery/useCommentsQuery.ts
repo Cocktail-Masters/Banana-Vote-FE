@@ -32,7 +32,7 @@ export const useFetchComments = ({
   return useInfiniteQuery({
     queryKey: [queryKey, sortOption, postId],
     queryFn: fetchComments,
-    getNextPageParam: (lastPage: { endPageIndex: any } | null) => {
+    getNextPageParam: (lastPage: { best: number[]; endPageIndex: number }) => {
       return lastPage == null ? undefined : lastPage.endPageIndex;
     },
   });

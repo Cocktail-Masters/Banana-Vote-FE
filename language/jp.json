@@ -120,7 +120,8 @@
     "feed_list_area": {
       "result": "に対する検索結果です。",
       "no_vote_list_title": "投票リストがありません。",
-      "no_vote_list_description": "新しい投票を作成します！"
+      "no_vote_list_description": "新しい投票を作成します！",
+      "num_list": "個の文"
     }
   },
   "home": {

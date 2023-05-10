@@ -25,7 +25,11 @@ const FeedListArea = () => {
       />
       {/* Create Bar */}
       <VoteCreateBar badge_image_url="" />
-      <FeedList filterOptions={filterOptions} keyword={keyword} />
+      <FeedList
+        filterOptions={filterOptions}
+        keyword={keyword}
+        setKeyword={setKeyword}
+      />
     </div>
   );
 };

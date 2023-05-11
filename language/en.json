@@ -108,7 +108,9 @@
     "feed": {
       "best_opinion": "Best opinion",
       "opinion": "",
-      "opinion_num": " comments"
+      "opinion_num": " comments",
+      "encourage_voting_message_front": "Going to vote for ",
+      "encourage_voting_message_back": ""
     },
     "feed_header": {
       "report": "Report",

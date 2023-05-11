@@ -16,13 +16,6 @@ import TagList from "@components/common/tag/TagList";
 const Feed = ({ data }: { data: voteFeedType }) => {
   const { translation } = useTranslation();
 
-  /**
-   * @todo 태그 클릭 시 해당 태그로 투표 목록 검색
-   */
-  const handleTagClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log((e.target as HTMLElement).innerText);
-  };
-
   return (
     <>
       <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white bg-bg-feed drop-shadow-md transition duration-100 ease-in-out dark:bg-bg-feed-dark md:rounded-xl">
@@ -46,9 +39,9 @@ const Feed = ({ data }: { data: voteFeedType }) => {
               <FeedTitle content={data.vote.title} />
             </Link>
             {/* 피드 투표 항목들 */}
-            <VoteItemList vote_items={data.vote_items} />
+            <VoteItemList vote_items={data.vote_items} voteId={data.vote.id} />
             {/* 태그 */}
-            <TagList tags={data.vote.tags} handleClick={handleTagClick} />
+            <TagList tags={data.vote.tags} />
           </div>
         </div>
         <hr className="border-border dark:border-border-dark" />

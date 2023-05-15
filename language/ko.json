@@ -108,7 +108,9 @@
     "feed": {
       "best_opinion": "베스트 댓글",
       "opinion": "댓글",
-      "opinion_num": "개"
+      "opinion_num": "개",
+      "encourage_voting_message_front": "",
+      "encourage_voting_message_back": "에 투표하러 가기"
     },
     "feed_header": {
       "report": "신고",

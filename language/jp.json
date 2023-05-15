@@ -108,7 +108,9 @@
     "feed": {
       "best_opinion": "最高の意見",
       "opinion": "",
-      "opinion_num": " comments"
+      "opinion_num": " comments",
+      "encourage_voting_message_front": "",
+      "encourage_voting_message_back": "に投票しに行く"
     },
     "feed_header": {
       "report": "Report",

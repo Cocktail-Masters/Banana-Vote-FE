@@ -41,7 +41,7 @@ const Opinion = ({
                 className="jusitfy-center mt-1 mr-2 flex h-full cursor-pointer items-start text-sm font-semibold text-text-normal dark:text-text-normal-dark ms:max-w-full"
                 onClick={() => handleNicknameClick()}
               >
-                <p className="truncate">{opinion.writer.nickname}</p>
+                <p className={`${detail !== undefined? `truncate` : ""}`}>{opinion.writer.nickname}</p>
               </h5>
             </div>
 

@@ -66,12 +66,12 @@ const CommentInput = () => {
               className={`flex h-2/3 min-h-[20px]  w-28 items-center justify-center rounded-2xl bg-bg-button-yellow-light p-[2%] drop-shadow-md active:bg-bg-button-yellow active:shadow-inner dark:bg-bg-button-dark`}
               onClick={sendOpinion}
             >
-              등록
+              {translation("vote.detail.comment_area.comment_input.submit")}
             </button>
           </div>
         </div>
       ) : (
-        <div>로그인 후 이용 부탁드립니다.</div>
+        <div>{translation("vote.detail.comment_area.comment_input.alert")}</div>
       )}
     </div>
   );

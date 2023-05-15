@@ -95,11 +95,13 @@
         }
       },
       "comment_area": {
-        "count_comment": "コメント数",
-        "sort_by_agree": "同意順",
+        "count_comment": "コメント",
+        "sort_by_agree": "いいね順",
         "sort_by_latest": "最新順",
         "comment_input": {
-          "placeholder": "意見を伝えてください"
+          "placeholder": "コメントを入力",
+          "submit": "登録",
+          "alert": "ログイン後にご利用ください。"
         }
       }
     }

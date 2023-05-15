@@ -5,7 +5,7 @@ import { userType } from "@/types";
 
 export type userSliceType = {
   isLogin: boolean;
-  user: userType
+  user: userType;
   setIsLogin: (input: boolean) => void;
   setNickname: (input: string) => void;
 };

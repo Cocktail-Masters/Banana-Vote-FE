@@ -65,10 +65,33 @@
 준비 중...
 
 ## ☁️ ERD Cloud
-준비 중...
+![Banana Vote v2](https://github.com/Cocktail-Masters/Banana-Vote-FE/assets/64128134/ccda83c3-f4f4-439f-97fb-ac139f022ce8)
 
 ## 📄 Rules
-### Git
+### Git Branch 관련 작성법
+- `feature/[issue 번호]`
+    - ex) feature/45
+- `main`
+    - `develop`
+    - `feature`
+    - `hotfix`
+    - `release`
+### Git commit type
+- `feat:`
+    - 새로운 기능 추가
+    - ex) **feat: 이메일 인증**
+- `refactor:`
+    - 코드 리팩토링
+- `chore:`
+    - (코드의 수정 없이) 설정 변경
+- `fix:`
+    - 버그 수정
+- `style:`
+    - (코드의 수정 없이) 코드 스타일 변경
+- `docs:`
+    - 문서의 등록 및 수정
+- `test:`
+    - 테스트 관련한 코드의 추가 및 수정
 
 ## 🏗️ Directory Structure
 ### Frontend

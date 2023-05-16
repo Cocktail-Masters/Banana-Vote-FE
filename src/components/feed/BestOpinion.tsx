@@ -45,7 +45,7 @@ const BestOpinion = ({
             >
               {nickname}
             </h5>
-            <p
+            <p 
               className="jusitfy-center mt-1 flex h-full items-center text-xs text-gray-400"
               color="gray"
             >

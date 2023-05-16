@@ -95,11 +95,13 @@
         }
       },
       "comment_area": {
-        "count_comment": "Comments",
-        "sort_by_agree": "Agree Order",
-        "sort_by_latest": "Latest Order",
+        "count_comment": "comments",
+        "sort_by_agree": "Most Voted",
+        "sort_by_latest": "Latest",
         "comment_input": {
-          "placeholder": "Please share your opinion"
+          "placeholder": "Write a comment",
+          "submit": "Submit",
+          "alert": "Please log in to continue."
         }
       }
     }

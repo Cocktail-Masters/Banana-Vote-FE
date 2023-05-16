@@ -142,7 +142,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
         </Modal>
       )}
       {data && (
-        <div className="mt-10 rounded-2xl border px-[5%] shadow-md dark:border-border-dark ">
+        <div className="">
           <div className="mb-5 border-b-[5px] border-gray-200">
             <div className="flex items-center py-4">
               <div className="lg:text-md mr-2 flex-1 sm:flex-[2] md:flex-[2]">
@@ -269,7 +269,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
               </div>
             )}
           </div>
-          <div className="relative border-t border-gray-200 px-4 py-4 sm:px-6">
+          <div className="relative border-b border-gray-200 px-4 py-4 sm:px-6">
             <div className="flex h-full w-full items-center">
               <div className="w-full flex-wrap">
                 <TagList tags={data.vote.tags} />

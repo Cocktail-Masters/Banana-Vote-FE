@@ -39,9 +39,9 @@ export const useRegistrationMutation = ({
 
   return useMutation({
     mutationFn: fetchCreateVote,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries(queryKey);
     },
-    onError: (error) => {},
+    onError: () => {},
   });
 };

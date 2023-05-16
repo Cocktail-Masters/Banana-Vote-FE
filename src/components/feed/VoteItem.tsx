@@ -25,17 +25,14 @@ const VoteItem = ({
   const { translation } = useTranslation();
   const lng = useParams().lng;
 
-  const [modalToggle, setModalToggle] = useState<boolean>(false);
-
   return (
     <Link href={`/${lng}/vote/${voteId}`}>
       <div className="group h-full w-full cursor-pointer truncate rounded-2xl">
         <div className="relative m-auto grid h-[100px] w-full place-content-center overflow-hidden rounded-t-2xl border border-border dark:border-border-dark ms:h-[150px] md:h-[200px]">
           <Image
             className="m-auto object-cover"
-            src={!imageLink ? defaultImg : imageLink}
+            src={imageLink ? imageLink : defaultImg}
             alt="vote element img"
-            onClick={() => setModalToggle(true)}
             fill={true}
           />
           <div className="absolute top-[-100%] left-0 m-auto flex h-full w-full transform items-center justify-center bg-black/75 transition-transform duration-300 ease-in-out group-hover:translate-y-full">
@@ -57,13 +54,6 @@ const VoteItem = ({
             {content}
           </p>
         </div>
-        {/* Image Modal */}
-        {modalToggle && (
-          <ImageModal
-            setModalToggle={setModalToggle}
-            imageLink={!imageLink ? defaultImg : imageLink}
-          />
-        )}
       </div>
     </Link>
   );

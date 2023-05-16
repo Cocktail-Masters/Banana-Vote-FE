@@ -71,7 +71,6 @@ const VoteItems = ({
         return (
           <div key={index} className="relative w-full">
             <motion.div
-              // className={`vote-item relative w-full truncate transition duration-150 ease-in-out hover:-translate-y-1`}
               className="vote-item truncate"
               whileHover={{ scale: 1.03 }}
               {...getFramerOptionOfVersus(vote_items.length, index)}

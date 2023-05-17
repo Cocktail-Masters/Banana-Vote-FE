@@ -24,7 +24,8 @@ const FeedListArea = () => {
         setFilterOptions={setFilterOptions}
       />
       {/* Create Bar */}
-      <VoteCreateBar badge_image_url="" />
+      {/* <VoteCreateBar badge_image_url={} /> */}
+      <VoteCreateBar />
       <FeedList
         filterOptions={filterOptions}
         keyword={keyword}

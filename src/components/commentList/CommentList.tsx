@@ -1,7 +1,6 @@
 "use client";
 import { useFetchComments } from "@/hooks/reactQuery/useCommentsQuery";
 import { useEffect, useState } from "react";
-import { opinionType } from "@/types";
 import { useQueryClient } from "@tanstack/react-query";
 import Opinion from "./Opinion";
 
@@ -12,7 +11,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
   useEffect(() => {
     queryClient.invalidateQueries(["commentList", opinionType, 1]);
   }, [opinionType, queryClient]);
-  const { data, isFetching, isLoading } = useFetchComments({
+  const { data, isLoading } = useFetchComments({
     queryKey: "commentList",
     postId: 1,
     nowPageIndex,
@@ -21,7 +20,6 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
   if (isLoading) {
     return <>now loading</>;
   }
-  console.log(data);
   return (
     <div className={`real relative h-auto w-[95%]`}>
       {data !== undefined &&

@@ -9,10 +9,10 @@ import BadgeImage from "../common/BadgeImage";
 import useTranslation from "@/hooks/useTranslation";
 
 type voteCreateBarProps = {
-  badge_image_url?: string;
+  badgeImageUrl?: string;
 };
 
-const VoteCreateBar = ({ badge_image_url }: voteCreateBarProps) => {
+const VoteCreateBar = ({ badgeImageUrl }: voteCreateBarProps) => {
   const { translation } = useTranslation();
 
   return (
@@ -20,7 +20,7 @@ const VoteCreateBar = ({ badge_image_url }: voteCreateBarProps) => {
       {/* 바디 */}
       <div className="flex h-full items-center justify-between p-5">
         {/* 뱃지 */}
-        <BadgeImage user_id={2} badge_image_url={badge_image_url} />
+        <BadgeImage userId={2} badgeImageUrl={badgeImageUrl} />
         {/* 투표 생성 버튼 */}
         <Link
           className="flex h-full w-full items-center justify-center"

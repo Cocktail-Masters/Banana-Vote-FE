@@ -26,7 +26,7 @@ const VoteItemCard = ({
 }) => {
   const { lng } = useParams();
   const { imageFile, title } = voteItem;
-  const [imageSrc, setImageSrc] = useState<string | null>(voteItem.image_url);
+  const [imageSrc, setImageSrc] = useState<string | null>(voteItem.imageUrl);
 
   const uploadImageHandler = (file: File | null) => {
     setVoteItems((prevItems) => {

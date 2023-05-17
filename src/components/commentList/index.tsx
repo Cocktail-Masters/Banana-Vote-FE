@@ -1,7 +1,6 @@
 "use client";
 import CommentInput from "./CommentInput";
-import CommentList from "./CommentList";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import dynamic from "next/dynamic";
 import Loading from "../Loading";
 import useTranslation from "@/hooks/useTranslation";

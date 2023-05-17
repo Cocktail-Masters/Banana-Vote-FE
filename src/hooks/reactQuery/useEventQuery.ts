@@ -16,8 +16,8 @@ export const eventFetch = async ({
   ).then((response) => response.json());
   return {
     response: response.events,
-    end_page_index: response.end_page_index,
-    next_page: pageIndex + 1,
+    endPageIndex: response.end_page_index,
+    nextPage: pageIndex + 1,
   };
 };
 
@@ -29,9 +29,9 @@ export const useEventQuery = ({ close = false }: { close?: boolean }) => {
       return response;
     },
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.end_page_index <= lastPage.next_page
+      return lastPage.endPageIndex <= lastPage.nextPage
         ? undefined
-        : lastPage.next_page;
+        : lastPage.nextPage;
     },
   });
 };

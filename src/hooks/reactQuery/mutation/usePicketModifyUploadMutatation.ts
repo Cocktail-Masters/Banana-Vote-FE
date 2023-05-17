@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export type picketModyfyResultType = {
   lastModified: string;
-  current_price: number;
+  currentPrice: number;
 };
 
 const postPicketModifyUpload = async ({

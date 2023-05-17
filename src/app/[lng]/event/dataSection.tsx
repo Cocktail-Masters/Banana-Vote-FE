@@ -1,10 +1,8 @@
 "use client";
-import CardList from "@/components/common/cardList/CardList";
 import ContentList from "@/components/event/ContentList";
 import Loading from "@/components/Loading";
 import { useEventQuery } from "@/hooks/reactQuery/useEventQuery";
 import useTranslation from "@/hooks/useTranslation";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -18,7 +16,7 @@ const EventDataSection = () => {
   };
   const { translation } = useTranslation();
 
-  const { data, isLoading, isFetching, hasNextPage, fetchNextPage } =
+  const { data, isLoading, hasNextPage, fetchNextPage } =
     useEventQuery({
       close: isEnd,
     });

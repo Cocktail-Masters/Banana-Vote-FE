@@ -23,11 +23,11 @@ const Goods = ({ goods }: { goods: storeGoodsType }) => {
       {/* 뱃지 리스트 */}
       <CardBadgeList>
         {/* Hot 뱃지 */}
-        {goods.sell_count > 10 && (
+        {goods.sellCount > 10 && (
           <CardBadge label={"Hot"} bgColor={"#FF7777"} textColor={"white"} />
         )}
         {/* New 뱃지 */}
-        {new Date().getTime() - new Date(goods.start_date).getTime() <
+        {new Date().getTime() - new Date(goods.startDate).getTime() <
           604800000 && (
           <CardBadge label={"New"} bgColor={"#85C1E9"} textColor={"white"} />
         )}

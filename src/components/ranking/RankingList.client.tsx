@@ -48,8 +48,8 @@ export default function RankingList({ params }: { params: rankingParamsType }) {
             </tr>
           </thead>
           <tbody className="m-2 text-[20px]">
-            {data.ranking_list &&
-              data.ranking_list.map((value, index) => {
+            {data.rankingList &&
+              data.rankingList.map((value, index) => {
                 return (
                   <tr key={index} className="border-b-2 text-left">
                     <td className="border-1 max-w-0 truncate p-2">
@@ -71,7 +71,7 @@ export default function RankingList({ params }: { params: rankingParamsType }) {
         {translation("ranking.ranking_update_time")}
       </div>
       <Pagination
-        total_page={data?.total_page}
+        totalPage={data?.totalPage}
         nowPageIndex={paginationIndex}
         params={params}
       ></Pagination>

@@ -1,7 +1,7 @@
 {
   "ranking": {
-    "total_page": 41,
-    "ranking_list": [
+    "totalPage": 41,
+    "rankingList": [
       {
         "user_id": 1,
         "ranking": 1,

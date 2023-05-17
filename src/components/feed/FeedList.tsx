@@ -68,7 +68,7 @@ const FeedList = ({ filterOptions, keyword, setKeyword }: feedListProps) => {
                         &nbsp;·&nbsp;
                       </span>
                       <span className="inline-block text-base md:text-xl">
-                        {data.pages[0].total_count}
+                        {data.pages[0].totalCount}
                         {translation("feed.feed_list_area.num_list")}
                       </span>
                     </div>

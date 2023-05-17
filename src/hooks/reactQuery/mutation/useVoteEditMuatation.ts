@@ -8,10 +8,10 @@ export type voteRegistrationItemType = {
 export type voteRegistrationType = {
   title: string;
   content: string;
-  is_disclosure: boolean;
-  is_anonymouse: boolean;
-  end_date: string;
-  vote_items: voteRegistrationItemType[];
+  isDisclosure: boolean;
+  isAnonymouse: boolean;
+  endDate: string;
+  voteItems: voteRegistrationItemType[];
   tags: string[];
 };
 

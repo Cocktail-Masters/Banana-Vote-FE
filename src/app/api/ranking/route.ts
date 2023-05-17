@@ -6,9 +6,9 @@
 import { NextResponse } from "next/server";
 import { nanoid } from "nanoid";
 
-const total_page = 12;
+const totalPage = 12;
 
-const ranking_list = new Array(115)
+const rankingList = new Array(115)
   .fill(null)
   .map((v, index) => {
     return {
@@ -22,48 +22,48 @@ const ranking_list = new Array(115)
   .map((v, index) => ({ ...v, ranking: index + 1 }));
 
 const data = {
-  total_page,
-  ranking_list,
+  totalPage,
+  rankingList,
 };
 
 type getRankingFromApiType = {
-  season_id?: string | null;
-  page_num?: string | null;
-  page_size?: string | null;
+  seasonId?: string | null;
+  pageNum?: string | null;
+  pageSize?: string | null;
   nickname?: string | null;
 };
 
 export const getRankingFromApi = ({
-  season_id,
+  seasonId,
   nickname,
-  page_num = "0",
-  page_size = "10",
+  pageNum = "0",
+  pageSize = "10",
 }: getRankingFromApiType) => {
-  if (!!nickname && !!page_size) {
-    const index = data.ranking_list.map((v) => v.nickname).indexOf(nickname);
-    const nowPage = Math.floor(index / Number(page_size));
-    const start = index - (index % Number(page_size));
-    const end = start + Number(page_size);
+  if (!!nickname && !!pageSize) {
+    const index = data.rankingList.map((v) => v.nickname).indexOf(nickname);
+    const nowPage = Math.floor(index / Number(pageSize));
+    const start = index - (index % Number(pageSize));
+    const end = start + Number(pageSize);
     const newData = {
       ...data,
-      now_page: nowPage,
+      nowPage: nowPage,
       start,
       end,
-      ranking_list: data.ranking_list
+      ranking_list: data.rankingList
         .map((v) => ({
           ...v,
-          nickname: `${season_id}_` + v.nickname,
+          nickname: `${seasonId}_` + v.nickname,
         }))
         .slice(start, end),
     };
     return newData;
   } else {
-    const start = Number(page_num) * Number(page_size);
-    const end = start + Number(page_size);
+    const start = Number(pageNum) * Number(pageSize);
+    const end = start + Number(pageSize);
     const newData = {
       ...data,
-      ranking_list: data.ranking_list
-        .map((v) => ({ ...v, nickname: `${season_id}_` + v.nickname }))
+      rankingList: data.rankingList
+        .map((v) => ({ ...v, nickname: `${seasonId}_` + v.nickname }))
         .slice(start, end),
     };
     return newData;
@@ -72,14 +72,14 @@ export const getRankingFromApi = ({
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const season_id = searchParams.get("season_id");
-  const page_num = searchParams.get("page_num");
-  const page_size = searchParams.get("page_size");
+  const seasonId = searchParams.get("season_id");
+  const pageNum = searchParams.get("page_num");
+  const pageSize = searchParams.get("page_size");
   const nickname = searchParams.get("nickname");
   const result = getRankingFromApi({
-    season_id,
-    page_num,
-    page_size,
+    seasonId,
+    pageNum,
+    pageSize,
     nickname,
   });
   return NextResponse.json(result);

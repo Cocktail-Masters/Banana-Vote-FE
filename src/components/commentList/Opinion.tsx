@@ -29,8 +29,8 @@ const Opinion = ({
       <div className="flex h-full w-full flex-1 flex-wrap">
         <div className="mt-2 mr-2">
           <BadgeImage
-            user_id={opinion.writer.id}
-            badge_image_url={opinion.writer.badge_image_url}
+            userId={opinion.writer.id}
+            badgeImageUrl={opinion.writer.badgeImageUrl}
           />
         </div>
         <div className="left-12 h-auto w-[80%] md:w-[90%]">
@@ -49,7 +49,7 @@ const Opinion = ({
               className="jusitfy-center mt-1 flex h-full items-center text-xs text-gray-400"
               color="gray"
             >
-              {getRelativeDays(pathname, opinion.created_date)}
+              {getRelativeDays(pathname, opinion.createdDate)}
             </p>
             {isBest && (
               <p className="w-7">
@@ -106,7 +106,7 @@ const Opinion = ({
                       </g>
                     </svg>
                   </div>
-                  <div>{opinion.agreed_number}</div>
+                  <div>{opinion.agreedNumber}</div>
                 </button>
                 <button className="mr-1 flex h-full w-10 items-center">
                   <div className="w-5">
@@ -138,7 +138,7 @@ const Opinion = ({
                       </g>
                     </svg>
                   </div>
-                  <div>{opinion.disagreed_number}</div>
+                  <div>{opinion.disagreedNumber}</div>
                 </button>
                 <button className="text-base">🚨</button>
               </div>

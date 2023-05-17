@@ -12,10 +12,10 @@ export type voteRegistrationItemType = {
 export type voteRegistrationType = {
   title: string;
   content: string;
-  is_public: boolean;
-  is_anonymous?: boolean;
-  is_event?: boolean;
-  end_date: string;
+  isPublic: boolean;
+  isAnonymous?: boolean;
+  isEvent?: boolean;
+  endDate: string;
   items: voteRegistrationItemType[];
   tags: string[];
 };

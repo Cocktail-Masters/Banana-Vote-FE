@@ -7,7 +7,7 @@ const dummyData = {
       content:
         "스마트폰 추첨 이벤트를 진행합니다. 참여하시면 추첨을 통해 스마트폰을 드립니다.",
       image: "https://dummyimage.com/600x400/000/fff&text=Smartphone+Event",
-      end_date: "2023-07-31",
+      endDate: "2023-07-31",
       is_closed: false,
       vote_id: 1,
     },

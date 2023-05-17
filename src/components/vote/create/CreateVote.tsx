@@ -48,9 +48,9 @@ const CreateVote = () => {
     const sendData = {
       title: voteTitle,
       content: content,
-      end_date: endDate.toISOString(),
-      is_anonymous: isAnonymouse,
-      is_public: isPublic,
+      endDate: endDate.toISOString(),
+      isAnonymous: isAnonymouse,
+      isPublic: isPublic,
       items: newVoteItems,
       tags: tagArray,
     };

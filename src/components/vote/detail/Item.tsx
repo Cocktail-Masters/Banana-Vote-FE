@@ -90,7 +90,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
     }
   };
   return (
-    <div className="rounded-2xl bg-bg-feed dark:bg-bg-feed-dark">
+    <div className="h-full w-full rounded-2xl bg-bg-feed px-[5%] dark:bg-bg-feed-dark">
       {data && isDeclaration && (
         <DeclarationModal
           title={data.vote.title}
@@ -269,7 +269,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
               </div>
             )}
           </div>
-          <div className="relative border-b border-gray-200 px-4 py-4 sm:px-6">
+          <div className="relative border-b border-gray-200 px-4 py-4 dark:border-none sm:px-6">
             <div className="flex h-full w-full items-center">
               <div className="w-full flex-wrap">
                 <TagList tags={data.vote.tags} />

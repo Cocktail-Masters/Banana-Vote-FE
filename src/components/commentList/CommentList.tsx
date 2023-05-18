@@ -3,6 +3,7 @@ import { useFetchComments } from "@/hooks/reactQuery/useCommentsQuery";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import Opinion from "./Opinion";
+import Loading from "../Loading";
 
 const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
   const [nowPageIndex, setNowPageIndex] = useState(1);
@@ -18,7 +19,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
     sortOption: opinionType,
   });
   if (isLoading) {
-    return <>now loading</>;
+    return <Loading />;
   }
   return (
     <div className={`real relative h-auto w-[95%]`}>

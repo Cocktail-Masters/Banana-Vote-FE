@@ -16,7 +16,7 @@ export const eventFetch = async ({
   ).then((response) => response.json());
   return {
     response: response.events,
-    endPageIndex: response.end_page_index,
+    endPageIndex: response.endPageIndex,
     nextPage: pageIndex + 1,
   };
 };

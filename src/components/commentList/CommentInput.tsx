@@ -52,11 +52,9 @@ const CommentInput = () => {
               badgeImageUrl={userInformation.badgeImageUrl}
             />
           </div>
-          <div
-            className={`flex h-16 w-full items-center p-[1%] dark:bg-bg-feed-dark`}
-          >
+          <div className={`flex h-16 w-full items-center p-[1%] `}>
             <input
-              className={`mr-[2%] h-full w-full border-b p-2`}
+              className={`mr-[2%] h-full w-full border-b p-2 dark:bg-black`}
               placeholder={translation(
                 "vote.detail.comment_area.comment_input.placeholder"
               )}

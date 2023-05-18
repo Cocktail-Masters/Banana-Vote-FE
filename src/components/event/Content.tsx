@@ -9,6 +9,7 @@ import { useParams } from "next/navigation";
 
 const EventContent = ({ content }: { content: eventTypes }) => {
   const { translation } = useTranslation();
+  console.log(content);
   const params = useParams();
   return (
     <Link href={`/vote/${content.voteId}`}>

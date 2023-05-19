@@ -89,14 +89,14 @@ export const feedListFetch = async (
     .catch((e) => e);
 
   // * Vercel Build 오류로 예외처리 하드코딩
-  if (!response || !response.res) {
-    response = {
-      res: {
-        totalCount: 0,
-        votes: [],
-      },
-    };
-  }
+  // if (!response || !response.res) {
+  //   response = {
+  //     res: {
+  //       totalCount: 0,
+  //       votes: [],
+  //     },
+  //   };
+  // }
   return response.res;
 };
 

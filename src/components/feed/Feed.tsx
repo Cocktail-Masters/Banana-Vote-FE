@@ -15,7 +15,6 @@ import TagList from "@components/common/tag/TagList";
 
 const Feed = ({ data }: { data: voteFeedType }) => {
   const { translation } = useTranslation();
-
   return (
     <>
       <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white bg-bg-feed drop-shadow-md transition duration-100 ease-in-out dark:bg-bg-feed-dark md:rounded-xl">
@@ -55,7 +54,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
               </div>
               <Link href={`/vote/detail/${data.vote.id}`}>
                 <div className="see-more absolute right-0 flex h-5 text-sm font-bold text-text-title hover:border-b dark:text-text-title-dark">
-                  {translation("feed.feed.opinion")}{" "}
+                  {translation("feed.feed.opinion")}
                   {data.vote.opinionNumber.toLocaleString()}
                   {translation("feed.feed.opinion_num")}
                   <svg

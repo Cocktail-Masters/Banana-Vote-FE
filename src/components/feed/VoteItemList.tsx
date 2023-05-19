@@ -67,23 +67,24 @@ const VoteItems = ({
   }, []);
   return (
     <>
-      {voteItems.map((item: voteItemType, index: number) => {
-        return (
-          <div key={index} className="relative w-full">
-            <motion.div
-              className="vote-item truncate"
-              whileHover={{ scale: 1.03 }}
-              {...getFramerOptionOfVersus(voteItems.length, index)}
-            >
-              <VoteItem
-                imageLink={item.imageUrl}
-                content={item.title}
-                voteId={voteId}
-              />
-            </motion.div>
-          </div>
-        );
-      })}
+      {voteItems &&
+        voteItems.map((item: voteItemType, index: number) => {
+          return (
+            <div key={index} className="relative w-full">
+              <motion.div
+                className="vote-item truncate"
+                whileHover={{ scale: 1.03 }}
+                {...getFramerOptionOfVersus(voteItems.length, index)}
+              >
+                <VoteItem
+                  imageLink={item.imageUrl}
+                  content={item.title}
+                  voteId={voteId}
+                />
+              </motion.div>
+            </div>
+          );
+        })}
     </>
   );
 };
@@ -99,7 +100,9 @@ const VoteItemList = ({
     <div className="relative mb-5 flex w-full select-none justify-center">
       <div
         className={
-          gridColumns[(voteItems.length < 4 ? voteItems.length : 4) ?? 1]
+          gridColumns[
+            (voteItems && voteItems.length < 4 ? voteItems.length : 4) ?? 1
+          ]
         }
       >
         <VoteItems voteItems={voteItems} voteId={voteId} />

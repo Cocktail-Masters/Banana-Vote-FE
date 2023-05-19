@@ -55,7 +55,9 @@ const Feed = ({ data }: { data: voteFeedType }) => {
               <Link href={`/vote/detail/${data.vote.id}`}>
                 <div className="see-more absolute right-0 flex h-5 text-sm font-bold text-text-title hover:border-b dark:text-text-title-dark">
                   {translation("feed.feed.opinion")}
-                  {data.vote.opinionNumber.toLocaleString()}
+                  {data &&
+                    data.vote &&
+                    data.vote.opinionNumber.toLocaleString()}
                   {translation("feed.feed.opinion_num")}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

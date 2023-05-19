@@ -150,10 +150,12 @@ const FeedList = ({ filterOptions, keyword, setKeyword }: feedListProps) => {
           )}
           {data &&
             data.pages.map((page: voteFeedListType) => {
-              return page.votes?.map(
-                (feedData: voteFeedType, index: number) => {
+              console.log(page.votes);
+              return (
+                page.votes &&
+                page.votes.map((feedData: voteFeedType, index: number) => {
                   return <Feed key={index} data={feedData} />;
-                }
+                })
               );
             })}
           {hasNextPage && (

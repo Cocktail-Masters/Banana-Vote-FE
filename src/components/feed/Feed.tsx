@@ -21,13 +21,13 @@ const Feed = ({ data }: { data: voteFeedType }) => {
         {/* 피드 헤더 */}
         <div className="p-5">
           <FeedHeader
-            writerId={data.writer.id}
-            voteId={data.vote.id}
-            badgeImageUrl={data.writer.badgeImageUrl}
-            nickname={data.writer.nickname}
-            endDate={data.vote.endDate}
-            isClosed={data.vote.isClosed}
-            votedNumber={data.vote.votedNumber}
+            writerId={data.writer ? data.writer.id : -1}
+            voteId={data.vote ? data.vote.id : -1}
+            badgeImageUrl={data.writer ? data.writer.badgeImageUrl : ""}
+            nickname={data.writer ? data.writer.nickname : ""}
+            endDate={data.vote ? data.vote.endDate : ""}
+            isClosed={data.vote ? data.vote.isClosed : false}
+            votedNumber={data.vote ? data.vote.votedNumber : -1}
           />
         </div>
         <div className="grid grid-cols-1">
@@ -81,7 +81,9 @@ const Feed = ({ data }: { data: voteFeedType }) => {
           <div className="relative h-auto w-full">
             <BestOpinion
               writerId={data.writer.id}
-              nickname={data.bestOpinion.writer.nickname}
+              nickname={
+                data.bestOpinion ? data.bestOpinion.writer.nickname : ""
+              }
               bestOpinion={data.bestOpinion}
             />
           </div>

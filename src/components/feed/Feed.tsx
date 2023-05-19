@@ -56,7 +56,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
                 <div className="see-more absolute right-0 flex h-5 text-sm font-bold text-text-title hover:border-b dark:text-text-title-dark">
                   {translation("feed.feed.opinion")}
                   {data &&
-                    data.vote &&
+                    data.vote.opinionNumber &&
                     data.vote.opinionNumber.toLocaleString()}
                   {translation("feed.feed.opinion_num")}
                   <svg

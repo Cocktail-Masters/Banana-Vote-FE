@@ -152,7 +152,7 @@ const FeedList = ({ filterOptions, keyword, setKeyword }: feedListProps) => {
             data.pages.map((page: voteFeedListType) => {
               console.log(page.votes);
               return (
-                page.votes &&
+                page.votes.length > 0 &&
                 page.votes.map((feedData: voteFeedType, index: number) => {
                   return <Feed key={index} data={feedData} />;
                 })

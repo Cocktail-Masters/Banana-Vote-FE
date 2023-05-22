@@ -209,10 +209,10 @@ export default async function HydrateDetail({ postId }: { postId: number }) {
 
 <aside>
 💡 TypeScript를 사용중이라면 비동기 서버 컴포넌트를 작성하면 유형 오류에 대해 불평합니다. 임시적으로 ***{/* @ts-expect-error Server Component */}***를 현재 작성중인 Hydrate 컴포넌트 부모에 작성해서 막을 수 있다.
-
 </aside>
+<br>
 
-아래 그림에서 보시다시피 왼쪽 페이지 내용을 react-query의 prefetching을 통해 api요청으로 가져온 데이터의 dehydrate 한 결과를 SSR된 페이지에서 볼 수 있습니다.
+그 결과로 아래 그림에서 볼 수 있듯이 왼쪽 페이지 내용을 react-query의 prefetching을 통해 api요청으로 가져온 데이터의 dehydrate 한 결과를 SSR된 페이지에서 볼 수 있다.
 
 ![Untitled](React-Query/Untitled.png)
 

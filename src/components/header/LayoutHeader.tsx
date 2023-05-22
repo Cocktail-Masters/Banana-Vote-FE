@@ -58,7 +58,8 @@ const LayoutHeader = () => {
           <LayoutTopBar tabs={tabs} />
         </div>
         <LoginModal>
-          <Login />
+
+            <Login />
         </LoginModal>
         <div className="visible relative z-[110] m-3 cursor-pointer p-1 	lg:invisible lg:absolute">
           <HamburgerMenuButton

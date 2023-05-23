@@ -82,7 +82,9 @@ const Feed = ({ data }: { data: voteFeedType }) => {
             <BestOpinion
               writerId={data.writer ? data.writer.id : 0}
               nickname={
-                data.bestOpinion ? data.bestOpinion.writer.nickname : ""
+                data.bestOpinion && data.bestOpinion.writer
+                  ? data.bestOpinion.writer.nickname
+                  : ""
               }
               bestOpinion={data.bestOpinion}
             />

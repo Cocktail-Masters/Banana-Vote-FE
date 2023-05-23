@@ -35,7 +35,8 @@ const BestOpinion = ({
         <BadgeImage
           userId={writerId}
           badgeImageUrl={
-            bestOpinion.writer ? bestOpinion.writer.badgeImageUrl : ""
+            // bestOpinion.writer ? bestOpinion.writer.badgeImageUrl : ""
+            ""
           }
         />
         <div className="absolute left-12 h-full w-[80%] md:w-[90%]">

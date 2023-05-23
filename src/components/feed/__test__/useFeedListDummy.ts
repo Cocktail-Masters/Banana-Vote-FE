@@ -1,7 +1,7 @@
 /**
  * @author mingyu
  */
-export const useFeedListDummy = [
+export const useFeedListDummyV1 = [
   // 0
   {
     vote: {

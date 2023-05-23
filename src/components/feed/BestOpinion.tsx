@@ -20,7 +20,8 @@ const BestOpinion = ({
   bestOpinion: opinionType;
 }) => {
   const pathname = usePathname();
-
+  console.log("*** BEST OPINION 출력!!! ***");
+  console.log(bestOpinion);
   /**
    * @todo 클릭 시 사용자 프로필 이동
    */

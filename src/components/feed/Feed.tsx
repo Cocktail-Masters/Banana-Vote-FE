@@ -80,7 +80,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
           {/* 베스트 댓글 1개 */}
           <div className="relative h-auto w-full">
             <BestOpinion
-              writerId={data.writer.id}
+              writerId={data.writer ? data.writer.id : 0}
               nickname={
                 data.bestOpinion ? data.bestOpinion.writer.nickname : ""
               }

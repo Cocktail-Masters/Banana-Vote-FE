@@ -15,20 +15,19 @@ import TagList from "@components/common/tag/TagList";
 
 const Feed = ({ data }: { data: voteFeedType }) => {
   const { translation } = useTranslation();
-
   return (
     <>
       <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white bg-bg-feed drop-shadow-md transition duration-100 ease-in-out dark:bg-bg-feed-dark md:rounded-xl">
         {/* 피드 헤더 */}
         <div className="p-5">
           <FeedHeader
-            writer_id={data.writer.id}
-            vote_id={data.vote.id}
-            badge_image_url={data.writer.badge_image_url}
-            nickname={data.writer.nickname}
-            end_date={data.vote.end_date}
-            is_closed={data.vote.is_closed}
-            voted_number={data.vote.voted_number}
+            writerId={data.writer ? data.writer.id : -1}
+            voteId={data.vote ? data.vote.id : -1}
+            badgeImageUrl={data.writer ? data.writer.badgeImageUrl : ""}
+            nickname={data.writer ? data.writer.nickname : ""}
+            endDate={data.vote ? data.vote.endDate : ""}
+            isClosed={data.vote ? data.vote.isClosed : false}
+            votedNumber={data.vote ? data.vote.votedNumber : -1}
           />
         </div>
         <div className="grid grid-cols-1">
@@ -39,7 +38,7 @@ const Feed = ({ data }: { data: voteFeedType }) => {
               <FeedTitle content={data.vote.title} />
             </Link>
             {/* 피드 투표 항목들 */}
-            <VoteItemList vote_items={data.vote_items} voteId={data.vote.id} />
+            <VoteItemList voteItems={data.voteItems} voteId={data.vote.id} />
             {/* 태그 */}
             <TagList tags={data.vote.tags} />
           </div>
@@ -55,8 +54,10 @@ const Feed = ({ data }: { data: voteFeedType }) => {
               </div>
               <Link href={`/vote/detail/${data.vote.id}`}>
                 <div className="see-more absolute right-0 flex h-5 text-sm font-bold text-text-title hover:border-b dark:text-text-title-dark">
-                  {translation("feed.feed.opinion")}{" "}
-                  {data.vote.opinion_number.toLocaleString()}
+                  {translation("feed.feed.opinion")}
+                  {data &&
+                    data.vote.opinionNumber &&
+                    data.vote.opinionNumber.toLocaleString()}
                   {translation("feed.feed.opinion_num")}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -78,11 +79,17 @@ const Feed = ({ data }: { data: voteFeedType }) => {
           </div>
           {/* 베스트 댓글 1개 */}
           <div className="relative h-auto w-full">
-            <BestOpinion
-              writer_id={data.writer.id}
-              nickname={data.best_opinion.writer.nickname}
-              best_opinion={data.best_opinion}
-            />
+            {data.bestOpinion && (
+              <BestOpinion
+                writerId={data.writer ? data.writer.id : 0}
+                nickname={
+                  data.bestOpinion && data.bestOpinion.writer
+                    ? data.bestOpinion.writer.nickname
+                    : ""
+                }
+                bestOpinion={data.bestOpinion}
+              />
+            )}
           </div>
         </div>
       </div>

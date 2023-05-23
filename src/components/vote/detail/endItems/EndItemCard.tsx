@@ -5,24 +5,24 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 type imageModalType = {
-  image_url: string;
+  imageUrl: string;
   isOpen: boolean;
 };
 
 const VoteDetailEndItemCard = ({
   item,
-  total_voted,
+  totalVoted,
   imageModalHandler,
   isOpen,
 }: {
   item: voteItemType;
-  total_voted: number;
+  totalVoted: number;
   imageModalHandler: (e: imageModalType) => void;
   isOpen: boolean;
 }) => {
-  console.log(total_voted);
+  console.log(totalVoted);
   const onOpen = (e: string) => {
-    imageModalHandler({ isOpen: true, image_url: e });
+    imageModalHandler({ isOpen: true, imageUrl: e });
   };
   return (
     <div
@@ -34,7 +34,7 @@ const VoteDetailEndItemCard = ({
             initial={{ x: "-100%" }}
             animate={{
               x: `${
-                -100 + Math.round((item.voted_number / total_voted) * 100)
+                -100 + Math.round((item.votedNumber / totalVoted) * 100)
               }%`,
             }}
             transition={{ duration: 1 }}
@@ -43,8 +43,8 @@ const VoteDetailEndItemCard = ({
           <h2
             className={`absolute text-base  font-semibold dark:text-black md:text-lg`}
           >
-            {item.item_number}번 {item.title}{" "}
-            {Math.round((item.voted_number / total_voted) * 100)}%
+            {item.itemNumber}번 {item.title}{" "}
+            {Math.round((item.votedNumber / totalVoted) * 100)}%
           </h2>
         </div>
         <div

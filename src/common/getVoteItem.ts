@@ -5,12 +5,12 @@ export const getDefaultVoteItem = (): createVoteItemType => {
   return {
     id: nanoid(),
     imageFile: null,
-    image_url: null,
+    imageUrl: null,
     title: "",
-    item_number: 1,
-    iframe_link: "",
-    total_points: 1,
-    voted_number: 1,
+    itemNumber: 1,
+    iframeLink: "",
+    totalPoints: 1,
+    votedNumber: 1,
   };
 };
 
@@ -20,11 +20,11 @@ export const getVoteItemsFromResponse = (
   return {
     id: responseVoteItem.id,
     imageFile: null,
-    image_url: responseVoteItem.image_url,
+    imageUrl: responseVoteItem.imageUrl,
     title: responseVoteItem.title,
-    item_number: responseVoteItem.item_number,
-    iframe_link: responseVoteItem.iframe_link,
-    total_points: responseVoteItem.total_points,
-    voted_number: responseVoteItem.voted_number,
+    itemNumber: responseVoteItem.itemNumber,
+    iframeLink: responseVoteItem.iframeLink,
+    totalPoints: responseVoteItem.totalPoints,
+    votedNumber: responseVoteItem.votedNumber,
   };
 };

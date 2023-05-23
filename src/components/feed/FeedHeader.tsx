@@ -10,23 +10,23 @@ import OptionMenu from "@/components/common/menu/OptionMenu";
 import useTranslation from "@/hooks/useTranslation";
 
 type headerContentProps = {
-  writer_id: number;
-  vote_id: number;
-  badge_image_url?: string;
+  writerId: number;
+  voteId: number;
+  badgeImageUrl?: string;
   nickname: string;
-  end_date: string;
-  is_closed: boolean;
-  voted_number: number;
+  endDate: string;
+  isClosed: boolean;
+  votedNumber: number;
 };
 
 const FeedHeader = ({
-  writer_id,
-  vote_id,
-  badge_image_url,
+  writerId,
+  voteId,
+  badgeImageUrl,
   nickname,
-  end_date,
-  is_closed,
-  voted_number,
+  endDate,
+  isClosed,
+  votedNumber,
 }: headerContentProps) => {
   const { translation } = useTranslation();
 
@@ -62,17 +62,17 @@ const FeedHeader = ({
    * @todo 닉네임 클릭 시 사용자 프로필 페이지 이동
    */
   const handleNicknameClick = () => {
-    console.log(writer_id);
+    console.log(writerId);
   };
 
   return (
     <div className="relative flex">
       {/* 프로필 */}
       <div className="flex flex-wrap items-center gap-4">
-        <BadgeImage user_id={writer_id} badge_image_url={badge_image_url} />
+        <BadgeImage userId={writerId} badgeImageUrl={badgeImageUrl} />
         <div>
           <h3
-            id={`writer-${writer_id}`}
+            id={`writer-${writerId}`}
             className="writer mb-1 cursor-pointer text-base font-bold text-text-title dark:text-text-title-dark"
             onClick={() => handleNicknameClick()}
           >
@@ -80,9 +80,9 @@ const FeedHeader = ({
           </h3>
           <div className="flex text-sm">
             <p className="mr-3 h-4 text-text-feed dark:text-text-feed-dark">
-              {is_closed || getRemainDates({ endDate: end_date }) <= 0
+              {isClosed || getRemainDates({ endDate: endDate }) <= 0
                 ? translation("feed.feed_header.closed")
-                : getRemainDates({ endDate: end_date }) +
+                : getRemainDates({ endDate: endDate }) +
                   translation("feed.feed_header.days_left")}
             </p>
             <svg
@@ -101,7 +101,7 @@ const FeedHeader = ({
             </svg>
 
             <p className="ml-[2px] text-sm text-text-feed dark:text-text-feed-dark">
-              {voted_number.toLocaleString()}
+              {votedNumber && votedNumber.toLocaleString()}
             </p>
           </div>
         </div>

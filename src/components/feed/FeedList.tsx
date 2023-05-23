@@ -68,7 +68,7 @@ const FeedList = ({ filterOptions, keyword, setKeyword }: feedListProps) => {
                         &nbsp;·&nbsp;
                       </span>
                       <span className="inline-block text-base md:text-xl">
-                        {data.pages[0].total_count}
+                        {data.pages[0].totalCount}
                         {translation("feed.feed_list_area.num_list")}
                       </span>
                     </div>
@@ -150,10 +150,11 @@ const FeedList = ({ filterOptions, keyword, setKeyword }: feedListProps) => {
           )}
           {data &&
             data.pages.map((page: voteFeedListType) => {
-              return page.votes?.map(
-                (feedData: voteFeedType, index: number) => {
+              return (
+                page.votes.length > 0 &&
+                page.votes.map((feedData: voteFeedType, index: number) => {
                   return <Feed key={index} data={feedData} />;
-                }
+                })
               );
             })}
           {hasNextPage && (

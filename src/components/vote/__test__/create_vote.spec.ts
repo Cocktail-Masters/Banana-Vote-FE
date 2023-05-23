@@ -140,12 +140,12 @@ test("create vote request", async ({ page }) => {
   );
   const sendData = {
     content: "qwefqwef",
-    end_date: "Thu Mar 16 2023 15:40:03 GMT+0900 (한국 표준시)",
-    is_anonymouse: true,
-    is_disclosure: false,
+    endDate: "Thu Mar 16 2023 15:40:03 GMT+0900 (한국 표준시)",
+    isAnonymouse: true,
+    isDisclosure: false,
     tags: ["qwefqwef"],
     title: "12312",
-    vote_items: [
+    voteItems: [
       {
         title: "1",
         imageUrl:

@@ -5,6 +5,7 @@ import BadgeImage from "../common/BadgeImage";
 import { usePathname } from "next/navigation";
 import { getRelativeDays } from "@/common/getRemainDates";
 import { useParams } from "next/navigation";
+import { colorStoreType, useColorModeStore } from "@/store/colorMode";
 
 const Opinion = ({
   opinion,
@@ -15,6 +16,9 @@ const Opinion = ({
 }) => {
   const pathname = usePathname();
   const { detail } = useParams();
+  const themeMode = useColorModeStore<colorStoreType>((state: any) => state);
+  console.log("컬러 모드를 알려주세요", themeMode);
+
   console.log(opinion.id, isBest);
   /**
    * @todo 클릭 시 사용자 프로필 이동
@@ -29,8 +33,8 @@ const Opinion = ({
       <div className="flex h-full w-full flex-1 flex-wrap">
         <div className="mt-2 mr-2">
           <BadgeImage
-            user_id={opinion.writer.id}
-            badge_image_url={opinion.writer.badge_image_url}
+            userId={opinion.writer.id}
+            badgeImageUrl={opinion.writer.badgeImageUrl}
           />
         </div>
         <div className="left-12 h-auto w-[80%] md:w-[90%]">
@@ -41,7 +45,9 @@ const Opinion = ({
                 className="jusitfy-center mt-1 mr-2 flex h-full cursor-pointer items-start text-sm font-semibold text-text-normal dark:text-text-normal-dark ms:max-w-full"
                 onClick={() => handleNicknameClick()}
               >
-                <p className={`${detail !== undefined? `truncate` : ""}`}>{opinion.writer.nickname}</p>
+                <p className={`${detail !== undefined ? `truncate` : ""}`}>
+                  {opinion.writer.nickname}
+                </p>
               </h5>
             </div>
 
@@ -49,7 +55,7 @@ const Opinion = ({
               className="jusitfy-center mt-1 flex h-full items-center text-xs text-gray-400"
               color="gray"
             >
-              {getRelativeDays(pathname, opinion.created_date)}
+              {getRelativeDays(pathname, opinion.createdDate)}
             </p>
             {isBest && (
               <p className="w-7">
@@ -96,7 +102,11 @@ const Opinion = ({
                             <path
                               d="M7.3,11.4,10.1,3a.6.6,0,0,1,.8-.3l1,.5a2.6,2.6,0,0,1,1.4,2.3V9.4h6.4a2,2,0,0,1,1.9,2.5l-2,8a2,2,0,0,1-1.9,1.5H4.3a2,2,0,0,1-2-2v-6a2,2,0,0,1,2-2h3v10"
                               fill="none"
-                              stroke="#000000"
+                              stroke={
+                                themeMode.theme === "dark"
+                                  ? "#FFFFFF"
+                                  : "#000000"
+                              }
                               stroke-linecap="round"
                               stroke-linejoin="round"
                               stroke-width="2"
@@ -106,7 +116,7 @@ const Opinion = ({
                       </g>
                     </svg>
                   </div>
-                  <div>{opinion.agreed_number}</div>
+                  <div>{opinion.agreedNumber}</div>
                 </button>
                 <button className="mr-1 flex h-full w-10 items-center">
                   <div className="w-5">
@@ -128,7 +138,11 @@ const Opinion = ({
                             <path
                               d="M7.3,12.6,10.1,21a.6.6,0,0,0,.8.3l1-.5a2.6,2.6,0,0,0,1.4-2.3V14.6h6.4a2,2,0,0,0,1.9-2.5l-2-8a2,2,0,0,0-1.9-1.5H4.3a2,2,0,0,0-2,2v6a2,2,0,0,0,2,2h3V2.6"
                               fill="none"
-                              stroke="#000000"
+                              stroke={
+                                themeMode.theme === "dark"
+                                  ? "#FFFFFF"
+                                  : "#000000"
+                              }
                               stroke-linecap="round"
                               stroke-linejoin="round"
                               stroke-width="2"
@@ -138,7 +152,7 @@ const Opinion = ({
                       </g>
                     </svg>
                   </div>
-                  <div>{opinion.disagreed_number}</div>
+                  <div>{opinion.disagreedNumber}</div>
                 </button>
                 <button className="text-base">🚨</button>
               </div>

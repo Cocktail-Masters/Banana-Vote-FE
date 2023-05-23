@@ -23,14 +23,14 @@ type voteResponseType = {
   id: string;
   title: string;
   content: string;
-  image_url: string;
-  end_date: string;
-  is_event: boolean;
-  is_anonymouse: boolean;
-  is_public: boolean;
-  is_closed: boolean;
+  imageUrl: string;
+  endDate: string;
+  isEvent: boolean;
+  isAnonymouse: boolean;
+  isPublic: boolean;
+  isClosed: boolean;
   tags: string[];
-  vote_items: voteItemType[];
+  voteItems: voteItemType[];
 };
 
 type paramsType = {
@@ -41,16 +41,16 @@ type paramsType = {
 const CreateEventVote = ({ data }: { data: voteResponseType }) => {
   const { lng } = useParams();
   const { state: isEvent, onClickHandler: setIsEvent } = useSelectData<boolean>(
-    data.is_anonymouse
+    data.isAnonymouse
   );
   const { state: isPublic, onClickHandler: setIsPublic } =
-    useSelectData<boolean>(data.is_closed);
+    useSelectData<boolean>(data.isClosed);
   const { state: endDate, setState: setEndDate } = useSelectData<Date>(
-    new Date(data.end_date)
+    new Date(data.endDate)
   );
   const [voteTitle, setVoteTitle] = useState(data.title);
   const [voteItems, setVoteItems] = useState<createVoteItemTypes>(
-    data.vote_items.map((v) => getVoteItemsFromResponse(v))
+    data.voteItems.map((v) => getVoteItemsFromResponse(v))
   );
   const [content, setContent] = useState<string>(data.content);
   const [tagArray, setTagArray] = useState<string[]>(data.tags);
@@ -79,9 +79,9 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
     const sendData = {
       title: voteTitle,
       content: content,
-      end_date: endDate.toISOString(),
-      is_event: isEvent,
-      is_public: isPublic,
+      endDate: endDate.toISOString(),
+      isEvent: isEvent,
+      isPublic: isPublic,
       items: newVoteItems,
       tags: tagArray,
     };

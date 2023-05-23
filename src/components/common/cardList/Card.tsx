@@ -10,12 +10,12 @@ import CardDescription from "./CardDescription";
 import CardImage from "./CardImage";
 
 type cardProps = {
-  image_url?: string;
+  imageUrl?: string;
   handleClick?: () => void;
   children: React.ReactNode;
 };
 
-const Card = ({ image_url, handleClick, children }: cardProps) => {
+const Card = ({ imageUrl, handleClick, children }: cardProps) => {
   const imgRef = useRef<HTMLImageElement>(null);
 
   const handleMouseOver = () => {
@@ -40,7 +40,7 @@ const Card = ({ image_url, handleClick, children }: cardProps) => {
       onClick={handleClick}
     >
       {/* 아이템 이미지 영역 */}
-      <CardImage image_url={image_url} imgRef={imgRef} />
+      <CardImage imageUrl={imageUrl} imgRef={imgRef} />
       {/* 아이템 설명 영역 */}
       <CardDescription>{children}</CardDescription>
     </div>

@@ -37,8 +37,6 @@ export const DummyPicket: picketsType = {
 };
 
 export async function GET(request: Request) {
-  const { searchParams, pathname } = new URL(request.url);
-  const vote_id = pathname.split("/");
   const res = DummyPicket;
 
   return NextResponse.json({ res });

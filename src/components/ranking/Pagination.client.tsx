@@ -12,12 +12,12 @@ import {
 import useRankingRouter from "@/hooks/useRankingRouter";
 
 const Pagination = ({
-  total_page = 0,
+  totalPage = 0,
   splitSize = 10,
   nowPageIndex,
   params,
 }: {
-  total_page?: number;
+  totalPage?: number;
   splitSize?: number;
   nowPageIndex: number;
   params: rankingParamsType;
@@ -26,7 +26,7 @@ const Pagination = ({
   const pageNumber = isMinWidth768 ? Math.floor(splitSize / 2) : splitSize;
   const startPage = nowPageIndex - (nowPageIndex % pageNumber);
   const viewPageList =
-    startPage + pageNumber > total_page ? total_page % pageNumber : pageNumber;
+    startPage + pageNumber > totalPage ? totalPage % pageNumber : pageNumber;
   const pageList = new Array(viewPageList)
     .fill(null)
     .map((_, index) => startPage + index);
@@ -36,7 +36,7 @@ const Pagination = ({
   const nextButtonHandler = (addNumber: number) => {
     const checkValid = (v: number) => {
       if (v < 0) return 0;
-      if (v >= total_page) return total_page - 1;
+      if (v >= totalPage) return totalPage - 1;
       return v;
     };
     routeCallbackHandler({

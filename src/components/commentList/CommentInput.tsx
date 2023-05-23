@@ -21,14 +21,14 @@ const CommentInput = () => {
       const opinion: opinionType = {
         id: Math.floor(Math.random() * 1000),
         content: commentInputRef.current.value,
-        agreed_number: Math.floor(Math.random() * 1000),
-        disagreed_number: Math.floor(Math.random() * 100),
+        agreedNumber: Math.floor(Math.random() * 1000),
+        disagreedNumber: Math.floor(Math.random() * 100),
         writer: {
-          badge_image_url: "",
+          badgeImageUrl: "",
           id: 1,
           nickname: "새로운 댓글이다",
         },
-        created_date: "2023-03-18",
+        createdDate: "2023-03-18",
       };
       mutate(
         { sendData: opinion },
@@ -48,15 +48,13 @@ const CommentInput = () => {
         <div className={`flex h-16 w-full items-center `}>
           <div className={`flex w-16`}>
             <BadgeImage
-              user_id={userInformation.id}
-              badge_image_url={userInformation.badge_image_url}
+              userId={userInformation.id}
+              badgeImageUrl={userInformation.badgeImageUrl}
             />
           </div>
-          <div
-            className={`flex h-16 w-full items-center p-[1%] dark:bg-bg-feed-dark`}
-          >
+          <div className={`flex h-16 w-full items-center p-[1%] `}>
             <input
-              className={`mr-[2%] h-full w-full border-b p-2`}
+              className={`mr-[2%] h-full w-full border-b p-2 dark:bg-black`}
               placeholder={translation(
                 "vote.detail.comment_area.comment_input.placeholder"
               )}

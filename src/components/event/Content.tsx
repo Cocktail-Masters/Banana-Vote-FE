@@ -9,18 +9,18 @@ import { useParams } from "next/navigation";
 
 const EventContent = ({ content }: { content: eventTypes }) => {
   const { translation } = useTranslation();
+  console.log(content);
   const params = useParams();
-  // console.log(params);
   return (
-    <Link href={`/vote/${content.vote_id}`}>
-      <Card image_url={content.image}>
+    <Link href={`/vote/${content.voteId}`}>
+      <Card imageUrl={content.image}>
         <p className="text-base font-semibold text-slate-900">
           {content.title}
         </p>
         <CardBadgeList>
           <CardBadge
             label={
-              content.is_closed
+              content.isClosed
                 ? translation("event.end")
                 : translation("event.ing")
             }
@@ -29,7 +29,7 @@ const EventContent = ({ content }: { content: eventTypes }) => {
           />
         </CardBadgeList>
         <div className="absolute right-3 bottom-0 flex h-6 w-auto text-xs">
-          {content.end_date}
+          {content.endDate}
         </div>
       </Card>
     </Link>

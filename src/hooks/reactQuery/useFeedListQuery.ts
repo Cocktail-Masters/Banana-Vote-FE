@@ -1,7 +1,7 @@
 /**
  * @author mingyu
  */
-import { useFeedListDummy } from "@/components/feed/__test__/useFeedListDummy";
+import { useFeedListDummyV1 } from "@/components/feed/__test__/useFeedListDummy";
 import { FEEDS_PER_PAGE } from "@/constants/home";
 import { voteFeedListType } from "@/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -17,7 +17,7 @@ export const getFeedList = (
   const END = FEEDS_PER_PAGE * (pageParam + 1);
 
   // 더미 데이터 생성
-  const dummyArr = Array.from({ length: 12 }, () => useFeedListDummy).flat();
+  const dummyArr = Array.from({ length: 12 }, () => useFeedListDummyV1).flat();
 
   // 종료 포함 여부, 키워드에 따라 더미 데이터 필터링
   const filteredArr = isClosed
@@ -28,10 +28,10 @@ export const getFeedList = (
     : dummyArr.filter((element) => {
         if (keyword)
           return (
-            element.vote.is_closed === false &&
+            element.vote.isClosed === false &&
             element.vote.title.includes(keyword)
           );
-        return element.vote.is_closed === false;
+        return element.vote.isClosed === false;
       });
 
   //
@@ -42,14 +42,14 @@ export const getFeedList = (
     // 최신 순
     sortedArr = filteredArr.sort((a, b) => {
       return (
-        new Date(b.vote.start_date).getTime() -
-        new Date(a.vote.start_date).getTime()
+        new Date(b.vote.startDate).getTime() -
+        new Date(a.vote.startDate).getTime()
       );
     });
   } else if (sortBy === 2) {
     // 참여 순 (인기 순)
     sortedArr = filteredArr.sort((a, b) => {
-      return b.vote.voted_number - a.vote.voted_number;
+      return b.vote.votedNumber - a.vote.votedNumber;
     });
   } else if (sortBy === 3) {
     // 조회 순
@@ -59,7 +59,7 @@ export const getFeedList = (
   } else if (sortBy === 4) {
     // 댓글 많은 순
     sortedArr = filteredArr.sort((a, b) => {
-      return b.vote.opinion_number - a.vote.opinion_number;
+      return b.vote.opinionNumber - a.vote.opinionNumber;
     });
   } else {
     sortedArr = filteredArr;
@@ -67,7 +67,7 @@ export const getFeedList = (
 
   const items = sortedArr.slice(START, END);
   const response = {
-    total_count: filteredArr.length,
+    totalCount: filteredArr.length,
     votes: items,
   };
 
@@ -89,14 +89,14 @@ export const feedListFetch = async (
     .catch((e) => e);
 
   // * Vercel Build 오류로 예외처리 하드코딩
-  if (!response || !response.res) {
-    response = {
-      res: {
-        total_count: 0,
-        votes: [],
-      },
-    };
-  }
+  // if (!response || !response.res) {
+  //   response = {
+  //     res: {
+  //       totalCount: 0,
+  //       votes: [],
+  //     },
+  //   };
+  // }
   return response.res;
 };
 
@@ -114,7 +114,7 @@ export const useFeedListQuery = (
       getFeedList(pageParam, isClosed, sortBy, keyword),
     getNextPageParam: (lastPage, allPages) => {
       // find isLast?
-      const maxPage = lastPage ? lastPage.total_count : 0 / FEEDS_PER_PAGE;
+      const maxPage = lastPage ? lastPage.totalCount : 0 / FEEDS_PER_PAGE;
       const nextPage = allPages.length + 1;
       return nextPage <= maxPage ? nextPage : undefined;
     },

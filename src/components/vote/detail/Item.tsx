@@ -19,7 +19,7 @@ import ModalHeader from "@/components/common/modal/Header";
 import ModalDescription from "@/components/common/modal/Description";
 
 type imageModalType = {
-  image_url: string;
+  imageUrl: string;
   isOpen: boolean;
 };
 
@@ -36,7 +36,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   // 이미지 전용 모달
   const [isImageModalOpen, setIsImageModalOpen] = useState<imageModalType>({
-    image_url: "",
+    imageUrl: "",
     isOpen: false,
   });
 
@@ -61,15 +61,15 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
 
   const imageModalHandler = ({
     isOpen,
-    image_url,
+    imageUrl,
   }: {
     isOpen: boolean;
-    image_url: string;
+    imageUrl: string;
   }) => {
     setIsImageModalOpen((prev) => {
       return {
         isOpen,
-        image_url,
+        imageUrl,
       };
     });
   };
@@ -90,7 +90,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
     }
   };
   return (
-    <div className="rounded-2xl bg-bg-feed dark:bg-bg-feed-dark">
+    <div className="h-full w-full rounded-2xl bg-bg-feed px-[5%] dark:bg-bg-feed-dark">
       {data && isDeclaration && (
         <DeclarationModal
           title={data.vote.title}
@@ -101,7 +101,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
       {data && isImageModalOpen.isOpen && (
         <Modal
           onClose={() => {
-            imageModalHandler({ isOpen: false, image_url: "" });
+            imageModalHandler({ isOpen: false, imageUrl: "" });
           }}
           className={`relative h-[95vh] max-h-[800px] w-full max-w-[1200px] rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-bg-feed-dark dark:text-text-normal-dark`}
         >
@@ -110,7 +110,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
               id="picketModalCloseButton"
               className={`absolute top-1 right-3 z-10`}
               onClick={() => {
-                imageModalHandler({ isOpen: false, image_url: "" });
+                imageModalHandler({ isOpen: false, imageUrl: "" });
               }}
             >
               <svg
@@ -162,8 +162,8 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
             </div>
             <div className="mb-3 flex items-center">
               <BadgeImage
-                user_id={data.writer.id}
-                badge_image_url={data.writer.badge_image_url}
+                userId={data.writer.id}
+                badgeImageUrl={data.writer.badgeImageUrl}
               />
               <div className="ml-1 text-xs transition-colors duration-300 dark:text-text-normal-dark">
                 {data.writer.nickname}
@@ -178,8 +178,8 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 </p>
                 <p className="ml-1 transition-colors duration-300 dark:text-text-normal-dark">
                   {getRemainDates({
-                    startDate: data.vote.start_date,
-                    endDate: data.vote.end_date,
+                    startDate: data.vote.startDate,
+                    endDate: data.vote.endDate,
                   })}
                   {translation("vote.detail.item.remaining")}
                 </p>
@@ -193,15 +193,15 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 </p>
               </div>
             </div>
-            {!data.vote.is_closed ? (
+            {!data.vote.isClosed ? (
               <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
-                {data.vote_items.map((e: voteItemType, i: Key) => (
+                {data.voteItems.map((e: voteItemType, i: Key) => (
                   <VoteDetailItemCard
                     key={i}
                     item={e}
                     setSelectItem={select}
                     selectItem={selectItem}
-                    isParti={voteCheck?.is_participation}
+                    isParti={voteCheck?.isParticipation}
                     imageModalHandler={imageModalHandler}
                     isOpen={isImageModalOpen.isOpen}
                   />
@@ -209,11 +209,11 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
               </div>
             ) : (
               <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
-                {data.vote_items.map((e: voteItemType, i: Key) => (
+                {data.voteItems.map((e: voteItemType, i: Key) => (
                   <VoteDetailEndItemCard
                     key={i}
                     item={e}
-                    total_voted={data.vote.voted_number}
+                    totalVoted={data.vote.votedNumber}
                     imageModalHandler={imageModalHandler}
                     isOpen={isImageModalOpen.isOpen}
                   />
@@ -229,7 +229,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
             </div>
             {voteCheck !== undefined && (
               <div className="mt-[25px] mb-[25px] flex w-full justify-center">
-                {voteCheck.is_participation ? (
+                {voteCheck.isParticipation ? (
                   <button
                     onClick={onOpen}
                     className="rounded bg-secondary-orange px-4 py-2 text-black transition-colors duration-300 dark:text-text-normal-dark"
@@ -241,8 +241,8 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                     disabled={selectItem === undefined}
                     onClick={() => {
                       mutate({
-                        is_participation: true,
-                        vote_item_id: selectItem !== undefined ? selectItem : 0,
+                        isParticipation: true,
+                        voteItemId: selectItem !== undefined ? selectItem : 0,
                         point: 0,
                       });
                     }}
@@ -257,11 +257,11 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 )}
                 {isOpen &&
                   voteCheck.point !== undefined &&
-                  voteCheck.vote_item_id !== undefined && (
+                  voteCheck.voteItemId !== undefined && (
                     <VoteDetailPredictionModal
                       isOpen={isOpen}
                       onClose={onClose}
-                      voteItemId={voteCheck.vote_item_id}
+                      voteItemId={voteCheck.voteItemId}
                       point={voteCheck.point}
                       postId={postId}
                     />
@@ -269,7 +269,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
               </div>
             )}
           </div>
-          <div className="relative border-b border-gray-200 px-4 py-4 sm:px-6">
+          <div className="relative border-b border-gray-200 px-4 py-4 dark:border-none sm:px-6">
             <div className="flex h-full w-full items-center">
               <div className="w-full flex-wrap">
                 <TagList tags={data.vote.tags} />

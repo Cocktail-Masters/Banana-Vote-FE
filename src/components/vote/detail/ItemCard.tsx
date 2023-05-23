@@ -4,7 +4,7 @@ import defaultImg from "@assets/images/defalut_vote_element_img.png";
 import { voteItemType } from "@/types";
 
 type imageModalType = {
-  image_url: string;
+  imageUrl: string;
   isOpen: boolean;
 };
 
@@ -24,12 +24,12 @@ const VoteDetailItemCard = ({
   isOpen: boolean;
 }) => {
   const onOpen = (e: string) => {
-    imageModalHandler({ isOpen: true, image_url: e });
+    imageModalHandler({ isOpen: true, imageUrl: e });
   };
   return (
     <button
       className={`mb-2 flex h-full w-full rounded-2xl border-2 shadow-md dark:text-text-normal-dark ${
-        !isParti && selectItem === item.item_number
+        !isParti && selectItem === item.itemNumber
           ? " border-secondary-orange bg-primary-yellow dark:text-black"
           : ""
       }  ${
@@ -38,7 +38,7 @@ const VoteDetailItemCard = ({
       }`}
       style={{ overflow: "hidden" }}
       onClick={() => {
-        setSelectItem(item.item_number);
+        setSelectItem(item.itemNumber);
       }}
     >
       <div className="relative">

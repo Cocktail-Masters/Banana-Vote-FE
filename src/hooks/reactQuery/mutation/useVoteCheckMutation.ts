@@ -2,8 +2,8 @@ import { predictionType } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const postVoteCheck = async ({
-  is_participation,
-  vote_item_id,
+  isParticipation,
+  voteItemId,
   point,
 }: predictionType) => {
   const res = await fetch(
@@ -13,7 +13,7 @@ export const postVoteCheck = async ({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ is_participation, vote_item_id, point }),
+      body: JSON.stringify({ isParticipation, voteItemId, point }),
     }
   );
   return res;

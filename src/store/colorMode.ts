@@ -28,7 +28,6 @@ const storage: PersistStorage<State> = {
     }
   },
   removeItem: async (name: string) => {
-    console.log("remove name", name);
     if (name === "zustand-theme") {
       localStorage.removeItem("zustand-theme");
     }

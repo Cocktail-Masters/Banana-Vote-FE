@@ -45,10 +45,10 @@ const cardVariants = ({
 };
 
 const VoteItems = ({
-  vote_items,
+  voteItems,
   voteId,
 }: {
-  vote_items: voteItemType[];
+  voteItems: voteItemType[];
   voteId: number;
 }) => {
   const getFramerOptionOfVersus = useCallback((len: number, index: number) => {
@@ -67,44 +67,47 @@ const VoteItems = ({
   }, []);
   return (
     <>
-      {vote_items.map((item: voteItemType, index: number) => {
-        return (
-          <div key={index} className="relative w-full">
-            <motion.div
-              className="vote-item truncate"
-              whileHover={{ scale: 1.03 }}
-              {...getFramerOptionOfVersus(vote_items.length, index)}
-            >
-              <VoteItem
-                imageLink={item.image_url}
-                content={item.title}
-                voteId={voteId}
-              />
-            </motion.div>
-          </div>
-        );
-      })}
+      {voteItems &&
+        voteItems.map((item: voteItemType, index: number) => {
+          return (
+            <div key={index} className="relative w-full">
+              <motion.div
+                className="vote-item truncate"
+                whileHover={{ scale: 1.03 }}
+                {...getFramerOptionOfVersus(voteItems.length, index)}
+              >
+                <VoteItem
+                  imageLink={item.imageUrl}
+                  content={item.title}
+                  voteId={voteId}
+                />
+              </motion.div>
+            </div>
+          );
+        })}
     </>
   );
 };
 
 const VoteItemList = ({
-  vote_items,
+  voteItems,
   voteId,
 }: {
-  vote_items: voteItemType[];
+  voteItems: voteItemType[];
   voteId: number;
 }) => {
   return (
     <div className="relative mb-5 flex w-full select-none justify-center">
       <div
         className={
-          gridColumns[(vote_items.length < 4 ? vote_items.length : 4) ?? 1]
+          gridColumns[
+            (voteItems && voteItems.length < 4 ? voteItems.length : 4) ?? 1
+          ]
         }
       >
-        <VoteItems vote_items={vote_items} voteId={voteId} />
+        <VoteItems voteItems={voteItems} voteId={voteId} />
         {/* 요소의 갯수가 2일때 등장하는 VS */}
-        {vote_items && vote_items.length === 2 && <VS />}
+        {voteItems && voteItems.length === 2 && <VS />}
       </div>
     </div>
   );

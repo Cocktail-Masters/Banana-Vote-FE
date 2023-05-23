@@ -34,7 +34,9 @@ const BestOpinion = ({
       <div className="absolute top-1 left-1 flex h-full w-full flex-1 flex-wrap items-start">
         <BadgeImage
           userId={writerId}
-          badgeImageUrl={bestOpinion.writer.badgeImageUrl}
+          badgeImageUrl={
+            bestOpinion.writer ? bestOpinion.writer.badgeImageUrl : ""
+          }
         />
         <div className="absolute left-12 h-full w-[80%] md:w-[90%]">
           {/* 닉네임, 날짜 표시 */}
@@ -45,7 +47,7 @@ const BestOpinion = ({
             >
               {nickname}
             </h5>
-            <p 
+            <p
               className="jusitfy-center mt-1 flex h-full items-center text-xs text-gray-400"
               color="gray"
             >

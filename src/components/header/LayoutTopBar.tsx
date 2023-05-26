@@ -44,20 +44,21 @@ const LayoutTopBar = ({ tabs }: { tabs: tabType[] }) => {
     <>
       <div className="flex h-full flex-grow flex-row justify-center gap-[30px]">
         {tabs.map((item) => (
-          <div
+          <Link
+            href={item.path}
             key={item.label}
             className={`relative flex h-full`}
             onClick={() => setSelectedTabPath(item.path)}
           >
             <div className="relative flex h-full items-center justify-center">
-              <Link href={item.path}>{`${item.label}`}</Link>
+              <p>{`${item.label}`}</p>
             </div>
             <div className="flex justify-end">
               {isMatchPath(item.path) ? (
                 <motion.div className="underline" layoutId="underline" />
               ) : null}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <DarkModeSwitch

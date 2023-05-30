@@ -2,6 +2,7 @@ import Provider from "./Provider";
 import "./globals.css";
 import LayoutHeader from "@/components/header/LayoutHeader";
 import { i18n } from "i18n-config";
+import ScrollToTopButton from "@/components/common/ScrollToTopButton";
 
 export async function generateStaticParams() {
   return i18n.locales.map((lng) => ({ lng }));
@@ -37,13 +38,13 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-white text-text-normal transition-colors dark:bg-black dark:text-text-normal-dark">
+      <body className="relative bg-white text-text-normal transition-colors dark:bg-black dark:text-text-normal-dark">
         <Provider>
           <LayoutHeader></LayoutHeader>
-
           <div className={"tiles"}>{children}</div>
           <div className={"footer"}></div>
         </Provider>
+        <ScrollToTopButton />
       </body>
     </html>
   );

@@ -3,7 +3,10 @@
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
-import { picketType } from "@/types";
+import useTranslation from "@/hooks/useTranslation";
+import { usePicketModifyUploadMutation } from "@/hooks/reactQuery/mutation/usePicketModifyUploadMutatation";
+import { useParams } from "next/navigation";
+import uploadFirebase from "@/common/uploadFirebase";
 
 const PicketDropzone = ({
   change,
@@ -14,22 +17,27 @@ const PicketDropzone = ({
   price?: number;
   position?: number;
 }) => {
+  const params = useParams();
   const [file, setFile] = useState<File>();
   const [fileType, setFileType] = useState<string>();
+  const { translation } = useTranslation();
+  const { mutate } = usePicketModifyUploadMutation({
+    queryKey: ["picket", parseInt(params.detail)],
+  });
+  const [guestPrice, setGuestPrice] = useState<number>(0);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    console.log(acceptedFiles);
     setFile(acceptedFiles[0]);
   }, []);
 
   const removePicture = () => {
     setFile(undefined);
   };
-  console.log("price?:", price, "position", position);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   return (
     <div
-      className={`ltems-center mb-[20px] flex w-full flex-col items-center  justify-center`}
+      className={`ltems-center flex w-full flex-col items-center  justify-center`}
     >
       {file ? (
         <div
@@ -43,13 +51,13 @@ const PicketDropzone = ({
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="h-6 w-6"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
@@ -77,33 +85,92 @@ const PicketDropzone = ({
             <div
               className={`flex h-full w-full flex-col items-center justify-center`}
             >
-              <div className={`text-2xl`}>이곳에 파일을 드래그 하거나</div>
-              <div className={`text-2xl`}>파일을 직접 선택해주세요!</div>
+              <div className={`text-2xl`}>
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint1"
+                )}
+              </div>
+              <div className={`text-2xl`}>
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint2"
+                )}
+              </div>
               <div className={`text-lg`}>
-                사용 가능한 확장자는 JPG,PNG,WEBP입니다.
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint3"
+                )}
               </div>
             </div>
           ) : (
             <div
               className={`flex h-full w-full flex-col items-center justify-center`}
             >
-              <div className={`text-2xl`}>이곳에 파일을 드래그 하거나</div>
-              <div className={`text-2xl`}>파일을 직접 선택해주세요!</div>
+              <div className={`text-2xl`}>
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint1"
+                )}
+              </div>
+              <div className={`text-2xl`}>
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint2"
+                )}
+              </div>
               <div className={`text-lg`}>
-                사용 가능한 확장자는 JPG,PNG,WEBP입니다.
+                {translation(
+                  "vote.detail.picket_area.modal.content.dropzone.upload_hint3"
+                )}
               </div>
             </div>
           )}
         </div>
       )}
       <div className={`mt-[5%] flex h-[20%] w-full flex-col items-center`}>
-        <div>최소 바나나 : {change ? price : "1000"}</div>
-        <div className={`flex`}>
-          <input></input>
-          <button>제출</button>
+        <div
+          className={`${
+            change && `hidden`
+          } text-base font-bold dark:text-white`}
+        >
+          {translation(
+            "vote.detail.picket_area.modal.content.dropzone.min_banana"
+          )}{" "}
+          : {change ? price : "1000"}
+        </div>
+        <div className={`mt-1 flex h-10 w-full justify-center`}>
+          <input
+            onChange={(e) => {
+              setGuestPrice((prev) => {
+                return parseInt(e.target.value);
+              });
+            }}
+            className={`${change && `hidden`} w-1/3 rounded-xl border `}
+          ></input>
+          <button
+            className={`${
+              !change && `ml-2`
+            } h-full w-24 rounded-xl bg-bg-button-yellow active:bg-bg-button-yellow-light`}
+            onClick={async () => {
+              if (change && position != undefined && file) {
+                const imageUploadResponse = await uploadFirebase(file);
+                mutate({
+                  voteId: parseInt(params.detail),
+                  picketImageUrl: imageUploadResponse,
+                  paidPrice: guestPrice,
+                  position,
+                });
+              }
+            }}
+          >
+            {translation(
+              "vote.detail.picket_area.modal.content.dropzone.submit"
+            )}
+          </button>
         </div>
         <div>
-          <div>가지고 있는 바나나</div>
+          <div className={`text-sm`}>
+            {translation(
+              "vote.detail.picket_area.modal.content.dropzone.has_banana"
+            )}
+          </div>
         </div>
       </div>
     </div>

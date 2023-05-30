@@ -5,61 +5,67 @@
 "use client";
 import React from "react";
 import FeedHeader from "./FeedHeader";
-import VS from "./VS";
 import VoteItemList from "./VoteItemList";
 import FeedTitle from "./FeedTitle";
 import { voteFeedType } from "@/types";
 import BestOpinion from "./BestOpinion";
 import Link from "next/link";
+import useTranslation from "@/hooks/useTranslation";
+import TagList from "@components/common/tag/TagList";
 
 const Feed = ({ data }: { data: voteFeedType }) => {
+  const { translation } = useTranslation();
   return (
     <>
-      <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white drop-shadow-md transition duration-100 ease-in-out md:rounded-xl">
+      <div className="hover:bg-[rgba(234, 238, 243, 0.3)] m-auto mt-4 mb-4 h-auto w-full bg-white bg-bg-feed drop-shadow-md transition duration-100 ease-in-out dark:bg-bg-feed-dark md:rounded-xl">
         {/* 피드 헤더 */}
         <div className="p-5">
           <FeedHeader
-            badge_url={data.badge_url}
-            nickname={data.nickname}
-            end_date={data.end_date}
-            is_closed={data.is_closed}
-            n_vote={data.n_vote}
+            writerId={data.writer ? data.writer.id : -1}
+            voteId={data.vote ? data.vote.id : -1}
+            badgeImageUrl={data.writer ? data.writer.badgeImageUrl : ""}
+            nickname={data.writer ? data.writer.nickname : ""}
+            endDate={data.vote ? data.vote.endDate : ""}
+            isClosed={data.vote ? data.vote.isClosed : false}
+            votedNumber={data.vote ? data.vote.votedNumber : -1}
           />
         </div>
-        <div className="grid grid-cols-1 divide-y">
+        <div className="grid grid-cols-1">
           {/* 피드 바디 */}
-
-          <div className="pb-5 pl-5 pr-5">
+          <div className="pb-3 pl-5 pr-5">
             {/* 피드 제목 */}
-            <Link href={`/vote/detail/${data.vote_id}`}>
-              <FeedTitle content={data.vote_title} />
+            <Link href={`/vote/detail/${data.vote.id}`}>
+              <FeedTitle content={data.vote.title} />
             </Link>
             {/* 피드 투표 항목들 */}
-            <VoteItemList vote_items={data.vote_items} />
-            {/* 요소의 갯수가 2일때 등장하는 VS */}
-            {data.vote_items && data.vote_items.length === 2 && <VS />}
+            <VoteItemList voteItems={data.voteItems} voteId={data.vote.id} />
+            {/* 태그 */}
+            <TagList tags={data.vote.tags} />
           </div>
         </div>
-        <hr />
+        <hr className="border-border dark:border-border-dark" />
         <div className="p-5">
           {/* 피드 푸터 */}
-
           <div className="relative flex h-auto w-full">
             {/* 댓글 더보기 */}
             <div className="flex h-6 w-full">
-              <div className="absolute left-0 flex h-5 text-sm font-bold">
-                베스트 댓글
+              <div className="absolute left-0 flex h-5 text-sm font-bold text-text-title dark:text-text-title-dark">
+                {translation("feed.feed.best_opinion")}
               </div>
-              <Link href={`/vote/detail/${data.vote_id}`}>
-                <div className="absolute right-0 flex h-5 text-sm font-bold hover:border-b">
-                  댓글 {data.n_opinion.toLocaleString()}개
+              <Link href={`/vote/detail/${data.vote.id}`}>
+                <div className="see-more absolute right-0 flex h-5 text-sm font-bold text-text-title hover:border-b dark:text-text-title-dark">
+                  {translation("feed.feed.opinion")}
+                  {data &&
+                    data.vote.opinionNumber &&
+                    data.vote.opinionNumber.toLocaleString()}
+                  {translation("feed.feed.opinion_num")}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="h-5 w-5 font-bold"
+                    className="h-5 w-5 font-bold text-text-title dark:text-text-title-dark"
                   >
                     <path
                       strokeLinecap="round"
@@ -73,10 +79,17 @@ const Feed = ({ data }: { data: voteFeedType }) => {
           </div>
           {/* 베스트 댓글 1개 */}
           <div className="relative h-auto w-full">
-            <BestOpinion
-              nickname={data.nickname}
-              best_opinion={data.best_opinion}
-            />
+            {data.bestOpinion && (
+              <BestOpinion
+                writerId={data.writer ? data.writer.id : 0}
+                nickname={
+                  data.bestOpinion && data.bestOpinion.writer
+                    ? data.bestOpinion.writer.nickname
+                    : ""
+                }
+                bestOpinion={data.bestOpinion}
+              />
+            )}
           </div>
         </div>
       </div>

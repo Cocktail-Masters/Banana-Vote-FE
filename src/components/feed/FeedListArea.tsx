@@ -1,61 +1,36 @@
 /**
  * @author mingyu
  */
+"use client";
 import VoteCreateBar from "../home/VoteCreateBar";
-import Feed from "./Feed";
-import { useFeedListQuery } from "@/hooks/useFeedListQuery";
-import { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
-import { voteFeedType } from "@/types";
-import { voteFeedListType } from "@/types";
+import { filterOptions } from "@/types";
+import VoteSearchBar from "@/components/home/VoteSearchBar";
+import FeedList from "./FeedList";
+import { useEffect, useState } from "react";
 
 const FeedListArea = () => {
-  /**
-   * @description useInfiniteQuery를 사용한 무한 스크롤
-   */
-  const { data, status, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useFeedListQuery({
-      queryKey: "feedList",
-    });
-
-  /**
-   * @description 뷰포트 최하단 도달 시 새로운 피드를 불러옴
-   */
-  const { ref, inView } = useInView({ threshold: 0.05 });
-  useEffect(() => {
-    if (inView && hasNextPage) fetchNextPage();
-  }, [inView]);
+  const [keyword, setKeyword] = useState<string>(""); // 검색 키워드
+  const [filterOptions, setFilterOptions] = useState<filterOptions>({
+    isClosed: false, // 종료 투표 포함 여부
+    sortBy: 1, // 1 : 최신순, 2 : 참여순(인기순), 3 : 조회순, 4 : 댓글 많은 순
+  });
 
   return (
-    <div className="flex flex-col items-start w-full lg:w-[90%] xl:w-[800px] xl:mr-5">
-      {status === "loading" ? (
-        /**
-         * @TODO Loading 컴포넌트로 교체
-         */
-        <div className="flex justify-center">Loading...</div>
-      ) : status === "error" ? (
-        <div className="flex justify-center">ERROR</div>
-      ) : (
-        <>
-          {/* 투표 생성 버튼 */}
-          <VoteCreateBar nickname="연복이" badge_url="" />
-          {/* 투표 피드 리스트 */}
-          {data &&
-            data.pages.map((page: voteFeedListType, index: number) => {
-              return page.items.map((feedData: voteFeedType, index: number) => {
-                return <Feed key={index} data={feedData} />;
-              });
-            })}
-
-          {hasNextPage && (
-            // TODO : 스켈레톤 만들기
-            <div
-              className="flex h-100 w-full bg-gray-400 mt-5 mb-5"
-              ref={ref}
-            />
-          )}
-        </>
-      )}
+    <div className="flex w-full flex-col items-start lg:w-[90%] xl:mr-5 xl:w-[800px]">
+      {/* Search & Filter Bar */}
+      <VoteSearchBar
+        setKeyword={setKeyword}
+        filterOptions={filterOptions}
+        setFilterOptions={setFilterOptions}
+      />
+      {/* Create Bar */}
+      {/* <VoteCreateBar badge_image_url={} /> */}
+      <VoteCreateBar />
+      <FeedList
+        filterOptions={filterOptions}
+        keyword={keyword}
+        setKeyword={setKeyword}
+      />
     </div>
   );
 };

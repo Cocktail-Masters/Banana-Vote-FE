@@ -3,13 +3,15 @@
 import { useEffect, useState } from "react";
 import UploadImage from "@components/UploadImage";
 import VoteItemLayout from "./VoteItemLayout";
-import { voteItemTypes, voteItemType } from "./CreateVote";
 import Image from "next/image";
 
 import minus from "@assets/images/minus.svg";
 import close from "@assets/images/close.png";
 import React from "react";
 import handleImage from "@assets/icons/handle.svg";
+import { createVoteItemType, createVoteItemTypes } from "@/types";
+import { translatedText } from "@/common/translation";
+import { useParams } from "next/navigation";
 
 const VoteItemCard = ({
   voteItem,
@@ -17,13 +19,14 @@ const VoteItemCard = ({
   setVoteItems,
   onChangeHandler,
 }: {
-  voteItem: voteItemType;
+  voteItem: createVoteItemType;
   index: number;
-  setVoteItems: React.Dispatch<React.SetStateAction<voteItemTypes>>;
+  setVoteItems: React.Dispatch<React.SetStateAction<createVoteItemTypes>>;
   onChangeHandler: (value: string, index: number) => void;
 }) => {
+  const { lng } = useParams();
   const { imageFile, title } = voteItem;
-  const [imageSrc, setImageSrc] = useState<string | null>("");
+  const [imageSrc, setImageSrc] = useState<string | null>(voteItem.imageUrl);
 
   const uploadImageHandler = (file: File | null) => {
     setVoteItems((prevItems) => {
@@ -34,13 +37,11 @@ const VoteItemCard = ({
   };
 
   const deleteFileHandler = () => {
-    console.log("삭제");
     setImageSrc(null);
     uploadImageHandler(null);
   };
 
   const onClickMinusHandler = () => {
-    console.log("index");
     setVoteItems((prevItems) => {
       prevItems.splice(index, 1);
       return [...prevItems];
@@ -52,7 +53,6 @@ const VoteItemCard = ({
       const reader = new FileReader();
       reader.readAsDataURL(imageFile);
       reader.onload = () => {
-        console.log(index);
         setImageSrc(reader.result ? reader.result.toString() : null);
       };
     }
@@ -93,8 +93,11 @@ const VoteItemCard = ({
 
           <div className={"h-full w-full"}>
             <input
-              className={`vote-input-${index} base:text-xl focus:border-yellow h-full w-full p-5 font-bold outline-none xl:text-3xl`}
-              placeholder={"내용 입력"}
+              className={`vote-input-${index} base:text-xl focus:border-yellow h-full w-full p-5 font-bold text-text-normal outline-none xl:text-3xl `}
+              placeholder={translatedText({
+                lng,
+                textKey: "vote.create.enter_content",
+              })}
               value={title}
               onChange={(e) => onChangeHandler(e.target.value, index)}
             ></input>

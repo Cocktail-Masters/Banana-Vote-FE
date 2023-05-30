@@ -9,8 +9,10 @@ export type anotherUserType = {
 };
 
 export type userType = anotherUserType & {
+  id?: number;
   age: number;
   gender: string;
+  badgeImageUrl: string;
 };
 
 /**
@@ -19,16 +21,16 @@ export type userType = anotherUserType & {
 
 export type storeOptionType = {
   price: number;
-  end_date: string;
+  endDate: string;
 };
 
 export type badgeType = {
-  badge_id?: number;
+  badgeId?: number;
   name: string;
-  image_url: string;
+  imageUrl: string;
   desc: string;
-  is_selling?: boolean;
-  store_option?: storeOptionType;
+  isSelling?: boolean;
+  storeOption?: storeOptionType;
 };
 export type badgesType = badgeType[];
 
@@ -37,10 +39,10 @@ export type badgesType = badgeType[];
  */
 
 export type achivementType = {
-  achievement_id?: number;
+  achievementId?: number;
   name: string;
-  image_url: string;
-  reward_point?: number;
+  imageUrl: string;
+  rewardPoint?: number;
 };
 
 export type achivementsType = achivementType[];
@@ -52,40 +54,53 @@ export type achivementsType = achivementType[];
 export type goodsType = {
   id: number;
   name: string;
+  description: string; // 상품에 대한 설명
+  imageUrl: string;
+  type: number;
+  price: number;
+  ea?: number; // 해당 상품 보유 갯수
+  expirationDate?: string; // 상품을 사용했을 때 적용이 종료되는 날짜
+  isUsed?: boolean; // 사용 완료 여부
 };
 
 export type storeGoodsType = goodsType & {
-  type: string;
-  ea: number;
-  limit_date: string;
+  startDate: string; // 판매 시작일
+  endDate: string; // 판매 종료일
+  sellCount: number; // 판매된 갯수
+  usePeriod: number; // 꾸미기 등 장착을 시작하면 적용되는 기간 (ex. 30일)
 };
 
-export type storeGoodsTypes = storeGoodsType[];
+export type storeGoodsTypes = {
+  goods: storeGoodsType[];
+};
 
 export type goods_typeTypes = string[];
 
 export type userGoodsType = goodsType & {
   desc: string;
-  image_url: string;
+  imageUrl: string;
   type: string;
   price: number;
   ea: number; // 해당 상품 보유 갯수
-  limit_date: string; // 상품 사용 기한 (ex. 2023-12-18)
-  is_used: boolean; // 사용 완료 여부
+  limitDate: string; // 상품 사용 기한 (ex. 2023-12-18)
+  isUsed: boolean; // 사용 완료 여부
 };
 
 /**
  * opinion
  */
 
-export type opinionType = {
-  nickname: string;
+type opinionType = {
   id: number;
+  writer: {
+    id: number;
+    nickname: string;
+    badgeImageUrl: string;
+  };
   content: string;
-  n_agree: number;
-  n_disagree: number;
-  n_reported: number;
-  date: string; // 생성된 날짜
+  agreedNumber: number;
+  disagreedNumber: number;
+  createdDate: string;
 };
 
 export type opinionTypes = {
@@ -102,7 +117,7 @@ export type opinionTypes = {
 export type voteType = {
   id: number;
   title: string;
-  is_closed: boolean;
+  isClosed: boolean;
   point: number;
 };
 
@@ -113,82 +128,104 @@ export type voteTypes = voteType[];
  */
 export type tagTypes = string[];
 
+export type tagListType = {
+  id: number;
+  name: string;
+  usedNumber: number;
+};
+
+export type tagListTypes = {
+  tags: tagListType[];
+};
+
 /**
  * vote
  */
 
 export type voteItemType = {
-  vote_item_id: number;
+  id: number;
+  itemNumber: number; // 투표 항목 번호
   title: string;
-  iframe_link?: string;
-  image?: string;
-  candidate_num?: number;
-  total_points?: number;
-  n_voted?: number;
+  iframeLink: string;
+  imageUrl: string;
+  totalPoints: number;
+  votedNumber: number;
 };
 export type voteItemTypes = voteItemType[];
 
-export type voteDetailType = {
-  vote_id: number;
-  nickname: string; // user 테이블 조인
-  badge_url: string;
-  vote_title: string;
-  vote_content: string;
-  is_anonymouse: boolean;
-  is_disclosure: boolean;
-  start_date?: string;
-  end_date: string;
-  n_view: number;
-  n_vote: number;
-  n_reported: number;
-  n_opinion: number;
-  is_deleted: boolean;
-  is_event: boolean;
-  is_closed: boolean;
-  vote_items: voteItemTypes;
-  tag: string[];
+export type createVoteItemType = Omit<voteItemType, "id" | "imageUrl"> & {
+  id: number | string;
+  imageUrl: string | null;
+  imageFile?: file | null;
 };
 
-// export type voteFeedListType = voteDetailType & {
-//   best_opinion: opinionType;
-//   vote_items: voteItemTypes;
-// };
+export type createVoteItemTypes = createVoteItemType[];
+
+export type voteDetailType = {
+  vote: {
+    id: number;
+    title: string;
+    imageUrl: string;
+    content: string;
+    isEvent: boolean;
+    isAnonymous: boolean;
+    isPublic: boolean;
+    isClosed: boolean;
+    startDate?: string;
+    endDate: string;
+    hits: number;
+    votedNumber: number;
+    opinionNumber: number;
+    tags: tagListType[];
+  };
+  writer: {
+    id: number;
+    nickname: string;
+    badgeImageUrl: string;
+  };
+  voteItems: voteItemTypes;
+};
 
 export type voteFeedType = voteDetailType & {
-  best_opinion: opinionType;
+  bestOpinion: opinionType;
 };
 
 export type voteFeedListType = {
   totalCount: number;
-  items: voteFeedType[];
+  votes: voteFeedType[];
 };
 
 export type voteDeleteType = {
-  vote_id: number;
+  voteId: number;
 };
 
 export type predictionType = {
-  is_participation: boolean;
-  vote_item_id?: number;
+  isParticipation: boolean;
+  voteItemId?: number;
   point?: number;
-  candidate_num?: 0 | 1 | 2 | 3 | 4 | 5; // 투표 내 항목 순서
+  candidateNum?: 0 | 1 | 2 | 3 | 4 | 5; // 투표 내 항목 순서
 };
 
 export type popularType = {
-  vote_id: number;
-  voteTitle: string;
-  voteImage: string;
-  nView: number;
-  nPrediction: number; // 참여 횟수 전체 합
-  voteItems: voteItemTypes[];
+  id: number;
+  title: string;
+  hits: number;
+  votedNumber: number;
+};
+
+export type popularTypes = {
+  votes: popularType[];
 };
 
 export type interestType = {
-  vote_id: number;
-  voteTitle: string;
-  voteImage: string;
-  nView: number;
-  nPrediction: number; // 참여 횟수 전체 합
+  id: number;
+  title: string;
+  hits: number;
+  votedNumber: number;
+};
+
+export type interestTypes = {
+  votes: interestType[];
 };
 
 export type votesSearchTypes = voteDetailType[];
@@ -199,16 +236,16 @@ export type votesSearchTypes = voteDetailType[];
 
 export type reportUserType = {
   nickname: string;
-  report_content: string;
-  is_allow: false;
-  content_id: number;
-  report_type: number;
+  reportContent: string;
+  isAllow: false;
+  contentId: number;
+  reportType: number;
 };
 
 export type reportType = {
-  user_list: reportUserType[];
-  is_last: false;
-  now_page_index: 1;
+  userList: reportUserType[];
+  isLast: false;
+  nowPageIndex: 1;
 };
 
 /**
@@ -217,9 +254,9 @@ export type reportType = {
 
 export type magaphoneType = {
   id: number;
-  end_date: string;
+  endDate: string;
   content: string;
-  vote_link: string;
+  voteLink: string;
   user: {
     id: number;
     nickname: string;
@@ -236,9 +273,10 @@ export type eventTypes = {
   title: string;
   content: string;
   image: string;
-  end_date: string;
-  is_closed?: boolean;
-  n_view?: number;
+  endDate: string;
+  isClosed?: boolean;
+  nView?: number;
+  voteId: number;
 };
 
 /**
@@ -246,16 +284,16 @@ export type eventTypes = {
  */
 
 export type seasonUserType = {
-  season_ranking_id: number;
-  user_id: number;
-  ranking: number; // 등수
-  nickname: string; // 사용자 닉네임
-  score: number; // 사용자 점수
+  id: number;
+  ranking: number;
+  nickname: string;
+  score: number;
 };
 
 export type rankingListTypes = {
-  page: number;
-  users: seasonUserType[];
+  totalPage: number;
+  nowPage: number;
+  rankingList: seasonUserType[];
 };
 
 /**
@@ -263,10 +301,10 @@ export type rankingListTypes = {
  */
 
 export type seasonType = {
-  start_date: string;
-  end_date: string;
-  score: number;
-  ranking: number;
+  id: number;
+  startDate: string;
+  endDate: string;
+  description: string;
 };
 
 export type seasonTypes = seasonType[];
@@ -276,7 +314,7 @@ export type seasonTypes = seasonType[];
  */
 
 export type picketType = {
-  picket_image_url: string;
+  picketImageUrl: string;
   position: number;
   price: number;
 };
@@ -314,4 +352,12 @@ export type pointLogTypes = pointLogType[];
 type MenuProps = {
   id: number;
   title: string;
+};
+
+/**
+ * search feeds
+ */
+export type filterOptions = {
+  isClosed: boolean;
+  sortBy: number;
 };

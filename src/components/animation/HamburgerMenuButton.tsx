@@ -78,6 +78,7 @@ const HamburgerMenu = ({
         x2={unitWidth}
         y1="0"
         y2="0"
+        className={"stroke-text-normal dark:stroke-text-normal-dark"}
         variants={top}
         // style={{ originX: 0, originY: 0 }}
         {...lineProps}
@@ -88,6 +89,7 @@ const HamburgerMenu = ({
         y1="2"
         y2="2"
         variants={center}
+        className={"stroke-text-normal dark:stroke-text-normal-dark"}
         {...lineProps}
       />
       <motion.line
@@ -96,6 +98,7 @@ const HamburgerMenu = ({
         y1="4"
         y2="4"
         variants={bottom}
+        className={"stroke-text-normal dark:stroke-text-normal-dark"}
         // style={{ originX: 100, originY: 0 }}
         {...lineProps}
       />

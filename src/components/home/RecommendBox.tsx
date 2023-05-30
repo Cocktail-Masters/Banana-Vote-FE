@@ -1,32 +1,25 @@
-"use client";
-
 /**
  * @author mingyu
  */
+import useTranslation from "@/hooks/useTranslation";
+import { popularType, popularTypes } from "@/types";
 import Link from "next/link";
 
-type recommendContents = {
-  id: number;
-  title: string;
-};
+const RecommendBox = ({ votes }: popularTypes) => {
+  const { translation } = useTranslation();
 
-type recommendBoxProps = {
-  contents?: recommendContents[];
-};
-
-const RecommendBox = ({ contents }: recommendBoxProps) => {
   return (
-    <div className="w-full h-full">
-      {!contents || contents.length === 0 ? (
-        <p className="flex justify-center items-center font-semibold mb-10 h-32">
-          글이 없습니다.
+    <div className="h-full w-full">
+      {!votes || votes.length === 0 ? (
+        <p className="mb-10 flex h-32 items-center justify-center font-semibold">
+          {translation("home.recommend_box.no_recommend_list")}
         </p>
       ) : (
-        contents.map((content: recommendContents) => {
+        votes.map((content: popularType) => {
           return (
             <div className="mb-2" key={content.id}>
-              <Link href={`/vote/detail/${content.id}`}>
-                <p className="truncate font-bold hover:text-blue-500 hover:decoration-solid">
+              <Link href={`/vote/detail/${content.id}`} passHref>
+                <p className="recommend-title truncate hover:text-blue-500 hover:decoration-solid">
                   {content.title}
                 </p>
               </Link>

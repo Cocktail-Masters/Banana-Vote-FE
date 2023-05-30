@@ -1,0 +1,10 @@
+.hide-spin::-webkit-outer-spin-button,
+.hide-spin::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hide-spin::-moz-number-spin-up,
+.hide-spin::-moz-number-spin-down {
+  display: none;
+}

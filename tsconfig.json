@@ -40,7 +40,7 @@
     "**/*.d.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/components/login/Kakao.tsx", "src/components/login/Google.tsx"  ],
   "exclude": [
     "node_modules",
     ".next",

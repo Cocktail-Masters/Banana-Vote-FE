@@ -1,10 +1,10 @@
 "use client";
 import { picketsType, picketType } from "@/types";
-import { useState } from "react";
-import Modal from "../modal/Modal";
-import Portal from "../modal/Portal";
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 import PicketAreaModalContent from "./ModalContent";
-import SelectPicketImage from "./selectPicketImage";
+import SelectPicketImage from "./SelectPicketImage";
+import useTranslation from "@/hooks/useTranslation";
 
 type picketChangeType = {
   change: boolean;
@@ -12,6 +12,7 @@ type picketChangeType = {
 };
 
 const PicketAreaModal = ({ pickets }: picketsType) => {
+  const { translation } = useTranslation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onOpen = () => {
     setIsOpen(true);
@@ -19,18 +20,16 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
   const onClose = () => {
     setIsOpen(false);
   };
-
   const [changeState, setChangeState] = useState<picketChangeType>({
     change: false,
     picket: {
-      picket_image_url: "",
+      picketImageUrl: "",
       position: 0,
       price: 0,
     },
   });
 
   const onClick = ({ change, picket }: picketChangeType) => {
-    console.log("picket", picket);
     setChangeState((prev) => {
       return { change, picket };
     });
@@ -40,25 +39,21 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
     <>
       <button
         className={
-          "h-[45px] w-[100px] rounded-2xl bg-terriary-mint font-semibold shadow-md hover:bg-primary-yellow active:bg-secondary-orange"
+          "h-[30px] w-[85px] mt-5 rounded-2xl bg-terriary-mint text-sm font-semibold shadow-md hover:bg-primary-yellow active:bg-secondary-orange"
         }
         onClick={onOpen}
       >
-        참여하기
+        {translation("vote.detail.picket_area.modal.join")}
       </button>
       {isOpen && (
-        <Portal>
-          <Modal
-            width={"100%"}
-            maxWidth={"1400px"}
-            maxHeight={"80vh"}
-            minHeight={"300px"}
-            height={"80%"}
+        <Transition appear show={isOpen} as={Fragment}>
+          <Dialog
+            open={isOpen}
             onClose={() => {
               setChangeState({
                 change: false,
                 picket: {
-                  picket_image_url: "",
+                  picketImageUrl: "",
                   price: 0,
                   position: 0,
                 },
@@ -66,72 +61,117 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
               onClose();
             }}
           >
-            <div className="relative h-16 w-[100%]">
-              <div className={`ModalHeader relative text-center`}>
-                {changeState.change && (
-                  <div
-                    className={`t-5 absolute left-5`}
-                    onClick={() => {
-                      setChangeState({
-                        change: false,
-                        picket: {
-                          picket_image_url: "",
-                          price: 0,
-                          position: 0,
-                        },
-                      });
-                    }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      className="h-6 w-6"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                      />
-                    </svg>
-                  </div>
-                )}
-                <div className={`h-16`}>피캣 올리기</div>
-              </div>
-              <button className={`absolute top-1 right-3`} onClick={onClose}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="h-6 w-6"
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex min-h-full items-center justify-center p-4 text-center">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-
-              {changeState.change ? (
-                <SelectPicketImage
-                  picket_image_url={changeState.picket.picket_image_url}
-                  position={changeState.picket.position}
-                  price={changeState.picket.price}
-                />
-              ) : (
-                <PicketAreaModalContent
-                  pickets={pickets}
-                  onChangeState={onClick}
-                />
-              )}
+                  <Dialog.Panel className="w-full max-w-7xl transform overflow-y-auto rounded-2xl  bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-bg-feed-dark dark:text-text-normal-dark">
+                    <Dialog.Title
+                      as="h3"
+                      className="relative mb-4 flex justify-center text-xl font-extrabold leading-6 text-gray-900"
+                    >
+                      {changeState.change && (
+                        <div
+                          className={`absolute left-1 w-2`}
+                          onClick={() => {
+                            setChangeState({
+                              change: false,
+                              picket: {
+                                picketImageUrl: "",
+                                price: 0,
+                                position: 0,
+                              },
+                            });
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 12 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="h-6 w-6 transition-colors duration-300 dark:text-text-normal-dark"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                            />
+                          </svg>
+                        </div>
+                      )}
+                      <h1 className="transition-colors duration-300 dark:text-text-normal-dark">
+                        {translation("vote.detail.picket_area.modal.upload")}
+                      </h1>
+                      <button
+                        id="picketModalCloseButton"
+                        className={`absolute top-1 right-3`}
+                        onClick={() => {
+                          setChangeState({
+                            change: false,
+                            picket: {
+                              picketImageUrl: "",
+                              price: 0,
+                              position: 0,
+                            },
+                          });
+                          onClose();
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                          className="h-6 w-6 transition-colors duration-300 dark:text-text-normal-dark"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </button>
+                    </Dialog.Title>
+                    <Dialog.Description>
+                      {changeState.change ? (
+                        <SelectPicketImage
+                          picketImageUrl={changeState.picket.picketImageUrl}
+                          position={changeState.picket.position}
+                          price={changeState.picket.price}
+                        />
+                      ) : (
+                        <PicketAreaModalContent
+                          pickets={pickets}
+                          onChangeState={onClick}
+                        />
+                      )}
+                    </Dialog.Description>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
             </div>
-          </Modal>
-        </Portal>
+          </Dialog>
+        </Transition>
       )}
     </>
   );

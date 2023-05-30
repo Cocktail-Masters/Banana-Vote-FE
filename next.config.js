@@ -7,7 +7,7 @@ const nextConfig = {
     prependData: ``,
   },
   experimental: {
-    appDir: true,
+    // appDir: true,
     fontLoaders: [
       { loader: "@next/font/google", options: { subsets: ["korean"] } },
     ],
@@ -15,7 +15,22 @@ const nextConfig = {
   swcMinify: true,
   reactStrictMode: true,
   images: {
-    domains: ["cdn.discordapp.com", "search.pstatic.net"],
+    domains: [
+      "cdn.discordapp.com",
+      "search.pstatic.net",
+      "dummyimage.com",
+      "cdn.pixabay.com",
+      "images.unsplash.com",
+      "firebasestorage.googleapis.com",
+    ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/api/v1/:path*",
+        destination: "http://localhost:8000/api/v1/:path*", // The :path parameter isn't used here so will be automatically passed in the query
+      },
+    ];
   },
 };
 

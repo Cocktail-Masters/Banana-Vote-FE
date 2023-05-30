@@ -1,34 +1,37 @@
-"use client";
-
 /**
  * @author mingyu
  * @description 투표 생성으로 이동하는 바
  */
-
+"use client";
 import Link from "next/link";
 import React from "react";
 import BadgeImage from "../common/BadgeImage";
+import useTranslation from "@/hooks/useTranslation";
 
 type voteCreateBarProps = {
-  nickname: string;
-  badge_url: string | undefined;
+  badgeImageUrl?: string;
 };
 
-const VoteCreateBar = ({ nickname, badge_url }: voteCreateBarProps) => {
+const VoteCreateBar = ({ badgeImageUrl }: voteCreateBarProps) => {
+  const { translation } = useTranslation();
+
   return (
-    <div className="w-full m-auto h-[80px] mt-4 mb-4 bg-white rounded-xl drop-shadow-md">
+    <div className="m-auto mt-4 mb-4 h-[80px] w-full rounded-xl bg-bg-feed drop-shadow-md dark:bg-bg-feed-dark">
       {/* 바디 */}
-      <div className="flex justify-between items-center h-full p-5">
+      <div className="flex h-full items-center justify-between p-5">
         {/* 뱃지 */}
-        <BadgeImage nickname={nickname} badge_url={badge_url} />
+        <BadgeImage userId={2} badgeImageUrl={badgeImageUrl} />
         {/* 투표 생성 버튼 */}
         <Link
-          className="flex w-full h-full justify-center items-center"
+          className="flex h-full w-full items-center justify-center"
           href="/vote/create"
           passHref
         >
-          <button className="ml-2 w-full h-10 bg-gray-100 rounded-full text-gray-500 font-semibold text-xs md:text-sm lg:text-md hover:bg-gray-200 transition">
-            원하는 투표를 만들어보세요
+          <button
+            id="vote-create-button"
+            className="lg:text-md ml-2 h-10 w-full rounded-full bg-gray-100 text-xs font-semibold text-gray-500 transition hover:bg-gray-200 dark:bg-[#3a3b3c] dark:text-text-feed-dark dark:hover:bg-neutral-600 md:text-base"
+          >
+            {translation("home.vote_create_bar.create_vote_message")}
           </button>
         </Link>
       </div>

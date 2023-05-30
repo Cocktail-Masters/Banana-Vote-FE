@@ -10,5 +10,158 @@
     "test2": {
       "test3": "asdf"
     }
+  },
+  "event": {
+    "pageTitle": "이벤트",
+    "ing": "진행중",
+    "end": "종료"
+  },
+  "ranking": {
+    "nickname": "닉네임",
+    "point": "점수",
+    "rank": "등수",
+    "ranking_update_time": "랭킹은 매일 0시에 갱신 됩니다."
+  },
+  "header": {
+    "vote_list": "투표목록",
+    "popular": "인기투표",
+    "event": "이벤트",
+    "store": "스토어",
+    "ranking": "랭킹"
+  },
+  "vote": {
+    "create": {
+      "registration": "등록",
+      "vote_generation": "투표 생성",
+      "is_disclosure": "공개 여부",
+      "disclosure_true": "공개",
+      "disclosure_false": "비공개",
+      "is_event": "이벤트 여부",
+      "event_true": "이벤트",
+      "event_false": "일반",
+      "is_anonymouse": "로그인 여부",
+      "anonymouse_true": "실명",
+      "anonymouse_false": "익명",
+      "vote_deadline": "투표 마감일",
+      "title": "제목",
+      "enter_content": "내용 입력"
+    },
+    "detail": {
+      "item": {
+        "end": "종료",
+        "ing": "진행중",
+        "period": "투표 기간",
+        "remaining": "일 남음",
+        "hits": "조회수",
+        "image_hint": "이미지를 클릭하면 크게 볼 수 있습니다.",
+        "predict_result": "결과 예측하기",
+        "voting": "투표하기",
+        "delete": "삭제",
+        "declaration": "신고",
+        "declaration_modal": {
+          "title": "신고",
+          "content": "신고하기 위한 사유를 선택해주세요.",
+          "type_spam": "스팸, 광고",
+          "type_porn": "음란물",
+          "type_criticism": "상대방에 대한 과도한 비난",
+          "type_etc": "기타",
+          "text_area": "신고 사유를 상세하게 작성해 주십시오."
+        },
+        "prediction_modal": {
+          "title": "바나나 포인트로 투표 결과를 예측하기",
+          "no": "번",
+          "user_vote_result": "을 투표 하셨어요!",
+          "setting_point": "예측에 사용할 포인트를 설정 해주세요!",
+          "submit": "제출",
+          "has_banana": "가지고 있는 바나나 포인트"
+        }
+      },
+      "picket_area": {
+        "electioneering": "선거 운동",
+        "modal": {
+          "join": "참여하기",
+          "upload": "피캣 올리기",
+          "content": {
+            "change": "으로 현재 피캣 바꾸기",
+            "dropzone": {
+              "upload_hint1": "이곳에 파일을 드래그 하거나",
+              "upload_hint2": "파일을 직접 선택해주세요!",
+              "upload_hint3": "사용 가능한 확장자는 JPG,PNG,WEBP입니다.",
+              "min_banana": "최소 바나나",
+              "submit": "제출",
+              "has_banana": "가지고 있는 바나나"
+            }
+          }
+        }
+      },
+      "comment_area": {
+        "count_comment": "개의 댓글",
+        "sort_by_agree": "공감순",
+        "sort_by_latest": "최신순",
+        "comment_input": {
+          "placeholder": "의견 작성하기",
+          "submit":"등록",
+          "alert":"로그인 후 이용 부탁드립니다."
+        }
+      }
+    }
+  },
+  "feed": {
+    "feed": {
+      "best_opinion": "베스트 댓글",
+      "opinion": "댓글",
+      "opinion_num": "개",
+      "encourage_voting_message_front": "",
+      "encourage_voting_message_back": "에 투표하러 가기"
+    },
+    "feed_header": {
+      "report": "신고",
+      "share": "공유",
+      "error_message": "잘못된 요청입니다.",
+      "closed": "종료됨",
+      "days_left": "일 남음"
+    },
+    "feed_list_area": {
+      "result": "에 대한 검색 결과입니다.",
+      "no_vote_list_title": "투표 목록이 없습니다.",
+      "no_vote_list_description": "새로운 투표를 만들어보세요!",
+      "num_list": "개의 글"
+    }
+  },
+  "home": {
+    "ranking_box": {
+      "see_more": "더보기",
+      "no_ranking_list": "시즌 랭킹 정보가 없습니다."
+    },
+    "ranking_list_area": {
+      "box_title": "시즌 랭킹"
+    },
+    "recommend_area": {
+      "titles_popular": "지금 있기있는 투표",
+      "titles_recommend": "관심있을만한 최신 투표"
+    },
+    "recommend_box": {
+      "no_recommend_list": "글이 없습니다."
+    },
+    "vote_create_bar": {
+      "create_vote_message": "원하는 투표를 만들어보세요"
+    },
+    "vote_search_bar": {
+      "sort_recent": "최신 순",
+      "sort_participant_high": "참여 순",
+      "sort_hit_high": "조회 순",
+      "sort_opinion_high": "댓글 많은 순",
+      "contain_closed_votes": "종료 투표 포함",
+      "search_placeholder": "검색"
+    },
+    "tag_box": {
+      "tag_box_title": "트렌딩 태그",
+      "no_tags": "태그가 없습니다."
+    }
+  },
+  "store": {
+    "page": {
+      "title": "바나나 스토어"
+    }
   }
 }

@@ -1,16 +1,8 @@
-import Pagination from "@/components/ranking/Pagination";
-import RankingList from "@/components/ranking/RankingList";
-import SearchInput from "@/components/ranking/SearchInput";
-import SelectSeason from "@/components/ranking/SelectSeason";
+import { getSeasonFromApi } from "@/app/api/season/route";
+import Redirect from "./redirect.client";
 
-const Ranking = () => {
-  return (
-    <>
-      <SearchInput></SearchInput>
-      <SelectSeason></SelectSeason>
-      <RankingList></RankingList>
-      <Pagination></Pagination>
-    </>
-  );
+const Page = async () => {
+  const seasons = getSeasonFromApi();
+  return <Redirect url={`/ranking/${seasons[0]?.id}/0`}></Redirect>;
 };
-export default Ranking;
+export default Page;

@@ -13,6 +13,8 @@ export type userType = anotherUserType & {
   age: number;
   gender: string;
   badgeImageUrl: string;
+  access_token: string;
+  refresh_token: string;
 };
 
 /**

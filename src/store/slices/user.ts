@@ -8,6 +8,7 @@ export type userSliceType = {
   user: userType;
   setIsLogin: (input: boolean) => void;
   setNickname: (input: string) => void;
+  setUserInfo: (info: userType) => void;
 };
 
 export const createUserSlice = (set: any) => ({
@@ -20,6 +21,8 @@ export const createUserSlice = (set: any) => ({
     ranking: 0,
     badgeImageUrl: "",
     percentage: 0.0,
+    access_token: "",
+    refresh_token: "",
   },
   setIsLogin: (input: boolean) =>
     set((state: userSliceType) => {
@@ -28,6 +31,11 @@ export const createUserSlice = (set: any) => ({
   setNickname: (input: string) => {
     set((state: userSliceType) => {
       state.user.nickname = input;
+    });
+  },
+  setUserInfo: (userInfo: userType) => {
+    set((state: userSliceType) => {
+      state.user = userInfo;
     });
   },
 });

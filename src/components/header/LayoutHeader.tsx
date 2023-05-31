@@ -11,6 +11,7 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import useTranslation from "@/hooks/useTranslation";
 import LoginModal from "../login/LoginModal";
 import Login from "../login/Login";
+import { useMainStore } from "@/store";
 
 export type tabType = {
   label: string;
@@ -29,6 +30,8 @@ const LayoutHeader = () => {
   ];
 
   const [isOpen, setIsOpen] = useState(false);
+  const store = useMainStore((state) => state);
+  console.log(store);
 
   const closer = useCallback(() => {
     setIsOpen(false);
@@ -58,8 +61,7 @@ const LayoutHeader = () => {
           <LayoutTopBar tabs={tabs} />
         </div>
         <LoginModal>
-
-            <Login />
+          <Login />
         </LoginModal>
         <div className="visible relative z-[110] m-3 cursor-pointer p-1 	lg:invisible lg:absolute">
           <HamburgerMenuButton

@@ -17,7 +17,7 @@ export const getFeedList = (
   const END = FEEDS_PER_PAGE * (pageParam + 1);
 
   // 더미 데이터 생성
-  const dummyArr = Array.from({ length: 12 }, () => useFeedListDummyV1).flat();
+  const dummyArr = Array.from({ length: 7 }, () => useFeedListDummyV1).flat();
 
   // 종료 포함 여부, 키워드에 따라 더미 데이터 필터링
   const filteredArr = isClosed

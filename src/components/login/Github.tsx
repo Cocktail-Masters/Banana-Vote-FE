@@ -4,13 +4,9 @@ import LayoutLoginButton from "./LayoutLoginButton";
 import LogoTitle from "./LogoTitle";
 import { LoginHandlerType } from "./Login";
 
-const GithubLogin = ({
-  onClickHandler,
-}: {
-  onClickHandler: LoginHandlerType;
-}) => {
+const GithubLogin = ({}: {}) => {
   return (
-    <LayoutLoginButton className="bg-[#161B22]" onClickHandler={onClickHandler}>
+    <LayoutLoginButton className="bg-[#161B22]">
       <Image
         className="ml-3 mr-2 text-white"
         width={30}

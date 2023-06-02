@@ -21,8 +21,8 @@ export const createUserSlice = (set: any) => ({
     ranking: 0,
     badgeImageUrl: "",
     percentage: 0.0,
-    access_token: "",
-    refresh_token: "",
+    accessToken: "",
+    refreshToken: "",
   },
   setIsLogin: (input: boolean) =>
     set((state: userSliceType) => {

@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3002",
-    "devInspect": "cross-env NODE_OPTIONS='--inspect' next dev -p 3002",
+    "dev": "next dev -p 3001",
+    "devInspect": "cross-env NODE_OPTIONS='--inspect' next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
     "lint": "next lint",

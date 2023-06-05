@@ -1,7 +1,7 @@
 /**
  * @author mingyu
  */
-import { useFeedListDummy } from "@/components/feed/__test__/useFeedListDummy";
+import { useFeedListDummyV1 } from "@/components/feed/__test__/useFeedListDummy";
 import { FEEDS_PER_PAGE } from "@/constants/home";
 import { voteFeedListType } from "@/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -17,7 +17,7 @@ export const getFeedList = (
   const END = FEEDS_PER_PAGE * (pageParam + 1);
 
   // 더미 데이터 생성
-  const dummyArr = Array.from({ length: 12 }, () => useFeedListDummy).flat();
+  const dummyArr = Array.from({ length: 7 }, () => useFeedListDummyV1).flat();
 
   // 종료 포함 여부, 키워드에 따라 더미 데이터 필터링
   const filteredArr = isClosed
@@ -89,14 +89,14 @@ export const feedListFetch = async (
     .catch((e) => e);
 
   // * Vercel Build 오류로 예외처리 하드코딩
-  if (!response || !response.res) {
-    response = {
-      res: {
-        totalCount: 0,
-        votes: [],
-      },
-    };
-  }
+  // if (!response || !response.res) {
+  //   response = {
+  //     res: {
+  //       totalCount: 0,
+  //       votes: [],
+  //     },
+  //   };
+  // }
   return response.res;
 };
 

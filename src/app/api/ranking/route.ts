@@ -23,7 +23,7 @@ const rankingList = new Array(115)
 
 const data = {
   totalPage,
-  rankingList,
+  ranking_list: rankingList,
 };
 
 type getRankingFromApiType = {
@@ -40,7 +40,7 @@ export const getRankingFromApi = ({
   pageSize = "10",
 }: getRankingFromApiType) => {
   if (!!nickname && !!pageSize) {
-    const index = data.rankingList.map((v) => v.nickname).indexOf(nickname);
+    const index = data.ranking_list.map((v) => v.nickname).indexOf(nickname);
     const nowPage = Math.floor(index / Number(pageSize));
     const start = index - (index % Number(pageSize));
     const end = start + Number(pageSize);
@@ -49,7 +49,7 @@ export const getRankingFromApi = ({
       nowPage: nowPage,
       start,
       end,
-      ranking_list: data.rankingList
+      ranking_list: data.ranking_list
         .map((v) => ({
           ...v,
           nickname: `${seasonId}_` + v.nickname,
@@ -62,7 +62,7 @@ export const getRankingFromApi = ({
     const end = start + Number(pageSize);
     const newData = {
       ...data,
-      rankingList: data.rankingList
+      ranking_List: data.ranking_list
         .map((v) => ({ ...v, nickname: `${seasonId}_` + v.nickname }))
         .slice(start, end),
     };

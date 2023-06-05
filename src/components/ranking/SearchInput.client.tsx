@@ -34,22 +34,22 @@ const SearchInput = ({ params }: { params: rankingParamsType }) => {
     query === ""
       ? searchList
       : searchList.filter(({ id, nickname }) => {
-          return nickname
-            ?.toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(query.toLowerCase().replace(/\s+/g, ""));
-        });
+        return nickname
+          ?.toLowerCase()
+          .replace(/\s+/g, "")
+          .includes(query.toLowerCase().replace(/\s+/g, ""));
+      });
 
   const createQueryString = useCreateQueryString();
 
   const { routeCallbackHandler } = useRankingRouter(params);
 
   const searchHandler = async (nickname: string) => {
-    const newRanking: { page: number; now_page: number } = await getRanking({
+    const newRanking: { page: number; nowPage: number } = await getRanking({
       seasonId,
       nickname,
     });
-    routeCallbackHandler({ newPageIndex: newRanking.now_page });
+    routeCallbackHandler({ newPageIndex: newRanking.nowPage });
   };
 
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -116,8 +116,7 @@ const SearchInput = ({ params }: { params: rankingParamsType }) => {
                   <Combobox.Option
                     key={search.id}
                     className={({ active }) =>
-                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? "bg-teal-600 text-white" : "text-gray-900"
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-teal-600 text-white" : "text-gray-900"
                       }`
                     }
                     value={search}
@@ -125,9 +124,8 @@ const SearchInput = ({ params }: { params: rankingParamsType }) => {
                     {({ selected, active }) => (
                       <>
                         <span
-                          className={`block truncate ${
-                            selected ? "font-medium" : "font-normal"
-                          } flex  items-center justify-between`}
+                          className={`block truncate ${selected ? "font-medium" : "font-normal"
+                            } flex  items-center justify-between`}
                         >
                           <div>{search.nickname}</div>
                           <button
@@ -149,9 +147,8 @@ const SearchInput = ({ params }: { params: rankingParamsType }) => {
                         </span>
                         {selected ? (
                           <span
-                            className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                              active ? "text-white" : "text-teal-600"
-                            }`}
+                            className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active ? "text-white" : "text-teal-600"
+                              }`}
                           >
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
                           </span>

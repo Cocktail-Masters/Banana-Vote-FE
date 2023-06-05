@@ -101,7 +101,7 @@ const FeedHeader = ({
             </svg>
 
             <p className="ml-[2px] text-sm text-text-feed dark:text-text-feed-dark">
-              {votedNumber.toLocaleString()}
+              {votedNumber && votedNumber.toLocaleString()}
             </p>
           </div>
         </div>

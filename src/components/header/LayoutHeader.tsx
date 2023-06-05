@@ -11,6 +11,10 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import useTranslation from "@/hooks/useTranslation";
 import LoginModal from "../login/LoginModal";
 import Login from "../login/Login";
+import { useMainStore } from "@/store";
+import { useStore } from "@/hooks/useStore";
+import { userSliceType } from "@/store/slices/user";
+import { userType } from "@/types";
 
 export type tabType = {
   label: string;
@@ -29,6 +33,7 @@ const LayoutHeader = () => {
   ];
 
   const [isOpen, setIsOpen] = useState(false);
+  const user = useStore(useMainStore, (state) => state);
 
   const closer = useCallback(() => {
     setIsOpen(false);
@@ -37,6 +42,24 @@ const LayoutHeader = () => {
   useEffect(() => {
     if (isOpen && minWidth650) setIsOpen(false);
   }, [isOpen, minWidth650]);
+
+  const logoutHandler = () => {
+    if (user !== undefined) {
+      const logoutUserInfo: userType = {
+        id: 0,
+        nickname: "",
+        age: 0,
+        gender: "",
+        ranking: 0,
+        badgeImageUrl: "",
+        percentage: 0.0,
+        accessToken: "",
+        refreshToken: "",
+      };
+      user.setIsLogin(false);
+      user.setUserInfo(logoutUserInfo);
+    }
+  };
 
   return (
     <>
@@ -57,9 +80,16 @@ const LayoutHeader = () => {
         <div className="invisible relative flex h-full w-full flex-row items-center p-0 text-2xl lg:visible">
           <LayoutTopBar tabs={tabs} />
         </div>
-        <LoginModal>
-          <Login />
-        </LoginModal>
+        {user !== undefined && user.isLogin ? (
+          <button className="h-7 w-24" onClick={logoutHandler}>
+            로그아웃
+          </button>
+        ) : (
+          <LoginModal>
+            <Login />
+          </LoginModal>
+        )}
+
         <div className="visible relative z-[110] m-3 cursor-pointer p-1 	lg:invisible lg:absolute">
           <HamburgerMenuButton
             isOpen={isOpen}

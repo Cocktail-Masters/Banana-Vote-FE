@@ -4,13 +4,9 @@ import LayoutLoginButton from "./LayoutLoginButton";
 import LogoTitle from "./LogoTitle";
 import { LoginHandlerType } from "./Login";
 
-const NaverLogin = ({
-  onClickHandler,
-}: {
-  onClickHandler: LoginHandlerType;
-}) => {
+const NaverLogin = () => {
   return (
-    <LayoutLoginButton className="bg-[#04C75A]" onClickHandler={onClickHandler}>
+    <LayoutLoginButton className="bg-[#04C75A]">
       <Image
         width={50}
         src={naverImage}

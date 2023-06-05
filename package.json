@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
+    "devInspect": "cross-env NODE_OPTIONS='--inspect' next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
     "lint": "next lint",
@@ -74,6 +75,7 @@
     "@yarnpkg/sdks": "^3.0.0-rc.40",
     "autoprefixer": "^10.4.14",
     "babel-loader": "^8.3.0",
+    "cross-env": "^7.0.3",
     "eslint": "8.35.0",
     "eslint-config-next": "latest",
     "husky": "8.0.3",

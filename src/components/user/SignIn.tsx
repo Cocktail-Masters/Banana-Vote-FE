@@ -5,16 +5,16 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Loading from "@/components/Loading";
 
-const SignIn = ({ token }: { token: string }) => {
+const SignIn = ({ token, userId }: { token: string; userId: number }) => {
   const router = useRouter();
   const store = useMainStore((state) => state);
-  const { data } = useUserInfoFetch({ userId: 1 });
-  
+  const { data } = useUserInfoFetch({ userId });
+
   useEffect(() => {
     if (data !== undefined) {
       const fetchUserData = data.data;
       const userInfo = {
-        id: 1,
+        id: userId,
         nickname: fetchUserData.nickname,
         age: fetchUserData.age,
         gender: fetchUserData.gender ? fetchUserData.gender : "",
@@ -27,8 +27,7 @@ const SignIn = ({ token }: { token: string }) => {
         refreshToken: "",
       };
       store.setIsLogin(true);
-        store.setUserInfo(userInfo);
-        
+      store.setUserInfo(userInfo);
     }
   }, [data]);
 

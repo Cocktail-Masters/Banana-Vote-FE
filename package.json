@@ -25,6 +25,7 @@
     "framer-motion": "^10.8.5",
     "humps": "^2.0.1",
     "immer": "^10.0.1",
+    "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "matter-js": "^0.19.0",
     "nanoid": "^4.0.1",

@@ -17,9 +17,6 @@ const Opinion = ({
   const pathname = usePathname();
   const { detail } = useParams();
   const themeMode = useColorModeStore<colorStoreType>((state: any) => state);
-  console.log("컬러 모드를 알려주세요", themeMode);
-
-  console.log(opinion.id, isBest);
   /**
    * @todo 클릭 시 사용자 프로필 이동
    */

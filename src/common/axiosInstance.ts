@@ -54,6 +54,14 @@ api.interceptors.response.use((response: AxiosResponse) => {
 });
 // Axios middleware to convert all api requests to snake_case
 api.interceptors.request.use(async (config) => {
+  if (!config.headers) return config;
+
+  let token: string | null = localStorage.getItem("token");
+
+  if (token !== null) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
   const newConfig = { ...config };
   newConfig.url = config.url;
   if (config.method === "patch") {

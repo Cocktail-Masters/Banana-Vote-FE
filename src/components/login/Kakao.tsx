@@ -4,16 +4,9 @@ import LayoutLoginButton from "./LayoutLoginButton";
 import LogoTitle from "./LogoTitle";
 import { LoginHandlerType } from "./Login";
 
-const KakaoLogin = ({
-  onClickHandler,
-}: {
-  onClickHandler: LoginHandlerType;
-}) => {
+const KakaoLogin = () => {
   return (
-    <LayoutLoginButton
-      className={"bg-[#FEE601]"}
-      onClickHandler={onClickHandler}
-    >
+    <LayoutLoginButton className={"bg-[#FEE601]"}>
       <Image
         width={50}
         src={kakaoImage}

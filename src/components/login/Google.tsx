@@ -4,13 +4,9 @@ import LayoutLoginButton from "./LayoutLoginButton";
 import LogoTitle from "./LogoTitle";
 import { LoginHandlerType } from "./Login";
 
-const GoogleLogin = ({
-  onClickHandler,
-}: {
-  onClickHandler: LoginHandlerType;
-}) => {
+const GoogleLogin = () => {
   return (
-    <LayoutLoginButton className="bg-[#EFEFEF]" onClickHandler={onClickHandler}>
+    <LayoutLoginButton className="bg-[#EFEFEF]">
       <Image
         width={50}
         src={googleImage}

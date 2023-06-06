@@ -1,13 +1,7 @@
-import FeedListArea from '@/components/feed/FeedListArea';
-import RankingListArea from '@/components/home/RankingListArea';
-import RecommendArea from '@/components/home/RecommendArea';
-import TagListArea from '@/components/home/TagListArea';
-import { Suspense } from 'react';
-import Loading from '@/components/Loading';
-import SelectGender from '@/components/user/SelectGender';
-import SelectAge from '@/components/user/SelectAge';
+import SelectGender from '@/components/user/SelectGenderList';
+import SelectAge from '@/components/user/SelectAgeList';
 
-const Home = () => {
+const Mypage = () => {
   return (
     <>
       <div className='flex items-start justify-center xl:justify-between'>
@@ -19,4 +13,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Mypage;

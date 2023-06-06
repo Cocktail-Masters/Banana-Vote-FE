@@ -163,5 +163,23 @@
     "page": {
       "title": "Banana Store"
     }
+  },
+  "mypage": {
+    "profile": { 
+      "age": {
+        "나이": "Age",
+        "10대": "Teens",
+        "20대": "Twenties",
+        "30대": "Thirties",
+        "40대": "Forties",
+        "50대": "Fifties",
+        "60대 이상": "Sixties and above"
+      },
+      "gender": {
+        "성별": "Gender",
+        "남성": "Male",
+        "여성": "Female"
+      }
+    }
   }
 }

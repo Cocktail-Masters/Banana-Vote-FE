@@ -3,7 +3,7 @@
 import Loading from "@/components/Loading";
 import SignIn from "@/components/user/SignIn";
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
@@ -20,7 +20,7 @@ const Token = () => {
   const token = params.token;
   const decoded: jwtToken = jwt_decode(token);
   useEffect(() => {
-    localStorage.clear();
+    localStorage.removeItem("token");
     localStorage.setItem("token", params.token);
   }, []);
   console.log(params.token);

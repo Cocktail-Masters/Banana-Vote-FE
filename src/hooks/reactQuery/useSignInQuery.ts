@@ -6,7 +6,7 @@ const userInfoFetch = async ({ userId }: { userId: number }) => {
   return response;
 };
 
-export const useUserInfoFetch = ({ userId }: { userId: number }) => {
+export const useUserInfoQuery = ({ userId }: { userId: number }) => {
   return useQuery({
     queryKey: ["userInfo"],
     queryFn: async () => {

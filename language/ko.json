@@ -163,5 +163,10 @@
     "page": {
       "title": "바나나 스토어"
     }
+  },
+  "mypage":{
+    "profile":{
+      "change":"변경"
+    }
   }
 }

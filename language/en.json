@@ -163,5 +163,10 @@
     "page": {
       "title": "Banana Store"
     }
+  },
+  "mypage":{
+    "profile":{
+      "change":"change"
+    }
   }
 }

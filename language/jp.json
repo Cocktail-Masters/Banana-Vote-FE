@@ -166,8 +166,10 @@
   }
   ,
   "mypage":{
+    "mypage":"mypage",
     "profile":{
-      "change":"変える"
+      "change":"変える",
+      "nickname":"ニックネーム"
     }
   }
 }

@@ -165,8 +165,10 @@
     }
   },
   "mypage":{
+    "mypage":"마이페이지",
     "profile":{
-      "change":"변경"
+      "change":"변경",
+      "nickname":"닉네임"
     }
   }
 }

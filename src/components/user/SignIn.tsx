@@ -13,6 +13,7 @@ const SignIn = ({ token, userId }: { token: string; userId: number }) => {
   useEffect(() => {
     if (data !== undefined) {
       const fetchUserData = data.data;
+      const splitToken = token.split(" ");
       const userInfo = {
         id: userId,
         nickname: fetchUserData.nickname,
@@ -23,8 +24,8 @@ const SignIn = ({ token, userId }: { token: string; userId: number }) => {
           ? fetchUserData.equippedBadgeImageUrl
           : "",
         percentage: 0.0,
-        accessToken: token,
-        refreshToken: "",
+        accessToken: splitToken[0],
+        refreshToken: splitToken[1] ? splitToken[1] : "",
       };
       store.setIsLogin(true);
       store.setUserInfo(userInfo);

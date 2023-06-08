@@ -17,13 +17,18 @@ type jwtToken = {
 
 const Token = () => {
   const params = useParams();
-  const token = params.token;
-  const decoded: jwtToken = jwt_decode(token);
+  const token = decodeURI(params.token);
+
+  const splitToken = token.split(" ");
+  const decoded: jwtToken = jwt_decode(splitToken[0]);
+
   useEffect(() => {
-    localStorage.removeItem("token");
-    localStorage.setItem("token", params.token);
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("accessToken");
+    localStorage.setItem("accessToken", splitToken[0]);
+    localStorage.setItem("refreshToken", splitToken[1]);
   }, []);
-  console.log(params.token);
+
   if (params.token !== undefined) {
     return <SignIn token={params.token} userId={decoded.id} />;
   } else {

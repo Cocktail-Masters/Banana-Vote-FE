@@ -56,8 +56,8 @@ api.interceptors.response.use((response: AxiosResponse) => {
 api.interceptors.request.use(async (config) => {
   if (!config.headers) return config;
 
-  let token: string | null = localStorage.getItem("token");
-
+  let token: string | null = localStorage.getItem("accessToken");
+  console.log("token", token);
   if (token !== null) {
     config.headers.Authorization = `Bearer ${token}`;
   }

@@ -165,8 +165,10 @@
     }
   },
   "mypage":{
+    "mypage":"mypage",
     "profile":{
-      "change":"change"
+      "change":"change",
+      "nickname":"nickname"
     }
   }
 }

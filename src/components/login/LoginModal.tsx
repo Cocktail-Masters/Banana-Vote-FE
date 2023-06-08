@@ -5,6 +5,7 @@ const LoginModal = ({ children }: { children: React.ReactNode }) => {
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
+    localStorage.removeItem("pathname");
     setIsOpen(false);
   }
 

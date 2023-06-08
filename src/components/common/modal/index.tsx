@@ -1,6 +1,5 @@
 "use client";
 import { Dialog, Transition } from "@headlessui/react";
-import { useRouter } from "next/dist/client/router";
 import { Fragment, ReactNode, useCallback } from "react";
 
 const Modal = ({

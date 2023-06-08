@@ -1,6 +1,7 @@
 'use client';
+import useChangeLanguagePath from '@/hooks/useChangeLanguagePath';
 import Link from 'next/link';
-import { useParams, usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { tabType } from './LayoutHeader';
@@ -18,22 +19,18 @@ const LayoutSideBar = ({
   closer: () => void;
 }) => {
   const pathname = usePathname();
-  const router = useRouter();
-  const params = useParams();
   const [selectedTabPath, setSelectedTabPath] = useState<string | null>(null);
   useEffect(() => {
     const removeLanguagePath = '/' + pathname.split('/').slice(2).join('/');
     setSelectedTabPath(removeLanguagePath);
   }, [pathname]);
 
-  const onClickMypageHandler = () => {
-    if (params.lng) router.push(`/${params.lng}/mypage`);
-  };
+  const onClickMypageHandler = useChangeLanguagePath('/mypage');
 
   return (
     <>
       <div
-        className='absolute top-0 right-0 z-[100] flex h-full w-[300px] transform flex-col gap-[30px] bg-bg-feed-dark pt-[80px] text-text-normal-dark transition  duration-200 dark:bg-black'
+        className='absolute right-0 top-0 z-[100] flex h-full w-[300px] transform flex-col gap-[30px] bg-bg-feed-dark pt-[80px] text-text-normal-dark transition  duration-200 dark:bg-black'
         style={{
           transform: isOpen ? 'translate(0%)' : 'translate(100%)',
         }}

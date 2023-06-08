@@ -1,10 +1,12 @@
 import InputNickname from "@/components/user/InputNickname";
-import SelectGender from "@/components/user/SelectGender";
-import SelectAge from "@/components/user/SelectAge";
+import SelectGender from "@/components/user/SelectGenderList";
+import SelectAge from "@/components/user/SelectAgeList";
+import useChangeLanguagePath from "@/hooks/useChangeLanguagePath";
+
 import PageTitle from "@/components/common/PageTitle";
 import { getDictionary } from "get-dictionary";
 
-const Home = ({ params: { lng } }: { params: { lng: string } }) => {
+const Mypage = ({ params: { lng } }: { params: { lng: string } }) => {
   const { messages } = getDictionary(lng);
 
   return (
@@ -17,4 +19,4 @@ const Home = ({ params: { lng } }: { params: { lng: string } }) => {
   );
 };
 
-export default Home;
+export default Mypage;

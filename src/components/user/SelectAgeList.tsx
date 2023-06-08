@@ -19,17 +19,18 @@ const SelectAge = () => {
   const [selected, setSelected] = useState(ageList[0]);
   const mutation = useModifiedUserAgeMutation();
 
-  const onChangeSelectedHandler = (select: selectedType<SelectValueType>) => {
-    setSelected(select);
+  const onClickSelectedHandler = (select: selectedType<SelectValueType>) => {
     mutation.mutate({ age: select.value });
   };
+
   return (
     <>
       <div></div>
       <SelectList<SelectValueType>
         list={ageList}
         selected={selected}
-        onChangeHandler={onChangeSelectedHandler}
+        setSelected={setSelected}
+        callback={onClickSelectedHandler}
       />
     </>
   );

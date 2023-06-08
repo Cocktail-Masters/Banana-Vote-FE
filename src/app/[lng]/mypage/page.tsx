@@ -33,7 +33,7 @@ const Mypage = ({ params: { lng } }: { params: { lng: string } }) => {
   ];
 
   return (
-    <div className="flex flex-col items-start justify-center xl:justify-between">
+    <div className='flex flex-col items-start justify-center xl:justify-between'>
       <PageTitle title={messages.mypage.mypage} />
       <CategoryArea
         currentCategory={currentCategory}
@@ -41,8 +41,10 @@ const Mypage = ({ params: { lng } }: { params: { lng: string } }) => {
         categories={MYPAGE_CATEGORIES}
       />
       <InputNickname />
-      <SelectGender></SelectGender>
-      <SelectAge></SelectAge>
+      <div className='flex w-full justify-between'>
+        <SelectGender></SelectGender>
+        <SelectAge></SelectAge>
+      </div>
     </div>
   );
 };

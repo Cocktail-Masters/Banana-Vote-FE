@@ -1,7 +1,7 @@
-"use client";
-import { useCallback, useEffect, useState } from "react";
-import Tag from "./Tag";
-import TagCloseButton from "./TagCloseButton";
+'use client';
+import { useCallback, useEffect, useState } from 'react';
+import Tag from './Tag';
+import TagCloseButton from './TagCloseButton';
 
 type VoteCreatTagPropsType = {
   tagArray: string[];
@@ -9,22 +9,22 @@ type VoteCreatTagPropsType = {
 };
 
 const VoteCreateTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
-  const [tagString, setTagString] = useState<string>("");
+  const [tagString, setTagString] = useState<string>('');
   const [state, setState] = useState(false);
-  const tagSize = "lg";
+  const tagSize = 'lg';
   const [isFocus, setIsFocus] = useState(false);
 
   const textWidthCalculator = useCallback(
     (defaultWidth: number): number => {
       const canvas: HTMLCanvasElement | null = document.getElementById(
-        "canvas"
+        'canvas'
       ) as HTMLCanvasElement;
       if (canvas !== null) {
-        const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext('2d');
         if (ctx !== null) {
-          ctx.font = "20px Noto Sans";
-          let textWidth = ctx.measureText("#").width;
-          for (let letter of tagString.split("")) {
+          ctx.font = '20px Noto Sans';
+          let textWidth = ctx.measureText('#').width;
+          for (let letter of tagString.split('')) {
             textWidth += ctx.measureText(letter).width;
           }
           const width = textWidth + defaultWidth;
@@ -41,7 +41,7 @@ const VoteCreateTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
       setTagArray((prevArray) => {
         return [...prevArray, tagString];
       });
-      setTagString("");
+      setTagString('');
     }
   };
 
@@ -53,7 +53,7 @@ const VoteCreateTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
         if (temp) {
           setTagString(temp);
         } else {
-          setTagString("");
+          setTagString('');
         }
         return newArray;
       });
@@ -72,13 +72,13 @@ const VoteCreateTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
 
   const onKeyDownHandler = async (e: any) => {
     if (e.nativeEvent.isComposing) return;
-    if (e.key == "Enter" || e.code == "Enter" || e.keyCode == 13) {
+    if (e.key == 'Enter' || e.code == 'Enter' || e.keyCode == 13) {
       addTag();
-    } else if (e.key == " " || e.code == "Space" || e.keyCode == 32) {
+    } else if (e.key == ' ' || e.code == 'Space' || e.keyCode == 32) {
       addTag();
     } else if (
-      e.key == "Backspace" ||
-      e.code == "Backspace" ||
+      e.key == 'Backspace' ||
+      e.code == 'Backspace' ||
       e.keyCode == 8
     ) {
       deleteTag();
@@ -91,13 +91,13 @@ const VoteCreateTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
 
   return (
     <>
-      <div className="flex flex-wrap gap-2">
+      <div className='flex flex-wrap gap-2'>
         {tagArray &&
-          tagArray.map((v, index) => {
+          tagArray.map((tag, index) => {
             return (
-              <Tag key={v + index.toString()}>
+              <Tag key={tag + index.toString()}>
                 <>
-                  <div className={"font-sans text-xl"}>{`#${v}`}</div>
+                  <div className={'font-sans text-xl'}>{`# ${tag}`}</div>
                   <TagCloseButton
                     onClick={() => onClickTagCloseHandler(index)}
                   ></TagCloseButton>
@@ -106,9 +106,9 @@ const VoteCreateTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
             );
           })}
         <Tag>
-          <div className="tag-label text-xl font-bold">
+          <div className='tag-label text-xl font-bold'>
             <span
-              className={`hash-tag color-[${isFocus ? "black" : "#d9d9d9"}]`}
+              className={`hash-tag color-[${isFocus ? 'black' : '#d9d9d9'}]`}
             >
               #
             </span>
@@ -116,7 +116,7 @@ const VoteCreateTag = ({ tagArray, setTagArray }: VoteCreatTagPropsType) => {
               <input
                 className={`tag-input h-full bg-[#F9F6ED] font-sans text-xl outline-none`}
                 style={{ width: `${textWidthCalculator(5)}px` }}
-                type="text"
+                type='text'
                 value={tagString}
                 onChange={(e) => {
                   setTagString(e.target.value.trim());

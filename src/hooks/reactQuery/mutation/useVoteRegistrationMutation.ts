@@ -1,7 +1,7 @@
-import api from "@/common/axiosInstance";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { camelizeKeys } from "humps";
+import api from '@/common/axiosInstance';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
+import { camelizeKeys } from 'humps';
 export type voteRegistrationItemType = {
   itemNumber: number;
   title: string;
@@ -27,8 +27,8 @@ type fetchCreateVoteType = {
 export const fetchCreateVoteTest = async ({
   createVoteData,
 }: fetchCreateVoteType) => {
-  const response = await fetch("/api/vote/create", {
-    method: "POST",
+  const response = await fetch('/api/vote/create', {
+    method: 'POST',
     body: JSON.stringify(createVoteData),
   });
   const result = await response.json();
@@ -38,10 +38,9 @@ export const fetchCreateVoteTest = async ({
 export const fetchCreateVote = async ({
   createVoteData,
 }: fetchCreateVoteType) => {
-  const test = JSON.stringify(createVoteData);
-  const { data } = await api.post("/api/v1/votes", {
-    method: "POST",
-    body: test,
+  // const test = JSON.stringify(createVoteData);
+  const { data } = await api.post('/votes', createVoteData, {
+    method: 'POST',
   });
   const result = await data.json();
   return result;
@@ -49,14 +48,17 @@ export const fetchCreateVote = async ({
 
 export const useRegistrationMutation = ({
   queryKey,
+  callback,
 }: {
   queryKey: (string | number)[];
+  callback: () => void;
 }) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: fetchCreateVote,
     onSuccess: (data) => {
+      callback();
       queryClient.invalidateQueries(queryKey);
     },
     onError: (error) => {},

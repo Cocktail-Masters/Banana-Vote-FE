@@ -4,11 +4,11 @@ import useTranslation from '@/hooks/useTranslation';
 import SelectList, { selectedType } from './SelectList';
 import useModifiedUserAgeMutation from '@/hooks/reactQuery/mutation/useModifiedUserAgeMutation';
 
-type SelectValueType = number;
+type SelectValueType = 10 | 20 | 30 | 40 | 50 | 60;
 
 const SelectAge = () => {
   const { translation } = useTranslation();
-  const ageList = [
+  const ageList: selectedType<SelectValueType>[] = [
     { name: translation('mypage.profile.age.10대'), value: 10 },
     { name: translation('mypage.profile.age.20대'), value: 20 },
     { name: translation('mypage.profile.age.30대'), value: 30 },

@@ -1,4 +1,5 @@
 'use client';
+import useChangeLanguagePath from '@/hooks/useChangeLanguagePath';
 import { useStore } from '@/hooks/useStore';
 import useTheme from '@/hooks/useTheme';
 import { colorStoreType, useColorModeStore } from '@/store/colorMode';
@@ -41,9 +42,7 @@ const LayoutTopBar = ({ tabs }: { tabs: tabType[] }) => {
       themeStore.setTheme('dark');
     }
   };
-  const onClickMypageHandler = () => {
-    if (params.lng) router.push(`/${params.lng}/mypage`);
-  };
+  const onClickMypageHandler = useChangeLanguagePath('/mypage');
 
   return (
     <>
@@ -70,7 +69,9 @@ const LayoutTopBar = ({ tabs }: { tabs: tabType[] }) => {
         onChange={themeModeHandler}
         checked={themeMode === 'dark' ? true : false}
       />
-      <div className='p-3'>마이페이지</div>
+      <button className='p-3' onClick={onClickMypageHandler}>
+        마이페이지
+      </button>
     </>
   );
 };

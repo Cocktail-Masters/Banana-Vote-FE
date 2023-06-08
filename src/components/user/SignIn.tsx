@@ -9,7 +9,7 @@ import { userType } from '@/types';
 const SignIn = ({ token }: { token: string }) => {
   const router = useRouter();
   const store = useMainStore((state) => state);
-  const { data } = useUserInfoFetch({ userId: 2 });
+  const { data } = useUserInfoFetch({ userId: 3 });
 
   useEffect(() => {
     if (data !== undefined) {

@@ -4,15 +4,15 @@ import useTranslation from '@/hooks/useTranslation';
 import { useState } from 'react';
 import SelectList, { selectedType } from './SelectList';
 
-type SelectValueType = string;
+type SelectValueType = 'Male' | 'Female';
 
 const SelectGender = () => {
   const { translation } = useTranslation();
-  const genderList = [
+  const genderList: selectedType<SelectValueType>[] = [
     { name: translation('mypage.profile.gender.남성'), value: 'Male' },
     { name: translation('mypage.profile.gender.여성'), value: 'Female' },
   ];
-  console.log(genderList);
+
   const [selected, setSelected] = useState(genderList[0]);
   const mutation = useModifiedUserGenderMutation();
 

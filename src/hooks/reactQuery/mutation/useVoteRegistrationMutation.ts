@@ -10,13 +10,13 @@ export type voteRegistrationItemType = {
 };
 
 export type voteRegistrationType = {
-  title: string;
-  content: string;
+  voteTitle: string;
+  voteContent: string;
   isPublic: boolean;
   isAnonymous?: boolean;
   isEvent?: boolean;
-  endDate: string;
-  items: voteRegistrationItemType[];
+  voteEndDate: string;
+  voteItems: voteRegistrationItemType[];
   tags: string[];
 };
 
@@ -39,9 +39,7 @@ export const fetchCreateVote = async ({
   createVoteData,
 }: fetchCreateVoteType) => {
   // const test = JSON.stringify(createVoteData);
-  const { data } = await api.post('/votes', createVoteData, {
-    method: 'POST',
-  });
+  const { data } = await api.post('/votes', createVoteData);
   const result = await data.json();
   return result;
 };
@@ -61,6 +59,6 @@ export const useRegistrationMutation = ({
       callback();
       queryClient.invalidateQueries(queryKey);
     },
-    onError: (error) => {},
+    onError: (error) => { },
   });
 };

@@ -51,12 +51,12 @@ const CreateVote = () => {
     }
 
     const sendData = {
-      title: voteTitle,
-      content: content,
-      endDate: endDate.toISOString(),
+      voteTitle: voteTitle,
+      voteContent: content,
+      voteEndDate: endDate.toISOString(),
       isAnonymous: isAnonymouse,
       isPublic: isPublic,
-      items: newVoteItems,
+      voteItems: newVoteItems,
       tags: tagArray,
     };
 

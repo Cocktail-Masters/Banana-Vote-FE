@@ -61,7 +61,7 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
     onSuccess: (data) => {
       queryClient.invalidateQueries(["createEventVote"]);
     },
-    onError: (error) => {},
+    onError: (error) => { },
   });
 
   const onClickHandler = async () => {
@@ -77,12 +77,12 @@ const CreateEventVote = ({ data }: { data: voteResponseType }) => {
       });
     }
     const sendData = {
-      title: voteTitle,
-      content: content,
-      endDate: endDate.toISOString(),
+      voteTitle: voteTitle,
+      voteContent: content,
+      voteEndDate: endDate.toISOString(),
       isEvent: isEvent,
       isPublic: isPublic,
-      items: newVoteItems,
+      voteItems: newVoteItems,
       tags: tagArray,
     };
     mutate(

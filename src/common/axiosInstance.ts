@@ -70,7 +70,11 @@ api.interceptors.request.use(async (config) => {
   if (!!config?.params) {
     newConfig.params = decamelizeKeys(config.params);
   }
+  if (config?.data) {
+    newConfig.data = decamelizeKeys(config.data)
+  }
   if (!!config?.data?.body) {
+    console.log("트리거 걸림")
     newConfig.data.body = ObjToJson(
       decamelizeKeys(await jsonToObj(config.data.body))
     );

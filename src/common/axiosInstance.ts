@@ -56,8 +56,8 @@ api.interceptors.response.use((response: AxiosResponse) => {
 api.interceptors.request.use(async (config) => {
   if (!config.headers) return config;
 
-  let token: string | null = localStorage.getItem("token");
-
+  let token: string | null = localStorage.getItem("accessToken");
+  console.log("token", token);
   if (token !== null) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -70,7 +70,11 @@ api.interceptors.request.use(async (config) => {
   if (!!config?.params) {
     newConfig.params = decamelizeKeys(config.params);
   }
+  if (config?.data) {
+    newConfig.data = decamelizeKeys(config.data)
+  }
   if (!!config?.data?.body) {
+    console.log("트리거 걸림")
     newConfig.data.body = ObjToJson(
       decamelizeKeys(await jsonToObj(config.data.body))
     );

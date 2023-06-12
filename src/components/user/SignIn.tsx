@@ -1,20 +1,21 @@
 "use client";
-import { useUserInfoFetch } from "@/hooks/reactQuery/useSignInQuery";
+import { useUserInfoQuery } from "@/hooks/reactQuery/useSignInQuery";
 import { useMainStore } from "@/store";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Loading from "@/components/Loading";
 
-const SignIn = ({ token }: { token: string }) => {
+const SignIn = ({ token, userId }: { token: string; userId: number }) => {
   const router = useRouter();
   const store = useMainStore((state) => state);
-  const { data } = useUserInfoFetch({ userId: 1 });
-  
+  const { data } = useUserInfoQuery({ userId });
+
   useEffect(() => {
     if (data !== undefined) {
       const fetchUserData = data.data;
+      const splitToken = token.split(" ");
       const userInfo = {
-        id: 1,
+        id: userId,
         nickname: fetchUserData.nickname,
         age: fetchUserData.age,
         gender: fetchUserData.gender ? fetchUserData.gender : "",
@@ -23,18 +24,22 @@ const SignIn = ({ token }: { token: string }) => {
           ? fetchUserData.equippedBadgeImageUrl
           : "",
         percentage: 0.0,
-        accessToken: token,
-        refreshToken: "",
+        accessToken: splitToken[0],
+        refreshToken: splitToken[1] ? splitToken[1] : "",
       };
       store.setIsLogin(true);
-        store.setUserInfo(userInfo);
-        
+      store.setUserInfo(userInfo);
     }
   }, [data]);
 
   useEffect(() => {
     if (store.isLogin && store.user.accessToken !== undefined) {
-      router.back();
+      const location = localStorage.getItem("pathname");
+      console.log(location);
+      if (location !== undefined && location !== null) {
+        localStorage.removeItem("pathname");
+        router.push(location);
+      }
     }
   }, [store.isLogin, store.user, router]);
 

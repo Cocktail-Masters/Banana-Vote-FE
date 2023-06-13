@@ -5,20 +5,23 @@
 import React, { useState } from "react";
 import ManageReport from "./menu/ManageReport";
 import ManageUser from "./menu/ManageUser";
+import MenuTitle from "./menu/MenuTitle";
 import MenuBarElement from "./MenuBarElement";
 import MenuBarTitle from "./MenuBarTitle";
 
+/** Static Values */
+const MENUS = [
+  "회원 관리",
+  "신고 관리",
+  "스토어 관리",
+  "이벤트 관리",
+  "태그 관리",
+  "업적 관리",
+  "시즌 관리",
+];
+
 const AdminTemplate = () => {
   const [currentMenu, setCurrentMenu] = useState<number>(0);
-  const MENUS = [
-    "회원 관리",
-    "신고 관리",
-    "스토어 관리",
-    "이벤트 관리",
-    "태그 관리",
-    "업적 관리",
-    "시즌 관리",
-  ];
 
   return (
     <>
@@ -39,7 +42,10 @@ const AdminTemplate = () => {
       </div>
       {/* 영역 */}
       <div className="flex h-full flex-1 justify-center bg-white">
-        {menuSwitch(currentMenu)}
+        <div className="flex h-full w-full flex-col items-center bg-[#e7e7ea] text-black">
+          <MenuTitle title={MENUS[currentMenu]} />
+          {menuSwitch(currentMenu)}
+        </div>
       </div>
     </>
   );
@@ -56,7 +62,17 @@ const menuSwitch = (m: number) => {
       return <ManageUser />;
     case 1: // 신고 관리
       return <ManageReport />;
-    case 2: // ?? 메뉴
+    case 2: // 스토어 관리
+      return <div className="text-black">{m}</div>;
+    case 3: // 스토어 관리
+      return <div className="text-black">{m}</div>;
+    case 4: // 스토어 관리
+      return <div className="text-black">{m}</div>;
+    case 5: // 스토어 관리
+      return <div className="text-black">{m}</div>;
+    case 6: // 스토어 관리
+      return <div className="text-black">{m}</div>;
+    case 7: // 스토어 관리
       return <div className="text-black">{m}</div>;
     default:
       return (

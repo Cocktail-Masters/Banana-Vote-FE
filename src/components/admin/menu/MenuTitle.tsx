@@ -6,7 +6,7 @@ import React from "react";
 
 const MenuTitle = ({ title }: { title: string }) => {
   return (
-    <h2 className="flex h-24 w-full items-center bg-white p-2 text-3xl font-semibold dark:bg-bg-feed">
+    <h2 className="flex min-h-[96px] w-full items-center bg-white p-2 text-3xl font-semibold dark:bg-bg-feed">
       {title}
     </h2>
   );

@@ -3,13 +3,10 @@
  * @description 회원 관리
  */
 import { tmpUserList } from "@/components/admin/__test__/tmpUserList";
-import MenuTitle from "./MenuTitle";
 
 const ManageUser = () => {
   return (
-    <div className="flex h-full w-full flex-col items-center bg-[#e7e7ea] text-black">
-      <MenuTitle title="회원 관리" />
-      {/* 리스트 영역 */}
+  
       <div className="mt-3 h-auto w-full overflow-y-auto p-2">
         <table className="border-darkgray h-full w-full table-auto rounded-lg bg-white">
           <thead className="h-10 border-b">
@@ -50,7 +47,7 @@ const ManageUser = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    
   );
 };
 

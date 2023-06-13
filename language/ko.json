@@ -109,7 +109,7 @@
   "feed": {
     "feed": {
       "best_opinion": "베스트 댓글",
-      "opinion": "댓글",
+      "opinion": "댓글 ",
       "opinion_num": "개",
       "encourage_voting_message_front": "",
       "encourage_voting_message_back": "에 투표하러 가기"
@@ -164,11 +164,11 @@
       "title": "바나나 스토어"
     }
   },
-  "mypage":{
-    "mypage":"마이페이지",
-    "profile":{
-      "change":"변경",
-      "nickname":"닉네임",
+  "mypage": {
+    "mypage": "마이페이지",
+    "profile": {
+      "change": "변경",
+      "nickname": "닉네임",
       "age": {
         "나이": "나이",
         "10대": "10대",

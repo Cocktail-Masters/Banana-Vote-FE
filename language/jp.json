@@ -110,13 +110,13 @@
     "feed": {
       "best_opinion": "最高の意見",
       "opinion": "",
-      "opinion_num": " comments",
+      "opinion_num": " つのコメント",
       "encourage_voting_message_front": "",
       "encourage_voting_message_back": "に投票しに行く"
     },
     "feed_header": {
-      "report": "Report",
-      "share": "Share",
+      "report": "届け出る",
+      "share": "共有する",
       "error_message": "無効な要求です。",
       "closed": "終了",
       "days_left": "日 残り"
@@ -165,7 +165,7 @@
     }
   },
   "mypage": {
-    "mypage":"mypage",
+    "mypage": "mypage",
     "profile": {
       "age": {
         "나이": "ねんれい",
@@ -181,8 +181,8 @@
         "남성": "男性",
         "여성": "女性"
       },
-      "change":"変える",
-      "nickname":"ニックネーム"
+      "change": "変える",
+      "nickname": "ニックネーム"
     }
   }
 }

@@ -166,6 +166,12 @@
   },
   "mypage":{
     "mypage":"mypage",
+    "category":{
+      "profile":"Profile",
+      "inventory":"Inventory",
+      "vote":"Vote",
+      "point":"Point"
+    },
     "profile":{
       "change":"change",
       "nickname":"nickname",

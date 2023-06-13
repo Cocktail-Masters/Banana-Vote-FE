@@ -6,8 +6,8 @@ import { useState } from "react";
 
 const InputNickname = ({
   wrapper = "flex h-full w-full items-center",
-  inputStyle = "w-3/4",
-  buttonStyle = "w-24 h-10 rounded-lg border-gray-300 border bg-white dark:bg-black ml-3 drop-shadow-xl",
+  inputStyle = "w-60",
+  buttonStyle = "w-24 h-12 rounded-lg border-gray-300 border bg-white dark:bg-black ml-3 shadow-md",
 }: {
   wrapper?: string;
   inputStyle?: string;
@@ -30,11 +30,10 @@ const InputNickname = ({
 
   return (
     <div className={wrapper}>
-      <div className={`mr-auto`}>{translation("mypage.profile.nickname")}</div>
       <input
         type="text"
         id="text"
-        className={`block rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 drop-shadow-xl focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ${inputStyle}`}
+        className={` block h-12 rounded-lg bg-gray-50 p-2.5 text-sm text-gray-900 shadow-md focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ${inputStyle}`}
         required
         onChange={onChange}
       ></input>

@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import defaultImg from "@assets/images/defalut_vote_element_img.png";
 import { voteItemType } from "@/types";
 
 type imageModalType = {
@@ -41,17 +40,16 @@ const VoteDetailItemCard = ({
         setSelectItem(item.itemNumber);
       }}
     >
-      <div className="relative">
+      <div className="relative ">
         <Image
-          src={defaultImg}
+          src={item.imageUrl}
           alt="기본 이미지"
           width="100"
           height="100"
-          className="w-100 h-auto rounded-xl object-contain"
+          // fill
+          className="h-24 w-24 rounded-xl object-contain"
           onClick={() => {
-            onOpen(
-              "https://cdn.discordapp.com/attachments/433506654009425921/1021417880207753237/unknown.png"
-            );
+            onOpen(item.imageUrl);
           }}
         />
         <svg
@@ -62,9 +60,7 @@ const VoteDetailItemCard = ({
           stroke="currentColor"
           className="absolute bottom-0 right-0 h-6 w-6"
           onClick={() => {
-            onOpen(
-              "https://cdn.discordapp.com/attachments/433506654009425921/1021417880207753237/unknown.png"
-            );
+            onOpen(item.imageUrl);
           }}
         >
           <path

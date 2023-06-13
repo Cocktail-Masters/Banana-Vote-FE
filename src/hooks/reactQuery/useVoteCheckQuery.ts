@@ -1,17 +1,9 @@
+import api from "@/common/axiosInstance";
 import { useQuery } from "@tanstack/react-query";
 
 export const voteCheckFetch = async (postId: number) => {
-  const res = await fetch(
-    new URL(
-      process.env.NEXT_PUBLIC_HOSTNAME +
-        "/api/vote/detail/check?" +
-        new URLSearchParams({
-          vote_id: String(postId),
-        })
-    )
-  );
-
-  return res.json();
+  const res = await api("votes/check/" + postId);
+  return res;
 };
 
 export const useVoteCheckQuery = ({
@@ -25,7 +17,7 @@ export const useVoteCheckQuery = ({
     queryKey: [queryKey, postId],
     queryFn: async () => {
       const response = await voteCheckFetch(postId);
-      return response.res;
+      return response.data;
     },
   });
 };

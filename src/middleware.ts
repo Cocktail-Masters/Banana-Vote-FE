@@ -20,16 +20,6 @@ function getLocale(request: NextRequest): string | undefined {
 
 export function middleware(request: NextRequest, response: NextResponse) {
   const pathname = request.nextUrl.pathname;
-  const menuPathname = pathname.split("/")[2];
-
-  // 어드민 페이지 유저 확인 후 접근차단
-  if (menuPathname === "admin") {
-    /**
-     * @todo 쿠키확인->서버에 토큰 및 정상쿠키 확인->쿠키에서 pk 또는 access token 추출 후 admin role 확인
-     */
-    // console.log(request);
-    // console.log(request.cookies);
-  }
 
   // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
   // // If you have one

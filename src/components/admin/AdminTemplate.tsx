@@ -2,12 +2,14 @@
  * @author mingyu
  */
 "use client";
-import React, { useState } from "react";
+import api from "@/common/axiosInstance";
+import React, { useLayoutEffect, useState } from "react";
 import ManageReport from "./menu/ManageReport";
 import ManageUser from "./menu/ManageUser";
 import MenuTitle from "./menu/MenuTitle";
 import MenuBarElement from "./MenuBarElement";
 import MenuBarTitle from "./MenuBarTitle";
+import { useRouter } from "next/navigation";
 
 /** Static Values */
 const MENUS = [
@@ -21,32 +23,53 @@ const MENUS = [
 ];
 
 const AdminTemplate = () => {
+  const router = useRouter();
   const [currentMenu, setCurrentMenu] = useState<number>(0);
+  const [checked, setChecked] = useState<boolean>(false);
+
+  useLayoutEffect(() => {
+    async function checkRole() {
+      const fetchRole = await api.get(`/users/role`);
+
+      if (fetchRole.status !== 200 || fetchRole.data.role !== "ADMIN") {
+        router.push(`/home`);
+        return;
+      }
+
+      setChecked(true);
+    }
+
+    checkRole();
+  }, []);
 
   return (
     <>
-      {/* 메뉴 세로 바 */}
-      <div className="custom-scroll flex h-full w-80 flex-col justify-start overflow-y-scroll bg-[#1a2738]">
-        <MenuBarTitle />
-        {MENUS.map((item, index) => {
-          return (
-            <MenuBarElement
-              key={index}
-              name={item}
-              id={index}
-              currentMenu={currentMenu}
-              setCurrentMenu={setCurrentMenu}
-            />
-          );
-        })}
-      </div>
-      {/* 영역 */}
-      <div className="flex h-full flex-1 justify-center bg-white">
-        <div className="flex h-full w-full flex-col items-center bg-[#e7e7ea] text-black">
-          <MenuTitle title={MENUS[currentMenu]} />
-          {menuSwitch(currentMenu)}
-        </div>
-      </div>
+      {checked ? (
+        <>
+          <div className="custom-scroll flex h-full w-80 flex-col justify-start overflow-y-scroll bg-[#1a2738]">
+            <MenuBarTitle />
+            {MENUS.map((item, index) => {
+              return (
+                <MenuBarElement
+                  key={index}
+                  name={item}
+                  id={index}
+                  currentMenu={currentMenu}
+                  setCurrentMenu={setCurrentMenu}
+                />
+              );
+            })}
+          </div>
+          <div className="flex h-full flex-1 justify-center bg-white">
+            <div className="flex h-full w-full flex-col items-center bg-[#e7e7ea] text-black">
+              <MenuTitle title={MENUS[currentMenu]} />
+              {menuSwitch(currentMenu)}
+            </div>
+          </div>
+        </>
+      ) : (
+        <div>Checking the role...</div>
+      )}
     </>
   );
 };
@@ -64,15 +87,13 @@ const menuSwitch = (m: number) => {
       return <ManageReport />;
     case 2: // 스토어 관리
       return <div className="text-black">{m}</div>;
-    case 3: // 스토어 관리
+    case 3: // 이벤트 관리
       return <div className="text-black">{m}</div>;
-    case 4: // 스토어 관리
+    case 4: // 태그 관리
       return <div className="text-black">{m}</div>;
-    case 5: // 스토어 관리
+    case 5: // 업적 관리
       return <div className="text-black">{m}</div>;
-    case 6: // 스토어 관리
-      return <div className="text-black">{m}</div>;
-    case 7: // 스토어 관리
+    case 6: // 시즌 관리
       return <div className="text-black">{m}</div>;
     default:
       return (

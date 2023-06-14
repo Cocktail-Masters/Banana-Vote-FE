@@ -77,15 +77,22 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
   const { mutate } = useVoteCheckMutation({ queryKey: ["voteCheck", postId] });
 
   const [selectItem, setSelectItem] = useState<number | undefined>();
+  const [selectItemId, setSelectItemId] = useState<number | undefined>();
 
-  const select = (itemId: number) => {
+  const select = ({ itemId, id }: { itemId: number; id: number }) => {
     if (itemId === selectItem) {
       setSelectItem((prev: number | undefined) => {
+        return undefined;
+      });
+      setSelectItemId((prev: number | undefined) => {
         return undefined;
       });
     } else {
       setSelectItem((prev: number | undefined) => {
         return itemId;
+      });
+      setSelectItemId((prev: number | undefined) => {
+        return id;
       });
     }
   };
@@ -201,6 +208,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                     item={e}
                     setSelectItem={select}
                     selectItem={selectItem}
+                    selectItemId={selectItemId}
                     isParti={voteCheck.participation}
                     imageModalHandler={imageModalHandler}
                     isOpen={isImageModalOpen.isOpen}
@@ -241,7 +249,8 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                     disabled={selectItem === undefined}
                     onClick={() => {
                       mutate({
-                        voteItemId: selectItem !== undefined ? selectItem : 0,
+                        voteItemId:
+                          selectItemId !== undefined ? selectItemId : 0,
                         point: 0,
                       });
                     }}

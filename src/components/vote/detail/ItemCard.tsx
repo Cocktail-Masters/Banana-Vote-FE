@@ -13,11 +13,13 @@ const VoteDetailItemCard = ({
   selectItem,
   isParti,
   imageModalHandler,
+  selectItemId,
   isOpen,
 }: {
   item: voteItemType;
-  setSelectItem: (itemId: number) => void;
+  setSelectItem: ({ itemId, id }: { itemId: number; id: number }) => void;
   selectItem: number | undefined;
+  selectItemId: number | undefined;
   isParti: boolean | undefined;
   imageModalHandler: (e: imageModalType) => void;
   isOpen: boolean;
@@ -37,7 +39,7 @@ const VoteDetailItemCard = ({
       }`}
       style={{ overflow: "hidden" }}
       onClick={() => {
-        setSelectItem(item.itemNumber);
+        setSelectItem({ itemId: item.itemNumber, id: item.id });
       }}
     >
       <div className="relative ">

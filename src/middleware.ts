@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import type { NextRequest, NextFetchEvent } from "next/server";
 
 import { i18n } from "../i18n-config";
 
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import { api } from "@/common/axiosInstance";
 
 function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object so we need to transform headers
@@ -18,8 +19,46 @@ function getLocale(request: NextRequest): string | undefined {
   return matchLocale(languages, locales, i18n.defaultLocale);
 }
 
-export function middleware(request: NextRequest, response: NextResponse) {
+export function middleware(
+  request: NextRequest,
+  response: NextResponse,
+  event: NextFetchEvent
+) {
   const pathname = request.nextUrl.pathname;
+  const slug = pathname.split("/")[2];
+
+  if (pathname.includes("/oauth2/redirect")) {
+    const token = pathname.split("/")[4];
+    console.log("===== pathname =====");
+    console.log(pathname);
+    const at = request.cookies.get("accessToken");
+    console.log("===== access token in Cookie =====");
+    console.log(at);
+
+    /**
+     * @todo NextResponse next() vs redirect() ??
+     */
+    const response = NextResponse.next();
+    response.cookies.set("access-token", "why~~~~");
+
+    // response.cookies.set({
+    //   name: "access-token",
+    //   value: "whywhy",
+    //   httpOnly: true,
+    // });
+
+    console.log(response);
+  }
+
+  // 어드민 페이지 접속 시 체크
+  if (pathname.includes("/admin")) {
+    console.log("===== REQUEST COOKIES =====");
+    console.log(request.cookies);
+
+    if (true) {
+      return NextResponse.redirect(new URL("/home", request.url));
+    }
+  }
 
   // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
   // // If you have one

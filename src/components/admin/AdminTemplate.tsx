@@ -27,20 +27,20 @@ const AdminTemplate = () => {
   const [currentMenu, setCurrentMenu] = useState<number>(0);
   const [checked, setChecked] = useState<boolean>(false);
 
-  useLayoutEffect(() => {
-    async function checkRole() {
-      const fetchRole = await api.get(`/users/role`);
+  // useLayoutEffect(() => {
+  //   async function checkRole() {
+  //     const fetchRole = await api.get(`/users/role`);
 
-      if (fetchRole.status !== 200 || fetchRole.data.role !== "ADMIN") {
-        router.push(`/home`);
-        return;
-      }
+  //     if (fetchRole.status !== 200 || fetchRole.data.role !== "ADMIN") {
+  //       router.push(`/home`);
+  //       return;
+  //     }
 
-      setChecked(true);
-    }
+  //     setChecked(true);
+  //   }
 
-    checkRole();
-  }, []);
+  //   checkRole();
+  // }, []);
 
   return (
     <>

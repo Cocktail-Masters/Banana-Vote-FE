@@ -19,23 +19,7 @@ export const useFeedListDummyV1 = [
       hits: 8272362,
       votedNumber: 6121,
       opinionNumber: 35,
-      tags: [
-        {
-          id: 515,
-          name: "탕수육",
-          usedNumber: 1234,
-        },
-        {
-          id: 16,
-          name: "탕수육_논쟁",
-          usedNumber: 1234,
-        },
-        {
-          id: 8782,
-          name: "부먹vs찍먹",
-          usedNumber: 1234,
-        },
-      ],
+      tags: [],
     },
     writer: {
       id: 1414,
@@ -93,23 +77,7 @@ export const useFeedListDummyV1 = [
       hits: 11616,
       votedNumber: 51,
       opinionNumber: 8,
-      tags: [
-        {
-          id: 515,
-          name: "태그11",
-          usedNumber: 1234,
-        },
-        {
-          id: 16,
-          name: "태그22",
-          usedNumber: 1234,
-        },
-        {
-          id: 8782,
-          name: "태그33",
-          usedNumber: 1234,
-        },
-      ],
+      tags: [],
     },
     writer: {
       id: 1414,
@@ -176,23 +144,7 @@ export const useFeedListDummyV1 = [
       hits: 1854,
       votedNumber: 611,
       opinionNumber: 85,
-      tags: [
-        {
-          id: 515,
-          name: "태그11",
-          usedNumber: 1234,
-        },
-        {
-          id: 16,
-          name: "태그22",
-          usedNumber: 1234,
-        },
-        {
-          id: 8782,
-          name: "태그33",
-          usedNumber: 1234,
-        },
-      ],
+      tags: [],
     },
     writer: {
       id: 1414,
@@ -292,18 +244,7 @@ export const useFeedListDummyV1 = [
       hits: 7781,
       votedNumber: 7262642,
       opinionNumber: 5,
-      tags: [
-        {
-          id: 67277,
-          name: "걸그룹",
-          usedNumber: 1234,
-        },
-        {
-          id: 23652727,
-          name: "아이돌",
-          usedNumber: 1234,
-        },
-      ],
+      tags: [],
     },
     writer: {
       id: 100,
@@ -384,23 +325,7 @@ export const useFeedListDummyV1 = [
       hits: 2847,
       votedNumber: 1896,
       opinionNumber: 7,
-      tags: [
-        {
-          id: 515,
-          name: "태그11",
-          usedNumber: 1234,
-        },
-        {
-          id: 16,
-          name: "태그22",
-          usedNumber: 1234,
-        },
-        {
-          id: 8782,
-          name: "태그33",
-          usedNumber: 1234,
-        },
-      ],
+      tags: [],
     },
     writer: {
       id: 334,
@@ -484,23 +409,7 @@ export const useFeedListDummyV1 = [
       hits: 88993,
       votedNumber: 12765,
       opinionNumber: 87,
-      tags: [
-        {
-          id: 515,
-          name: "태그11",
-          usedNumber: 1234,
-        },
-        {
-          id: 16,
-          name: "태그22",
-          usedNumber: 1234,
-        },
-        {
-          id: 8782,
-          name: "태그33",
-          usedNumber: 1234,
-        },
-      ],
+      tags: [],
     },
     writer: {
       id: 2468,
@@ -588,23 +497,7 @@ export const useFeedListDummyV1 = [
       hits: 5678,
       votedNumber: 33,
       opinionNumber: 7,
-      tags: [
-        {
-          id: 515,
-          name: "태그11",
-          usedNumber: 1234,
-        },
-        {
-          id: 16,
-          name: "태그22",
-          usedNumber: 1234,
-        },
-        {
-          id: 8782,
-          name: "태그33",
-          usedNumber: 1234,
-        },
-      ],
+      tags: [],
     },
     writer: {
       id: 5678,

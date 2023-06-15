@@ -18,6 +18,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
     nowPageIndex,
     sortOption: opinionType,
   });
+  console.log("댓글임", data);
   if (isLoading) {
     return <Loading />;
   }

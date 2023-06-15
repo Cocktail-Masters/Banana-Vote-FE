@@ -3,8 +3,6 @@
  */
 "use client";
 import Tag from "@/components/common/tag/Tag";
-import { tagListType, tagListTypes } from "@/types";
-import { MouseEvent } from "react";
 import Link from "next/link";
 
 type tagListProps = {
@@ -18,7 +16,8 @@ const TagList = ({ tags, handleClick }: tagListProps) => {
       {tags &&
         tags.map((tag: string, index: number) => {
           return (
-            <Link key={index} href={`/hashtag/${tag}`}>
+            // <Link key={index} href={`/hashtag/${tag}`}>
+            <Link key={index} href={`/hashtag/tmp`}>
               <Tag tag={tag} />
             </Link>
           );

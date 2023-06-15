@@ -130,14 +130,8 @@ export type voteTypes = voteType[];
  */
 export type tagTypes = string[];
 
-export type tagListType = {
-  id: number;
-  name: string;
-  usedNumber: number;
-};
-
 export type tagListTypes = {
-  tags: tagListType[];
+  tags: string[];
 };
 
 /**
@@ -178,7 +172,7 @@ export type voteDetailType = {
     hits: number;
     votedNumber: number;
     opinionNumber: number;
-    tags: tagListType[];
+    tags: string[];
   };
   writer: {
     id: number;

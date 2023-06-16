@@ -7,7 +7,7 @@ import { camelizeKeys, decamelizeKeys } from "humps";
 
 export const api = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1`,
-  timeout: 5000,
+  // timeout: 5000,
 });
 
 /**
@@ -66,7 +66,7 @@ api.interceptors.request.use(async (config) => {
   if (token !== null) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-
+  console.log(config);
   const newConfig = { ...config };
   newConfig.url = config.url;
   if (config.method === "patch") {

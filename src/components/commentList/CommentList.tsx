@@ -4,17 +4,19 @@ import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import Opinion from "./Opinion";
 import Loading from "../Loading";
+import { useParams } from "next/navigation";
 
 const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
-  const [nowPageIndex, setNowPageIndex] = useState(1);
+  const [nowPageIndex, setNowPageIndex] = useState(0);
   const queryClient = useQueryClient();
+  const params = useParams();
 
   useEffect(() => {
     queryClient.invalidateQueries(["commentList", opinionType, 1]);
   }, [opinionType, queryClient]);
   const { data, isLoading } = useFetchComments({
     queryKey: "commentList",
-    postId: 1,
+    postId: parseInt(params.detail),
     nowPageIndex,
     sortOption: opinionType,
   });

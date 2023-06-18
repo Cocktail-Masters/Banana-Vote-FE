@@ -8,6 +8,7 @@ import Loading from "@/components/Loading";
 const SignIn = ({ token, userId }: { token: string; userId: number }) => {
   const router = useRouter();
   const store = useMainStore((state) => state);
+  console.log("SignIn SignIn SignIn SignIn");
   const { data } = useUserInfoQuery({ userId });
 
   useEffect(() => {

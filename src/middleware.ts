@@ -28,32 +28,22 @@ export function middleware(
   const slug = pathname.split("/")[2];
 
   if (pathname.includes("/oauth2/redirect")) {
-    const token = pathname.split("/")[4];
-    console.log("===== pathname =====");
-    console.log(pathname);
-    const at = request.cookies.get("accessToken");
-    console.log("===== access token in Cookie =====");
-    console.log(at);
+    const token = pathname.split("/")[3];
 
-    /**
-     * @todo NextResponse next() vs redirect() ??
-     */
     const response = NextResponse.next();
-    response.cookies.set("access-token", "why~~~~");
+    response.cookies.set("access-token", token);
 
-    // response.cookies.set({
-    //   name: "access-token",
-    //   value: "whywhy",
-    //   httpOnly: true,
-    // });
-
-    console.log(response);
+    return response;
   }
 
   // 어드민 페이지 접속 시 체크
   if (pathname.includes("/admin")) {
     console.log("===== REQUEST COOKIES =====");
     console.log(request.cookies);
+
+    /**
+     * @todo /user/role로 요청 보내서 Admin 여부 확인
+     */
 
     if (true) {
       return NextResponse.redirect(new URL("/home", request.url));

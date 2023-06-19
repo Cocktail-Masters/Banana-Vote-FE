@@ -34,11 +34,15 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 
   // Admin 페이지 접근 시
   if (pathname.includes("/admin")) {
-    const token = request.cookies.get("access-token")?.value as string;
-    const decodedToken: jwtToken = jwtDecode(token);
-    const role = decodedToken.role;
+    const token = request.cookies.get("access-token");
+    if (token) {
+      const decodedToken: jwtToken = jwtDecode(token.value);
+      const role = decodedToken.role;
 
-    if (role !== "ADMIN") {
+      if (role !== "ADMIN") {
+        return NextResponse.redirect(new URL("/home", request.url));
+      }
+    } else {
       return NextResponse.redirect(new URL("/home", request.url));
     }
   }

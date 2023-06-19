@@ -2,14 +2,12 @@
  * @author mingyu
  */
 "use client";
-import api from "@/common/axiosInstance";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import ManageReport from "./menu/ManageReport";
 import ManageUser from "./menu/ManageUser";
 import MenuTitle from "./menu/MenuTitle";
 import MenuBarElement from "./MenuBarElement";
 import MenuBarTitle from "./MenuBarTitle";
-import { useRouter } from "next/navigation";
 
 /** Static Values */
 const MENUS = [
@@ -23,53 +21,30 @@ const MENUS = [
 ];
 
 const AdminTemplate = () => {
-  const router = useRouter();
   const [currentMenu, setCurrentMenu] = useState<number>(0);
-  const [checked, setChecked] = useState<boolean>(false);
-
-  useLayoutEffect(() => {
-    async function checkRole() {
-      const fetchRole = await api.get(`/users/role`);
-
-      if (fetchRole.status !== 200 || fetchRole.data.role !== "ADMIN") {
-        router.push(`/home`);
-        return;
-      }
-
-      setChecked(true);
-    }
-
-    checkRole();
-  }, []);
 
   return (
     <>
-      {checked ? (
-        <>
-          <div className="custom-scroll flex h-full w-80 flex-col justify-start overflow-y-scroll bg-[#1a2738]">
-            <MenuBarTitle />
-            {MENUS.map((item, index) => {
-              return (
-                <MenuBarElement
-                  key={index}
-                  name={item}
-                  id={index}
-                  currentMenu={currentMenu}
-                  setCurrentMenu={setCurrentMenu}
-                />
-              );
-            })}
-          </div>
-          <div className="flex h-full flex-1 justify-center bg-white">
-            <div className="flex h-full w-full flex-col items-center bg-[#e7e7ea] text-black">
-              <MenuTitle title={MENUS[currentMenu]} />
-              {menuSwitch(currentMenu)}
-            </div>
-          </div>
-        </>
-      ) : (
-        <div className="flex h-auto w-auto p-3">Checking the role...</div>
-      )}
+      <div className="custom-scroll flex h-full w-80 flex-col justify-start overflow-y-scroll bg-[#1a2738]">
+        <MenuBarTitle />
+        {MENUS.map((item, index) => {
+          return (
+            <MenuBarElement
+              key={index}
+              name={item}
+              id={index}
+              currentMenu={currentMenu}
+              setCurrentMenu={setCurrentMenu}
+            />
+          );
+        })}
+      </div>
+      <div className="flex h-full flex-1 justify-center bg-white">
+        <div className="flex h-full w-full flex-col items-center bg-[#e7e7ea] text-black">
+          <MenuTitle title={MENUS[currentMenu]} />
+          {menuSwitch(currentMenu)}
+        </div>
+      </div>
     </>
   );
 };

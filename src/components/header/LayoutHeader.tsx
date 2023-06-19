@@ -13,8 +13,9 @@ import LoginModal from "../login/LoginModal";
 import Login from "../login/Login";
 import { useMainStore } from "@/store";
 import { useStore } from "@/hooks/useStore";
-import { userSliceType } from "@/store/slices/user";
 import { userType } from "@/types";
+import { useRouter } from "next/navigation";
+import { cookies } from "next/headers";
 
 export type tabType = {
   label: string;
@@ -23,6 +24,7 @@ export type tabType = {
 
 const LayoutHeader = () => {
   const minWidth650 = useMediaQuery("(min-width:960px)");
+  const router = useRouter();
   const { translation } = useTranslation();
   const tabs: tabType[] = [
     { label: translation("header.vote_list"), path: "/home" },
@@ -59,12 +61,15 @@ const LayoutHeader = () => {
       user.setIsLogin(false);
       user.setUserInfo(logoutUserInfo);
     }
+    document.cookie =
+      "access-token" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    router.push("/home");
   };
 
   return (
     <>
       <div
-        className="absolute top-0 left-0 z-10 h-full w-full bg-bg-header-dark bg-opacity-70 dark:bg-opacity-90 "
+        className="absolute left-0 top-0 z-10 h-full w-full bg-bg-header-dark bg-opacity-70 dark:bg-opacity-90 "
         style={{
           visibility: isOpen ? "visible" : "hidden",
           opacity: isOpen ? 1 : 0,

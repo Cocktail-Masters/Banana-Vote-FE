@@ -383,3 +383,13 @@ export type filterOptions = {
   isClosed: boolean;
   sortBy: number;
 };
+
+/**
+ * Etc
+ */
+export type jwtToken = {
+  id: number;
+  email: string;
+  role: string;
+  exp: number;
+};

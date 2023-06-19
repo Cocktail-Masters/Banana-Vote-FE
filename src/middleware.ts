@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest, NextFetchEvent } from "next/server";
-
 import { i18n } from "../i18n-config";
-
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
-import { api } from "@/common/axiosInstance";
+import jwtDecode from "jwt-decode";
+import { jwtToken } from "./types";
 
 function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object so we need to transform headers
@@ -19,14 +18,11 @@ function getLocale(request: NextRequest): string | undefined {
   return matchLocale(languages, locales, i18n.defaultLocale);
 }
 
-export function middleware(
-  request: NextRequest,
-  response: NextResponse,
-  event: NextFetchEvent
-) {
+export async function middleware(request: NextRequest, response: NextResponse) {
   const pathname = request.nextUrl.pathname;
   const slug = pathname.split("/")[2];
 
+  // Login 페이지 접근 시
   if (pathname.includes("/oauth2/redirect")) {
     const token = pathname.split("/")[3];
 
@@ -36,16 +32,13 @@ export function middleware(
     return response;
   }
 
-  // 어드민 페이지 접속 시 체크
+  // Admin 페이지 접근 시
   if (pathname.includes("/admin")) {
-    console.log("===== REQUEST COOKIES =====");
-    console.log(request.cookies);
+    const token = request.cookies.get("access-token")?.value as string;
+    const decodedToken: jwtToken = jwtDecode(token);
+    const role = decodedToken.role;
 
-    /**
-     * @todo /user/role로 요청 보내서 Admin 여부 확인
-     */
-
-    if (true) {
+    if (role !== "ADMIN") {
       return NextResponse.redirect(new URL("/home", request.url));
     }
   }

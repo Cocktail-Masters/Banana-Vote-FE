@@ -165,7 +165,13 @@
     }
   },
   "mypage": {
-    "mypage": "mypage",
+    "mypage":"mypage",
+    "category": {
+      "profile":"プロフィール",
+      "inventory":"インベントリ",
+      "vote":"投票",
+      "point":"ポイント"
+    },
     "profile": {
       "age": {
         "나이": "ねんれい",

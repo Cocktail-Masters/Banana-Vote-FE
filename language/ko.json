@@ -164,11 +164,17 @@
       "title": "바나나 스토어"
     }
   },
-  "mypage": {
-    "mypage": "마이페이지",
-    "profile": {
-      "change": "변경",
-      "nickname": "닉네임",
+  "mypage":{
+    "mypage":"마이페이지",
+    "category":{
+      "profile":"프로필",
+      "inventory":"인벤토리",
+      "vote":"투표",
+      "point":"점수"
+    },
+    "profile":{
+      "change":"변경",
+      "nickname":"닉네임",
       "age": {
         "나이": "나이",
         "10대": "10대",

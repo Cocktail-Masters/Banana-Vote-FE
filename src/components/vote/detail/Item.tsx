@@ -269,7 +269,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                     <VoteDetailPredictionModal
                       isOpen={isOpen}
                       onClose={onClose}
-                      voteItemId={voteCheck.voteItemId}
+                      voteItemNumber={voteCheck.voteNumber + 1}
                       point={voteCheck.point}
                       postId={postId}
                     />

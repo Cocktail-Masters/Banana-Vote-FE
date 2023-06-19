@@ -10,15 +10,15 @@ const MultipleElementPrediction = ({
 }: {
   items: {
     number: number;
-    total_points: number;
-    best_points: number;
+    totalPoints: number;
+    bestPoints: number;
   }[];
 }) => {
   const [totalPoint, setTotalPoint] = useState<number | undefined>(undefined);
   useEffect(() => {
     let point = 0;
     for (const i of items) {
-      point += i.total_points;
+      point += i.totalPoints;
     }
     setTotalPoint(point);
   }, [items]);
@@ -41,13 +41,12 @@ const MultipleElementPrediction = ({
               </div>
               <div className={"flex h-full flex-[2] items-center"}>
                 <Image src={banana_svg} alt="바나나 포인트 이미지" width={20} />
-                <div className="ml-1 sm:text-xs ">{e.total_points}</div>
+                <div className="ml-1 sm:text-xs ">{e.totalPoints}</div>
               </div>
               <div className={"flex h-full flex-[2] items-center"}>
                 <Image src={trophy} alt="바나나 포인트 이미지" width={23} />
                 <div className="ml-1 sm:text-xs">
-                  1 :{" "}
-                  {calculatePercentage({ x: e.total_points, y: totalPoint })}
+                  1 : {calculatePercentage({ x: e.totalPoints, y: totalPoint })}
                 </div>
               </div>
               <div className={"flex h-full flex-[2] items-center"}>
@@ -56,7 +55,7 @@ const MultipleElementPrediction = ({
                   alt="최고로 투자한 사람 이미지"
                   width={20}
                 />
-                <div className="ml-1 sm:text-xs">{e.best_points}</div>
+                <div className="ml-1 sm:text-xs">{e.bestPoints}</div>
               </div>
             </div>
           ))}

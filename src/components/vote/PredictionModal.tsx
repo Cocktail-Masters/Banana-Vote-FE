@@ -13,13 +13,13 @@ import Modal from "../common/modal";
 const VoteDetailPredictionModal = ({
   isOpen,
   onClose,
-  voteItemId,
+  voteItemNumber,
   point,
   postId,
 }: {
   isOpen: boolean;
   onClose: () => void;
-  voteItemId: number;
+  voteItemNumber: number;
   point: number;
   postId: number;
 }) => {
@@ -28,6 +28,8 @@ const VoteDetailPredictionModal = ({
     queryKey: "prediction",
     postId: postId,
   });
+
+  console.log("data", data);
   const { translation } = useTranslation();
   return (
     <Modal
@@ -61,25 +63,25 @@ const VoteDetailPredictionModal = ({
         </h1>
       </div>
       <div className={"modal mt-5 flex w-full items-end justify-center"}>
-        {data !== undefined && data.items.length > 2 && (
+        {data !== undefined && data.predictions.length > 2 && (
           <div className={"text-5xl font-bold text-[#1E69FF]"}>
-            {voteItemId}
+            {voteItemNumber}
             {translation("vote.detail.item.prediction_modal.no")}
           </div>
         )}
-        {data !== undefined && data.items.length <= 2 && (
+        {data !== undefined && data.predictions.length <= 2 && (
           <div
             className={"text-5xl font-bold"}
             style={{
               color:
-                data.items !== undefined &&
-                data.items[0].vote_item_id === voteItemId &&
-                data.items[0].number === 1
+                data.predictions !== undefined &&
+                data.predictions[0].voteItemNumber + 1 === voteItemNumber &&
+                data.predictions[0].voteItemNumber === 0
                   ? "#1E69FF"
                   : "#E0008E",
             }}
           >
-            {voteItemId}
+            {voteItemNumber}
             {translation("vote.detail.item.prediction_modal.no")}
           </div>
         )}
@@ -90,10 +92,12 @@ const VoteDetailPredictionModal = ({
 
       <div className={"flex h-3/4 w-full flex-col items-center"}>
         {data !== undefined &&
-          data.items !== undefined &&
-          data.items.length <= 2 && <TwoElementPrediction items={data.items} />}
-        {data !== undefined && data.items.length > 2 && (
-          <MultipleElementPrediction items={data.items} />
+          data.predictions !== undefined &&
+          data.predictions.length <= 2 && (
+            <TwoElementPrediction items={data.predictions} />
+          )}
+        {data !== undefined && data.predictions.length > 2 && (
+          <MultipleElementPrediction items={data.predictions} />
         )}
         <div className="mt-auto flex w-full flex-col items-center">
           <div className="text-xs">
@@ -104,22 +108,22 @@ const VoteDetailPredictionModal = ({
               className="hide-spin w-3/4 rounded-l-lg bg-[#D9D9D9] p-1"
               type="number"
             />
-            {data !== undefined && data.items.length <= 2 && (
+            {data !== undefined && data.predictions.length <= 2 && (
               <button
                 className="w-2/4 rounded-r-lg text-white"
                 style={{
                   background:
-                    data.items !== undefined &&
-                    data.items[0].vote_item_id === voteItemId &&
-                    data.items[0].number === 1
+                    data.predictions !== undefined &&
+                    data.predictions[0].voteItemNumber + 1 === voteItemNumber &&
+                    data.predictions[0].voteItemNumber === 0
                       ? "#1E69FF"
                       : "#E0008E",
                 }}
               >
-                {translation("vote.detail.item.prediction_modal.setting_point")}
+                {translation("vote.detail.item.prediction_modal.submit")}
               </button>
             )}
-            {data !== undefined && data.items.length > 2 && (
+            {data !== undefined && data.predictions.length > 2 && (
               <button className="w-2/4 rounded-r-lg bg-[#1E69FF] text-white">
                 {translation("vote.detail.item.prediction_modal.submit")}
               </button>

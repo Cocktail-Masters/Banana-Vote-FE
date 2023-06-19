@@ -1,8 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import {
-  dummyMultiplePredictionData,
-  dummyPredictionData,
-} from "@/components/vote/dummyPredictionModal";
+import api from "@/common/axiosInstance";
 
 export const useVotePredictionQuery = ({
   queryKey,
@@ -13,10 +10,10 @@ export const useVotePredictionQuery = ({
 }) => {
   return useQuery({
     queryKey: [queryKey, postId],
-    queryFn: () => {
-      const response = dummyMultiplePredictionData;
+    queryFn: async () => {
+      const response = await api.get(`/votes/${postId}/prediction/`);
 
-      return response;
+      return response.data;
     },
   });
 };

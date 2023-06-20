@@ -17,6 +17,18 @@ export type userType = anotherUserType & {
   refreshToken: string;
 };
 
+export type userTypeForAdmin = {
+  id: number;
+  nickname: string;
+  role: string;
+  isActive: boolean;
+};
+
+export type userListTypeForAdmin = {
+  totalCount: number;
+  users: userTypeForAdmin[];
+};
+
 /**
  * badgeType
  */
@@ -236,18 +248,26 @@ export type votesSearchTypes = voteDetailType[];
  * report
  */
 
-export type reportUserType = {
-  nickname: string;
-  reportContent: string;
-  isAllow: false;
+export type reportCreateType = {
+  contentType: string;
   contentId: number;
-  reportType: number;
+  reportType: string;
+  reportContent: string;
 };
 
 export type reportType = {
-  userList: reportUserType[];
-  isLast: false;
-  nowPageIndex: 1;
+  reportId: number;
+  reporterId: number; // 신고자 ID
+  reportedContentType: string;
+  reportedContentId: number;
+  reportedReasonType: string;
+  reportedReasonDetail: string;
+  isChecked: boolean;
+};
+
+export type reportListType = {
+  totalCount: number;
+  reportList: reportType[];
 };
 
 /**
@@ -362,4 +382,14 @@ type MenuProps = {
 export type filterOptions = {
   isClosed: boolean;
   sortBy: number;
+};
+
+/**
+ * Etc
+ */
+export type jwtToken = {
+  id: number;
+  email: string;
+  role: string;
+  exp: number;
 };

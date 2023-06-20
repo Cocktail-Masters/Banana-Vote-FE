@@ -8,6 +8,7 @@ import Loading from "@/components/Loading";
 const SignIn = ({ token, userId }: { token: string; userId: number }) => {
   const router = useRouter();
   const store = useMainStore((state) => state);
+  console.log("SignIn SignIn SignIn SignIn");
   const { data } = useUserInfoQuery({ userId });
 
   useEffect(() => {
@@ -29,13 +30,18 @@ const SignIn = ({ token, userId }: { token: string; userId: number }) => {
       };
       store.setIsLogin(true);
       store.setUserInfo(userInfo);
+
+      // Set Access Token to Cookie
+      console.log("===== cookie =====");
+      document.cookie = `accessToken=${splitToken[0]};`;
+      console.log("c => " + document.cookie);
     }
   }, [data]);
 
   useEffect(() => {
     if (store.isLogin && store.user.accessToken !== undefined) {
       const location = localStorage.getItem("pathname");
-      console.log(location);
+
       if (location !== undefined && location !== null) {
         localStorage.removeItem("pathname");
         router.push(location);

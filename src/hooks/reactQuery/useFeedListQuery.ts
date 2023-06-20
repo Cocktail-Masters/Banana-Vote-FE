@@ -1,9 +1,9 @@
 /**
  * @author mingyu
  */
+import api from "@/common/axiosInstance";
 import { useFeedListDummyV1 } from "@/components/feed/__test__/useFeedListDummy";
 import { FEEDS_PER_PAGE } from "@/constants/home";
-import { voteFeedListType } from "@/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 // tmp function
@@ -82,22 +82,21 @@ export const feedListFetch = async (
 ) => {
   const isTag = keyword && keyword.startsWith("#") ? true : false;
 
-  let response = await fetch(
-    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/feed?keyword=${keyword}&is-tag=${isTag}&is-closed=${isClosed}&sort-by=${sortBy}`
-  )
-    .then((response) => response.json())
-    .catch((e) => e);
+  try {
+    const res = await api.get(
+      `/votes/options?page=${1}&size=${100000}&keyword=${keyword}&is-tag=${isTag}&is-closed=${isClosed}&is-event=${false}&sort-by=${sortBy}`
+    );
+    console.log(res.data);
 
-  // * Vercel Build 오류로 예외처리 하드코딩
-  // if (!response || !response.res) {
-  //   response = {
-  //     res: {
-  //       totalCount: 0,
-  //       votes: [],
-  //     },
-  //   };
-  // }
-  return response.res;
+    return res.data;
+  } catch (error) {
+    console.log("===== ERROR =====");
+    console.log(error);
+    return {
+      totalCount: 0,
+      votes: [],
+    };
+  }
 };
 
 export const useFeedListQuery = (
@@ -110,8 +109,7 @@ export const useFeedListQuery = (
     /**
      * @todo getFeedList에 isClosed, sortBy 파라미터로 넣기
      */
-    queryFn: ({ pageParam = 0 }) =>
-      getFeedList(pageParam, isClosed, sortBy, keyword),
+    queryFn: ({ pageParam = 0 }) => feedListFetch(isClosed, sortBy, keyword),
     getNextPageParam: (lastPage, allPages) => {
       // find isLast?
       const maxPage = lastPage ? lastPage.totalCount : 0 / FEEDS_PER_PAGE;

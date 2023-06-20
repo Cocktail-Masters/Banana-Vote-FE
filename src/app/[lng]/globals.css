@@ -83,3 +83,12 @@ body {
   max-width: 100vw;
   font-family: "Pretendard";
 }
+
+.custom-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  display: none;
+}

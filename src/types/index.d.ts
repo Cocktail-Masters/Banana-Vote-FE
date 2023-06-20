@@ -15,6 +15,7 @@ export type userType = anotherUserType & {
   badgeImageUrl: string;
   accessToken: string;
   refreshToken: string;
+  points: number;
 };
 
 /**

@@ -11,8 +11,8 @@ const TwoElementPrediction = ({
 }: {
   items: {
     number: number;
-    totalPoints: number;
-    bestPoints: number;
+    totalPoint: number;
+    bestPoint: number;
   }[];
 }) => {
   return (
@@ -33,7 +33,7 @@ const TwoElementPrediction = ({
                 alt={"바나나 포인트 아이콘"}
               ></Image>
               <div className={`ml-1`}>
-                {items[0].totalPoints ? items[0].totalPoints : 0}
+                {items[0].totalPoint ? items[0].totalPoint : 0}
               </div>
             </div>
             <div className={`flex`}>
@@ -45,10 +45,10 @@ const TwoElementPrediction = ({
               ></Image>
               <div className={`ml-1`}>
                 1 :{" "}
-                {items[0].totalPoints
+                {items[0].totalPoint
                   ? calculatePercentage({
-                      x: items[0].totalPoints,
-                      y: items[0].totalPoints + items[1].totalPoints,
+                      x: items[0].totalPoint,
+                      y: items[0].totalPoint + items[1].totalPoint,
                     })
                   : 1}
               </div>
@@ -61,7 +61,7 @@ const TwoElementPrediction = ({
                 alt={"랭킹 아이콘"}
               ></Image>
               <div className={`ml-1`}>
-                {items[0].bestPoints ? items[0].bestPoints : 0}
+                {items[0].bestPoint ? items[0].bestPoint : 0}
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@ const TwoElementPrediction = ({
             </div>
             <div className={`flex items-center`}>
               <div className={`mr-1`}>
-                {items[1].totalPoints ? items[1].totalPoints : 0}
+                {items[1].totalPoint ? items[1].totalPoint : 0}
               </div>
               <Image
                 src={banana_svg}
@@ -93,10 +93,10 @@ const TwoElementPrediction = ({
             <div className={`flex items-center`}>
               <div className={`mr-1`}>
                 1 :
-                {items[1].totalPoints
+                {items[1].totalPoint
                   ? calculatePercentage({
-                      x: items[1].totalPoints,
-                      y: items[0].totalPoints + items[1].totalPoints,
+                      x: items[1].totalPoint,
+                      y: items[0].totalPoint + items[1].totalPoint,
                     })
                   : 1}
               </div>
@@ -109,7 +109,7 @@ const TwoElementPrediction = ({
             </div>
             <div className={`flex items-center`}>
               <div className={`mr-1`}>
-                {items[1].bestPoints ? items[1].bestPoints : 0}
+                {items[1].bestPoint ? items[1].bestPoint : 0}
               </div>
               <Image
                 src={ranking_pink}

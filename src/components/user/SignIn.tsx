@@ -5,7 +5,15 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Loading from "@/components/Loading";
 
-const SignIn = ({ token, userId }: { token: string; userId: number }) => {
+const SignIn = ({
+  accessToken,
+  refreshToken,
+  userId,
+}: {
+  refreshToken: string;
+  accessToken: string;
+  userId: number;
+}) => {
   const router = useRouter();
   const store = useMainStore((state) => state);
   const { data } = useUserInfoQuery({ userId });
@@ -13,7 +21,7 @@ const SignIn = ({ token, userId }: { token: string; userId: number }) => {
   useEffect(() => {
     if (data !== undefined) {
       const fetchUserData = data.data;
-      const splitToken = token.split(" ");
+
       const userInfo = {
         id: userId,
         nickname: fetchUserData.nickname,
@@ -24,8 +32,9 @@ const SignIn = ({ token, userId }: { token: string; userId: number }) => {
           ? fetchUserData.equippedBadgeImageUrl
           : "",
         percentage: 0.0,
-        accessToken: splitToken[0],
-        refreshToken: splitToken[1] ? splitToken[1] : "",
+        points: fetchUserData.points,
+        accessToken,
+        refreshToken,
       };
       store.setIsLogin(true);
       store.setUserInfo(userInfo);

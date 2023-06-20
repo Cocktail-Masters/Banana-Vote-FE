@@ -1,24 +1,27 @@
 "use client";
 
 import banana_svg from "@assets/icons/banana_svgrepo.com.svg";
-import { Fragment } from "react";
 import Image from "next/image";
 import { useVotePredictionQuery } from "@/hooks/reactQuery/useVotePrediction";
 import TwoElementPrediction from "./TwoElementPrediction";
 import MultipleElementPrediction from "./MultipleElementPrediction";
-import { Dialog, Transition } from "@headlessui/react";
 import useTranslation from "@/hooks/useTranslation";
 import Modal from "../common/modal";
+import { useStore } from "@/hooks/useStore";
+import { useMainStore } from "@/store";
+import { usePredictionMutation } from "@/hooks/reactQuery/mutation/usePredictionMutation";
+import { useState } from "react";
 
 const VoteDetailPredictionModal = ({
   isOpen,
   onClose,
   voteItemNumber,
-  point,
+  voteItemId,
   postId,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  voteItemId: number;
   voteItemNumber: number;
   point: number;
   postId: number;
@@ -28,9 +31,22 @@ const VoteDetailPredictionModal = ({
     queryKey: "prediction",
     postId: postId,
   });
+  const [pointState, setPointState] = useState<number>(0);
 
-  console.log("data", data);
+  const { mutate } = usePredictionMutation({
+    queryKey: ["prediction", postId],
+  });
+
+  const userInfo = useStore(useMainStore, (state) => state.user);
+
   const { translation } = useTranslation();
+  console.log(data);
+  const pointSubmitHandler = () => {
+    if (pointState !== undefined) {
+      mutate({ prediction: { points: pointState, voteItemId: voteItemId } });
+    }
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -105,8 +121,16 @@ const VoteDetailPredictionModal = ({
           </div>
           <div className="mt-4 flex h-12 w-40">
             <input
-              className="hide-spin w-3/4 rounded-l-lg bg-[#D9D9D9] p-1"
-              type="number"
+              className="hide-spin w-3/4 rounded-l-lg bg-[#D9D9D9] p-1 text-black"
+              onChange={(e) => {
+                if (
+                  e.target.value !== undefined &&
+                  e.target.value.split(" ").length > 0 &&
+                  !isNaN(Number(e.target.value))
+                ) {
+                  setPointState(parseInt(e.target.value));
+                }
+              }}
             />
             {data !== undefined && data.predictions.length <= 2 && (
               <button
@@ -119,12 +143,16 @@ const VoteDetailPredictionModal = ({
                       ? "#1E69FF"
                       : "#E0008E",
                 }}
+                onClick={pointSubmitHandler}
               >
                 {translation("vote.detail.item.prediction_modal.submit")}
               </button>
             )}
             {data !== undefined && data.predictions.length > 2 && (
-              <button className="w-2/4 rounded-r-lg bg-[#1E69FF] text-white">
+              <button
+                className="w-2/4 rounded-r-lg bg-[#1E69FF] text-white"
+                onClick={pointSubmitHandler}
+              >
                 {translation("vote.detail.item.prediction_modal.submit")}
               </button>
             )}
@@ -134,7 +162,7 @@ const VoteDetailPredictionModal = ({
           </div>
           <div className="flex">
             <Image src={banana_svg} alt={"바나나이미지"} width={20} />
-            <div>1,234,124</div>
+            <div>{userInfo?.points}</div>
           </div>
         </div>
       </div>

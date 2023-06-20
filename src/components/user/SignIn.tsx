@@ -16,7 +16,6 @@ const SignIn = ({
 }) => {
   const router = useRouter();
   const store = useMainStore((state) => state);
-  console.log("SignIn SignIn SignIn SignIn");
   const { data } = useUserInfoQuery({ userId });
 
   useEffect(() => {
@@ -41,9 +40,7 @@ const SignIn = ({
       store.setUserInfo(userInfo);
 
       // Set Access Token to Cookie
-      console.log("===== cookie =====");
-      document.cookie = `accessToken=${splitToken[0]};`;
-      console.log("c => " + document.cookie);
+      document.cookie = `accessToken=${accessToken};`;
     }
   }, [data]);
 

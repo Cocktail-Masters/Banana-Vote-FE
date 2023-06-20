@@ -7,13 +7,7 @@ import { useParams } from "next/navigation";
 
 import { useEffect } from "react";
 import jwt_decode from "jwt-decode";
-
-type jwtToken = {
-  id: number;
-  email: string;
-  role: string;
-  exp: number;
-};
+import { jwtToken } from "@/types";
 
 const Token = () => {
   const params = useParams();

@@ -43,8 +43,9 @@ const VoteItemCard = ({
 
   const onClickMinusHandler = () => {
     setVoteItems((prevItems) => {
-      prevItems.splice(index, 1);
-      return [...prevItems];
+      return prevItems.filter(
+        (prevItem, prevItemIndex) => prevItemIndex !== index
+      );
     });
   };
 
@@ -64,7 +65,7 @@ const VoteItemCard = ({
         <div className={"Card-${index} flex h-full w-full flex-row"}>
           <div className={"relative h-[120px] w-[200px]"}>
             {!imageSrc && (
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                 <UploadImage onClickHandler={uploadImageHandler} />
               </div>
             )}
@@ -77,7 +78,7 @@ const VoteItemCard = ({
                   alt="upload image"
                 />
                 <button
-                  className="w-30 h-30 max-w-30 max-h-30 min-w-30 min-h-30 absolute top-1 right-1 m-0 rounded-full bg-black p-2"
+                  className="w-30 h-30 max-w-30 max-h-30 min-w-30 min-h-30 absolute right-1 top-1 m-0 rounded-full bg-black p-2"
                   onClick={deleteFileHandler}
                 >
                   <Image

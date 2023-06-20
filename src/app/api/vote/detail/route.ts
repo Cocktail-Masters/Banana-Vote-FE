@@ -17,33 +17,7 @@ const voteDetailDummy: voteDetailType[] = [
       hits: 123,
       votedNumber: 1230123,
       opinionNumber: 35,
-      tags: [
-        {
-          id: 1,
-          name: "첫번째 태그",
-          usedNumber: 1,
-        },
-        {
-          id: 2,
-          name: "두번째 태그",
-          usedNumber: 1,
-        },
-        {
-          id: 3,
-          name: "세번째 태그",
-          usedNumber: 2,
-        },
-        {
-          id: 4,
-          name: "네번째 태그",
-          usedNumber: 6,
-        },
-        {
-          id: 5,
-          name: "다섯번째 태그",
-          usedNumber: 87,
-        },
-      ],
+      tags: [],
     },
     writer: {
       badgeImageUrl: "",
@@ -86,33 +60,7 @@ const voteDetailDummy: voteDetailType[] = [
       hits: 42,
       votedNumber: 46,
       opinionNumber: 3,
-      tags: [
-        {
-          id: 1,
-          name: "첫번째 태그",
-          usedNumber: 1,
-        },
-        {
-          id: 2,
-          name: "두번째 태그",
-          usedNumber: 1,
-        },
-        {
-          id: 3,
-          name: "세번째 태그",
-          usedNumber: 2,
-        },
-        {
-          id: 4,
-          name: "네번째 태그",
-          usedNumber: 6,
-        },
-        {
-          id: 5,
-          name: "다섯번째 태그",
-          usedNumber: 87,
-        },
-      ],
+      tags: [],
     },
 
     writer: {
@@ -188,33 +136,7 @@ const voteDetailDummy: voteDetailType[] = [
       hits: 35,
       votedNumber: 29,
       opinionNumber: 5,
-      tags: [
-        {
-          id: 1,
-          name: "첫번째 태그",
-          usedNumber: 1,
-        },
-        {
-          id: 2,
-          name: "두번째 태그",
-          usedNumber: 1,
-        },
-        {
-          id: 3,
-          name: "세번째 태그",
-          usedNumber: 2,
-        },
-        {
-          id: 4,
-          name: "네번째 태그",
-          usedNumber: 6,
-        },
-        {
-          id: 5,
-          name: "다섯번째 태그",
-          usedNumber: 87,
-        },
-      ],
+      tags: [],
     },
 
     writer: {

@@ -57,6 +57,7 @@ const LayoutHeader = () => {
         percentage: 0.0,
         accessToken: "",
         refreshToken: "",
+        points: 0,
       };
       user.setIsLogin(false);
       user.setUserInfo(logoutUserInfo);

@@ -5,16 +5,23 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Loading from "@/components/Loading";
 
-const SignIn = ({ token, userId }: { token: string; userId: number }) => {
+const SignIn = ({
+  accessToken,
+  refreshToken,
+  userId,
+}: {
+  refreshToken: string;
+  accessToken: string;
+  userId: number;
+}) => {
   const router = useRouter();
   const store = useMainStore((state) => state);
-  console.log("SignIn SignIn SignIn SignIn");
   const { data } = useUserInfoQuery({ userId });
 
   useEffect(() => {
     if (data !== undefined) {
       const fetchUserData = data.data;
-      const splitToken = token.split(" ");
+
       const userInfo = {
         id: userId,
         nickname: fetchUserData.nickname,
@@ -25,16 +32,15 @@ const SignIn = ({ token, userId }: { token: string; userId: number }) => {
           ? fetchUserData.equippedBadgeImageUrl
           : "",
         percentage: 0.0,
-        accessToken: splitToken[0],
-        refreshToken: splitToken[1] ? splitToken[1] : "",
+        points: fetchUserData.points,
+        accessToken,
+        refreshToken,
       };
       store.setIsLogin(true);
       store.setUserInfo(userInfo);
 
       // Set Access Token to Cookie
-      console.log("===== cookie =====");
-      document.cookie = `accessToken=${splitToken[0]};`;
-      console.log("c => " + document.cookie);
+      document.cookie = `accessToken=${accessToken};`;
     }
   }, [data]);
 

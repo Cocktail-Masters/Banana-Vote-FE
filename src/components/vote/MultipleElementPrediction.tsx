@@ -9,19 +9,28 @@ const MultipleElementPrediction = ({
   items,
 }: {
   items: {
-    number: number;
-    total_points: number;
-    best_points: number;
+    voteItemNumber: number;
+    totalPoint: number;
+    bestPoint: number;
   }[];
 }) => {
   const [totalPoint, setTotalPoint] = useState<number | undefined>(undefined);
+
   useEffect(() => {
     let point = 0;
     for (const i of items) {
-      point += i.total_points;
+      if (
+        i.totalPoint !== undefined &&
+        i.totalPoint > 0 &&
+        !isNaN(Number(i.totalPoint))
+      ) {
+        point += i.totalPoint;
+      }
     }
     setTotalPoint(point);
   }, [items]);
+
+  console.log(items, totalPoint);
   if (totalPoint !== undefined) {
     return (
       <div
@@ -37,17 +46,19 @@ const MultipleElementPrediction = ({
               className={"flex h-7 w-full items-center justify-center"}
             >
               <div className={"flex-1 text-lg font-semibold text-[#1E69FF]"}>
-                {e.number}번
+                {e.voteItemNumber + 1}번
               </div>
               <div className={"flex h-full flex-[2] items-center"}>
                 <Image src={banana_svg} alt="바나나 포인트 이미지" width={20} />
-                <div className="ml-1 sm:text-xs ">{e.total_points}</div>
+                <div className="ml-1 sm:text-xs ">{e.totalPoint}</div>
               </div>
               <div className={"flex h-full flex-[2] items-center"}>
                 <Image src={trophy} alt="바나나 포인트 이미지" width={23} />
                 <div className="ml-1 sm:text-xs">
                   1 :{" "}
-                  {calculatePercentage({ x: e.total_points, y: totalPoint })}
+                  {e.totalPoint
+                    ? calculatePercentage({ x: e.totalPoint, y: totalPoint })
+                    : 1}
                 </div>
               </div>
               <div className={"flex h-full flex-[2] items-center"}>
@@ -56,7 +67,9 @@ const MultipleElementPrediction = ({
                   alt="최고로 투자한 사람 이미지"
                   width={20}
                 />
-                <div className="ml-1 sm:text-xs">{e.best_points}</div>
+                <div className="ml-1 sm:text-xs">
+                  {e.bestPoint ? e.bestPoint : 0}
+                </div>
               </div>
             </div>
           ))}

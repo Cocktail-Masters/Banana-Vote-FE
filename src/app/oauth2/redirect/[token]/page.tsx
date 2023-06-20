@@ -12,7 +12,7 @@ import { jwtToken } from "@/types";
 const Token = () => {
   const params = useParams();
   const token = decodeURI(params.token);
-
+  console.log("decodeURL", token);
   const splitToken = token.split(" ");
   const decoded: jwtToken = jwt_decode(splitToken[0]);
 
@@ -24,7 +24,13 @@ const Token = () => {
   }, []);
 
   if (params.token !== undefined) {
-    return <SignIn token={params.token} userId={decoded.id} />;
+    return (
+      <SignIn
+        accessToken={splitToken[0]}
+        refreshToken={splitToken[1]}
+        userId={decoded.id}
+      />
+    );
   } else {
     return (
       <div className="flex h-full w-full items-center justify-center">

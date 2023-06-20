@@ -15,6 +15,7 @@ export type userType = anotherUserType & {
   badgeImageUrl: string;
   accessToken: string;
   refreshToken: string;
+  points: number;
 };
 
 export type userTypeForAdmin = {
@@ -142,14 +143,8 @@ export type voteTypes = voteType[];
  */
 export type tagTypes = string[];
 
-export type tagListType = {
-  id: number;
-  name: string;
-  usedNumber: number;
-};
-
 export type tagListTypes = {
-  tags: tagListType[];
+  tags: string[];
 };
 
 /**
@@ -190,7 +185,7 @@ export type voteDetailType = {
     hits: number;
     votedNumber: number;
     opinionNumber: number;
-    tags: tagListType[];
+    tags: string[];
   };
   writer: {
     id: number;
@@ -214,7 +209,6 @@ export type voteDeleteType = {
 };
 
 export type predictionType = {
-  isParticipation: boolean;
   voteItemId?: number;
   point?: number;
   candidateNum?: 0 | 1 | 2 | 3 | 4 | 5; // 투표 내 항목 순서

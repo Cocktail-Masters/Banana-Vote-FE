@@ -7,7 +7,7 @@ import { camelizeKeys, decamelizeKeys } from "humps";
 
 export const api = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1`,
-  timeout: 5000,
+  // timeout: 5000,
 });
 
 /**
@@ -56,12 +56,16 @@ api.interceptors.response.use((response: AxiosResponse) => {
 api.interceptors.request.use(async (config) => {
   if (!config.headers) return config;
 
-  let token: string | null = localStorage.getItem("accessToken");
-  console.log("token", token);
+  // 서버인지 확인
+  const isServer = typeof window === "undefined";
+  const storage = isServer ? null : window.localStorage;
+
+  let token: string | null =
+    storage !== null ? localStorage.getItem("accessToken") : null;
+
   if (token !== null) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-
   const newConfig = { ...config };
   newConfig.url = config.url;
   if (config.method === "patch") {
@@ -71,10 +75,10 @@ api.interceptors.request.use(async (config) => {
     newConfig.params = decamelizeKeys(config.params);
   }
   if (config?.data) {
-    newConfig.data = decamelizeKeys(config.data)
+    newConfig.data = decamelizeKeys(config.data);
   }
   if (!!config?.data?.body) {
-    console.log("트리거 걸림")
+    console.log("트리거 걸림");
     newConfig.data.body = ObjToJson(
       decamelizeKeys(await jsonToObj(config.data.body))
     );

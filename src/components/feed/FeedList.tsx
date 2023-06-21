@@ -8,11 +8,15 @@ import useTranslation from "@/hooks/useTranslation";
 import { voteFeedListType, voteFeedType } from "@/types";
 import Feed from "./Feed";
 import Loading from "@/components/Loading";
-import { useFeedListQuery } from "@/hooks/reactQuery/useFeedListQuery";
+import {
+  feedListFetch,
+  useFeedListQuery,
+} from "@/hooks/reactQuery/useFeedListQuery";
 import { useInView } from "react-intersection-observer";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 type feedListProps = {
   filterOptions: any;
@@ -158,7 +162,7 @@ const FeedList = ({ filterOptions, keyword, setKeyword }: feedListProps) => {
               );
             })}
           {hasNextPage && (
-            <div className="h-100 mt-5 mb-5 flex w-full" ref={ref}>
+            <div className="h-100 mb-5 mt-5 flex w-full" ref={ref}>
               <Loading />
             </div>
           )}

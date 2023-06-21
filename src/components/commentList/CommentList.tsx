@@ -14,16 +14,18 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
   useEffect(() => {
     queryClient.invalidateQueries(["commentList", opinionType, 1]);
   }, [opinionType, queryClient]);
+
   const { data, isLoading } = useFetchComments({
     queryKey: "commentList",
     postId: parseInt(params.detail),
     nowPageIndex,
     sortOption: opinionType,
   });
-  console.log("댓글임", data);
+  console.log(data);
   if (isLoading) {
     return <Loading />;
   }
+
   return (
     <div className={`real relative h-auto w-[95%]`}>
       {data !== undefined &&
@@ -33,6 +35,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
               <div className=" h-auto border-b pb-1" key={index}>
                 <Opinion
                   opinion={e.opinions[element]}
+                  voteId={parseInt(params.detail)}
                   isBest={
                     data.pages[0].best !== undefined &&
                     data.pages[0].best.some((el: number) => {

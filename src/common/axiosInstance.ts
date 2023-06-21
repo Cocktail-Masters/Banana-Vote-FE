@@ -43,15 +43,39 @@ const ObjToJson = (data: Object) => {
 };
 
 // Axios middleware to convert all api responses to camelCase
-api.interceptors.response.use((response: AxiosResponse) => {
-  if (
-    response.data &&
-    response.headers["content-type"] === "application/json"
-  ) {
-    response.data = camelizeKeys(response.data);
+api.interceptors.response.use(
+  (response: AxiosResponse) => {
+    if (
+      response.data &&
+      response.headers["content-type"] === "application/json"
+    ) {
+      response.data = camelizeKeys(response.data);
+    }
+    return response;
+  },
+  async (err) => {
+    const {
+      config,
+      response: { status },
+    } = err;
+    if (status === 401 && !config.sent) {
+      config.sent = true;
+      if (
+        config.headers.Authorization !== null &&
+        config.headers.Authorization !== undefined &&
+        config.headers.Authorization !== ""
+      ) {
+        const accessToken = config.headers.Authorization.split(" ")[1];
+        localStorage.setItem("accessToken", accessToken);
+        return axios(config);
+      } else {
+        return Promise.reject(err);
+      }
+    } else {
+      return Promise.reject(err);
+    }
   }
-  return response;
-});
+);
 // Axios middleware to convert all api requests to snake_case
 api.interceptors.request.use(async (config) => {
   if (!config.headers) return config;
@@ -62,9 +86,14 @@ api.interceptors.request.use(async (config) => {
 
   let token: string | null =
     storage !== null ? localStorage.getItem("accessToken") : null;
+  let refreshToken: string | null =
+    storage !== null ? localStorage.getItem("refreshToken") : null;
 
   if (token !== null) {
     config.headers.Authorization = `Bearer ${token}`;
+    if (refreshToken !== null) {
+      config.headers["Authorization-refresh"] = refreshToken;
+    }
   }
   const newConfig = { ...config };
   newConfig.url = config.url;

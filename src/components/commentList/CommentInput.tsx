@@ -1,34 +1,26 @@
 "use client";
 import { useCommentMutation } from "@/hooks/reactQuery/mutation/useCommentMutation";
+import { useStore } from "@/hooks/useStore";
 import useTranslation from "@/hooks/useTranslation";
 import { useMainStore } from "@/store";
-import { opinionType } from "@/types";
 import { useRef } from "react";
 import BadgeImage from "../common/BadgeImage";
 
-const CommentInput = () => {
-  const { mutate } = useCommentMutation();
+const CommentInput = ({ voteId }: { voteId: number }) => {
+  const { mutate } = useCommentMutation({ voteId });
   const commentInputRef = useRef<HTMLInputElement>(null);
   const { translation } = useTranslation();
   const userInformation = useMainStore((state) => state.user);
-  const isLogin = useMainStore((state) => state.isLogin);
+  const isLogin = useStore(useMainStore, (state) => state.isLogin);
 
   const sendOpinion = () => {
     if (
       commentInputRef.current !== null &&
       commentInputRef.current.value !== undefined
     ) {
-      const opinion: opinionType = {
-        id: Math.floor(Math.random() * 1000),
+      const opinion: { voteId: number; content: string } = {
         content: commentInputRef.current.value,
-        agreedNumber: Math.floor(Math.random() * 1000),
-        disagreedNumber: Math.floor(Math.random() * 100),
-        writer: {
-          badgeImageUrl: "",
-          id: 1,
-          nickname: "새로운 댓글이다",
-        },
-        createdDate: "2023-03-18",
+        voteId: voteId,
       };
       mutate(
         { sendData: opinion },
@@ -44,7 +36,7 @@ const CommentInput = () => {
   };
   return (
     <div className={`w-full flex-col items-center justify-center px-[2%] `}>
-      {userInformation.id !== undefined ? (
+      {userInformation.id !== undefined && isLogin ? (
         <div className={`flex h-16 w-full items-center `}>
           <div className={`flex w-16`}>
             <BadgeImage

@@ -14,7 +14,7 @@ import Login from "../login/Login";
 import { useMainStore } from "@/store";
 import { useStore } from "@/hooks/useStore";
 import { userType } from "@/types";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { cookies } from "next/headers";
 
 export type tabType = {
@@ -25,6 +25,7 @@ export type tabType = {
 const LayoutHeader = () => {
   const minWidth650 = useMediaQuery("(min-width:960px)");
   const router = useRouter();
+  const pathname = usePathname();
   const { translation } = useTranslation();
   const tabs: tabType[] = [
     { label: translation("header.vote_list"), path: "/home" },
@@ -64,7 +65,10 @@ const LayoutHeader = () => {
     }
     document.cookie =
       "access-token" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    router.push("/home");
+
+    if (pathname.includes("admin")) {
+      router.push("/home");
+    }
   };
 
   return (

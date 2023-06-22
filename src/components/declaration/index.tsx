@@ -1,7 +1,8 @@
 "use client";
+import { usePredictionMutation } from "@/hooks/reactQuery/mutation/useReportMutation";
 import useTranslation from "@/hooks/useTranslation";
 import { useParams } from "next/navigation";
-import { ReactElement, useState } from "react";
+import { ChangeEvent, ReactElement, useState } from "react";
 import Modal from "../common/modal";
 import ModalDescription from "../common/modal/Description";
 import ModalHeader from "../common/modal/Header";
@@ -10,20 +11,81 @@ const DeclarationModal = ({
   onClose,
   title,
   type,
+  id,
 }: {
   title: string;
   type: number;
+  id: number;
   onClose: () => void;
 }) => {
   const [select, setSelect] = useState<string>("");
-  const { lng } = useParams();
+  const [etc, setEtc] = useState<string>("");
   const { translation } = useTranslation();
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelect((prev) => {
-      return e.target.value;
-    });
+    if (e.target.value === "광고") {
+      setSelect((prev) => {
+        return "ADVERTISEMENT";
+      });
+      setEtc("");
+    } else if (e.target.value === "음란물") {
+      setSelect((prev) => {
+        return "ADULT";
+      });
+      setEtc("");
+    } else if (e.target.value === "언어폭력") {
+      setSelect((prev) => {
+        return "VIOLENCE";
+      });
+      setEtc("");
+    } else if (e.target.value === "기타") {
+      setSelect((prev) => {
+        return "ETC";
+      });
+    }
+  };
+  const reportContentOnChangeHandler = (
+    e: ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setEtc(e.currentTarget.value);
   };
 
+  const { mutate } = usePredictionMutation();
+  const onClick = () => {
+    if (type === 0) {
+      const report = {
+        reportedContentType: "VOTE",
+        reportedContentId: id,
+        reportedReasonType: select,
+        reportDetail: etc,
+      };
+      mutate({ report });
+    } else if (type === 1) {
+      const report = {
+        reportedContentType: "OPINION",
+        reportedContentId: id,
+        reportedReasonType: select,
+        reportDetail: etc,
+      };
+      mutate({ report });
+    } else if (type === 2) {
+      const report = {
+        reportedContentType: "PICKET",
+        reportedContentId: id,
+        reportedReasonType: select,
+        reportDetail: etc,
+      };
+      mutate({ report });
+    } else if (type === 3) {
+      console.log(etc);
+      const report = {
+        reportedContentType: "MEGAPHONE",
+        reportedContentId: id,
+        reportedReasonType: select,
+        reportDetail: etc,
+      };
+      mutate({ report });
+    }
+  };
   return (
     <Modal
       className={`w-full max-w-xl rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-bg-feed-dark dark:text-text-normal-dark`}
@@ -65,9 +127,9 @@ const DeclarationModal = ({
           <div className="flex w-full flex-col items-center justify-center text-sm">
             <div className="w-[250px]">
               <input
-                checked={select === "스팸, 광고"}
+                checked={select === "ADVERTISEMENT"}
                 type="radio"
-                value={"스팸, 광고"}
+                value={"광고"}
                 onChange={onChange}
                 className={"mr-1"}
               ></input>
@@ -75,7 +137,7 @@ const DeclarationModal = ({
             </div>
             <div className="w-[250px]">
               <input
-                checked={select === "음란물"}
+                checked={select === "ADULT"}
                 type="radio"
                 value={"음란물"}
                 onChange={onChange}
@@ -86,8 +148,8 @@ const DeclarationModal = ({
             <div className="w-[250px]">
               <input
                 type="radio"
-                checked={select === "상대방에 대한 심각한 비난"}
-                value={"상대방에 대한 심각한 비난"}
+                checked={select === "VIOLENCE"}
+                value={"언어폭력"}
                 onChange={onChange}
                 className={"mr-1"}
               ></input>
@@ -95,7 +157,7 @@ const DeclarationModal = ({
             </div>
             <div className="mb-4 w-[250px]">
               <input
-                checked={select === "기타"}
+                checked={select === "ETC"}
                 type="radio"
                 value={"기타"}
                 onChange={onChange}
@@ -104,14 +166,17 @@ const DeclarationModal = ({
               {translation("vote.detail.item.declaration_modal.type_etc")}
             </div>
             <textarea
-              className={`h-24 w-full max-w-[350px] resize-none rounded-2xl p-2 text-black disabled:bg-[#D9D9D9]`}
+              className={`h-24 w-full max-w-[350px] resize-none rounded-2xl border p-2 text-black disabled:bg-[#D9D9D9]`}
               placeholder={translation(
                 "vote.detail.item.declaration_modal.text_area"
               )}
-              disabled={select !== "기타"}
+              value={etc}
+              onChange={reportContentOnChangeHandler}
+              disabled={select !== "ETC"}
             />
           </div>
           <button
+            onClick={onClick}
             className={
               "mt-6 mb-4 h-11 w-24 rounded-2xl bg-bg-button-yellow dark:text-black"
             }

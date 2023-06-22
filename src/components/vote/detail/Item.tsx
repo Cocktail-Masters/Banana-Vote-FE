@@ -100,9 +100,10 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
     <div className="h-full w-full rounded-2xl bg-bg-feed px-[5%] dark:bg-bg-feed-dark">
       {data && isDeclaration && (
         <DeclarationModal
-          title={data.data.vote.title}
+          title={data.vote.title}
           onClose={declarationHandler}
           type={0}
+          id={data.vote.id}
         />
       )}
       {data && isImageModalOpen.isOpen && (
@@ -153,7 +154,7 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
           <div className="mb-5 border-b-[5px] border-gray-200">
             <div className="flex items-center py-4">
               <div className="lg:text-md mr-2 flex-1 sm:flex-[2] md:flex-[2]">
-                {data.data.vote.is_closed ? (
+                {data.vote.isClosed ? (
                   <span className="w-full text-red-500 ">
                     {translation("vote.detail.item.end")}
                   </span>
@@ -164,16 +165,16 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 )}
               </div>
               <h2 className="flex-[9] font-bold transition-colors duration-300 dark:text-text-normal-dark lg:flex-[20] lg:text-xl">
-                {data.data.vote.title}
+                {data.vote.title}
               </h2>
             </div>
             <div className="mb-3 flex items-center">
               <BadgeImage
-                userId={data.data.writer.id}
-                badgeImageUrl={data.data.writer.badgeImageUrl}
+                userId={data.writer.id}
+                badgeImageUrl={data.writer.badgeImageUrl}
               />
               <div className="ml-1 text-xs transition-colors duration-300 dark:text-text-normal-dark">
-                {data.data.writer.nickname}
+                {data.writer.nickname}
               </div>
             </div>
           </div>
@@ -183,26 +184,32 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 <p className="mr-3 transition-colors duration-300 dark:text-text-normal-dark">
                   {translation("vote.detail.item.period")}
                 </p>
-                <p className="ml-1 transition-colors duration-300 dark:text-text-normal-dark">
-                  {getRemainDates({
-                    startDate: data.data.vote.startDate,
-                    endDate: data.data.vote.endDate,
-                  })}
-                  {translation("vote.detail.item.remaining")}
-                </p>
+                {data !== undefined && data.vote.isClosed ? (
+                  <p className="ml-1 transition-colors duration-300 dark:text-text-normal-dark">
+                    {translation("vote.detail.item.end")}
+                  </p>
+                ) : (
+                  <p className="ml-1 transition-colors duration-300 dark:text-text-normal-dark">
+                    {getRemainDates({
+                      // startDate: data.vote.startDate,
+                      endDate: data.vote.endDate,
+                    })}
+                    {translation("vote.detail.item.remaining")}
+                  </p>
+                )}
               </div>
               <div className="w-30 flex justify-end">
                 <p className="mr-1 transition-colors duration-300 dark:text-text-normal-dark">
                   {translation("vote.detail.item.hits")}
                 </p>
                 <p className="mr-1 transition-colors duration-300 dark:text-text-normal-dark">
-                  {data.data.vote.hits}
+                  {data.vote.hits}
                 </p>
               </div>
             </div>
-            {!data.data.vote.isClosed ? (
+            {!data.vote.isClosed ? (
               <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
-                {data.data.voteItems.map((e: voteItemType, i: Key) => (
+                {data.voteItems.map((e: voteItemType, i: Key) => (
                   <VoteDetailItemCard
                     key={i}
                     item={e}
@@ -217,11 +224,11 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
               </div>
             ) : (
               <div className="mt-[25px] flex flex-col" id="voteItemCardLists">
-                {data.data.voteItems.map((e: voteItemType, i: Key) => (
+                {data.voteItems.map((e: voteItemType, i: Key) => (
                   <VoteDetailEndItemCard
                     key={i}
                     item={e}
-                    totalVoted={data.data.vote.votedNumber}
+                    totalVoted={data.vote.votedNumber}
                     imageModalHandler={imageModalHandler}
                     isOpen={isImageModalOpen.isOpen}
                   />
@@ -235,7 +242,9 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
             >
               {translation("vote.detail.item.image_hint")}
             </div>
-            {voteCheck !== undefined && (
+            {voteCheck !== undefined &&
+            data !== undefined &&
+            !data.vote.isClosed ? (
               <div className="mt-[25px] mb-[25px] flex w-full justify-center">
                 {voteCheck.participation ? (
                   <button
@@ -276,12 +285,16 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                     />
                   )}
               </div>
+            ) : (
+              <div className="flex h-28 w-full justify-center">
+                <button>예측 결과 확인하기</button>
+              </div>
             )}
           </div>
           <div className="relative border-b border-gray-200 px-4 py-4 dark:border-none sm:px-6">
             <div className="flex h-full w-full items-center">
               <div className="w-full flex-wrap">
-                <TagList tags={data.data.vote.tags} />
+                <TagList tags={data.vote.tags} />
               </div>
               <div className="ml-auto flex w-[200px]">
                 <button className="mr-4 w-[70px] rounded border bg-secondary-orange py-2 px-4 font-semibold text-black shadow-md hover:bg-primary-yellow ">

@@ -12,7 +12,6 @@ const PicketArea = () => {
     queryKey: "picket",
     voteId: parseInt(params.detail),
   });
-  console.log("params.detail", params.detail);
   const { translation } = useTranslation();
 
   return (

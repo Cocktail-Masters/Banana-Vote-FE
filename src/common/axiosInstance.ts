@@ -58,7 +58,7 @@ api.interceptors.response.use(
       config,
       response: { status },
     } = err;
-    if (status === 401 && !config.sent) {
+    if ((status === 401 || status === 403) && !config.sent) {
       config.sent = true;
       if (
         config.headers.Authorization !== null &&
@@ -91,9 +91,9 @@ api.interceptors.request.use(async (config) => {
 
   if (token !== null) {
     config.headers.Authorization = `Bearer ${token}`;
-    if (refreshToken !== null) {
-      config.headers["Authorization-refresh"] = refreshToken;
-    }
+  }
+  if (refreshToken !== null) {
+    config.headers["Authorization-refresh"] = refreshToken;
   }
   const newConfig = { ...config };
   newConfig.url = config.url;

@@ -15,7 +15,11 @@ export const feedListFetch = async (
 
   try {
     const res = await api.get(
-      `/votes/options?page=${pageParam}&size=${FEEDS_PER_PAGE}&keyword=${keyword}&is-tag=${isTag}&is-closed=${isClosed}&is-event=${false}&sort-by=${sortBy}`
+      `/votes/options?page=${pageParam}&size=${FEEDS_PER_PAGE}&keyword=${
+        keyword && keyword.startsWith("#")
+          ? keyword.substring(1, keyword.length)
+          : keyword
+      }&is-tag=${isTag}&is-closed=${isClosed}&is-event=${false}&sort-by=${sortBy}`
     );
     return res.data;
   } catch (error) {

@@ -3,7 +3,6 @@
  */
 import { dehydrate, Hydrate } from "@tanstack/react-query";
 import getQueryClient from "../getQueryClient";
-import { feedListFetch } from "@/hooks/reactQuery/useFeedListQuery";
 import { fetchPopularList } from "@/hooks/reactQuery/usePopularListQuery";
 import { fetchInterestList } from "@/hooks/reactQuery/useInterestListQuery";
 import { fetchRankingTop5 } from "@/hooks/reactQuery/useRankingTop5Query";

@@ -9,12 +9,7 @@ import CategoryItem from "./CategoryItem";
 type categoryAreaProps = {
   currentCategory: number;
   setCurrentCategory: Dispatch<React.SetStateAction<number>>;
-  categories: categories[];
-};
-
-type categories = {
-  id: number;
-  label: string;
+  categories: string[];
 };
 
 const CategoryArea = ({
@@ -25,12 +20,12 @@ const CategoryArea = ({
   return (
     <div className="relative mt-5 flex h-12 w-full items-start border-b-2 border-border dark:border-border-dark">
       {/* 메뉴 요소들 */}
-      {categories.map((item: categories) => {
+      {categories.map((item: string, index: number) => {
         return (
           <CategoryItem
-            key={item.id}
-            label={item.label}
-            id={item.id}
+            key={index}
+            label={item}
+            id={index}
             setCurrentCategory={setCurrentCategory}
           />
         );
@@ -40,10 +35,10 @@ const CategoryArea = ({
         {currentCategory !== null && (
           <motion.div
             key="background"
-            className="absolute left-0 z-10 h-12 w-24 rounded-t-2xl bg-secondary-orange/75"
+            className="absolute left-0 z-10 h-12 w-32 rounded-t-2xl bg-secondary-orange/75"
             initial={{ x: 0 }}
             animate={{
-              x: currentCategory * 96 + currentCategory * 8, // width(24) + marginRight(2)
+              x: currentCategory * 128 + currentCategory * 8, // width(24) + marginRight(2)
             }}
             transition={{ ease: "linear", duration: 0.2 }}
           />

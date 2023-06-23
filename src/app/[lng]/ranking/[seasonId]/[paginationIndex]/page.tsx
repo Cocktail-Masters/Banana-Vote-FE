@@ -8,6 +8,7 @@ import { getSeasonFromApi } from "@/app/api/season/route";
 import { Suspense, useCallback } from "react";
 import Loading from "@/components/Loading";
 import { Locale } from "i18n-config";
+import getSeason from "@/common/fetch/getSeason";
 
 export type rankingParamsType = {
   seasonId: string;
@@ -23,8 +24,8 @@ export type rankingRouteCallbackFunctionType = {
 export async function generateStaticParams(): Promise<
   Omit<rankingParamsType, "lng">[]
 > {
-  const seasons = getSeasonFromApi();
-  return seasons.map((season: seasonType) => ({
+  const result = await getSeason();
+  return result.map((season: seasonType) => ({
     seasonId: season.id.toString(),
     paginationIndex: "0",
   }));

@@ -13,7 +13,7 @@ export default async function HydratedRanking({
 }) {
   const { seasonId } = params;
   const queryClient = getQueryClient();
-  const defaultPage = 0;
+  const defaultPage = 1;
   await queryClient.prefetchQuery(["ranking", seasonId, defaultPage], () => {
     const res = getRankingFromApi({ seasonId: seasonId });
     return res;

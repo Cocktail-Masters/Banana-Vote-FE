@@ -11,6 +11,8 @@ const TagListArea = () => {
     queryKey: "tagTop10",
   });
 
+  console.log(data);
+
   return (
     <div className="mx-auto mt-4 mb-4 h-auto w-[360px] select-none rounded-xl bg-bg-feed drop-shadow-md dark:bg-bg-feed-dark">
       {isLoading || !data ? (

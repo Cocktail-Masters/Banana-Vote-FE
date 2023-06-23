@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-
+import type { NextRequest, NextFetchEvent } from "next/server";
 import { i18n } from "../i18n-config";
-
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import jwtDecode from "jwt-decode";
+import { jwtToken } from "./types";
 
 function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object so we need to transform headers
@@ -18,8 +18,34 @@ function getLocale(request: NextRequest): string | undefined {
   return matchLocale(languages, locales, i18n.defaultLocale);
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest, response: NextResponse) {
   const pathname = request.nextUrl.pathname;
+  const slug = pathname.split("/")[2];
+
+  // Login 페이지 접근 시
+  if (pathname.includes("/oauth2/redirect")) {
+    const token = pathname.split("/")[3];
+
+    const response = NextResponse.next();
+    response.cookies.set("access-token", token);
+
+    return response;
+  }
+
+  // Admin 페이지 접근 시
+  if (pathname.includes("/admin")) {
+    const token = request.cookies.get("access-token");
+    if (token) {
+      const decodedToken: jwtToken = jwtDecode(token.value);
+      const role = decodedToken.role;
+
+      if (role !== "ADMIN") {
+        return NextResponse.redirect(new URL("/home", request.url));
+      }
+    } else {
+      return NextResponse.redirect(new URL("/home", request.url));
+    }
+  }
 
   // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
   // // If you have one

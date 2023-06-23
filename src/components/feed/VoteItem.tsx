@@ -35,15 +35,15 @@ const VoteItem = ({
             alt="vote element img"
             fill={true}
           />
-          <div className="absolute top-[-100%] left-0 m-auto flex h-full w-full transform items-center justify-center bg-black/75 transition-transform duration-300 ease-in-out group-hover:translate-y-full">
+          <div className="absolute left-0 top-[-100%] m-auto flex h-full w-full transform items-center justify-center bg-black/75 transition-transform duration-300 ease-in-out group-hover:translate-y-full">
             <p className="flex h-auto w-full flex-wrap items-center justify-center whitespace-normal p-3 text-center text-base">
-              <span className="max-w-full whitespace-normal">
+              <span className="max-w-full whitespace-normal text-text-normal-dark">
                 {translation("feed.feed.encourage_voting_message_front")}
               </span>
               <span className="flex-shrink-1 max-w-full whitespace-normal font-semibold text-secondary-dark-orange">
                 {content}
               </span>
-              <span className="">
+              <span className="text-text-normal-dark">
                 {translation("feed.feed.encourage_voting_message_back")}
               </span>
             </p>

@@ -8,11 +8,11 @@ export default async function HydrateDetail({ postId }: { postId: number }) {
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(["voteDetail", postId], async () => {
     const response = await voteDetailFetch(postId);
-    return response.res;
+    return response.data;
   });
   await queryClient.prefetchQuery(["voteCheck", postId], async () => {
     const response = await voteCheckFetch(postId);
-    return response.res;
+    return response.data;
   });
   const dehydratedState = dehydrate(queryClient);
 

@@ -33,9 +33,7 @@ const VoteDetailEndItemCard = ({
           <motion.div
             initial={{ x: "-100%" }}
             animate={{
-              x: `${
-                -100 + Math.round((item.votedNumber / totalVoted) * 100)
-              }%`,
+              x: `${-100 + Math.round((item.votedNumber / totalVoted) * 100)}%`,
             }}
             transition={{ duration: 1 }}
             className={` h-full w-full rounded-2xl bg-[#81D1FF]`}
@@ -51,14 +49,12 @@ const VoteDetailEndItemCard = ({
           className={`absolute h-[100px] w-[100px]  rounded-2xl bg-white dark:bg-black`}
         >
           <Image
-            src="https://cdn.discordapp.com/attachments/433506654009425921/1021417880207753237/unknown.png"
+            src={item.imageUrl}
             alt="기본 이미지"
             fill
             className="absolute rounded-xl object-contain"
             onClick={() => {
-              onOpen(
-                "https://cdn.discordapp.com/attachments/433506654009425921/1021417880207753237/unknown.png"
-              );
+              onOpen(item.imageUrl);
             }}
           />
           <svg
@@ -69,9 +65,7 @@ const VoteDetailEndItemCard = ({
             stroke="currentColor"
             className="absolute bottom-0 right-0 h-6 w-6"
             onClick={() => {
-              onOpen(
-                "https://cdn.discordapp.com/attachments/433506654009425921/1021417880207753237/unknown.png"
-              );
+              onOpen(item.imageUrl);
             }}
           >
             <path

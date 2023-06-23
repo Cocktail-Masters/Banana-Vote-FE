@@ -23,7 +23,8 @@ export const createUserSlice = (set: any) => ({
     percentage: 0.0,
     accessToken: "",
     refreshToken: "",
-  },
+    points: 0,
+  } as userType,
   setIsLogin: (input: boolean) =>
     set((state: userSliceType) => {
       state.isLogin = input;

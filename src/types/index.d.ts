@@ -15,6 +15,19 @@ export type userType = anotherUserType & {
   badgeImageUrl: string;
   accessToken: string;
   refreshToken: string;
+  points: number;
+};
+
+export type userTypeForAdmin = {
+  id: number;
+  nickname: string;
+  role: string;
+  isActive: boolean;
+};
+
+export type userListTypeForAdmin = {
+  totalCount: number;
+  users: userTypeForAdmin[];
 };
 
 /**
@@ -130,14 +143,8 @@ export type voteTypes = voteType[];
  */
 export type tagTypes = string[];
 
-export type tagListType = {
-  id: number;
-  name: string;
-  usedNumber: number;
-};
-
 export type tagListTypes = {
-  tags: tagListType[];
+  tags: string[];
 };
 
 /**
@@ -178,7 +185,7 @@ export type voteDetailType = {
     hits: number;
     votedNumber: number;
     opinionNumber: number;
-    tags: tagListType[];
+    tags: string[];
   };
   writer: {
     id: number;
@@ -202,7 +209,6 @@ export type voteDeleteType = {
 };
 
 export type predictionType = {
-  isParticipation: boolean;
   voteItemId?: number;
   point?: number;
   candidateNum?: 0 | 1 | 2 | 3 | 4 | 5; // 투표 내 항목 순서
@@ -236,18 +242,26 @@ export type votesSearchTypes = voteDetailType[];
  * report
  */
 
-export type reportUserType = {
-  nickname: string;
-  reportContent: string;
-  isAllow: false;
+export type reportCreateType = {
+  contentType: string;
   contentId: number;
-  reportType: number;
+  reportType: string;
+  reportContent: string;
 };
 
 export type reportType = {
-  userList: reportUserType[];
-  isLast: false;
-  nowPageIndex: 1;
+  reportId: number;
+  reporterId: number; // 신고자 ID
+  reportedContentType: string;
+  reportedContentId: number;
+  reportedReasonType: string;
+  reportedReasonDetail: string;
+  isChecked: boolean;
+};
+
+export type reportListType = {
+  totalCount: number;
+  reportList: reportType[];
 };
 
 /**
@@ -362,4 +376,14 @@ type MenuProps = {
 export type filterOptions = {
   isClosed: boolean;
   sortBy: number;
+};
+
+/**
+ * Etc
+ */
+export type jwtToken = {
+  id: number;
+  email: string;
+  role: string;
+  exp: number;
 };

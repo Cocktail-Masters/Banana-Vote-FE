@@ -2,7 +2,6 @@ import { predictionType } from "@/types";
 import { NextResponse } from "next/server";
 
 export let voteCheckDummy: predictionType = {
-  isParticipation: false,
   voteItemId: 0,
   point: 0,
 };

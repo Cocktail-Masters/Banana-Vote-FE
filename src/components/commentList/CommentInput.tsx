@@ -36,7 +36,7 @@ const CommentInput = ({ voteId }: { voteId: number }) => {
   };
   return (
     <div className={`w-full flex-col items-center justify-center px-[2%] `}>
-      {userInformation.id !== undefined && isLogin ? (
+      {userInformation && userInformation.id !== undefined && isLogin ? (
         <div className={`flex h-16 w-full items-center `}>
           <div className={`flex w-16`}>
             <BadgeImage

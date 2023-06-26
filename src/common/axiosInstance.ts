@@ -79,7 +79,6 @@ api.interceptors.response.use(
 // Axios middleware to convert all api requests to snake_case
 api.interceptors.request.use(async (config) => {
   if (!config.headers) return config;
-
   // 서버인지 확인
   const isServer = typeof window === "undefined";
   const storage = isServer ? null : window.localStorage;

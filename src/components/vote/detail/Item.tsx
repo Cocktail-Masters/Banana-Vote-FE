@@ -17,6 +17,9 @@ import VoteDetailEndItemCard from "./endItems/EndItemCard";
 import Modal from "@/components/common/modal";
 import ModalHeader from "@/components/common/modal/Header";
 import ModalDescription from "@/components/common/modal/Description";
+import { useStore } from "@/hooks/useStore";
+import { useMainStore } from "@/store";
+import useDeleteVoteMutation from "@/hooks/reactQuery/mutation/useVoteDeleteMutation";
 
 type imageModalType = {
   imageUrl: string;
@@ -39,6 +42,10 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
     imageUrl: "",
     isOpen: false,
   });
+
+  const user = useStore(useMainStore, (store) => store.user);
+
+  const { mutate: deleteMutate } = useDeleteVoteMutation();
 
   const [isDeclaration, setIsDeclaration] = useState<boolean>(false);
   const declarationHandler = () => {
@@ -96,6 +103,8 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
       });
     }
   };
+
+  console.log(data);
   return (
     <div className="h-full w-full rounded-2xl bg-bg-feed px-[5%] dark:bg-bg-feed-dark">
       {data && isDeclaration && (
@@ -297,12 +306,21 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
                 <TagList tags={data.vote.tags} />
               </div>
               <div className="ml-auto flex w-[200px]">
-                <button className="mr-4 w-[70px] rounded border bg-secondary-orange py-2 px-4 font-semibold text-black shadow-md hover:bg-primary-yellow ">
-                  {translation("vote.detail.item.delete")}
-                </button>
+                {user !== undefined &&
+                  user.role === "ADMIN" &&
+                  data !== undefined && (
+                    <button
+                      onClick={() => {
+                        deleteMutate({ voteId: data.vote.id });
+                      }}
+                      className="mr-4 w-[70px] rounded border bg-secondary-orange py-2 px-4 font-semibold text-black shadow-md hover:bg-primary-yellow "
+                    >
+                      {translation("vote.detail.item.delete")}
+                    </button>
+                  )}
                 <button
                   onClick={declarationHandler}
-                  className="w-[70px] rounded border bg-red-600 py-2 px-4 font-semibold text-white shadow-md hover:bg-red-500 hover:text-white"
+                  className="ml-auto w-[70px] rounded border bg-red-600 py-2 px-4 font-semibold text-white shadow-md hover:bg-red-500 hover:text-white"
                 >
                   {translation("vote.detail.item.declaration")}
                 </button>

@@ -17,7 +17,7 @@ const postPicketModifyUpload = async ({
   voteId: number;
   position: number;
 }) => {
-  const response = await api.patch(`/pickets/${voteId}`,{
+  const response = await api.patch(`/pickets/${voteId}`, {
     position,
     currentPrice: 0,
     picketImageUrl,

@@ -59,6 +59,7 @@ const LayoutHeader = () => {
         accessToken: "",
         refreshToken: "",
         points: 0,
+        role: "GUEST",
       };
       user.setIsLogin(false);
       user.setUserInfo(logoutUserInfo);

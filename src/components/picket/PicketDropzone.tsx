@@ -7,6 +7,8 @@ import useTranslation from "@/hooks/useTranslation";
 import { usePicketModifyUploadMutation } from "@/hooks/reactQuery/mutation/usePicketModifyUploadMutatation";
 import { useParams } from "next/navigation";
 import uploadFirebase from "@/common/uploadFirebase";
+import { useStore } from "@/hooks/useStore";
+import { useMainStore } from "@/store";
 
 const PicketDropzone = ({
   change,
@@ -25,6 +27,7 @@ const PicketDropzone = ({
     queryKey: ["picket", parseInt(params.detail)],
   });
   const [guestPrice, setGuestPrice] = useState<number>(0);
+  const user = useStore(useMainStore, (state) => state.user);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFile(acceptedFiles[0]);
@@ -151,6 +154,7 @@ const PicketDropzone = ({
             onClick={async () => {
               if (change && position != undefined && file) {
                 const imageUploadResponse = await uploadFirebase(file);
+                console.log("asdasd", imageUploadResponse);
                 mutate({
                   voteId: parseInt(params.detail),
                   picketImageUrl: imageUploadResponse,
@@ -170,6 +174,8 @@ const PicketDropzone = ({
             {translation(
               "vote.detail.picket_area.modal.content.dropzone.has_banana"
             )}
+            {": "}
+            {user !== undefined && user.points}
           </div>
         </div>
       </div>

@@ -16,6 +16,7 @@ export type userType = anotherUserType & {
   accessToken: string;
   refreshToken: string;
   points: number;
+  role: "GUEST" | "USER" | "ADMIN";
 };
 
 export type userTypeForAdmin = {

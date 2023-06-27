@@ -56,6 +56,7 @@ const StoreSection = () => {
           goodsList={goodsAPI.data}
         />
       )}
+      {/* 모달 영역 */}
     </>
   );
 };

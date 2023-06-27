@@ -1,6 +1,5 @@
 /**
  * @author mingyu
- * not used
  */
 import Modal from "@/components/common/modal";
 import ModalHeader from "@/components/common/modal/Header";
@@ -9,12 +8,12 @@ import { StaticImageData } from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 
-type imageModalProps = {
+type storeModalProps = {
   setModalToggle: Dispatch<SetStateAction<boolean>>;
   imageLink: string | StaticImageData;
 };
 
-const ImageModal = ({ setModalToggle, imageLink }: imageModalProps) => {
+const StoreModal = ({ setModalToggle, imageLink }: storeModalProps) => {
   return (
     <Modal onClose={() => setModalToggle(false)}>
       <ModalHeader className="justifty-center relative flex p-3">
@@ -54,4 +53,4 @@ const ImageModal = ({ setModalToggle, imageLink }: imageModalProps) => {
   );
 };
 
-export default ImageModal;
+export default StoreModal;

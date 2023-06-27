@@ -1,8 +1,8 @@
 /**
  * @author mingyu
  * @description 피드 리스트 반환
+ * not used
  */
-import { getFeedList } from "@/hooks/reactQuery/useFeedListQuery";
 import { NextResponse } from "next/server";
 
 export function GET(request: Request) {
@@ -12,6 +12,6 @@ export function GET(request: Request) {
   const sortBy = Number(searchParams.get("sort-by"));
   const keyword = searchParams.get("keyword");
 
-  const res = getFeedList(0, isClosed, sortBy, keyword);
+  const res = null;
   return NextResponse.json({ res });
 }

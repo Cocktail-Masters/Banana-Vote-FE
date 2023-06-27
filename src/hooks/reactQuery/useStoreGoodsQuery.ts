@@ -2,13 +2,12 @@
  * @author mingyu
  */
 import api from "@/common/axiosInstance";
-import { DummyStoreGoodsList } from "@/components/store/__test__/DummyData";
 import { useQuery } from "@tanstack/react-query";
 
-export const storeGoodsFetch = async () => {
+export const storeGoodsFetch = async (type: string, sortBy: number) => {
   try {
     const response = await api.get(
-      `/goods/list?type=${"COSMETIC"}&sortby=${1}&page=${0}&size=${10000}`
+      `/goods/list?type=${type}&sortby=${sortBy}&page=${0}&size=${10000}`
     );
     return response.data;
   } catch (error) {
@@ -19,9 +18,12 @@ export const storeGoodsFetch = async () => {
   }
 };
 
-export const useStoreGoodsQuery = ({ queryKey }: { queryKey: string[] }) => {
-  return useQuery(queryKey, async () => {
-    // return storeGoodsFetch();
-    return DummyStoreGoodsList;
-  });
+export const useStoreGoodsQuery = (
+  key: string,
+  type: string,
+  sortBy: number
+) => {
+  return useQuery([key, type, sortBy], async () =>
+    storeGoodsFetch(type, sortBy)
+  );
 };

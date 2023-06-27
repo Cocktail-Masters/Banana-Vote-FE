@@ -86,7 +86,7 @@ export type storeGoodsType = goodsType & {
 };
 
 export type storeGoodsTypes = {
-  goods: storeGoodsType[];
+  goodsList: storeGoodsType[];
 };
 
 export type goods_typeTypes = string[];

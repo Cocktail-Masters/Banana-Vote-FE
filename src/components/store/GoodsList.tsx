@@ -1,6 +1,5 @@
 "use client";
 import { storeGoodsType, storeGoodsTypes } from "@/types";
-import React, { useEffect } from "react";
 import CardList from "@/components/common/cardList/CardList";
 import Goods from "./Goods";
 
@@ -8,7 +7,7 @@ const GoodsList = ({ goodsList }: { goodsList: storeGoodsTypes }) => {
   return (
     <CardList>
       {goodsList &&
-        goodsList.goods.map((item: storeGoodsType, index: number) => {
+        goodsList.goodsList.map((item: storeGoodsType, index: number) => {
           return <Goods key={index} goods={item} />;
         })}
     </CardList>

@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import CategoryArea from "@/components/store/CategoryArea";
 import FilterArea from "@/components/store/FilterArea";
 import GoodsListArea from "@/components/store/GoodsListArea";
-import { STORE_CATEGORIES, STORE_FILTER_ELEMENT_LIST } from "@/constants/store";
+import { STORE_FILTER_ELEMENT_LIST } from "@/constants/store";
 import { useStoreGoodsQuery } from "./../../hooks/reactQuery/useStoreGoodsQuery";
 import Loading from "@/components/Loading";
 import PageTitle from "@/components/common/PageTitle";
@@ -17,17 +17,19 @@ const StoreSection = () => {
   const { translation } = useTranslation();
 
   const [currentCategory, setCurrentCategory] = useState<number>(0); // 현재 카테고리
-  const [orderBy, setOrderBy] = useState<number>(0); // 0 : 최신 순, 1 : 인기 순, 2 : 가격 순
+  const [orderBy, setOrderBy] = useState<number>(1); // 1 : 최신 순, 2 : 인기 순, 3 : 가격 순
 
   /** Get Category */
   const categoryAPI = useStoreCategoryListQuery({
     queryKey: "storeCategoryList",
   });
 
-  /** @todo Get Goods with Filtering Options */
-  const goodsAPI = useStoreGoodsQuery({
-    queryKey: ["storeGoods"],
-  });
+  /** Get Goods with Filtering Options */
+  const goodsAPI = useStoreGoodsQuery(
+    "storeGoods",
+    categoryAPI.data[currentCategory],
+    orderBy
+  );
 
   return (
     <>

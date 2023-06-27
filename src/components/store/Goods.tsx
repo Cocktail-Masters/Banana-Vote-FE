@@ -15,7 +15,7 @@ const Goods = ({ goods }: { goods: storeGoodsType }) => {
   };
 
   return (
-    <Card handleClick={handleClick}>
+    <Card imageUrl={goods.imageUrl} handleClick={handleClick}>
       {/* 아이템 이름 */}
       <p className="text-base font-semibold text-slate-900 text-text-feed dark:text-text-feed-dark">
         {goods.name}
@@ -34,7 +34,7 @@ const Goods = ({ goods }: { goods: storeGoodsType }) => {
       </CardBadgeList>
 
       {/* 가격 */}
-      <div className="absolute right-3 bottom-2 flex h-6 w-auto">
+      <div className="absolute bottom-2 right-3 flex h-6 w-auto">
         <Image src={banana} alt="banana" width={24} height={24} />
         <p className="text-md font-semibold leading-6">
           {goods.price.toLocaleString()}

@@ -12,12 +12,14 @@ import Loading from "@/components/Loading";
 import PageTitle from "@/components/common/PageTitle";
 import useTranslation from "@/hooks/useTranslation";
 import { useStoreCategoryListQuery } from "@/hooks/reactQuery/useStoreCategoryListQuery";
+import StoreModal from "./StoreModal";
 
 const StoreSection = () => {
   const { translation } = useTranslation();
 
   const [currentCategory, setCurrentCategory] = useState<number>(0); // 현재 카테고리
   const [orderBy, setOrderBy] = useState<number>(1); // 1 : 최신 순, 2 : 인기 순, 3 : 가격 순
+  const [modalToggle, setModalToggle] = useState<boolean>(false); // 모달 on off
 
   /** Get Category */
   const categoryAPI = useStoreCategoryListQuery({
@@ -30,6 +32,11 @@ const StoreSection = () => {
     categoryAPI.data[currentCategory],
     orderBy
   );
+
+  /** Set Modal */
+  const handleModal = (id: number) => {
+    alert(id);
+  };
 
   return (
     <>
@@ -51,12 +58,14 @@ const StoreSection = () => {
       {goodsAPI.isLoading && <Loading />}
       {goodsAPI.data && (
         <GoodsListArea
-          currentCategory={currentCategory}
-          orderBy={orderBy}
+          handleModal={handleModal}
           goodsList={goodsAPI.data}
         />
       )}
       {/* 모달 영역 */}
+      {modalToggle && (
+        <StoreModal setModalToggle={setModalToggle} imageLink={""} />
+      )}
     </>
   );
 };

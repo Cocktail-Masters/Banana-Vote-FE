@@ -3,12 +3,22 @@ import { storeGoodsType, storeGoodsTypes } from "@/types";
 import CardList from "@/components/common/cardList/CardList";
 import Goods from "./Goods";
 
-const GoodsList = ({ goodsList }: { goodsList: storeGoodsTypes }) => {
+const GoodsList = ({
+  goodsList,
+  handleModal,
+}: {
+  goodsList: storeGoodsTypes;
+  handleModal: (id: number) => void;
+}) => {
   return (
     <CardList>
       {goodsList &&
         goodsList.goodsList.map((item: storeGoodsType, index: number) => {
-          return <Goods key={index} goods={item} />;
+          return (
+            <div key={index} onClick={() => handleModal(item.id)}>
+              <Goods goods={item} />
+            </div>
+          );
         })}
     </CardList>
   );

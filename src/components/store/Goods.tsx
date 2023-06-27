@@ -10,12 +10,8 @@ import CardBadge from "../common/cardList/CardBadge";
 import CardBadgeList from "../common/cardList/CardBadgeList";
 
 const Goods = ({ goods }: { goods: storeGoodsType }) => {
-  const handleClick = () => {
-    alert(goods.name);
-  };
-
   return (
-    <Card imageUrl={goods.imageUrl} handleClick={handleClick}>
+    <Card imageUrl={goods.imageUrl}>
       {/* 아이템 이름 */}
       <p className="text-base font-semibold text-slate-900 text-text-feed dark:text-text-feed-dark">
         {goods.name}

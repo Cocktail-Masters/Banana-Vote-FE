@@ -11,15 +11,17 @@ const postPicketModifyUpload = async ({
   paidPrice,
   voteId,
   position,
+  curPrice = 0,
 }: {
   picketImageUrl: string;
   paidPrice: number;
   voteId: number;
   position: number;
+  curPrice?: number;
 }) => {
   const response = await api.patch(`/pickets/${voteId}`, {
     position,
-    currentPrice: 0,
+    curPrice: curPrice,
     picketImageUrl,
     paidPrice,
   });
@@ -27,15 +29,40 @@ const postPicketModifyUpload = async ({
   return response;
 };
 
-export const usePicketModifyUploadMutation = ({
+const postPicketUpload = async ({
+  picketImageUrl,
+  paidPrice,
+  voteId,
+  position,
+  curPrice = 0,
+}: {
+  picketImageUrl: string;
+  paidPrice: number;
+  voteId: number;
+  position: number;
+  curPrice?: number;
+}) => {
+  const response = await api.post(`/pickets/${voteId}`, {
+    position,
+    curPrice,
+    picketImageUrl,
+    paidPrice,
+  });
+  console.log(response);
+  return response;
+};
+
+export const usePicketUploadMutation = ({
   queryKey,
+  newPicket,
 }: {
   queryKey: (string | number)[];
+  newPicket: boolean;
 }) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: postPicketModifyUpload,
+    mutationFn: newPicket ? postPicketUpload : postPicketModifyUpload,
     onSuccess: (data) => {
       queryClient.invalidateQueries(queryKey);
     },

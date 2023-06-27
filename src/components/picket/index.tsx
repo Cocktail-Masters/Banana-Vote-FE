@@ -1,5 +1,5 @@
 "use client";
-import Loading from "@/components/Loading";
+
 import { usePicketQuery } from "@/hooks/reactQuery/usePicketQuery";
 import useTranslation from "@/hooks/useTranslation";
 import Carousel from "./Carousel";
@@ -13,7 +13,7 @@ const PicketArea = () => {
     voteId: parseInt(params.detail),
   });
   const { translation } = useTranslation();
-
+  console.log("피켓 데이터 : ", data);
   return (
     <div
       className={`flex h-[350px] w-full flex-col items-center justify-center`}

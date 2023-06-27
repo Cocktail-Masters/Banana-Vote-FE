@@ -21,7 +21,7 @@ const CommentList = ({ opinionType }: { opinionType: "agree" | "recent" }) => {
     nowPageIndex,
     sortOption: opinionType,
   });
-  console.log(data);
+
   if (isLoading) {
     return <Loading />;
   }

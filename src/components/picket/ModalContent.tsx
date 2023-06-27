@@ -12,13 +12,16 @@ type picketChangeType = {
 const PicketAreaModalContent = ({
   pickets,
   onChangeState,
+  declarationHandler,
 }: {
   pickets: picketType[];
   onChangeState: ({ change, picket }: picketChangeType) => void;
+  declarationHandler: () => void;
 }) => {
   const onClick = ({ picket }: { picket: picketType }) => {
     onChangeState({ change: true, picket });
   };
+
   const { translation } = useTranslation();
   return (
     <div className={`flex h-fit w-full flex-col items-center pb-[20px]`}>
@@ -53,16 +56,20 @@ const PicketAreaModalContent = ({
             >
               <Image src={banana} alt={"바나나"} style={{ width: "30px" }} />
               <div className={`text-xl font-bold`}>
-                {e.price}
+                {e.price + 1}
                 {translation("vote.detail.picket_area.modal.content.change")}
               </div>
             </button>
-            <button>🚨</button>
+            <button onClick={declarationHandler}>🚨</button>
           </div>
         </div>
       ))}
       <div className={`my-[20px] mb-[150px] h-fit w-full`}>
-        <PicketDropzone change={false} />
+        <PicketDropzone
+          change={true}
+          position={pickets.length}
+          newPicket={true}
+        />
       </div>
     </div>
   );

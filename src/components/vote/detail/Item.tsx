@@ -104,7 +104,6 @@ const VoteDetailItem = ({ postId }: { postId: number }) => {
     }
   };
 
-  console.log(data);
   return (
     <div className="h-full w-full rounded-2xl bg-bg-feed px-[5%] dark:bg-bg-feed-dark">
       {data && isDeclaration && (

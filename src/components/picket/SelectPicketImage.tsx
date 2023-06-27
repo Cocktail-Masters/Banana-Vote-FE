@@ -20,7 +20,12 @@ const SelectPicketImage = ({ picketImageUrl, position, price }: picketType) => {
           />
         </div>
       </div>
-      <PicketDropzone change={true} price={price} position={position} />
+      <PicketDropzone
+        change={true}
+        price={price}
+        position={position}
+        newPicket={false}
+      />
     </div>
   );
 };

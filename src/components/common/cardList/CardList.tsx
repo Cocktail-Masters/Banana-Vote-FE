@@ -9,7 +9,7 @@ type cardListProps = {
 
 const CardList = ({ children }: cardListProps) => {
   return (
-    <div className="h-100 grid w-full max-w-[1200px] select-none grid-cols-1 items-center justify-center gap-6  md:grid-cols-2 lg:grid-cols-3">
+    <div className="h-100 grid w-full max-w-[1200px] select-none grid-cols-1 items-center justify-center gap-6  md:grid-cols-2 lg:grid-cols-3 ">
       {children}
     </div>
   );

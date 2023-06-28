@@ -10,16 +10,22 @@ const GoodsList = ({
   goodsList: storeGoodsTypes;
   handleModal: (id: number) => void;
 }) => {
+  console.log(goodsList.goodsList);
   return (
     <CardList>
-      {goodsList &&
+      {!goodsList || goodsList.goodsList.length === 0 ? (
+        <div className="flex items-center justify-center p-3 text-center">
+          No List
+        </div>
+      ) : (
         goodsList.goodsList.map((item: storeGoodsType, index: number) => {
           return (
-            <div key={index} onClick={() => handleModal(item.id)}>
+            <div key={item.id} onClick={() => handleModal(index)}>
               <Goods goods={item} />
             </div>
           );
-        })}
+        })
+      )}
     </CardList>
   );
 };

@@ -18,7 +18,7 @@ const FilterArea = ({
   filterElementList,
 }: filterAreaProps) => {
   return (
-    <div className="z-30 flex h-12 w-full justify-end p-3">
+    <div className="z-10 flex h-12 w-full justify-end p-3">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md border border-border bg-bg-button px-4 py-2 text-sm font-medium text-text-button hover:bg-opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 dark:border-border-dark dark:bg-bg-button-dark dark:text-text-button-dark">
@@ -30,7 +30,7 @@ const FilterArea = ({
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="secondary-orange"
-              className="ml-2 -mr-1 h-5 w-5 stroke-secondary-orange"
+              className="-mr-1 ml-2 h-5 w-5 stroke-secondary-orange"
             >
               <path
                 fillRule="evenodd"

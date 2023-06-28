@@ -11,7 +11,7 @@ type goodsListAreaProps = {
 
 const GoodsListArea = ({ handleModal, goodsList }: goodsListAreaProps) => {
   return (
-    <div className="mt-3 flex h-auto w-full items-center justify-center p-3">
+    <div className="mt-3 flex h-auto w-full items-center justify-center p-3 ">
       <Suspense fallback={<Loading />}>
         <GoodsList handleModal={handleModal} goodsList={goodsList} />
       </Suspense>

@@ -19,6 +19,7 @@ const StoreSection = () => {
 
   const [currentCategory, setCurrentCategory] = useState<number>(0); // 현재 카테고리
   const [orderBy, setOrderBy] = useState<number>(1); // 1 : 최신 순, 2 : 인기 순, 3 : 가격 순
+  const [currentItemId, setCurrentItemId] = useState<number>(0); // 현재 모달 띄운 아이템 pk
   const [modalToggle, setModalToggle] = useState<boolean>(false); // 모달 on off
 
   /** Get Category */
@@ -35,7 +36,8 @@ const StoreSection = () => {
 
   /** Set Modal */
   const handleModal = (id: number) => {
-    alert(id);
+    setCurrentItemId(id);
+    setModalToggle(true);
   };
 
   return (
@@ -57,14 +59,15 @@ const StoreSection = () => {
       {/* 아이템 영역 */}
       {goodsAPI.isLoading && <Loading />}
       {goodsAPI.data && (
-        <GoodsListArea
-          handleModal={handleModal}
-          goodsList={goodsAPI.data}
-        />
+        <GoodsListArea handleModal={handleModal} goodsList={goodsAPI.data} />
       )}
       {/* 모달 영역 */}
       {modalToggle && (
-        <StoreModal setModalToggle={setModalToggle} imageLink={""} />
+        <StoreModal
+          goodsInfo={goodsAPI.data.goodsList[currentItemId]}
+          setModalToggle={setModalToggle}
+          imageLink={""}
+        />
       )}
     </>
   );

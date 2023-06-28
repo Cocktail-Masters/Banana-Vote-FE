@@ -92,6 +92,9 @@
               "has_banana": "가지고 있는 바나나"
             }
           }
+        },
+        "declaration":{
+          "신고하기":"번 피켓"
         }
       },
       "comment_area": {

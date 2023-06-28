@@ -191,9 +191,12 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
           </Transition>
         ) : (
           <DeclarationModal
-            title={String(changeState.picket.position + 1)}
+            title={
+              String(changeState.picket.position + 1) +
+              translation("vote.detail.picket_area.declaration.신고하기")
+            }
             onClose={declarationHandler}
-            type={1}
+            type={2}
             id={parseInt(params.detail)}
           />
         ))}

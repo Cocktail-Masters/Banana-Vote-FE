@@ -92,6 +92,9 @@
               "has_banana": "持っているバナナ"
             }
           }
+        },
+        "declaration":{
+          "신고하기":"番 picket"
         }
       },
       "comment_area": {

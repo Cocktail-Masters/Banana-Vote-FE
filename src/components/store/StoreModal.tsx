@@ -56,7 +56,6 @@ const StoreModal = ({ goodsInfo, setModalToggle }: storeModalProps) => {
               </h2>
               {/* Badge List */}
               <div className="relative flex h-auto w-full items-center justify-center">
-                {/* Hot 뱃지 */}
                 {goodsInfo.sellCount > 10 && (
                   <CardBadge
                     label={"Hot"}
@@ -64,7 +63,6 @@ const StoreModal = ({ goodsInfo, setModalToggle }: storeModalProps) => {
                     textColor={"white"}
                   />
                 )}
-                {/* New 뱃지 */}
                 {new Date().getTime() -
                   new Date(goodsInfo.startDate).getTime() <
                   604800000 && (

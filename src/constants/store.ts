@@ -14,6 +14,10 @@ export const STORE_FILTER_ELEMENT_LIST = [
   },
   {
     id: 3,
-    label: "가격 순",
+    label: "가격 낮은 순",
+  },
+  {
+    id: 4,
+    label: "가격 높은 순",
   },
 ];

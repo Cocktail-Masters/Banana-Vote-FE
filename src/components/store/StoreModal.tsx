@@ -5,27 +5,19 @@
 import Modal from "@/components/common/modal";
 import ModalHeader from "@/components/common/modal/Header";
 import ModalDescription from "@/components/common/modal/Description";
-import { StaticImageData } from "next/image";
-import { Dispatch, SetStateAction, useState, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import { storeGoodsType } from "@/types";
 import Loading from "../Loading";
+import CardBadge from "../common/cardList/CardBadge";
+import banana from "@/assets/icons/banana_svgrepo.com.svg";
 
 type storeModalProps = {
   goodsInfo: storeGoodsType;
   setModalToggle: Dispatch<SetStateAction<boolean>>;
-  imageLink: string | StaticImageData;
 };
 
-const StoreModal = ({
-  goodsInfo,
-  setModalToggle,
-  imageLink,
-}: storeModalProps) => {
-  useEffect(() => {
-    console.log(goodsInfo);
-  }, [goodsInfo]);
-
+const StoreModal = ({ goodsInfo, setModalToggle }: storeModalProps) => {
   return (
     <Modal onClose={() => setModalToggle(false)}>
       <ModalHeader className="justifty-center relative z-50 flex h-full p-3">
@@ -59,11 +51,31 @@ const StoreModal = ({
           ) : (
             <div className="flex h-full w-full flex-col items-center justify-center gap-y-4">
               {/* Name */}
-              <h2 className="text-3xl font-semibold md:text-5xl">
+              <h2 className="text-2xl font-semibold md:text-5xl">
                 {goodsInfo.name}
               </h2>
               {/* Badge List */}
-              <div>Badge List</div>
+              <div className="relative flex h-auto w-full items-center justify-center">
+                {/* Hot 뱃지 */}
+                {goodsInfo.sellCount > 10 && (
+                  <CardBadge
+                    label={"Hot"}
+                    bgColor={"#FF7777"}
+                    textColor={"white"}
+                  />
+                )}
+                {/* New 뱃지 */}
+                {new Date().getTime() -
+                  new Date(goodsInfo.startDate).getTime() <
+                  604800000 && (
+                  <CardBadge
+                    label={"New"}
+                    bgColor={"#85C1E9"}
+                    textColor={"white"}
+                  />
+                )}
+              </div>
+
               {/* Image & Description */}
               <div className="flex h-auto w-full flex-col items-center justify-center gap-y-4 md:flex-row md:gap-x-8">
                 <div className="flex h-60 w-60 overflow-hidden rounded-xl  ms:h-80 ms:w-80">
@@ -75,7 +87,8 @@ const StoreModal = ({
                     height={1600}
                   />
                 </div>
-                <div className="flex h-60 w-60 flex-col items-center justify-center overflow-hidden rounded-xl border border-border dark:border-border-dark ms:h-80 ms:w-80">
+                {/* Descrpiton & Period */}
+                <div className="flex h-auto w-60 flex-col items-center justify-center overflow-hidden rounded-xl border border-border py-3 dark:border-border-dark ms:h-80 ms:w-80">
                   {/* Description */}
                   <div className="flex h-auto w-full justify-center py-2">
                     {goodsInfo.description}
@@ -85,12 +98,21 @@ const StoreModal = ({
                     <span className="font-semibold text-secondary-dark-orange">
                       {goodsInfo.validPeriod}
                     </span>
-                    <span>일 사용가능</span>
+                    <span className="text-base">일 사용가능</span>
                   </div>
                 </div>
               </div>
               {/* Price */}
+              <div className="mt-1 flex h-auto w-full items-center justify-center">
+                <Image src={banana} alt="banana" width={32} height={32} />
+                <p className="text-md ml-1 text-xl font-semibold">
+                  {goodsInfo.price.toLocaleString()}
+                </p>
+              </div>
               {/* Buy Button */}
+              <button className="h-12 w-36 rounded-lg bg-bg-button-yellow text-lg font-bold text-black duration-200 ease-in-out hover:bg-bg-button-yellow-light">
+                구입하기
+              </button>
             </div>
           )}
         </div>

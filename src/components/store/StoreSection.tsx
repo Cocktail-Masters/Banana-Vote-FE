@@ -18,7 +18,7 @@ const StoreSection = () => {
   const { translation } = useTranslation();
 
   const [currentCategory, setCurrentCategory] = useState<number>(0); // 현재 카테고리
-  const [orderBy, setOrderBy] = useState<number>(1); // 1 : 최신 순, 2 : 인기 순, 3 : 가격 순
+  const [orderBy, setOrderBy] = useState<number>(1); // 1 : 최신 순, 2 : 인기 순, 3 : 가격 높은 순, 4 : 가격 낮은 순
   const [currentItemId, setCurrentItemId] = useState<number>(0); // 현재 모달 띄운 아이템 pk
   const [modalToggle, setModalToggle] = useState<boolean>(false); // 모달 on off
 
@@ -66,7 +66,6 @@ const StoreSection = () => {
         <StoreModal
           goodsInfo={goodsAPI.data.goodsList[currentItemId]}
           setModalToggle={setModalToggle}
-          imageLink={""}
         />
       )}
     </>

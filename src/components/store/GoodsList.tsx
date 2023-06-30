@@ -10,7 +10,6 @@ const GoodsList = ({
   goodsList: storeGoodsTypes;
   handleModal: (id: number) => void;
 }) => {
-  console.log(goodsList.goodsList);
   return (
     <CardList>
       {!goodsList || goodsList.goodsList.length === 0 ? (

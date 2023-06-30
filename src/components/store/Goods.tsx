@@ -13,7 +13,7 @@ const Goods = ({ goods }: { goods: storeGoodsType }) => {
   return (
     <Card imageUrl={goods.imageUrl}>
       {/* 아이템 이름 */}
-      <p className="text-base font-semibold text-slate-900 text-text-feed dark:text-text-feed-dark">
+      <p className="w-5/6 truncate text-base font-semibold text-slate-900 text-text-feed dark:text-text-feed-dark text-center">
         {goods.name}
       </p>
       {/* 뱃지 리스트 */}

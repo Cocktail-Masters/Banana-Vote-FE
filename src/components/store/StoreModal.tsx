@@ -11,6 +11,7 @@ import { storeGoodsType } from "@/types";
 import Loading from "../Loading";
 import CardBadge from "../common/cardList/CardBadge";
 import banana from "@/assets/icons/banana_svgrepo.com.svg";
+import { useGoodsBuyMutation } from "@/hooks/reactQuery/mutation/useGoodsBuyMutation";
 
 type storeModalProps = {
   goodsInfo: storeGoodsType;
@@ -18,6 +19,15 @@ type storeModalProps = {
 };
 
 const StoreModal = ({ goodsInfo, setModalToggle }: storeModalProps) => {
+  const { mutate } = useGoodsBuyMutation();
+
+  const handleGoodsBuy = (goodsId: number) => {
+    mutate({ goodsId });
+    setTimeout(() => {
+      setModalToggle(false);
+    }, 1000);
+  };
+
   return (
     <Modal onClose={() => setModalToggle(false)}>
       <ModalHeader className="justifty-center relative z-50 flex h-full p-3">
@@ -30,13 +40,13 @@ const StoreModal = ({ goodsInfo, setModalToggle }: storeModalProps) => {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             className="h-6 w-6 transition-colors duration-300 dark:text-text-normal-dark"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
@@ -108,7 +118,10 @@ const StoreModal = ({ goodsInfo, setModalToggle }: storeModalProps) => {
                 </p>
               </div>
               {/* Buy Button */}
-              <button className="h-12 w-36 rounded-lg bg-bg-button-yellow text-lg font-bold text-black duration-200 ease-in-out hover:bg-bg-button-yellow-light">
+              <button
+                onClick={() => handleGoodsBuy(goodsInfo.id)}
+                className="h-12 w-36 rounded-lg bg-bg-button-yellow text-lg font-bold text-black duration-200 ease-in-out hover:bg-bg-button-yellow-light"
+              >
                 구입하기
               </button>
             </div>

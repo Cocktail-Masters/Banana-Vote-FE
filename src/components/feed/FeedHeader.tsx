@@ -48,7 +48,7 @@ const FeedHeader = ({
     const menuName = (e.target as HTMLElement).innerText;
     const menuId = (e.target as HTMLElement).getAttribute("id");
 
-    // TODO : 각 메뉴 이름에 해당하는 메소드 작성
+    /** @todo : 각 메뉴 이름에 해당하는 메소드 작성 */
     if (menuName === translation("feed.feed_header.report")) {
       console.log(menuId + " : " + menuName);
     } else if (menuName === translation("feed.feed_header.share")) {

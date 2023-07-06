@@ -9,22 +9,10 @@ const MypageSection = () => {
   const [currentCategory, setCurrentCategory] = useState(0);
   const { translation } = useTranslation();
   const MYPAGE_CATEGORIES = [
-    {
-      id: 0,
-      label: `${translation("mypage.category.profile")}`,
-    },
-    {
-      id: 1,
-      label: `${translation("mypage.category.inventory")}`,
-    },
-    {
-      id: 2,
-      label: `${translation("mypage.category.vote")}`,
-    },
-    {
-      id: 3,
-      label: `${translation("mypage.category.point")}`,
-    },
+    `${translation("mypage.category.profile")}`,
+    `${translation("mypage.category.inventory")}`,
+    `${translation("mypage.category.vote")}`,
+    `${translation("mypage.category.point")}`,
   ];
   return (
     <section className="h-full w-full">

@@ -17,7 +17,7 @@ const TagList = ({ tags, handleClick }: tagListProps) => {
         tags.map((tag: string, index: number) => {
           return (
             // <Link key={index} href={`/hashtag/${tag}`}>
-            <Link key={index} href={`/hashtag/tmp`}>
+            <Link key={index} href={`/hashtag/${tag}`}>
               <Tag tag={tag} />
             </Link>
           );

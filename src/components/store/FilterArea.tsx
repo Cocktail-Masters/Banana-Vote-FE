@@ -18,10 +18,10 @@ const FilterArea = ({
   filterElementList,
 }: filterAreaProps) => {
   return (
-    <div className="z-30 flex h-12 w-full justify-end p-3">
-      <Menu as="div" className="relative inline-block text-left">
+    <div className="z-10 flex h-12 w-full justify-end p-3">
+      <Menu as="div" className="relative inline-block w-32 text-left">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md border border-border bg-bg-button px-4 py-2 text-sm font-medium text-text-button hover:bg-opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 dark:border-border-dark dark:bg-bg-button-dark dark:text-text-button-dark">
+          <Menu.Button className="relative inline-flex w-full justify-start rounded-md border border-border bg-bg-button px-4 py-2 text-sm font-medium text-text-button hover:bg-opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 dark:border-border-dark dark:bg-bg-button-dark dark:text-text-button-dark">
             {orderBy !== undefined && filterElementList
               ? filterElementList.find((element) => element.id === orderBy)
                   ?.label
@@ -30,7 +30,7 @@ const FilterArea = ({
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="secondary-orange"
-              className="ml-2 -mr-1 h-5 w-5 stroke-secondary-orange"
+              className="absolute right-1 h-5 w-5 stroke-secondary-orange"
             >
               <path
                 fillRule="evenodd"
@@ -49,7 +49,7 @@ const FilterArea = ({
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 mt-1 w-28 origin-top-right divide-y divide-gray-100 rounded-md bg-bg-button shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-bg-button-dark">
+          <Menu.Items className="absolute right-0 mt-1 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-bg-button shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-bg-button-dark">
             <div className="px-1 py-1">
               {filterElementList &&
                 filterElementList.map((item: filterElement) => {

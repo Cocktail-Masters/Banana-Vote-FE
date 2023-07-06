@@ -22,7 +22,7 @@ type feedListProps = {
 
 const FeedList = ({ filterOptions, keyword, setKeyword }: feedListProps) => {
   const { translation } = useTranslation();
-  const pathname = usePathname().split("/")[2];
+  const pathname = usePathname();
 
   /**
    * @description useInfiniteQuery를 사용한 무한 스크롤
@@ -33,7 +33,7 @@ const FeedList = ({ filterOptions, keyword, setKeyword }: feedListProps) => {
     keyword
   );
 
-  /**a
+  /**
    * @description 뷰포트 최하단 도달 시 새로운 피드를 불러옴
    */
   const { ref, inView } = useInView({ threshold: 0.05 });
@@ -65,7 +65,7 @@ const FeedList = ({ filterOptions, keyword, setKeyword }: feedListProps) => {
                         {keyword}
                       </h3>
                       <span className="inline-block text-xl font-bold md:text-3xl">
-                        &nbsp;·&nbsp;
+                        &nbsp;&nbsp;·&nbsp;&nbsp;
                       </span>
                       <span className="inline-block text-base md:text-xl">
                         {data.pages[0].totalCount}
@@ -101,7 +101,7 @@ const FeedList = ({ filterOptions, keyword, setKeyword }: feedListProps) => {
                   <span className="text-sm md:text-base">
                     {translation("feed.feed_list_area.no_vote_list_title")}
                   </span>
-                  {pathname === "hashtag" ? (
+                  {pathname.includes("/hashtag") ? (
                     <Link href={"/home"}>
                       <button
                         className="mt-3 flex items-center justify-center rounded-xl 
@@ -158,7 +158,7 @@ const FeedList = ({ filterOptions, keyword, setKeyword }: feedListProps) => {
               );
             })}
           {hasNextPage && (
-            <div className="h-100 mt-5 mb-5 flex w-full" ref={ref}>
+            <div className="h-100 mb-5 mt-5 flex w-full" ref={ref}>
               <Loading />
             </div>
           )}

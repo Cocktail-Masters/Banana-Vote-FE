@@ -3,10 +3,9 @@
  * @description 카드 형태로 보여지는 투표항목 하나에 대한 컴포넌트
  */
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image, { StaticImageData } from "next/image";
 import defaultImg from "@assets/images/defalut_vote_element_img.png";
-import ImageModal from "./ImageModal";
 import useTranslation from "@/hooks/useTranslation";
 import Link from "next/link";
 import { useParams } from "next/navigation";

@@ -82,11 +82,11 @@ export type storeGoodsType = goodsType & {
   startDate: string; // 판매 시작일
   endDate: string; // 판매 종료일
   sellCount: number; // 판매된 갯수
-  usePeriod: number; // 꾸미기 등 장착을 시작하면 적용되는 기간 (ex. 30일)
+  validPeriod: number; // 꾸미기 등 장착을 시작하면 적용되는 기간 (ex. 30일)
 };
 
 export type storeGoodsTypes = {
-  goods: storeGoodsType[];
+  goodsList: storeGoodsType[];
 };
 
 export type goods_typeTypes = string[];

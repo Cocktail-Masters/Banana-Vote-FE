@@ -10,14 +10,10 @@ import CardBadge from "../common/cardList/CardBadge";
 import CardBadgeList from "../common/cardList/CardBadgeList";
 
 const Goods = ({ goods }: { goods: storeGoodsType }) => {
-  const handleClick = () => {
-    alert(goods.name);
-  };
-
   return (
-    <Card handleClick={handleClick}>
+    <Card imageUrl={goods.imageUrl}>
       {/* 아이템 이름 */}
-      <p className="text-base font-semibold text-slate-900 text-text-feed dark:text-text-feed-dark">
+      <p className="w-5/6 truncate text-base font-semibold text-slate-900 text-text-feed dark:text-text-feed-dark text-center">
         {goods.name}
       </p>
       {/* 뱃지 리스트 */}
@@ -34,7 +30,7 @@ const Goods = ({ goods }: { goods: storeGoodsType }) => {
       </CardBadgeList>
 
       {/* 가격 */}
-      <div className="absolute right-3 bottom-2 flex h-6 w-auto">
+      <div className="absolute bottom-2 right-3 flex h-6 w-auto">
         <Image src={banana} alt="banana" width={24} height={24} />
         <p className="text-md font-semibold leading-6">
           {goods.price.toLocaleString()}

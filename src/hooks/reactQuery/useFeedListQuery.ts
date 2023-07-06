@@ -2,80 +2,11 @@
  * @author mingyu
  */
 import api from "@/common/axiosInstance";
-import { useFeedListDummyV1 } from "@/components/feed/__test__/useFeedListDummy";
 import { FEEDS_PER_PAGE } from "@/constants/home";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-// tmp function
-export const getFeedList = (
-  pageParam: number = 0,
-  isClosed: boolean,
-  sortBy: number,
-  keyword: string | null
-) => {
-  const START = FEEDS_PER_PAGE * pageParam;
-  const END = FEEDS_PER_PAGE * (pageParam + 1);
-
-  // 더미 데이터 생성
-  const dummyArr = Array.from({ length: 7 }, () => useFeedListDummyV1).flat();
-
-  // 종료 포함 여부, 키워드에 따라 더미 데이터 필터링
-  const filteredArr = isClosed
-    ? dummyArr.filter((element) => {
-        if (keyword) return element.vote.title.includes(keyword);
-        else return true;
-      })
-    : dummyArr.filter((element) => {
-        if (keyword)
-          return (
-            element.vote.isClosed === false &&
-            element.vote.title.includes(keyword)
-          );
-        return element.vote.isClosed === false;
-      });
-
-  //
-
-  // 정렬 순서에 따라 더미 데이터 정렬
-  let sortedArr: any;
-  if (sortBy === 1) {
-    // 최신 순
-    sortedArr = filteredArr.sort((a, b) => {
-      return (
-        new Date(b.vote.startDate).getTime() -
-        new Date(a.vote.startDate).getTime()
-      );
-    });
-  } else if (sortBy === 2) {
-    // 참여 순 (인기 순)
-    sortedArr = filteredArr.sort((a, b) => {
-      return b.vote.votedNumber - a.vote.votedNumber;
-    });
-  } else if (sortBy === 3) {
-    // 조회 순
-    sortedArr = filteredArr.sort((a, b) => {
-      return b.vote.hits - a.vote.hits;
-    });
-  } else if (sortBy === 4) {
-    // 댓글 많은 순
-    sortedArr = filteredArr.sort((a, b) => {
-      return b.vote.opinionNumber - a.vote.opinionNumber;
-    });
-  } else {
-    sortedArr = filteredArr;
-  }
-
-  const items = sortedArr.slice(START, END);
-  const response = {
-    totalCount: filteredArr.length,
-    votes: items,
-  };
-
-  return response;
-};
-
-// TODO : API 호출 수정
 export const feedListFetch = async (
+  pageParam: number,
   isClosed: boolean,
   sortBy: number,
   keyword: string | null
@@ -84,14 +15,14 @@ export const feedListFetch = async (
 
   try {
     const res = await api.get(
-      `/votes/options?page=${1}&size=${100000}&keyword=${keyword}&is-tag=${isTag}&is-closed=${isClosed}&is-event=${false}&sort-by=${sortBy}`
+      `/votes/options?page=${pageParam}&size=${FEEDS_PER_PAGE}&keyword=${
+        keyword && keyword.startsWith("#")
+          ? keyword.substring(1, keyword.length)
+          : keyword
+      }&is-tag=${isTag}&is-closed=${isClosed}&is-event=${false}&sort-by=${sortBy}`
     );
-    console.log(res.data);
-
     return res.data;
   } catch (error) {
-    console.log("===== ERROR =====");
-    console.log(error);
     return {
       totalCount: 0,
       votes: [],
@@ -104,17 +35,19 @@ export const useFeedListQuery = (
   sortBy: number,
   keyword: string
 ) => {
-  return useInfiniteQuery({
-    queryKey: ["feedList", isClosed, sortBy, keyword],
-    /**
-     * @todo getFeedList에 isClosed, sortBy 파라미터로 넣기
-     */
-    queryFn: ({ pageParam = 0 }) => feedListFetch(isClosed, sortBy, keyword),
-    getNextPageParam: (lastPage, allPages) => {
-      // find isLast?
-      const maxPage = lastPage ? lastPage.totalCount : 0 / FEEDS_PER_PAGE;
-      const nextPage = allPages.length + 1;
-      return nextPage <= maxPage ? nextPage : undefined;
-    },
-  });
+  return useInfiniteQuery(
+    ["feedList", isClosed, sortBy, keyword],
+    async ({ pageParam = 0 }) =>
+      feedListFetch(pageParam, isClosed, sortBy, keyword),
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        // find isLast
+        const maxPage = lastPage ? lastPage.totalCount : 0 / FEEDS_PER_PAGE;
+        const nextPage = allPages.length;
+
+        return nextPage <= maxPage ? nextPage : undefined;
+      },
+      staleTime: 60 * 1000,
+    }
+  );
 };

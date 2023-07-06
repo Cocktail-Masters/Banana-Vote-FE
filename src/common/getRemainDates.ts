@@ -10,6 +10,7 @@ import enLocale from "timeago.js/lib/lang/en_US";
  * @param startDate 시작일 (default : Today)
  * @param endDate 종료일
  * @returns 오늘과 해당 날짜의 일 수 차이
+ * 호출 측에서 0 이하의 값 (음수값)을 리턴 받을 경우 "종료됨"이라고 표시하는 예외처리 필요!
  */
 export const getRemainDates = ({
   startDate,

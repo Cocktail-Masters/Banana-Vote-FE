@@ -1,6 +1,6 @@
 "use client";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, ReactNode, useCallback } from "react";
+import { Fragment, ReactNode } from "react";
 
 const Modal = ({
   isOpen = true,
@@ -27,7 +27,7 @@ const Modal = ({
         >
           <div className="fixed inset-0 bg-black bg-opacity-75" />
         </Transition.Child>
-        <div className="fixed inset-0 overflow-y-auto">
+        <div className="fixed inset-0 z-[10000] overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}

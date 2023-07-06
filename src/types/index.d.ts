@@ -334,6 +334,9 @@ export type picketType = {
   picketImageUrl: string;
   position: number;
   price: number;
+  voteId: number;
+  ownerId: number;
+  id: number;
 };
 
 export type picketsType = {

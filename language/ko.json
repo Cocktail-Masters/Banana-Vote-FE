@@ -83,6 +83,7 @@
           "upload": "피캣 올리기",
           "content": {
             "change": "으로 현재 피캣 바꾸기",
+            "modify":"내 피켓 변경하기",
             "dropzone": {
               "upload_hint1": "이곳에 파일을 드래그 하거나",
               "upload_hint2": "파일을 직접 선택해주세요!",

@@ -9,17 +9,22 @@ import { useParams } from "next/navigation";
 import uploadFirebase from "@/common/uploadFirebase";
 import { useStore } from "@/hooks/useStore";
 import { useMainStore } from "@/store";
+import { picketChangeType } from "./PicketModal";
 
 const PicketDropzone = ({
   change,
   price,
   position,
   newPicket,
+  onwerId,
+  setChangeState,
 }: {
   change: boolean;
   price?: number;
   position?: number;
+  onwerId?: number;
   newPicket: boolean;
+  setChangeState: ({ change, picket }: picketChangeType) => void;
 }) => {
   const params = useParams();
   const [file, setFile] = useState<File>();
@@ -131,21 +136,26 @@ const PicketDropzone = ({
         </div>
       )}
       <div className={`mt-[5%] flex h-[20%] w-full flex-col items-center`}>
-        <div className={`text-base font-bold dark:text-white`}>
-          {translation(
-            "vote.detail.picket_area.modal.content.dropzone.min_banana"
-          )}{" "}
-          : {price !== undefined ? price + 1 : "1000"}
-        </div>
+        {user && onwerId !== user.id && (
+          <div className={`text-base font-bold dark:text-white`}>
+            {translation(
+              "vote.detail.picket_area.modal.content.dropzone.min_banana"
+            )}{" "}
+            : {price !== undefined ? price + 1 : "1"}
+          </div>
+        )}
+
         <div className={`mt-1 flex h-10 w-full justify-center`}>
-          <input
-            onChange={(e) => {
-              setGuestPrice((prev) => {
-                return parseInt(e.target.value);
-              });
-            }}
-            className={`w-1/3 rounded-xl border `}
-          ></input>
+          {user && onwerId !== user.id && (
+            <input
+              onChange={(e) => {
+                setGuestPrice((prev) => {
+                  return parseInt(e.target.value);
+                });
+              }}
+              className={`w-1/3 rounded-xl border `}
+            ></input>
+          )}
           <button
             className={`${
               !change && `ml-2`
@@ -153,13 +163,32 @@ const PicketDropzone = ({
             onClick={async () => {
               if ((newPicket || change) && position != undefined && file) {
                 const imageUploadResponse = await uploadFirebase(file);
-                mutate({
-                  voteId: parseInt(params.detail),
-                  picketImageUrl: imageUploadResponse,
-                  paidPrice: guestPrice,
-                  position,
-                  curPrice: price ? price : 0,
-                });
+                mutate(
+                  {
+                    voteId: parseInt(params.detail),
+                    picketImageUrl: imageUploadResponse,
+                    paidPrice: guestPrice,
+                    position,
+                    curPrice: price ? price : 0,
+                  },
+                  {
+                    onSuccess: () => {
+                      {
+                        setChangeState({
+                          change: false,
+                          picket: {
+                            picketImageUrl: "",
+                            position: 0,
+                            price: 0,
+                            id: 0,
+                            ownerId: 0,
+                            voteId: params.detail ? parseInt(params.detail) : 0,
+                          },
+                        });
+                      }
+                    },
+                  }
+                );
               }
             }}
           >

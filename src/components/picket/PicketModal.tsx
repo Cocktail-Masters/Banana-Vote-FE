@@ -8,7 +8,7 @@ import useTranslation from "@/hooks/useTranslation";
 import DeclarationModal from "../declaration";
 import { useParams } from "next/navigation";
 
-type picketChangeType = {
+export type picketChangeType = {
   change: boolean;
   picket: picketType;
 };
@@ -31,6 +31,9 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
       picketImageUrl: "",
       position: 0,
       price: 0,
+      id: 0,
+      ownerId: 0,
+      voteId: params.detail ? parseInt(params.detail) : 0,
     },
   });
 
@@ -43,7 +46,6 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
   const [isDeclaration, setIsDeclaration] = useState<boolean>(false);
   const declarationHandler = () => {
     // 신고 모달 닫기,열기
-    console.log("test");
     setIsDeclaration((prev) => {
       return !prev;
     });
@@ -69,8 +71,11 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                   change: false,
                   picket: {
                     picketImageUrl: "",
-                    price: 0,
                     position: 0,
+                    price: 0,
+                    id: 0,
+                    ownerId: 0,
+                    voteId: params.detail ? parseInt(params.detail) : 0,
                   },
                 });
                 onClose();
@@ -111,8 +116,13 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                                 change: false,
                                 picket: {
                                   picketImageUrl: "",
-                                  price: 0,
                                   position: 0,
+                                  price: 0,
+                                  id: 0,
+                                  ownerId: 0,
+                                  voteId: params.detail
+                                    ? parseInt(params.detail)
+                                    : 0,
                                 },
                               });
                             }}
@@ -144,8 +154,13 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                               change: false,
                               picket: {
                                 picketImageUrl: "",
-                                price: 0,
                                 position: 0,
+                                price: 0,
+                                id: 0,
+                                ownerId: 0,
+                                voteId: params.detail
+                                  ? parseInt(params.detail)
+                                  : 0,
                               },
                             });
                             onClose();
@@ -174,12 +189,17 @@ const PicketAreaModal = ({ pickets }: picketsType) => {
                             picketImageUrl={changeState.picket.picketImageUrl}
                             position={changeState.picket.position}
                             price={changeState.picket.price}
+                            voteId={changeState.picket.voteId}
+                            ownerId={changeState.picket.ownerId}
+                            id={changeState.picket.id}
+                            setChangeState={setChangeState}
                           />
                         ) : (
                           <PicketAreaModalContent
                             pickets={pickets}
                             onChangeState={onClick}
                             declarationHandler={declarationHandler}
+                            setChangeState={setChangeState}
                           />
                         )}
                       </Dialog.Description>

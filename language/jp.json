@@ -83,6 +83,7 @@
           "upload": "ピケットをアップロードする",
           "content": {
             "change": "現在のピケットに変更する",
+            "modify":"私のピケットを変更する",
             "dropzone": {
               "upload_hint1": "ここにファイルをドラッグするか、",
               "upload_hint2": "ファイルを直接選択してください！",
@@ -92,6 +93,9 @@
               "has_banana": "持っているバナナ"
             }
           }
+        },
+        "declaration":{
+          "신고하기":"番 picket"
         }
       },
       "comment_area": {

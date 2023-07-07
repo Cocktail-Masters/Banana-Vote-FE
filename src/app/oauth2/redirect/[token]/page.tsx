@@ -29,6 +29,7 @@ const Token = () => {
         accessToken={splitToken[0]}
         refreshToken={splitToken[1]}
         userId={decoded.id}
+        role={decoded.role as unknown as "GUEST" | "USER" | "ADMIN"}
       />
     );
   } else {

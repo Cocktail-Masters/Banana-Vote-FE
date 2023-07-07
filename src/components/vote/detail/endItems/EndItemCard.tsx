@@ -20,7 +20,6 @@ const VoteDetailEndItemCard = ({
   imageModalHandler: (e: imageModalType) => void;
   isOpen: boolean;
 }) => {
-  console.log(totalVoted);
   const onOpen = (e: string) => {
     imageModalHandler({ isOpen: true, imageUrl: e });
   };
@@ -29,7 +28,7 @@ const VoteDetailEndItemCard = ({
       className={` mb-2 flex h-full w-full overflow-hidden rounded-2xl border-2 bg-primary-yellow shadow-md dark:text-text-normal-dark hover:dark:text-black `}
     >
       <div className="relative flex h-full w-full">
-        <div className="relative ml-[115px] flex h-[100px] w-[calc(100%_-_100px)] items-center">
+        <div className="relative  flex h-[100px] w-full items-center">
           <motion.div
             initial={{ x: "-100%" }}
             animate={{
@@ -39,7 +38,7 @@ const VoteDetailEndItemCard = ({
             className={` h-full w-full rounded-2xl bg-[#81D1FF]`}
           ></motion.div>
           <h2
-            className={`absolute text-base  font-semibold dark:text-black md:text-lg`}
+            className={`absolute ml-[115px] text-base  font-semibold dark:text-black md:text-lg`}
           >
             {item.itemNumber}번 {item.title}{" "}
             {Math.round((item.votedNumber / totalVoted) * 100)}%

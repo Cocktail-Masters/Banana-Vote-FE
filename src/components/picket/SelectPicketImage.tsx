@@ -1,8 +1,24 @@
+"use client";
+
+import { useStore } from "@/hooks/useStore";
+import { useMainStore } from "@/store";
 import { picketType } from "@/types";
 import Image from "next/image";
 import PicketDropzone from "./PicketDropzone";
+import { picketChangeType } from "./PicketModal";
 
-const SelectPicketImage = ({ picketImageUrl, position, price }: picketType) => {
+type changeStateType = {
+  setChangeState: ({ change, picket }: picketChangeType) => void;
+};
+
+const SelectPicketImage = ({
+  picketImageUrl,
+  position,
+  price,
+  ownerId,
+  setChangeState,
+}: picketType & Pick<changeStateType, "setChangeState">) => {
+  const user = useStore(useMainStore, (store) => store.user);
   return (
     <div className={`mb-[10px] h-fit w-full`}>
       <div className={`mb-[10px] flex min-h-[300px] w-full justify-center`}>
@@ -20,7 +36,16 @@ const SelectPicketImage = ({ picketImageUrl, position, price }: picketType) => {
           />
         </div>
       </div>
-      <PicketDropzone change={true} price={price} position={position} />
+      {user !== undefined && (
+        <PicketDropzone
+          change={true}
+          price={price}
+          onwerId={ownerId}
+          position={position}
+          newPicket={user.id === ownerId ? false : true}
+          setChangeState={setChangeState}
+        />
+      )}
     </div>
   );
 };

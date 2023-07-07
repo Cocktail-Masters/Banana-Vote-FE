@@ -16,6 +16,7 @@ export type userType = anotherUserType & {
   accessToken: string;
   refreshToken: string;
   points: number;
+  role: "GUEST" | "USER" | "ADMIN";
 };
 
 export type userTypeForAdmin = {
@@ -333,6 +334,9 @@ export type picketType = {
   picketImageUrl: string;
   position: number;
   price: number;
+  voteId: number;
+  ownerId: number;
+  id: number;
 };
 
 export type picketsType = {

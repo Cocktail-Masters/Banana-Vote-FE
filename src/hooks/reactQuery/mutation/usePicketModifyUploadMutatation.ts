@@ -1,5 +1,6 @@
 import api from "@/common/axiosInstance";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export type picketModyfyResultType = {
   lastModified: string;
@@ -64,6 +65,7 @@ export const usePicketUploadMutation = ({
   return useMutation({
     mutationFn: newPicket ? postPicketUpload : postPicketModifyUpload,
     onSuccess: (data) => {
+      toast.success("Success message");
       queryClient.invalidateQueries(queryKey);
     },
     onError: (error) => {},

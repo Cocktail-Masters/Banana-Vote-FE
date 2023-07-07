@@ -6,6 +6,7 @@ import PicketDropzone from "./PicketDropzone";
 import useTranslation from "@/hooks/useTranslation";
 import { useStore } from "@/hooks/useStore";
 import { useMainStore } from "@/store";
+
 type picketChangeType = {
   change: boolean;
   picket: picketType;

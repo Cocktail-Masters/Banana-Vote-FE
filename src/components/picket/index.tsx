@@ -14,7 +14,6 @@ const PicketArea = () => {
   });
   const { translation } = useTranslation();
 
-  
   return (
     <div
       className={`flex h-[350px] w-full flex-col items-center justify-center`}

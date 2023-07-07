@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 import useTranslation from "@/hooks/useTranslation";
@@ -10,6 +10,7 @@ import uploadFirebase from "@/common/uploadFirebase";
 import { useStore } from "@/hooks/useStore";
 import { useMainStore } from "@/store";
 import { picketChangeType } from "./PicketModal";
+import { toast } from "react-toastify";
 
 const PicketDropzone = ({
   change,
@@ -36,7 +37,6 @@ const PicketDropzone = ({
   });
   const [guestPrice, setGuestPrice] = useState<number>(0);
   const user = useStore(useMainStore, (state) => state.user);
-
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFile(acceptedFiles[0]);
   }, []);
@@ -186,6 +186,9 @@ const PicketDropzone = ({
                           },
                         });
                       }
+                    },
+                    onError: () => {
+                      toast.error("저런! 알 수 없는 이유로 실패 했습니다.");
                     },
                   }
                 );

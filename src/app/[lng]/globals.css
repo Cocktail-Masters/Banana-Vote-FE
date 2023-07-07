@@ -92,6 +92,3 @@ body {
 .custom-scroll::-webkit-scrollbar {
   display: none;
 }
-
-.Toastify__toast-container--bottom-center {
-}

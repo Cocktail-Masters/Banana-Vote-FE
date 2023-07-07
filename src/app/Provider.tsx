@@ -15,7 +15,7 @@ const Provider = ({ children }: providerType) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <ToastContainer className={`Toastify__toast-container--bottom-center`} />
+      <ToastContainer />
       {children}
     </QueryClientProvider>
   );

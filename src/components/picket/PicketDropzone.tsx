@@ -188,7 +188,7 @@ const PicketDropzone = ({
                       }
                     },
                     onError: () => {
-                      toast.error("저런! 알 수 없는 이유로 실패 했습니다.");
+                      
                     },
                   }
                 );

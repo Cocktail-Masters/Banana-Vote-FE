@@ -65,9 +65,15 @@ export const usePicketUploadMutation = ({
   return useMutation({
     mutationFn: newPicket ? postPicketUpload : postPicketModifyUpload,
     onSuccess: (data) => {
-      toast.success("Success message");
+      toast.success("Success message", {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
       queryClient.invalidateQueries(queryKey);
     },
-    onError: (error) => {},
+    onError: (error) => {
+      toast.error("저런! 알 수 없는 이유로 실패 했습니다.", {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+    },
   });
 };

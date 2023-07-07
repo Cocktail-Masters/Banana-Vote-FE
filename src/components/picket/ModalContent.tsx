@@ -4,6 +4,8 @@ import banana from "@assets/icons/banana_svgrepo.com.svg";
 import React from "react";
 import PicketDropzone from "./PicketDropzone";
 import useTranslation from "@/hooks/useTranslation";
+import ToastMessage from "../common/ToastMessage";
+
 type picketChangeType = {
   change: boolean;
   picket: picketType;
@@ -22,6 +24,7 @@ const PicketAreaModalContent = ({
   const { translation } = useTranslation();
   return (
     <div className={`flex h-fit w-full flex-col items-center pb-[20px]`}>
+      <ToastMessage />
       {pickets.map((e, i) => (
         <div key={i}>
           <Image

@@ -68,6 +68,7 @@ export const usePicketUploadMutation = ({
     onSuccess: (data) => {
       toast.success(translation("upload_success"));
       queryClient.invalidateQueries(queryKey);
+      queryClient.invalidateQueries(["userInfo"]);
     },
     onError: (error) => {
       toast.error(translation("upload_failed" + error));

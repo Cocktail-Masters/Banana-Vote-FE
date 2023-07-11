@@ -84,12 +84,15 @@ const PicketAreaModalContent = ({
           </div>
         ))}
       <div className={`my-[20px] mb-[150px] h-fit w-full`}>
-        <PicketDropzone
-          setChangeState={setChangeState}
-          change={true}
-          position={pickets.length}
-          newPicket={true}
-        />
+        {userId !== undefined && (
+          <PicketDropzone
+            userId={userId}
+            setChangeState={setChangeState}
+            change={true}
+            position={pickets.length}
+            newPicket={true}
+          />
+        )}
       </div>
     </div>
   );

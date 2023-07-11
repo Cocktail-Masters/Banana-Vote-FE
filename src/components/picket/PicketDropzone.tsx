@@ -10,7 +10,7 @@ import uploadFirebase from "@/common/uploadFirebase";
 import { useStore } from "@/hooks/useStore";
 import { useMainStore } from "@/store";
 import { picketChangeType } from "./PicketModal";
-import { toast } from "react-toastify";
+import { useUserInfoQuery } from "@/hooks/reactQuery/useSignInQuery";
 
 const PicketDropzone = ({
   change,
@@ -18,12 +18,14 @@ const PicketDropzone = ({
   position,
   newPicket,
   onwerId,
+  userId,
   setChangeState,
 }: {
   change: boolean;
   price?: number;
   position?: number;
   onwerId?: number;
+  userId: number;
   newPicket: boolean;
   setChangeState: ({ change, picket }: picketChangeType) => void;
 }) => {
@@ -31,12 +33,15 @@ const PicketDropzone = ({
   const [file, setFile] = useState<File>();
   const [fileType, setFileType] = useState<string>();
   const { translation } = useTranslation();
+  const userStore = useStore(useMainStore, (state) => state);
+
   const { mutate } = usePicketUploadMutation({
     queryKey: ["picket", parseInt(params.detail)],
     newPicket,
   });
+  const { data: userData } = useUserInfoQuery({ userId });
+
   const [guestPrice, setGuestPrice] = useState<number>(0);
-  const user = useStore(useMainStore, (state) => state.user);
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFile(acceptedFiles[0]);
   }, []);
@@ -136,7 +141,7 @@ const PicketDropzone = ({
         </div>
       )}
       <div className={`mt-[5%] flex h-[20%] w-full flex-col items-center`}>
-        {user && onwerId !== user.id && (
+        {userStore && onwerId !== userStore.user.id && (
           <div className={`text-base font-bold dark:text-white`}>
             {translation(
               "vote.detail.picket_area.modal.content.dropzone.min_banana"
@@ -146,7 +151,7 @@ const PicketDropzone = ({
         )}
 
         <div className={`mt-1 flex h-10 w-full justify-center`}>
-          {user && onwerId !== user.id && (
+          {userStore && onwerId !== userStore.user.id && (
             <input
               onChange={(e) => {
                 setGuestPrice((prev) => {
@@ -185,10 +190,15 @@ const PicketDropzone = ({
                             voteId: params.detail ? parseInt(params.detail) : 0,
                           },
                         });
+                        if (userStore && userData) {
+                          const temp = userStore.user;
+                          const userPoints = userData.data.points;
+                          userStore.setUserInfo({
+                            ...temp,
+                            points: userPoints,
+                          });
+                        }
                       }
-                    },
-                    onError: () => {
-                      
                     },
                   }
                 );
@@ -206,7 +216,7 @@ const PicketDropzone = ({
               "vote.detail.picket_area.modal.content.dropzone.has_banana"
             )}
             {": "}
-            {user !== undefined && user.points}
+            {userData && userData.data && userData.data.points}
           </div>
         </div>
       </div>

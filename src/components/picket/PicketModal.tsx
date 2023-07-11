@@ -7,6 +7,8 @@ import SelectPicketImage from "./SelectPicketImage";
 import useTranslation from "@/hooks/useTranslation";
 import DeclarationModal from "../declaration";
 import { useParams } from "next/navigation";
+import { useStore } from "@/hooks/useStore";
+import { useMainStore } from "@/store";
 
 export type picketChangeType = {
   change: boolean;

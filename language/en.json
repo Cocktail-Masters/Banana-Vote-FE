@@ -195,5 +195,15 @@
         "여성": "Female"
       }
     }
-  }
+  },
+  "predict_success": "Prediction applied successfully",
+  "modify_success": "Modification succeeded",
+  "upload_success": "Upload succeeded",
+  "report_success": "Report succeeded",
+  "delete_success": "delete succeeded",
+  "delete_failed": "delete failed",
+  "modify_failed": "Modification failed",
+  "upload_failed": "Upload failed",
+  "report_failed": "Report failed",
+  "predict_failed": "Failed to apply prediction"
 }

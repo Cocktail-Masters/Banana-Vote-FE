@@ -81,6 +81,7 @@
         "modal": {
           "join": "참여하기",
           "upload": "피캣 올리기",
+          
           "content": {
             "change": "으로 현재 피캣 바꾸기",
             "modify":"내 피켓 변경하기",
@@ -194,5 +195,16 @@
         "여성": "여성"
       }
     }
-  }
+  },
+  "modify_success":"변경 성공",
+  "upload_success": "업로드 성공",
+  "report_success": "신고 성공",
+  "predict_success": "예측 반영 완료",
+  "delete_success": "삭제 성공",
+  "delete_failed": "삭제 실패",
+  "modify_failed":"변경 실패",
+  "upload_failed":"업로드 실패",
+  "report_failed": "신고 실패",
+  "predict_failed": "예측 반영 실패"
+  
 }

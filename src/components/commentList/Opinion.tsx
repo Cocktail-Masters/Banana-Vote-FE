@@ -1,21 +1,26 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { opinionType } from "@/types";
 import BadgeImage from "../common/BadgeImage";
 import { usePathname } from "next/navigation";
 import { getRelativeDays } from "@/common/getRemainDates";
 import { useParams } from "next/navigation";
 import { colorStoreType, useColorModeStore } from "@/store/colorMode";
+import { useCommentThumbsMutation } from "@/hooks/reactQuery/mutation/useCommentMutation";
+import DeclarationModal from "../declaration";
 
 const Opinion = ({
   opinion,
   isBest = false,
+  voteId,
 }: {
+  voteId: number;
   opinion: opinionType;
   isBest?: boolean;
 }) => {
   const pathname = usePathname();
   const { detail } = useParams();
+  const [isDeclaration, setIsDeclaration] = useState<boolean>(false);
   const themeMode = useColorModeStore<colorStoreType>((state: any) => state);
   /**
    * @todo 클릭 시 사용자 프로필 이동
@@ -24,8 +29,25 @@ const Opinion = ({
     console.log(opinion.writer.id);
   };
 
+  const { mutate } = useCommentThumbsMutation({ voteId });
+
+  const declarationHandler = () => {
+    // 신고 모달 닫기,열기
+    setIsDeclaration((prev) => {
+      return !prev;
+    });
+  };
+
   return (
     <div className="relative mt-2 mb-1 flex h-auto min-h-[3.5rem] flex-col justify-center gap-2">
+      {isDeclaration && (
+        <DeclarationModal
+          title={opinion.content}
+          onClose={declarationHandler}
+          type={1}
+          id={voteId}
+        />
+      )}
       {/* 프로필 */}
       <div className="flex h-full w-full flex-1 flex-wrap">
         <div className="mt-2 mr-2">
@@ -80,7 +102,12 @@ const Opinion = ({
             {/* 공감, 비공감, 신고 영역 */}
             <div className="absolute right-0 text-xs">
               <div className="flex h-5 w-full items-center">
-                <button className="mr-2 flex h-full w-10 items-center">
+                <button
+                  className="mr-2 flex h-full w-10 items-center"
+                  onClick={() => {
+                    mutate({ isAgree: true, opinionId: opinion.id });
+                  }}
+                >
                   <div className="w-5">
                     <svg
                       viewBox="0 0 24 24"
@@ -115,7 +142,12 @@ const Opinion = ({
                   </div>
                   <div>{opinion.agreedNumber}</div>
                 </button>
-                <button className="mr-1 flex h-full w-10 items-center">
+                <button
+                  className="mr-1 flex h-full w-10 items-center"
+                  onClick={() => {
+                    mutate({ isAgree: false, opinionId: opinion.id });
+                  }}
+                >
                   <div className="w-5">
                     <svg
                       viewBox="0 0 24 24"
@@ -151,7 +183,9 @@ const Opinion = ({
                   </div>
                   <div>{opinion.disagreedNumber}</div>
                 </button>
-                <button className="text-base">🚨</button>
+                <button className="text-base" onClick={declarationHandler}>
+                  🚨
+                </button>
               </div>
             </div>
           </div>

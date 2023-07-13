@@ -9,10 +9,12 @@ const SignIn = ({
   accessToken,
   refreshToken,
   userId,
+  role,
 }: {
   refreshToken: string;
   accessToken: string;
   userId: number;
+  role: "GUEST" | "USER" | "ADMIN";
 }) => {
   const router = useRouter();
   const store = useMainStore((state) => state);
@@ -35,6 +37,7 @@ const SignIn = ({
         points: fetchUserData.points,
         accessToken,
         refreshToken,
+        role,
       };
       store.setIsLogin(true);
       store.setUserInfo(userInfo);

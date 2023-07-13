@@ -5,9 +5,8 @@ export const voteDetailFetch = async (postId: number) => {
   const response = await api.get(`/votes/${postId}`).then((response) => {
     return response;
   });
-  console.log(response);
 
-  return response;
+  return response.data;
 };
 
 export const useVoteDetailQuery = ({

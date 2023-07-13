@@ -38,12 +38,24 @@ const VoteDetailPredictionModal = ({
   });
 
   const userInfo = useStore(useMainStore, (state) => state.user);
+  const store = useStore(useMainStore, (state) => state);
 
   const { translation } = useTranslation();
-  console.log(data);
   const pointSubmitHandler = () => {
     if (pointState !== undefined) {
-      mutate({ prediction: { points: pointState, voteItemId: voteItemId } });
+      mutate(
+        { prediction: { points: pointState, voteItemId: voteItemId } },
+        {
+          onSuccess: () => {
+            if (store !== undefined && userInfo) {
+              store.setUserInfo({
+                ...userInfo,
+                points: userInfo.points - pointState,
+              });
+            }
+          },
+        }
+      );
     }
   };
 
@@ -162,7 +174,7 @@ const VoteDetailPredictionModal = ({
           </div>
           <div className="flex">
             <Image src={banana_svg} alt={"바나나이미지"} width={20} />
-            <div>{userInfo?.points}</div>
+            <div>{userInfo && userInfo.points}</div>
           </div>
         </div>
       </div>

@@ -12,7 +12,6 @@ const predictionModify = async ({
   const response = await api.patch(`/votes/prediction`, {
     prediction,
   });
-  console.log(response);
 
   return response;
 };

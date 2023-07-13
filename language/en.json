@@ -83,6 +83,7 @@
           "upload": "Upload Picket",
           "content": {
             "change": "Change to current picket",
+            "modify":"change my pickets",
             "dropzone": {
               "upload_hint1": "Drag files here or",
               "upload_hint2": "Select files directly!",
@@ -92,6 +93,9 @@
               "has_banana": "Bananas you have"
             }
           }
+        },
+        "declaration":{
+          "신고하기":"'s picket"
         }
       },
       "comment_area": {

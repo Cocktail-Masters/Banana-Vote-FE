@@ -1,5 +1,5 @@
 "use client";
-import Loading from "@/components/Loading";
+
 import { usePicketQuery } from "@/hooks/reactQuery/usePicketQuery";
 import useTranslation from "@/hooks/useTranslation";
 import Carousel from "./Carousel";
@@ -12,9 +12,9 @@ const PicketArea = () => {
     queryKey: "picket",
     voteId: parseInt(params.detail),
   });
-  console.log("params.detail", params.detail);
   const { translation } = useTranslation();
 
+  
   return (
     <div
       className={`flex h-[350px] w-full flex-col items-center justify-center`}
@@ -29,7 +29,7 @@ const PicketArea = () => {
         </div>
         {data !== undefined && (
           <div className={`mr-[10px] p-[10px]`}>
-            <PicketAreaModal pickets={data?.pickets} />
+            <PicketAreaModal pickets={data.pickets} />
           </div>
         )}
       </div>
@@ -37,7 +37,9 @@ const PicketArea = () => {
         <div
           className={`relative block h-[225px] max-h-[200px] w-[100%] overflow-hidden rounded-2xl bg-[#D9D9D9] shadow-md dark:bg-bg-feed-dark`}
         >
-          {data !== undefined && <Carousel pickets={data?.pickets} />}
+          {data !== undefined && data.pickets && (
+            <Carousel pickets={data.pickets} />
+          )}
         </div>
       </div>
     </div>

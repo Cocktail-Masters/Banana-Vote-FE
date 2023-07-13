@@ -1,7 +1,6 @@
 import PicketArea from "@/components/picket";
 import CommentListArea from "@/components/commentList";
 import { Locale } from "i18n-config";
-import HydrateDetail from "./hydrateDetail";
 import VoteDetailItem from "@/components/vote/detail/Item";
 import { Suspense } from "react";
 import Loading from "@/components/Loading";

@@ -24,6 +24,7 @@ export const createUserSlice = (set: any) => ({
     accessToken: "",
     refreshToken: "",
     points: 0,
+    role:"GUEST",
   } as userType,
   setIsLogin: (input: boolean) =>
     set((state: userSliceType) => {

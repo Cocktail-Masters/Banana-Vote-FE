@@ -53,7 +53,7 @@ const CommentListArea = () => {
           </button>
         </div>
       </div>
-      <CommentInput />
+      <CommentInput voteId={parseInt(params.detail)} />
 
       <Suspense fallback={<Loading />}>
         <LazyCommentList opinionType={opinionType} />

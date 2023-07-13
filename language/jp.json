@@ -194,5 +194,15 @@
       "change": "変える",
       "nickname": "ニックネーム"
     }
-  }
+  },
+  "predict_success": "予測反映完了",
+  "modify_success": "変更成功",
+  "upload_success": "アップロード成功",
+  "report_success": "報告成功",
+  "modify_failed": "変更失敗",
+  "upload_failed": "アップロード失敗",
+  "report_failed": "報告失敗",
+  "predict_failed": "予測反映失敗",
+  "delete_success": "削除成功",
+  "delete_failed": "削除失敗"
 }

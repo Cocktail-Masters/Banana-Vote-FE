@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { opinionType, opinionTypes } from "@/types";
 import api from "@/common/axiosInstance";
+import useTranslation from "@/hooks/useTranslation";
+import { toast } from "react-toastify";
 
 export const commentInputPost = async ({
   sendData,
@@ -16,13 +18,17 @@ export const commentInputPost = async ({
 
 export const useCommentMutation = ({ voteId }: { voteId: number }) => {
   const queryClient = useQueryClient();
+  const { translation } = useTranslation();
   return useMutation({
     mutationFn: commentInputPost,
     onSuccess: (data) => {
+      toast.success(translation("upload_success"));
       queryClient.invalidateQueries(["commentList", "recent", voteId]);
       queryClient.invalidateQueries(["commentList", "agree", voteId]);
     },
-    onError: (error) => {},
+    onError: (error) => {
+      toast.error(translation("upload_failed" + error));
+    },
   });
 };
 
@@ -41,12 +47,16 @@ const commentThumbsPatch = async ({
 export const useCommentThumbsMutation = ({ voteId }: { voteId: number }) => {
   const queryClient = useQueryClient();
 
+  const { translation } = useTranslation();
   return useMutation({
     mutationFn: commentThumbsPatch,
     onSuccess: (data) => {
+      toast.success(translation("upload_success"));
       queryClient.invalidateQueries(["commentList", "recent", voteId]);
       queryClient.invalidateQueries(["commentList", "agree", voteId]);
     },
-    onError: (error) => {},
+    onError: (error) => {
+      toast.error(translation("upload_failed" + error));
+    },
   });
 };

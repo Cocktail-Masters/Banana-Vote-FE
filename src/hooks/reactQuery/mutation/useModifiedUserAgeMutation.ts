@@ -1,5 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import api from '@/common/axiosInstance';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import api from "@/common/axiosInstance";
+import useTranslation from "@/hooks/useTranslation";
+import { toast } from "react-toastify";
 
 const modifiedUserAge = async ({ age }: { age: number }) => {
   const response = await api.patch(`/users/age`, { age });
@@ -8,12 +10,16 @@ const modifiedUserAge = async ({ age }: { age: number }) => {
 
 const useModifiedUserAgeMutation = () => {
   const queryClient = useQueryClient();
+  const { translation } = useTranslation();
   return useMutation({
     mutationFn: modifiedUserAge,
     onSuccess: (data) => {
-      queryClient.invalidateQueries(['userInfo']);
+      toast.success(translation("modify_success"));
+      queryClient.invalidateQueries(["userInfo"]);
     },
-    onError: (error) => {},
+    onError: (error) => {
+      toast.error(translation("modify_failed" + error));
+    },
   });
 };
 export default useModifiedUserAgeMutation;

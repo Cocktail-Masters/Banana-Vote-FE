@@ -1,5 +1,7 @@
 import api from "@/common/axiosInstance";
+import useTranslation from "@/hooks/useTranslation";
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const ReportPost = async ({
   report,
@@ -17,9 +19,14 @@ const ReportPost = async ({
 };
 
 export const usePredictionMutation = () => {
+  const { translation } = useTranslation();
   return useMutation({
     mutationFn: ReportPost,
-    onSuccess: (data) => {},
-    onError: (error) => {},
+    onSuccess: (data) => {
+      toast.success(translation("upload_success"));
+    },
+    onError: (error) => {
+      toast.error(translation("upload_failed" + error));
+    },
   });
 };

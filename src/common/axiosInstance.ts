@@ -129,9 +129,11 @@ api.interceptors.request.use(async (config) => {
   if (token !== null) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-  if (refreshToken !== null) {
+  if (refreshToken !== null && refreshToken !== "undefined") {
+    // console.log("리프레시 토큰", refreshToken);
     config.headers["Authorization-refresh"] = `Bearer ${refreshToken}`;
   }
+  // console.log(config);
   const newConfig = { ...config };
   newConfig.url = config.url;
   if (config.method === "patch") {

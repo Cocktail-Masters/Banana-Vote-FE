@@ -1,5 +1,7 @@
 import api from "@/common/axiosInstance";
+import useTranslation from "@/hooks/useTranslation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export type picketModyfyResultType = {
   lastModified: string;
@@ -60,12 +62,16 @@ export const usePicketUploadMutation = ({
   newPicket: boolean;
 }) => {
   const queryClient = useQueryClient();
-
+  const { translation } = useTranslation();
   return useMutation({
     mutationFn: newPicket ? postPicketUpload : postPicketModifyUpload,
     onSuccess: (data) => {
+      toast.success(translation("upload_success"));
       queryClient.invalidateQueries(queryKey);
+      queryClient.invalidateQueries(["userInfo"]);
     },
-    onError: (error) => {},
+    onError: (error) => {
+      toast.error(translation("upload_failed" + error));
+    },
   });
 };

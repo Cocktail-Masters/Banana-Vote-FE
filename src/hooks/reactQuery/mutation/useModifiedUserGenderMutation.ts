@@ -1,5 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import api from '@/common/axiosInstance';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import api from "@/common/axiosInstance";
+import useTranslation from "@/hooks/useTranslation";
+import { toast } from "react-toastify";
 
 const modifiedUserGender = async ({ gender }: { gender: string }) => {
   const response = await api.patch(`/users/gender`, { gender });
@@ -8,12 +10,16 @@ const modifiedUserGender = async ({ gender }: { gender: string }) => {
 
 const useModifiedUserGenderMutation = () => {
   const queryClient = useQueryClient();
+  const { translation } = useTranslation();
   return useMutation({
     mutationFn: modifiedUserGender,
     onSuccess: (data) => {
-      queryClient.invalidateQueries(['userInfo']);
+      toast.success(translation("modify_success"));
+      queryClient.invalidateQueries(["userInfo"]);
     },
-    onError: (error) => {},
+    onError: (error) => {
+      toast.error(translation("modify_failed" + error));
+    },
   });
 };
 export default useModifiedUserGenderMutation;

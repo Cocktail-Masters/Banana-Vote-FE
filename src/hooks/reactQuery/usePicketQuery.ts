@@ -1,5 +1,5 @@
 import api from "@/common/axiosInstance";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const usePicketQuery = ({
   queryKey,
@@ -8,9 +8,11 @@ export const usePicketQuery = ({
   queryKey: string | number;
   voteId: number;
 }) => {
+  const queryClient = useQueryClient();
   return useQuery({
     queryKey: [queryKey, voteId],
     queryFn: async () => {
+      queryClient.invalidateQueries(["userInfo"]);
       const response = await api.get(`pickets/` + String(voteId));
       if (response.status === 200) {
         return response.data;

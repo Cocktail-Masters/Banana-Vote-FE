@@ -36,8 +36,9 @@ const SelectPicketImage = ({
           />
         </div>
       </div>
-      {user !== undefined && (
+      {user !== undefined && user.id !== undefined && (
         <PicketDropzone
+          userId={user.id}
           change={true}
           price={price}
           onwerId={ownerId}

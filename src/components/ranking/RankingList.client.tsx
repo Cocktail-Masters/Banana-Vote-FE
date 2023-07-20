@@ -15,12 +15,13 @@ export default function RankingList({ params }: { params: rankingParamsType }) {
   const { data, isLoading } = useQuery<rankingListTypes>({
     queryKey: ["ranking", seasonId, paginationIndex],
     queryFn: () => getRanking({ seasonId, pageNum: paginationIndex }),
+    refetchOnWindowFocus: false,
   });
   const { translation } = useTranslation();
   if (isLoading) {
     return (
       <div className="flex h-[500px] w-full items-center justify-center">
-        <Loading></Loading>;
+        <Loading></Loading>
       </div>
     );
   }

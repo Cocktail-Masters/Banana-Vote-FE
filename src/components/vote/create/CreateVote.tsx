@@ -56,6 +56,7 @@ const CreateVote = () => {
       voteEndDate: endDate.toISOString(),
       isAnonymous: isAnonymouse,
       isPublic: isPublic,
+      is_event:false,
       voteItems: newVoteItems,
       tags: tagArray,
     };
